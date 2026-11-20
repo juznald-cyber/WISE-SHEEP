@@ -2,12 +2,13 @@
 // Proyecto Firebase: wise-sheep
 
 export const DEFAULT_FIREBASE_CONFIG = {
-  apiKey: localStorage.getItem('ws_fb_apiKey') || '',
-  authDomain: 'wise-sheep.firebaseapp.com',
-  projectId: 'wise-sheep',
-  storageBucket: 'wise-sheep.appspot.com',
-  messagingSenderId: localStorage.getItem('ws_fb_senderId') || '',
-  appId: localStorage.getItem('ws_fb_appId') || ''
+  apiKey: "AIzaSyDETtxtniKFllnQy602q_PsrezWt0cpcps",
+  authDomain: "wise-sheep.firebaseapp.com",
+  projectId: "wise-sheep",
+  storageBucket: "wise-sheep.firebasestorage.app",
+  messagingSenderId: "1020836902632",
+  appId: "1:1020836902632:web:96f335a9d998685958bb5d",
+  measurementId: "G-S893RM5RS6"
 };
 
 export class RoomManager {
@@ -24,6 +25,9 @@ export class RoomManager {
       this.channel = new BroadcastChannel('wise_sheep_rooms');
       this.channel.onmessage = (event) => this.handleLocalMessage(event.data);
     }
+
+    // Auto-inicializar Firebase
+    this.initFirebase(DEFAULT_FIREBASE_CONFIG);
   }
 
   // Genera un código PIN aleatorio de 4 a 5 dígitos
@@ -48,8 +52,8 @@ export class RoomManager {
     this.notify(msg);
   }
 
-  // Emitir evento a través de red local / BroadcastChannel y guardar en localStorage
-  broadcast(action, payload) {
+  // Emitir evento a través de red local / BroadcastChannel y guardar en localStorage & Firestore
+  async broadcast(action, payload) {
     const data = {
       pin: this.currentPin,
       action,
@@ -68,19 +72,19 @@ export class RoomManager {
     }
     this.notify(data);
 
-    // Si Firebase está configurado, sincronizar con Firestore
-    if (window.firebaseFirestore && this.currentPin) {
+    // Sincronizar con Firestore en la nube
+    if (window.firebaseFirestore && window.firebaseFirestoreModule && this.currentPin) {
       try {
         const db = window.firebaseFirestore;
         const { doc, setDoc } = window.firebaseFirestoreModule;
-        setDoc(doc(db, 'rooms', this.currentPin), updated, { merge: true });
+        await setDoc(doc(db, 'rooms', this.currentPin), updated, { merge: true });
       } catch (e) {
         console.warn('Error sincronizando con Firestore:', e);
       }
     }
   }
 
-  // Inicializar Firebase si el usuario tiene las credenciales configuradas
+  // Inicializar Firebase
   async initFirebase(config) {
     if (!config || !config.apiKey) return false;
     try {
@@ -91,6 +95,7 @@ export class RoomManager {
       window.firebaseApp = initializeApp(config);
       window.firebaseFirestore = getFirestore(window.firebaseApp);
       window.firebaseFirestoreModule = { doc, onSnapshot, setDoc };
+      console.log('🔥 Firebase Firestore conectado a wise-sheep exitosamente!');
       return true;
     } catch (err) {
       console.warn('Firebase no inicializado aún:', err.message);
