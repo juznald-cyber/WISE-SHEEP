@@ -1,5 +1,5 @@
 // WISE SHEEP - Main Application Engine
-import { QUESTIONS_DATABASE, QUESTION_LEVELS, QUESTION_TYPES } from './data/questions.js';
+import { QUESTIONS_DATABASE, QUESTION_LEVELS, QUESTION_TYPES, shuffleArray } from './data/questions.js';
 import { sounds } from './services/sound.js';
 import { roomSync, DEFAULT_FIREBASE_CONFIG } from './services/firebase.js';
 
@@ -10,10 +10,13 @@ class WiseSheepApp {
     this.gameMode = 'TEAMS'; // 'TEAMS' | 'INDIVIDUAL'
     this.questionCount = 10;
     this.timeLimit = 20;
+    this.autoCloseOnAllAnswered = true;
+    this.leaderboardMode = 'MANUAL'; // 'MANUAL' | 'EVERY_ROUND' | 'END_ONLY'
 
-    // Estado del Anfitrión
+    // Estado del Anfitrión (Host)
     this.isHost = false;
     this.roomPin = null;
+    this.roomStatus = 'IDLE'; // 'LOBBY' | 'QUESTION' | 'TIMES_UP' | 'LEADERBOARD' | 'PODIUM'
     this.players = {}; // { [id]: { name, avatar, team, score, streak } }
     this.activeQuestions = [];
     this.currentQIndex = 0;
@@ -22,7 +25,7 @@ class WiseSheepApp {
     this.qStartTime = 0;
     this.receivedAnswers = {}; // { [playerId]: { answerIndex, isCorrect, points } }
 
-    // Estado del Jugador
+    // Estado del Jugador (Player)
     this.myPlayerId = roomSync.playerId;
     this.myPlayerName = '';
     this.myAvatar = '🐑';
@@ -39,9 +42,15 @@ class WiseSheepApp {
     console.log('Iniciando WISE SHEEP App...');
     this.renderAvatarSelector();
     this.setupRoomSyncListeners();
+    this.setupPhoneVisibilityResume();
+    this.checkSavedSession();
     this.checkUrlForPin();
 
-    // Cargar config guardada de Firebase
+    // Actualizar conteo de preguntas en header
+    const qCountHeader = document.getElementById('header-q-count');
+    if (qCountHeader) qCountHeader.innerText = `${QUESTIONS_DATABASE.length}+`;
+
+    // Cargar config guardada de Firebase si existe
     const savedApiKey = localStorage.getItem('ws_fb_apiKey');
     if (savedApiKey) {
       roomSync.initFirebase({
@@ -51,7 +60,106 @@ class WiseSheepApp {
     }
   }
 
-  // Comprobar si hay un PIN en la URL (ej. ?pin=1234) para que los amigos entren directo escaneando el QR
+  // Detectar cuando el teléfono se desbloquea o la pestaña vuelve a estar visible
+  setupPhoneVisibilityResume() {
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') {
+        console.log('📱 Teléfono desbloqueado / Pestaña activa: Sincronizando estado...');
+        this.resumeActiveGame();
+      }
+    });
+
+    window.addEventListener('focus', () => {
+      this.resumeActiveGame();
+    });
+  }
+
+  // Comprobar si hay una sesión guardada previa en localStorage
+  checkSavedSession() {
+    try {
+      const saved = localStorage.getItem('ws_player_session');
+      if (saved) {
+        const session = JSON.parse(saved);
+        if (session && session.pin && session.name) {
+          const banner = document.getElementById('banner-reconnect');
+          const nameEl = document.getElementById('reconnect-player-name');
+          const pinEl = document.getElementById('reconnect-room-pin');
+          if (banner && nameEl && pinEl) {
+            nameEl.innerText = session.name;
+            pinEl.innerText = session.pin;
+            banner.classList.remove('hidden');
+          }
+        }
+      }
+    } catch (e) {
+      console.warn('Error leyendo sesión previa:', e);
+    }
+  }
+
+  dismissReconnect() {
+    const banner = document.getElementById('banner-reconnect');
+    if (banner) banner.classList.add('hidden');
+    localStorage.removeItem('ws_player_session');
+  }
+
+  reconnectActiveSession() {
+    sounds.playClick();
+    try {
+      const saved = JSON.parse(localStorage.getItem('ws_player_session') || '{}');
+      if (saved && saved.pin && saved.name) {
+        this.roomPin = saved.pin;
+        this.myPlayerName = saved.name;
+        this.myAvatar = saved.avatar || '🐑';
+        this.myTeam = saved.team || 'A';
+        this.myScore = saved.score || 0;
+        this.myStreak = saved.streak || 0;
+        this.isHost = false;
+        roomSync.currentPin = saved.pin;
+
+        // Ocultar banner
+        const banner = document.getElementById('banner-reconnect');
+        if (banner) banner.classList.add('hidden');
+
+        // Escuchar sala en línea
+        roomSync.listenToOnlineRoom(this.roomPin);
+
+        // Volver a emitir presencia para recuperar estado
+        roomSync.broadcast('PLAYER_RECONNECTED', {
+          playerId: this.myPlayerId,
+          name: this.myPlayerName,
+          avatar: this.myAvatar,
+          team: this.myTeam,
+          score: this.myScore,
+          streak: this.myStreak
+        });
+
+        this.switchView('view-player-lobby');
+        document.getElementById('player-my-name').innerText = this.myPlayerName;
+        document.getElementById('player-my-avatar').innerText = this.myAvatar;
+        document.getElementById('player-my-team-badge').innerText = this.myTeam === 'A' ? 'Equipo Hombres 🦁' : 'Equipo Mujeres 👑';
+      }
+    } catch (e) {
+      console.error('Error reconectando:', e);
+    }
+  }
+
+  resumeActiveGame() {
+    if (this.roomPin) {
+      // Re-consultar el estado de la sala desde localStorage o Firestore
+      const roomKey = `ws_room_${this.roomPin}`;
+      try {
+        const raw = localStorage.getItem(roomKey);
+        if (raw) {
+          const roomData = JSON.parse(raw);
+          if (roomData && roomData.status) {
+            this.handleRoomStateUpdate(roomData);
+          }
+        }
+      } catch (e) {}
+    }
+  }
+
+  // Comprobar si hay un PIN en la URL (ej. ?pin=1234)
   checkUrlForPin() {
     const params = new URLSearchParams(window.location.search);
     const pin = params.get('pin');
@@ -146,12 +254,15 @@ class WiseSheepApp {
 
     this.questionCount = parseInt(document.getElementById('setup-question-count')?.value || '10');
     this.timeLimit = parseInt(document.getElementById('setup-time-limit')?.value || '20');
+    this.autoCloseOnAllAnswered = document.getElementById('setup-auto-close')?.checked ?? true;
+    this.leaderboardMode = document.getElementById('setup-leaderboard-mode')?.value || 'MANUAL';
 
-    // Seleccionar y ordenar preguntas según dificultad
+    // Seleccionar y ordenar preguntas aleatorias con curva de dificultad
     this.prepareQuestions();
 
     this.players = {};
     this.currentQIndex = 0;
+    this.roomStatus = 'LOBBY';
 
     // Mostrar Lobby
     this.switchView('view-host-lobby');
@@ -179,27 +290,45 @@ class WiseSheepApp {
       mode: this.gameMode,
       timeLimit: this.timeLimit,
       totalQuestions: this.activeQuestions.length,
-      players: this.players
+      players: this.players,
+      leaderboardMode: this.leaderboardMode
     });
 
-    // Iniciar escucha en línea si Firebase está configurado
+    // Iniciar escucha en línea
     roomSync.listenToOnlineRoom(this.roomPin);
   }
 
+  // Generación aleatoria cuidando la progresión de fácil a difícil
   prepareQuestions() {
-    let pool = [...QUESTIONS_DATABASE];
+    const all = [...QUESTIONS_DATABASE];
     if (this.selectedDifficulty === 'ALL') {
-      // Orden Progresivo: primero fáciles, luego intermedias, luego difíciles
-      const easy = pool.filter(q => q.level === 'EASY').sort(() => Math.random() - 0.5);
-      const med = pool.filter(q => q.level === 'MEDIUM').sort(() => Math.random() - 0.5);
-      const hard = pool.filter(q => q.level === 'HARD').sort(() => Math.random() - 0.5);
-      pool = [...easy, ...med, ...hard];
+      // Barajar aleatoriamente cada categoría por separado
+      const easyPool = shuffleArray(all.filter(q => q.level === 'EASY'));
+      const medPool = shuffleArray(all.filter(q => q.level === 'MEDIUM'));
+      const hardPool = shuffleArray(all.filter(q => q.level === 'HARD'));
+
+      // Distribuir según el total pedido (ej. 10 preguntas -> 4 fáciles, 3 medias, 3 difíciles)
+      let countEasy = Math.max(1, Math.round(this.questionCount * 0.4));
+      let countMed = Math.max(1, Math.round(this.questionCount * 0.35));
+      let countHard = this.questionCount - countEasy - countMed;
+      if (countHard <= 0) countHard = 1;
+
+      const selectedEasy = easyPool.slice(0, countEasy);
+      const selectedMed = medPool.slice(0, countMed);
+      const selectedHard = hardPool.slice(0, countHard);
+
+      // Ensamblar en orden progresivo: Fácil -> Medio -> Difícil
+      this.activeQuestions = [...selectedEasy, ...selectedMed, ...selectedHard];
     } else {
-      pool = pool.filter(q => q.level === this.selectedDifficulty).sort(() => Math.random() - 0.5);
+      // Filtrar por nivel específico y barajar completamente
+      const filtered = shuffleArray(all.filter(q => q.level === this.selectedDifficulty));
+      this.activeQuestions = filtered.slice(0, this.questionCount);
     }
-    this.activeQuestions = pool.slice(0, this.questionCount);
-    if (this.activeQuestions.length === 0) {
-      this.activeQuestions = [...QUESTIONS_DATABASE].slice(0, this.questionCount);
+
+    // Si por alguna razón faltan, rellenar de la base general barajada
+    if (this.activeQuestions.length < this.questionCount) {
+      const remaining = shuffleArray(all.filter(q => !this.activeQuestions.some(aq => aq.id === q.id)));
+      this.activeQuestions = [...this.activeQuestions, ...remaining].slice(0, this.questionCount);
     }
   }
 
@@ -301,6 +430,7 @@ class WiseSheepApp {
     this.receivedAnswers = {};
     this.timeLeft = this.timeLimit;
     this.qStartTime = Date.now();
+    this.roomStatus = 'QUESTION';
 
     // Actualizar vista Anfitrión
     this.switchView('view-host-game');
@@ -310,6 +440,7 @@ class WiseSheepApp {
     document.getElementById('game-q-category').innerText = q.category || 'Trivia Bíblica';
     document.getElementById('game-q-text').innerText = q.question;
     document.getElementById('host-answers-count').innerText = '0';
+    document.getElementById('host-total-players-count').innerText = Object.keys(this.players).length;
     document.getElementById('host-timer-circle').innerText = this.timeLeft;
 
     // Nivel Badge
@@ -322,7 +453,7 @@ class WiseSheepApp {
       const optCard = document.getElementById(`host-opt-${i}`);
       const optText = document.getElementById(`host-opt-text-${i}`);
       if (q.options[i]) {
-        optCard.classList.remove('hidden', 'opacity-30', 'ring-4', 'ring-white');
+        optCard.classList.remove('hidden', 'opacity-30', 'ring-4', 'ring-white', 'scale-105');
         optText.innerText = q.options[i];
       } else {
         optCard.classList.add('hidden');
@@ -335,6 +466,7 @@ class WiseSheepApp {
 
     // Sincronizar estado con los teléfonos
     roomSync.broadcast('QUESTION_STARTED', {
+      status: 'QUESTION',
       questionIndex: index,
       totalQuestions: this.activeQuestions.length,
       timeLimit: this.timeLimit,
@@ -358,7 +490,6 @@ class WiseSheepApp {
       this.timeLeft--;
       if (timerCircle) timerCircle.innerText = this.timeLeft;
 
-      // Actualizar ancho de la barra
       if (timerBar) {
         const percent = Math.max(0, (this.timeLeft / this.timeLimit) * 100);
         timerBar.style.width = `${percent}%`;
@@ -366,11 +497,13 @@ class WiseSheepApp {
 
       sounds.playTick();
 
-      // Si todos respondieron o se agotó el tiempo
       const totalPlayers = Object.keys(this.players).length;
       const totalAnswers = Object.keys(this.receivedAnswers).length;
 
-      if (this.timeLeft <= 0 || (totalPlayers > 0 && totalAnswers >= totalPlayers)) {
+      // CIERRE AUTOMÁTICO AL VOTAR TODOS O AGOTARSE EL TIEMPO
+      const allAnswered = this.autoCloseOnAllAnswered && totalPlayers > 0 && totalAnswers >= totalPlayers;
+
+      if (this.timeLeft <= 0 || allAnswered) {
         this.timeUpReveal();
       }
     }, 1000);
@@ -380,8 +513,10 @@ class WiseSheepApp {
     clearInterval(this.questionTimer);
     sounds.stopTensionMusic();
     sounds.playWrong();
+    this.roomStatus = 'TIMES_UP';
 
     const q = this.activeQuestions[this.currentQIndex];
+    const isLastQuestion = (this.currentQIndex + 1 >= this.activeQuestions.length);
 
     // Resaltar opción correcta y opacar las incorrectas
     for (let i = 0; i < 4; i++) {
@@ -402,19 +537,48 @@ class WiseSheepApp {
     expText.innerText = q.explanation || '¡Excelente oportunidad para aprender más de la Palabra de Dios!';
     expBox.classList.remove('hidden');
 
-    // Mostrar barra de controles
-    document.getElementById('host-game-controls').classList.remove('hidden');
+    // Configurar botones de control del anfitrión
+    const controls = document.getElementById('host-game-controls');
+    const btnNextDirect = document.getElementById('btn-direct-next-q');
+    const btnOptLb = document.getElementById('btn-show-optional-lb');
+
+    controls.classList.remove('hidden');
+
+    if (isLastQuestion) {
+      btnNextDirect.innerHTML = '<span>👑 Ver Gran Podio Final</span>';
+      if (btnOptLb) btnOptLb.classList.add('hidden');
+    } else {
+      btnNextDirect.innerHTML = '<span>Siguiente Pregunta</span> <span>➡️</span>';
+
+      // Mostrar u ocultar botón de posiciones según configuración del anfitrión
+      if (this.leaderboardMode === 'END_ONLY') {
+        if (btnOptLb) btnOptLb.classList.add('hidden');
+      } else {
+        if (btnOptLb) btnOptLb.classList.remove('hidden');
+      }
+    }
 
     // Notificar a los teléfonos
     roomSync.broadcast('QUESTION_ENDED', {
+      status: 'TIMES_UP',
       correctAnswer: q.correctAnswer,
       verse: q.verse,
       explanation: q.explanation
     });
+
+    // Si el anfitrión configuró mostrar posiciones automáticamente después de cada pregunta
+    if (this.leaderboardMode === 'EVERY_ROUND' && !isLastQuestion) {
+      setTimeout(() => {
+        if (this.roomStatus === 'TIMES_UP') {
+          this.showLeaderboard();
+        }
+      }, 3500);
+    }
   }
 
   showLeaderboard() {
     sounds.playClick();
+    this.roomStatus = 'LEADERBOARD';
     this.switchView('view-host-leaderboard');
 
     // Si el modo es Equipos, actualizar marcador grupal
@@ -473,6 +637,7 @@ class WiseSheepApp {
 
     // Notificar a teléfonos para mostrar resultados en pantalla del jugador
     roomSync.broadcast('LEADERBOARD_SHOWN', {
+      status: 'LEADERBOARD',
       players: this.players
     });
   }
@@ -488,6 +653,7 @@ class WiseSheepApp {
 
   showFinalPodium() {
     sounds.playFanfare();
+    this.roomStatus = 'PODIUM';
     this.switchView('view-host-podium');
 
     // Confeti a toda pantalla
@@ -533,22 +699,20 @@ class WiseSheepApp {
     // Top 3 Individual
     const sorted = Object.values(this.players).sort((a, b) => (b.score || 0) - (a.score || 0));
 
-    // 1st Place
     const p1 = sorted[0] || { name: '---', score: 0, avatar: '👑' };
     document.getElementById('podium-1st-name').innerText = `${p1.avatar} ${p1.name}`;
     document.getElementById('podium-1st-score').innerText = `${p1.score || 0} pts`;
 
-    // 2nd Place
     const p2 = sorted[1] || { name: '---', score: 0, avatar: '🥈' };
     document.getElementById('podium-2nd-name').innerText = `${p2.avatar} ${p2.name}`;
     document.getElementById('podium-2nd-score').innerText = `${p2.score || 0} pts`;
 
-    // 3rd Place
     const p3 = sorted[2] || { name: '---', score: 0, avatar: '🥉' };
     document.getElementById('podium-3rd-name').innerText = `${p3.avatar} ${p3.name}`;
     document.getElementById('podium-3rd-score').innerText = `${p3.score || 0} pts`;
 
     roomSync.broadcast('GAME_FINISHED', {
+      status: 'PODIUM',
       podium: sorted.slice(0, 3)
     });
   }
@@ -606,6 +770,9 @@ class WiseSheepApp {
     this.myPlayerName = name;
     roomSync.currentPin = pin;
 
+    // Guardar sesión en localStorage para que resista bloqueos de pantalla
+    this.savePlayerSession();
+
     // Mostrar pantalla de espera en celular
     this.switchView('view-player-lobby');
     document.getElementById('player-my-name').innerText = name;
@@ -618,12 +785,27 @@ class WiseSheepApp {
       name: this.myPlayerName,
       avatar: this.myAvatar,
       team: this.myTeam,
-      score: 0,
-      streak: 0
+      score: this.myScore || 0,
+      streak: this.myStreak || 0
     });
 
     // Conectar escucha Firestore
     roomSync.listenToOnlineRoom(this.roomPin);
+  }
+
+  savePlayerSession() {
+    try {
+      localStorage.setItem('ws_player_session', JSON.stringify({
+        pin: this.roomPin,
+        name: this.myPlayerName,
+        avatar: this.myAvatar,
+        team: this.myTeam,
+        playerId: this.myPlayerId,
+        score: this.myScore,
+        streak: this.myStreak,
+        updatedAt: Date.now()
+      }));
+    } catch (e) {}
   }
 
   submitPlayerAnswer(answerIndex) {
@@ -631,7 +813,6 @@ class WiseSheepApp {
     this.hasAnsweredCurrent = true;
     sounds.playClick();
 
-    // Tiempo tomado desde inicio de pregunta
     const timeTaken = Math.max(0.5, (Date.now() - this.qStartTime) / 1000);
 
     // Ocultar botones y mostrar estado de espera
@@ -639,7 +820,7 @@ class WiseSheepApp {
     const waitingState = document.getElementById('player-waiting-state');
     waitingState.classList.remove('hidden');
     document.getElementById('player-state-title').innerText = '¡Respuesta Enviada!';
-    document.getElementById('player-state-desc').innerText = 'Mira la pantalla principal para ver los resultados...';
+    document.getElementById('player-state-desc').innerText = 'Esperando a los demás o que termine el tiempo...';
 
     // Enviar respuesta al Anfitrión
     roomSync.broadcast('SUBMIT_ANSWER', {
@@ -656,20 +837,44 @@ class WiseSheepApp {
   setupRoomSyncListeners() {
     roomSync.subscribe((data) => {
       if (!data || !data.action) return;
-
       const { action, payload } = data;
 
       // Acciones que procesa el Anfitrión (Host)
       if (this.isHost) {
-        if (action === 'PLAYER_JOINED' && payload) {
+        if ((action === 'PLAYER_JOINED' || action === 'PLAYER_RECONNECTED') && payload) {
+          // Si el jugador ya existía, preservar su puntaje; si es nuevo, agregarlo
+          const existingScore = this.players[payload.playerId]?.score || payload.score || 0;
+          const existingStreak = this.players[payload.playerId]?.streak || payload.streak || 0;
+
           this.players[payload.playerId] = {
             name: payload.name,
             avatar: payload.avatar,
             team: payload.team,
-            score: payload.score || 0,
-            streak: payload.streak || 0
+            score: existingScore,
+            streak: existingStreak
           };
+
           this.updateLobbyPlayersList();
+
+          // Actualizar contador en pantalla del anfitrión si el juego está andando
+          const totalCountEl = document.getElementById('host-total-players-count');
+          if (totalCountEl) totalCountEl.innerText = Object.keys(this.players).length;
+
+          // Si el juego ya está andando, responderle al jugador con el estado actual
+          if (this.roomStatus === 'QUESTION') {
+            const q = this.activeQuestions[this.currentQIndex];
+            roomSync.broadcast('SYNC_ACTIVE_STATE', {
+              targetPlayerId: payload.playerId,
+              status: 'QUESTION',
+              questionIndex: this.currentQIndex,
+              totalQuestions: this.activeQuestions.length,
+              timeLimit: this.timeLimit,
+              question: q?.question,
+              options: q?.options,
+              level: q?.level,
+              alreadyAnswered: !!this.receivedAnswers[payload.playerId]
+            });
+          }
         }
 
         if (action === 'SUBMIT_ANSWER' && payload) {
@@ -679,7 +884,6 @@ class WiseSheepApp {
             let pointsEarned = 0;
 
             if (isCorrect) {
-              // Puntos por rapidez (de 600 a 1000 pts)
               const ratio = Math.max(0, 1 - (payload.timeTaken / this.timeLimit));
               pointsEarned = Math.round(600 + (ratio * 400));
             }
@@ -701,7 +905,7 @@ class WiseSheepApp {
               }
             }
 
-            // Actualizar contador en pantalla
+            // Actualizar contador de respuestas recibidas en la pantalla grande
             const answersCountEl = document.getElementById('host-answers-count');
             if (answersCountEl) answersCountEl.innerText = Object.keys(this.receivedAnswers).length;
 
@@ -713,14 +917,21 @@ class WiseSheepApp {
               newScore: this.players[payload.playerId]?.score || 0,
               streak: this.players[payload.playerId]?.streak || 0
             });
+
+            // CIERRE AUTOMÁTICO AL VOTAR TODOS
+            const totalPlayers = Object.keys(this.players).length;
+            const totalAnswers = Object.keys(this.receivedAnswers).length;
+            if (this.autoCloseOnAllAnswered && totalPlayers > 0 && totalAnswers >= totalPlayers) {
+              console.log('⚡ ¡Todos los jugadores respondieron! Cerrando tiempo automáticamente...');
+              this.timeUpReveal();
+            }
           }
         }
       }
 
       // Acciones que procesa el Jugador (Player)
       if (!this.isHost) {
-        if (action === 'QUESTION_STARTED') {
-          this.hasAnsweredCurrent = false;
+        if (action === 'QUESTION_STARTED' || (action === 'SYNC_ACTIVE_STATE' && payload?.targetPlayerId === this.myPlayerId && payload.status === 'QUESTION')) {
           this.qStartTime = Date.now();
           this.switchView('view-player-game');
 
@@ -728,14 +939,25 @@ class WiseSheepApp {
           document.getElementById('player-game-avatar').innerText = this.myAvatar;
           document.getElementById('player-game-score').innerText = this.myScore;
 
-          document.getElementById('player-buttons-grid').classList.remove('hidden');
-          document.getElementById('player-waiting-state').classList.add('hidden');
-          document.getElementById('player-feedback-panel').classList.add('hidden');
+          if (payload?.alreadyAnswered) {
+            this.hasAnsweredCurrent = true;
+            document.getElementById('player-buttons-grid').classList.add('hidden');
+            document.getElementById('player-waiting-state').classList.remove('hidden');
+            document.getElementById('player-state-title').innerText = '¡Ya Respondiste!';
+            document.getElementById('player-state-desc').innerText = 'Esperando los resultados en la pantalla principal...';
+          } else {
+            this.hasAnsweredCurrent = false;
+            document.getElementById('player-buttons-grid').classList.remove('hidden');
+            document.getElementById('player-waiting-state').classList.add('hidden');
+            document.getElementById('player-feedback-panel').classList.add('hidden');
+          }
         }
 
         if (action === 'ANSWER_EVALUATED' && payload && payload.playerId === this.myPlayerId) {
           this.myScore = payload.newScore;
           this.myStreak = payload.streak;
+          this.savePlayerSession();
+
           document.getElementById('player-game-score').innerText = this.myScore;
 
           const feedback = document.getElementById('player-feedback-panel');
@@ -757,13 +979,12 @@ class WiseSheepApp {
         }
 
         if (action === 'QUESTION_ENDED') {
-          // Revelar fin de tiempo en teléfono
           if (!this.hasAnsweredCurrent) {
             document.getElementById('player-buttons-grid').classList.add('hidden');
             const waitingState = document.getElementById('player-waiting-state');
             waitingState.classList.remove('hidden');
             document.getElementById('player-state-title').innerText = '¡Tiempo Agotado!';
-            document.getElementById('player-state-desc').innerText = 'No alcanzaste a responder a tiempo.';
+            document.getElementById('player-state-desc').innerText = 'Mira la pantalla principal para ver la respuesta correcta y la cita bíblica.';
           }
         }
 
@@ -837,8 +1058,8 @@ class WiseSheepApp {
   showSettingsModal() {
     sounds.playClick();
     document.getElementById('modal-settings').classList.remove('hidden');
-    const apiKey = localStorage.getItem('ws_fb_apiKey') || '';
-    const appId = localStorage.getItem('ws_fb_appId') || '';
+    const apiKey = localStorage.getItem('ws_fb_apiKey') || DEFAULT_FIREBASE_CONFIG.apiKey;
+    const appId = localStorage.getItem('ws_fb_appId') || DEFAULT_FIREBASE_CONFIG.appId;
     document.getElementById('cfg-api-key').value = apiKey;
     document.getElementById('cfg-app-id').value = appId;
   }
@@ -862,7 +1083,7 @@ class WiseSheepApp {
       appId
     });
 
-    alert('¡Configuración guardada! Se conectará a tu proyecto Firebase wise-sheep.');
+    alert('¡Configuración guardada exitosamente!');
     this.closeSettingsModal();
   }
 }

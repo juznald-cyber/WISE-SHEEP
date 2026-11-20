@@ -12,7 +12,7 @@
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
   <!-- QR Code Generator -->
   <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
-  <!-- Google Fonts: Inter & Outfit -->
+  <!-- Google Fonts: Outfit & Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -31,12 +31,6 @@
               cyan: '#06B6D4',
               gold: '#F59E0B',
               dark: '#0B0F19'
-            },
-            kahoot: {
-              red: '#E21B3C',
-              blue: '#1368CE',
-              yellow: '#D89E00',
-              green: '#26890C'
             }
           },
           animation: {
@@ -48,7 +42,6 @@
     }
   </script>
   <style>
-    /* Estilos de botones Kahoot táctiles con elevación 3D */
     .btn-3d {
       transition: all 0.1s ease;
       box-shadow: 0 6px 0 rgba(0,0,0,0.35);
@@ -70,7 +63,7 @@
   <!-- Top Navigation Bar -->
   <header class="bg-slate-900/90 backdrop-blur border-b border-slate-800 px-4 py-3 flex items-center justify-between sticky top-0 z-50">
     <div class="flex items-center gap-3 cursor-pointer" onclick="app.showHome()">
-      <img src="./logo.jpg" alt="Wise Sheep Logo" class="w-10 h-10 rounded-full border-2 border-amber-400 shadow-md object-cover" />
+      <img src="./logo.jpg" onerror="this.onerror=null; this.src='./public/logo.jpg';" alt="Wise Sheep Logo" class="w-10 h-10 rounded-full border-2 border-amber-400 shadow-md object-cover bg-slate-800" />
       <div>
         <h1 class="font-extrabold text-lg tracking-tight bg-gradient-to-r from-cyan-400 via-amber-300 to-purple-400 bg-clip-text text-transparent">WISE SHEEP</h1>
         <p class="text-xs text-slate-400 font-medium">Trivia Bíblica en Vivo</p>
@@ -87,10 +80,26 @@
       </button>
       <!-- Questions Database Button -->
       <button onclick="app.showQuestionsModal()" class="px-3 py-1.5 rounded-xl bg-indigo-900/70 hover:bg-indigo-800 text-indigo-200 text-xs font-semibold border border-indigo-700/50 flex items-center gap-1.5 transition">
-        <span>📖</span> Preguntas
+        <span>📖</span> Preguntas (<span id="header-q-count">75+</span>)
       </button>
     </div>
   </header>
+
+  <!-- Banner de Reconexión Rápida (para cuando el teléfono se bloquea o reconecta) -->
+  <div id="banner-reconnect" class="hidden bg-gradient-to-r from-cyan-900 to-indigo-900 border-b border-cyan-500/40 px-4 py-2.5 flex items-center justify-between text-xs z-40">
+    <div class="flex items-center gap-2 text-cyan-100">
+      <span class="text-base animate-pulse">⚡</span>
+      <span>Partida en curso detectada: <strong id="reconnect-player-name" class="text-amber-300 font-bold">---</strong> en la sala <strong id="reconnect-room-pin" class="text-white font-mono font-bold">----</strong></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <button onclick="app.reconnectActiveSession()" class="px-3 py-1 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold rounded-lg shadow transition">
+        ¡Volver a Entrar! 🚀
+      </button>
+      <button onclick="app.dismissReconnect()" class="text-slate-400 hover:text-white px-1.5 text-sm" title="Descartar">
+        ✕
+      </button>
+    </div>
+  </div>
 
   <!-- Main View Container -->
   <main id="app-container" class="flex-1 flex flex-col relative overflow-hidden">
@@ -101,7 +110,7 @@
     <section id="view-home" class="flex-1 flex flex-col items-center justify-center p-6 text-center max-w-4xl mx-auto w-full">
       <div class="relative mb-6">
         <div class="absolute -inset-4 bg-gradient-to-r from-cyan-500 via-purple-600 to-amber-500 rounded-full blur-xl opacity-40 animate-pulse"></div>
-        <img src="./logo.jpg" alt="Wise Sheep Logo" class="relative w-36 h-36 md:w-44 md:h-44 rounded-3xl border-4 border-amber-400/80 shadow-2xl object-cover glow-gold mx-auto" />
+        <img src="./logo.jpg" onerror="this.onerror=null; this.src='./public/logo.jpg';" alt="Wise Sheep Logo" class="relative w-36 h-36 md:w-44 md:h-44 rounded-3xl border-4 border-amber-400/80 shadow-2xl object-cover glow-gold mx-auto bg-slate-900" />
       </div>
 
       <h2 class="text-3xl md:text-5xl font-black tracking-tight mb-3">
@@ -135,7 +144,7 @@
           <span>🌱 📜 👑</span> 3 Niveles de Dificultad
         </span>
         <span class="flex items-center gap-1.5 bg-slate-900 px-3 py-1.5 rounded-full border border-slate-800">
-          <span>⚡</span> Tiempo Real con Firebase
+          <span>🎲</span> Preguntas Aleatorias y Frescas
         </span>
       </div>
     </section>
@@ -184,7 +193,7 @@
             <label class="block text-sm font-semibold text-slate-300 mb-2">Nivel de Dificultad:</label>
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
               <button type="button" onclick="app.selectDifficulty('ALL')" id="diff-btn-ALL" class="p-3 rounded-xl border border-amber-500 bg-amber-500/20 text-amber-300 font-bold text-xs text-center">
-                ✨ Progresivo<br><span class="font-normal text-[10px] text-slate-300">Menos a más</span>
+                ✨ Progresivo<br><span class="font-normal text-[10px] text-slate-300">Menos a más (Aleatorio)</span>
               </button>
               <button type="button" onclick="app.selectDifficulty('EASY')" id="diff-btn-EASY" class="p-3 rounded-xl border border-slate-800 bg-slate-900 text-slate-300 font-bold text-xs text-center hover:border-slate-700">
                 🌱 Corderito<br><span class="font-normal text-[10px] text-slate-400">Fácil / Básico</span>
@@ -207,15 +216,43 @@
                 <option value="10" selected>10 Preguntas (Recomendado)</option>
                 <option value="15">15 Preguntas (Completo)</option>
                 <option value="20">20 Preguntas (Gran Maratón)</option>
+                <option value="25">25 Preguntas (Super Trivia)</option>
               </select>
             </div>
 
             <div>
-              <label class="block text-sm font-semibold text-slate-300 mb-1">Tiempo para responder:</label>
+              <label class="block text-sm font-semibold text-slate-300 mb-1">Tiempo por Pregunta:</label>
               <select id="setup-time-limit" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white font-medium focus:ring-2 focus:ring-cyan-500 outline-none">
                 <option value="15">15 Segundos (Rápido)</option>
                 <option value="20" selected>20 Segundos (Ideal)</option>
-                <option value="30">30 Segundos (Más tiempo para leer)</option>
+                <option value="30">30 Segundos (Con calma)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Opciones Avanzadas: Cierre Rápido y Frecuencia de Posiciones -->
+          <div class="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-4 space-y-3">
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="font-bold text-sm text-white flex items-center gap-1.5">
+                  <span>⚡</span> Cierre Automático al Votar Todos
+                </div>
+                <div class="text-xs text-slate-400">Si todos los participantes ya respondieron, el tiempo se cierra de inmediato sin esperar.</div>
+              </div>
+              <input type="checkbox" id="setup-auto-close" checked class="w-5 h-5 accent-cyan-500 rounded cursor-pointer" />
+            </div>
+
+            <div class="border-t border-slate-700/50 pt-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div>
+                <div class="font-bold text-sm text-white flex items-center gap-1.5">
+                  <span>📊</span> Mostrar Tabla de Posiciones
+                </div>
+                <div class="text-xs text-slate-400">¿Cuándo mostrar el puntaje acumulado?</div>
+              </div>
+              <select id="setup-leaderboard-mode" class="bg-slate-900 border border-slate-700 rounded-xl px-3 py-1.5 text-xs text-white font-medium focus:ring-1 focus:ring-cyan-400 outline-none">
+                <option value="MANUAL" selected>Manual (El Anfitrión decide con un botón)</option>
+                <option value="EVERY_ROUND">Automático (Después de cada pregunta)</option>
+                <option value="END_ONLY">Solo al final (Misterio hasta el Podio)</option>
               </select>
             </div>
           </div>
@@ -232,11 +269,10 @@
     <!-- VIEW 3: HOST LOBBY SCREEN (Pantalla de Espera en TV) -->
     <!-- ============================================================= -->
     <section id="view-host-lobby" class="hidden flex-1 flex flex-col p-6 max-w-6xl mx-auto w-full">
-      <!-- Top Lobby Bar: PIN y QR -->
       <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6 mb-6">
         <div class="flex items-center gap-5">
           <div id="lobby-qr-container" class="bg-white p-2.5 rounded-2xl shadow-lg border-2 border-amber-400">
-            <!-- QR Code Canvas goes here -->
+            <!-- QR Code Canvas -->
           </div>
           <div>
             <div class="text-xs uppercase tracking-widest text-slate-400 font-semibold mb-1">Entra desde tu celular con este código:</div>
@@ -273,7 +309,7 @@
             <span id="team-a-count" class="bg-blue-900/80 text-blue-200 text-xs px-2.5 py-1 rounded-full font-bold">0 miembros</span>
           </div>
           <div id="team-a-players" class="flex-1 flex flex-wrap gap-2.5 content-start min-h-[120px]">
-            <!-- Player tags go here -->
+            <!-- Player tags -->
           </div>
         </div>
 
@@ -286,18 +322,18 @@
             <span id="team-b-count" class="bg-pink-900/80 text-pink-200 text-xs px-2.5 py-1 rounded-full font-bold">0 miembros</span>
           </div>
           <div id="team-b-players" class="flex-1 flex flex-wrap gap-2.5 content-start min-h-[120px]">
-            <!-- Player tags go here -->
+            <!-- Player tags -->
           </div>
         </div>
       </div>
 
-      <!-- Individual Players Container (when mode is Individual) -->
+      <!-- Individual Players Container -->
       <div id="lobby-indiv-container" class="hidden bg-slate-900/80 border border-slate-800 rounded-3xl p-6 flex-1 mb-6 flex flex-col">
         <h4 class="text-sm uppercase tracking-wider font-bold text-slate-400 mb-4 flex items-center gap-2">
           <span>👥</span> Jugadores en la sala
         </h4>
         <div id="indiv-players-list" class="flex-1 flex flex-wrap gap-3 content-start">
-          <!-- Player pills go here -->
+          <!-- Player pills -->
         </div>
       </div>
     </section>
@@ -316,11 +352,12 @@
             🌱 Corderito
           </span>
         </div>
-        <!-- Temporizador Circular / Indicador -->
         <div class="flex items-center gap-3">
           <div class="flex items-center gap-1.5 text-xs text-slate-400">
             <span>✍️ Respuestas:</span>
             <span id="host-answers-count" class="font-bold text-white text-base">0</span>
+            <span class="text-slate-500">/</span>
+            <span id="host-total-players-count" class="font-bold text-slate-300 text-base">0</span>
           </div>
           <div id="host-timer-circle" class="w-12 h-12 rounded-full border-4 border-cyan-400 flex items-center justify-center font-black text-lg text-white bg-slate-900 shadow-lg">
             20
@@ -337,7 +374,7 @@
       <div class="bg-slate-900 border-2 border-slate-800 rounded-3xl p-6 md:p-10 shadow-2xl text-center mb-6 flex-1 flex flex-col items-center justify-center relative overflow-hidden">
         <span id="game-q-category" class="text-xs uppercase tracking-widest text-slate-400 font-semibold mb-2">Historias Bíblicas</span>
         <h3 id="game-q-text" class="text-2xl md:text-4xl font-extrabold text-white leading-tight max-w-3xl">
-          ¿Cuántos días y noches llovió durante el diluvio en el arca de Noé?
+          ¿Pregunta Bíblica?
         </h3>
       </div>
 
@@ -372,23 +409,30 @@
           <div class="flex-1">
             <div class="flex items-center gap-2 font-bold text-amber-300 text-base">
               <span>Respuesta Correcta:</span>
-              <span id="host-explanation-verse" class="bg-amber-400 text-slate-950 px-2 py-0.5 rounded text-xs font-black">Génesis 7:12</span>
+              <span id="host-explanation-verse" class="bg-amber-400 text-slate-950 px-2 py-0.5 rounded text-xs font-black">Cita Bíblica</span>
             </div>
             <p id="host-explanation-text" class="text-slate-200 text-sm mt-1">
-              "Y hubo lluvia sobre la tierra cuarenta días y cuarenta noches."
+              Explicación bíblica...
             </p>
           </div>
         </div>
       </div>
 
-      <!-- Barra Inferior de Acción del Host -->
-      <div id="host-game-controls" class="hidden flex items-center justify-between bg-slate-900/90 border border-slate-800 px-5 py-3 rounded-2xl">
+      <!-- Barra Inferior de Acción del Host (Control Flexible de Posiciones) -->
+      <div id="host-game-controls" class="hidden flex flex-col sm:flex-row items-center justify-between bg-slate-900/90 border border-slate-800 px-5 py-3 rounded-2xl gap-3">
         <div class="text-xs text-slate-400">
-          Revisen la respuesta y pasen a ver el puntaje.
+          ¿Deseas ver las posiciones ahora o pasar directo a la siguiente pregunta?
         </div>
-        <button onclick="app.showLeaderboard()" class="btn-3d px-6 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 font-bold text-sm rounded-xl text-white flex items-center gap-2">
-          <span>📊</span> Ver Tabla de Posiciones
-        </button>
+        <div class="flex items-center gap-3 w-full sm:w-auto">
+          <!-- Botón opcional para ver Leaderboard -->
+          <button id="btn-show-optional-lb" onclick="app.showLeaderboard()" class="btn-3d px-4 py-2.5 bg-slate-800 hover:bg-slate-700 border border-slate-700 font-bold text-xs rounded-xl text-slate-300 flex items-center gap-1.5 transition">
+            <span>📊</span> Ver Posiciones
+          </button>
+          <!-- Botón directo para pasar a la siguiente pregunta -->
+          <button id="btn-direct-next-q" onclick="app.nextQuestionOrPodium()" class="btn-3d flex-1 sm:flex-none px-6 py-2.5 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 font-extrabold text-sm rounded-xl text-white flex items-center justify-center gap-2 glow-gold">
+            <span>Siguiente Pregunta</span> <span>➡️</span>
+          </button>
+        </div>
       </div>
     </section>
 
@@ -403,7 +447,7 @@
         <p class="text-slate-400 text-sm">Puntajes acumulados tras la ronda</p>
       </div>
 
-      <!-- Marcador de Equipos (si el modo es TEAMS) -->
+      <!-- Marcador de Equipos -->
       <div id="leaderboard-teams-banner" class="bg-slate-900 border border-slate-800 rounded-3xl p-5 mb-6 shadow-xl">
         <div class="flex items-center justify-between mb-3 text-sm font-bold">
           <span class="text-blue-400 flex items-center gap-1.5">🦁 Hombres: <span id="lb-score-team-a" class="text-white text-lg">0</span> pts</span>
@@ -417,7 +461,7 @@
 
       <!-- Top Jugadores Individuales -->
       <div id="leaderboard-players-list" class="space-y-3 flex-1 overflow-y-auto mb-6">
-        <!-- Top player cards go here -->
+        <!-- Cards -->
       </div>
 
       <!-- Siguiente Pregunta Button -->
@@ -434,7 +478,7 @@
     <section id="view-host-podium" class="hidden flex-1 flex flex-col p-6 max-w-4xl mx-auto w-full items-center justify-center text-center">
       <div class="relative mb-6">
         <div class="absolute -inset-6 bg-gradient-to-r from-amber-500 via-yellow-300 to-cyan-400 rounded-full blur-2xl opacity-50 animate-pulse"></div>
-        <img src="./logo.jpg" alt="Wise Sheep" class="relative w-28 h-28 rounded-3xl border-4 border-amber-400 shadow-2xl glow-gold mx-auto" />
+        <img src="./logo.jpg" onerror="this.onerror=null; this.src='./public/logo.jpg';" alt="Wise Sheep" class="relative w-28 h-28 rounded-3xl border-4 border-amber-400 shadow-2xl glow-gold mx-auto object-cover bg-slate-900" />
       </div>
 
       <h2 class="text-4xl md:text-5xl font-black text-white mb-2">
@@ -493,7 +537,7 @@
     <section id="view-player-join" class="hidden flex-1 p-5 max-w-md mx-auto w-full flex flex-col justify-center">
       <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-2xl">
         <div class="text-center mb-6">
-          <img src="./logo.jpg" alt="Logo" class="w-16 h-16 rounded-2xl border-2 border-amber-400 mx-auto mb-2 object-cover glow-gold" />
+          <img src="./logo.jpg" onerror="this.onerror=null; this.src='./public/logo.jpg';" alt="Logo" class="w-16 h-16 rounded-2xl border-2 border-amber-400 mx-auto mb-2 object-cover glow-gold bg-slate-800" />
           <h3 class="font-black text-2xl text-white">Unirse a la Trivia</h3>
           <p class="text-xs text-slate-400">Ingresa el PIN de la pantalla principal</p>
         </div>
@@ -515,11 +559,11 @@
           <div>
             <label class="block text-xs uppercase tracking-wider font-bold text-slate-400 mb-1.5 text-center">Elige tu Avatar:</label>
             <div class="flex justify-center gap-2" id="avatar-selector">
-              <!-- Avatar options generated dynamically -->
+              <!-- Avatares dinámicos -->
             </div>
           </div>
 
-          <!-- Selección de Equipo (Hombres vs Mujeres) -->
+          <!-- Selección de Equipo -->
           <div>
             <label class="block text-xs uppercase tracking-wider font-bold text-slate-400 mb-1.5 text-center">Tu Equipo:</label>
             <div class="grid grid-cols-2 gap-2">
@@ -555,7 +599,7 @@
 
         <div class="mt-8 p-4 bg-slate-800/80 rounded-2xl border border-slate-700/50">
           <div class="inline-block animate-spin text-2xl mb-2">⏳</div>
-          <p class="font-bold text-slate-200 text-sm">¡Estás dentro de la sala!</p>
+          <p class="font-bold text-slate-200 text-sm">¡Estás conectado a la sala!</p>
           <p class="text-xs text-slate-400 mt-1">Mira el monitor principal mientras el anfitrión inicia la partida...</p>
         </div>
       </div>
@@ -611,7 +655,7 @@
         </button>
       </div>
 
-      <!-- Feedback de Acierto / Error (se muestra al cerrar la pregunta) -->
+      <!-- Feedback de Acierto / Error -->
       <div id="player-feedback-panel" class="hidden mt-3 p-4 rounded-2xl text-center border-2">
         <div class="text-2xl font-black mb-0.5" id="player-feedback-title">¡CORRECTO! 🎉</div>
         <div class="text-xs font-semibold" id="player-feedback-points">+950 puntos</div>
@@ -621,7 +665,7 @@
   </main>
 
   <!-- ============================================================= -->
-  <!-- MODAL: BANCO DE PREGUNTAS & EDITOR -->
+  <!-- MODAL: BANCO DE PREGUNTAS & EXPLORADOR -->
   <!-- ============================================================= -->
   <div id="modal-questions" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
     <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl">
@@ -642,7 +686,7 @@
 
       <!-- Lista de Preguntas -->
       <div id="modal-questions-scroll" class="p-5 space-y-4 overflow-y-auto flex-1">
-        <!-- Rendered items go here -->
+        <!-- Rendered items -->
       </div>
     </div>
   </div>
@@ -660,7 +704,7 @@
       </div>
 
       <p class="text-xs text-slate-300 mb-4">
-        Tu proyecto está enlazado a <strong class="text-amber-400">wise-sheep</strong>. Para juego en línea entre dispositivos remotos, puedes ingresar tu API Key de Firebase o jugar en modo local sincronizado.
+        Conectado automáticamente al proyecto Firebase <strong class="text-amber-400">wise-sheep</strong>. Sincroniza salas y jugadores en vivo 24/7.
       </p>
 
       <form onsubmit="event.preventDefault(); app.saveFirebaseSettings();" class="space-y-3 text-xs">
@@ -669,12 +713,12 @@
           <input type="text" id="cfg-project-id" value="wise-sheep" readonly class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-3 py-2 text-slate-300 font-mono" />
         </div>
         <div>
-          <label class="block font-semibold text-slate-400 mb-1">API Key (de Firebase Console):</label>
+          <label class="block font-semibold text-slate-400 mb-1">API Key:</label>
           <input type="text" id="cfg-api-key" placeholder="AIzaSy..." class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white font-mono focus:ring-1 focus:ring-amber-400 outline-none" />
         </div>
         <div>
           <label class="block font-semibold text-slate-400 mb-1">App ID:</label>
-          <input type="text" id="cfg-app-id" placeholder="1:123456789:web:abcdef" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white font-mono focus:ring-1 focus:ring-amber-400 outline-none" />
+          <input type="text" id="cfg-app-id" placeholder="1:1020836902632:web:..." class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white font-mono focus:ring-1 focus:ring-amber-400 outline-none" />
         </div>
 
         <button type="submit" class="w-full btn-3d mt-4 py-3 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-black rounded-xl">
