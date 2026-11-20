@@ -23,7 +23,7 @@ class WiseSheepApp {
     this.questionTimer = null;
     this.timeLeft = 20;
     this.qStartTime = 0;
-    this.receivedAnswers = {}; // { [playerId]: { answerIndex, isCorrect, points } }
+    this.receivedAnswers = {}; // { [playerId]: { answerIndex, isCorrect, pointsEarned } }
 
     // Estado del Jugador (Player)
     this.myPlayerId = roomSync.playerId;
@@ -32,6 +32,7 @@ class WiseSheepApp {
     this.myTeam = 'A'; // 'A': Hombres, 'B': Mujeres
     this.myScore = 0;
     this.myStreak = 0;
+    this.maxStreak = 0;
     this.hasAnsweredCurrent = false;
 
     // Avatares disponibles
@@ -41,7 +42,6 @@ class WiseSheepApp {
   init() {
     console.log('Iniciando WISE SHEEP App...');
     this.renderAvatarSelector();
-    this.setupRoomSyncListeners();
     this.setupPhoneVisibilityResume();
     this.checkSavedSession();
     this.checkUrlForPin();
@@ -113,6 +113,7 @@ class WiseSheepApp {
         this.myTeam = saved.team || 'A';
         this.myScore = saved.score || 0;
         this.myStreak = saved.streak || 0;
+        this.maxStreak = saved.maxStreak || 0;
         this.isHost = false;
         roomSync.currentPin = saved.pin;
 
@@ -120,12 +121,11 @@ class WiseSheepApp {
         const banner = document.getElementById('banner-reconnect');
         if (banner) banner.classList.add('hidden');
 
-        // Escuchar sala en línea
-        roomSync.listenToOnlineRoom(this.roomPin);
+        // Re-escuchar la sala
+        this.startListeningAsPlayer(this.roomPin);
 
-        // Volver a emitir presencia para recuperar estado
-        roomSync.broadcast('PLAYER_RECONNECTED', {
-          playerId: this.myPlayerId,
+        // Volver a registrar presencia
+        roomSync.registerPlayer(this.roomPin, this.myPlayerId, {
           name: this.myPlayerName,
           avatar: this.myAvatar,
           team: this.myTeam,
@@ -144,22 +144,12 @@ class WiseSheepApp {
   }
 
   resumeActiveGame() {
-    if (this.roomPin) {
-      // Re-consultar el estado de la sala desde localStorage o Firestore
-      const roomKey = `ws_room_${this.roomPin}`;
-      try {
-        const raw = localStorage.getItem(roomKey);
-        if (raw) {
-          const roomData = JSON.parse(raw);
-          if (roomData && roomData.status) {
-            this.handleRoomStateUpdate(roomData);
-          }
-        }
-      } catch (e) {}
+    if (this.roomPin && !this.isHost) {
+      // Re-conectar escucha
+      this.startListeningAsPlayer(this.roomPin);
     }
   }
 
-  // Comprobar si hay un PIN en la URL (ej. ?pin=1234)
   checkUrlForPin() {
     const params = new URLSearchParams(window.location.search);
     const pin = params.get('pin');
@@ -170,14 +160,12 @@ class WiseSheepApp {
     }
   }
 
-  // Alternar sonido general
   toggleSound() {
     const isMuted = sounds.toggleMute();
     const icon = document.getElementById('sound-icon');
     if (icon) icon.innerText = isMuted ? '🔇' : '🔊';
   }
 
-  // Cambio de pantalla / vista
   switchView(viewId) {
     const views = [
       'view-home',
@@ -188,7 +176,8 @@ class WiseSheepApp {
       'view-host-podium',
       'view-player-join',
       'view-player-lobby',
-      'view-player-game'
+      'view-player-game',
+      'view-player-podium'
     ];
     views.forEach(id => {
       const el = document.getElementById(id);
@@ -257,19 +246,15 @@ class WiseSheepApp {
     this.autoCloseOnAllAnswered = document.getElementById('setup-auto-close')?.checked ?? true;
     this.leaderboardMode = document.getElementById('setup-leaderboard-mode')?.value || 'MANUAL';
 
-    // Seleccionar y ordenar preguntas aleatorias con curva de dificultad
     this.prepareQuestions();
-
     this.players = {};
     this.currentQIndex = 0;
     this.roomStatus = 'LOBBY';
 
-    // Mostrar Lobby
     this.switchView('view-host-lobby');
     const pinDisplay = document.getElementById('lobby-pin-display');
     if (pinDisplay) pinDisplay.innerText = this.roomPin;
 
-    // Configurar vistas de equipo vs individual
     const teamsCont = document.getElementById('lobby-teams-container');
     const indivCont = document.getElementById('lobby-indiv-container');
     if (this.gameMode === 'TEAMS') {
@@ -280,34 +265,40 @@ class WiseSheepApp {
       indivCont.classList.remove('hidden');
     }
 
-    // Generar Código QR para teléfonos
     this.generateLobbyQRCode();
 
-    // Emitir estado inicial de la sala
-    roomSync.broadcast('ROOM_CREATED', {
-      pin: this.roomPin,
+    // 1. Guardar estado inicial en Firestore
+    roomSync.createOrUpdateRoom(this.roomPin, {
       status: 'LOBBY',
       mode: this.gameMode,
       timeLimit: this.timeLimit,
       totalQuestions: this.activeQuestions.length,
-      players: this.players,
-      leaderboardMode: this.leaderboardMode
+      currentQuestionIndex: 0,
+      leaderboardMode: this.leaderboardMode,
+      leaderboard: []
     });
 
-    // Iniciar escucha en línea
-    roomSync.listenToOnlineRoom(this.roomPin);
+    // 2. Escuchar a los jugadores que se van uniendo
+    roomSync.listenToPlayers(this.roomPin, (playersData) => {
+      this.players = playersData || {};
+      this.updateLobbyPlayersList();
+      const totalCountEl = document.getElementById('host-total-players-count');
+      if (totalCountEl) totalCountEl.innerText = Object.keys(this.players).length;
+    });
+
+    // 3. Escuchar las respuestas de los jugadores en vivo
+    roomSync.listenToAnswers(this.roomPin, (playerId, answerData) => {
+      this.handleHostAnswerReceived(playerId, answerData);
+    });
   }
 
-  // Generación aleatoria cuidando la progresión de fácil a difícil
   prepareQuestions() {
     const all = [...QUESTIONS_DATABASE];
     if (this.selectedDifficulty === 'ALL') {
-      // Barajar aleatoriamente cada categoría por separado
       const easyPool = shuffleArray(all.filter(q => q.level === 'EASY'));
       const medPool = shuffleArray(all.filter(q => q.level === 'MEDIUM'));
       const hardPool = shuffleArray(all.filter(q => q.level === 'HARD'));
 
-      // Distribuir según el total pedido (ej. 10 preguntas -> 4 fáciles, 3 medias, 3 difíciles)
       let countEasy = Math.max(1, Math.round(this.questionCount * 0.4));
       let countMed = Math.max(1, Math.round(this.questionCount * 0.35));
       let countHard = this.questionCount - countEasy - countMed;
@@ -317,15 +308,12 @@ class WiseSheepApp {
       const selectedMed = medPool.slice(0, countMed);
       const selectedHard = hardPool.slice(0, countHard);
 
-      // Ensamblar en orden progresivo: Fácil -> Medio -> Difícil
       this.activeQuestions = [...selectedEasy, ...selectedMed, ...selectedHard];
     } else {
-      // Filtrar por nivel específico y barajar completamente
       const filtered = shuffleArray(all.filter(q => q.level === this.selectedDifficulty));
       this.activeQuestions = filtered.slice(0, this.questionCount);
     }
 
-    // Si por alguna razón faltan, rellenar de la base general barajada
     if (this.activeQuestions.length < this.questionCount) {
       const remaining = shuffleArray(all.filter(q => !this.activeQuestions.some(aq => aq.id === q.id)));
       this.activeQuestions = [...this.activeQuestions, ...remaining].slice(0, this.questionCount);
@@ -432,10 +420,8 @@ class WiseSheepApp {
     this.qStartTime = Date.now();
     this.roomStatus = 'QUESTION';
 
-    // Actualizar vista Anfitrión
     this.switchView('view-host-game');
 
-    // UI Elements
     document.getElementById('game-q-counter').innerText = `Pregunta ${index + 1} de ${this.activeQuestions.length}`;
     document.getElementById('game-q-category').innerText = q.category || 'Trivia Bíblica';
     document.getElementById('game-q-text').innerText = q.question;
@@ -443,12 +429,10 @@ class WiseSheepApp {
     document.getElementById('host-total-players-count').innerText = Object.keys(this.players).length;
     document.getElementById('host-timer-circle').innerText = this.timeLeft;
 
-    // Nivel Badge
     const badgeEl = document.getElementById('game-q-badge');
     const lvlInfo = QUESTION_LEVELS[q.level] || QUESTION_LEVELS.EASY;
     badgeEl.innerText = `${lvlInfo.badge} ${lvlInfo.name}`;
 
-    // Reset Opciones UI
     for (let i = 0; i < 4; i++) {
       const optCard = document.getElementById(`host-opt-${i}`);
       const optText = document.getElementById(`host-opt-text-${i}`);
@@ -460,22 +444,22 @@ class WiseSheepApp {
       }
     }
 
-    // Ocultar explicación y controles de siguiente
     document.getElementById('host-explanation-box').classList.add('hidden');
     document.getElementById('host-game-controls').classList.add('hidden');
 
-    // Sincronizar estado con los teléfonos
-    roomSync.broadcast('QUESTION_STARTED', {
+    // Actualizar estado de la sala en Firestore para todos los dispositivos
+    roomSync.createOrUpdateRoom(this.roomPin, {
       status: 'QUESTION',
-      questionIndex: index,
+      currentQuestionIndex: index,
       totalQuestions: this.activeQuestions.length,
       timeLimit: this.timeLimit,
       question: q.question,
       options: q.options,
-      level: q.level
+      level: q.level,
+      category: q.category,
+      qStartTime: this.qStartTime
     });
 
-    // Iniciar audio de suspenso y temporizador
     sounds.startTensionMusic();
     this.runTimer();
   }
@@ -500,13 +484,66 @@ class WiseSheepApp {
       const totalPlayers = Object.keys(this.players).length;
       const totalAnswers = Object.keys(this.receivedAnswers).length;
 
-      // CIERRE AUTOMÁTICO AL VOTAR TODOS O AGOTARSE EL TIEMPO
+      // CIERRE AUTOMÁTICO INMEDIATO AL VOTAR TODOS
       const allAnswered = this.autoCloseOnAllAnswered && totalPlayers > 0 && totalAnswers >= totalPlayers;
 
       if (this.timeLeft <= 0 || allAnswered) {
         this.timeUpReveal();
       }
     }, 1000);
+  }
+
+  // Manejar respuesta recibida en la subcolección 'answers'
+  handleHostAnswerReceived(playerId, answerData) {
+    if (!this.isHost || this.roomStatus !== 'QUESTION') return;
+    if (answerData.questionIndex !== this.currentQIndex) return;
+    if (this.receivedAnswers[playerId]) return; // ya evaluado
+
+    const q = this.activeQuestions[this.currentQIndex];
+    if (!q) return;
+
+    const isCorrect = (answerData.answerIndex === q.correctAnswer);
+    let pointsEarned = 0;
+
+    if (isCorrect) {
+      const timeTaken = answerData.timeTaken || 1;
+      const ratio = Math.max(0, 1 - (timeTaken / this.timeLimit));
+      pointsEarned = Math.round(600 + (ratio * 400));
+    }
+
+    this.receivedAnswers[playerId] = {
+      answerIndex: answerData.answerIndex,
+      isCorrect,
+      pointsEarned
+    };
+
+    // Actualizar jugador en memoria y en Firestore
+    if (this.players[playerId]) {
+      const p = this.players[playerId];
+      if (isCorrect) {
+        p.score = (p.score || 0) + pointsEarned;
+        p.streak = (p.streak || 0) + 1;
+      } else {
+        p.streak = 0;
+      }
+
+      // Guardar puntaje actualizado del jugador en Firestore
+      roomSync.registerPlayer(this.roomPin, playerId, p);
+    }
+
+    // Actualizar conteo en pantalla principal
+    const answersCountEl = document.getElementById('host-answers-count');
+    if (answersCountEl) answersCountEl.innerText = Object.keys(this.receivedAnswers).length;
+
+    console.log(`✅ Respuesta de ${this.players[playerId]?.name || playerId}: ${isCorrect ? 'Correcta' : 'Incorrecta'} (+${pointsEarned} pts). Total respondieron: ${Object.keys(this.receivedAnswers).length}/${Object.keys(this.players).length}`);
+
+    // Verificar si todos respondieron para cierre automático
+    const totalPlayers = Object.keys(this.players).length;
+    const totalAnswers = Object.keys(this.receivedAnswers).length;
+    if (this.autoCloseOnAllAnswered && totalPlayers > 0 && totalAnswers >= totalPlayers) {
+      console.log('⚡ ¡Todos los participantes han votado! Cerrando tiempo de inmediato...');
+      this.timeUpReveal();
+    }
   }
 
   timeUpReveal() {
@@ -518,7 +555,7 @@ class WiseSheepApp {
     const q = this.activeQuestions[this.currentQIndex];
     const isLastQuestion = (this.currentQIndex + 1 >= this.activeQuestions.length);
 
-    // Resaltar opción correcta y opacar las incorrectas
+    // Resaltar opción correcta y opacar las demás
     for (let i = 0; i < 4; i++) {
       const optCard = document.getElementById(`host-opt-${i}`);
       if (i === q.correctAnswer) {
@@ -537,7 +574,6 @@ class WiseSheepApp {
     expText.innerText = q.explanation || '¡Excelente oportunidad para aprender más de la Palabra de Dios!';
     expBox.classList.remove('hidden');
 
-    // Configurar botones de control del anfitrión
     const controls = document.getElementById('host-game-controls');
     const btnNextDirect = document.getElementById('btn-direct-next-q');
     const btnOptLb = document.getElementById('btn-show-optional-lb');
@@ -549,8 +585,6 @@ class WiseSheepApp {
       if (btnOptLb) btnOptLb.classList.add('hidden');
     } else {
       btnNextDirect.innerHTML = '<span>Siguiente Pregunta</span> <span>➡️</span>';
-
-      // Mostrar u ocultar botón de posiciones según configuración del anfitrión
       if (this.leaderboardMode === 'END_ONLY') {
         if (btnOptLb) btnOptLb.classList.add('hidden');
       } else {
@@ -558,15 +592,24 @@ class WiseSheepApp {
       }
     }
 
-    // Notificar a los teléfonos
-    roomSync.broadcast('QUESTION_ENDED', {
+    // Notificar a Firestore el fin del tiempo y la respuesta correcta
+    const sorted = Object.entries(this.players).map(([id, p]) => ({
+      id,
+      name: p.name,
+      avatar: p.avatar,
+      team: p.team,
+      score: p.score || 0,
+      streak: p.streak || 0
+    })).sort((a, b) => b.score - a.score);
+
+    roomSync.createOrUpdateRoom(this.roomPin, {
       status: 'TIMES_UP',
       correctAnswer: q.correctAnswer,
       verse: q.verse,
-      explanation: q.explanation
+      explanation: q.explanation,
+      leaderboard: sorted
     });
 
-    // Si el anfitrión configuró mostrar posiciones automáticamente después de cada pregunta
     if (this.leaderboardMode === 'EVERY_ROUND' && !isLastQuestion) {
       setTimeout(() => {
         if (this.roomStatus === 'TIMES_UP') {
@@ -581,18 +624,17 @@ class WiseSheepApp {
     this.roomStatus = 'LEADERBOARD';
     this.switchView('view-host-leaderboard');
 
-    // Si el modo es Equipos, actualizar marcador grupal
     const teamBanner = document.getElementById('leaderboard-teams-banner');
+    let scoreTeamA = 0;
+    let scoreTeamB = 0;
+
+    Object.values(this.players).forEach(p => {
+      if (p.team === 'A') scoreTeamA += p.score || 0;
+      if (p.team === 'B') scoreTeamB += p.score || 0;
+    });
+
     if (this.gameMode === 'TEAMS') {
       teamBanner.classList.remove('hidden');
-      let scoreTeamA = 0;
-      let scoreTeamB = 0;
-
-      Object.values(this.players).forEach(p => {
-        if (p.team === 'A') scoreTeamA += p.score || 0;
-        if (p.team === 'B') scoreTeamB += p.score || 0;
-      });
-
       document.getElementById('lb-score-team-a').innerText = scoreTeamA.toLocaleString();
       document.getElementById('lb-score-team-b').innerText = scoreTeamB.toLocaleString();
 
@@ -606,8 +648,15 @@ class WiseSheepApp {
       teamBanner.classList.add('hidden');
     }
 
-    // Ordenar jugadores por puntaje
-    const sorted = Object.values(this.players).sort((a, b) => (b.score || 0) - (a.score || 0));
+    const sorted = Object.entries(this.players).map(([id, p]) => ({
+      id,
+      name: p.name,
+      avatar: p.avatar,
+      team: p.team,
+      score: p.score || 0,
+      streak: p.streak || 0
+    })).sort((a, b) => b.score - a.score);
+
     const lbList = document.getElementById('leaderboard-players-list');
     if (lbList) {
       lbList.innerHTML = sorted.map((p, idx) => {
@@ -635,10 +684,11 @@ class WiseSheepApp {
       }).join('') || '<div class="text-center text-slate-400 py-6">Sin puntajes aún</div>';
     }
 
-    // Notificar a teléfonos para mostrar resultados en pantalla del jugador
-    roomSync.broadcast('LEADERBOARD_SHOWN', {
+    roomSync.createOrUpdateRoom(this.roomPin, {
       status: 'LEADERBOARD',
-      players: this.players
+      leaderboard: sorted,
+      scoreTeamA,
+      scoreTeamB
     });
   }
 
@@ -656,34 +706,32 @@ class WiseSheepApp {
     this.roomStatus = 'PODIUM';
     this.switchView('view-host-podium');
 
-    // Confeti a toda pantalla
     if (window.confetti) {
-      window.confetti({
-        particleCount: 150,
-        spread: 90,
-        origin: { y: 0.6 }
-      });
+      window.confetti({ particleCount: 160, spread: 90, origin: { y: 0.6 } });
       setTimeout(() => {
-        window.confetti({ particleCount: 100, angle: 60, spread: 55, origin: { x: 0 } });
-        window.confetti({ particleCount: 100, angle: 120, spread: 55, origin: { x: 1 } });
+        window.confetti({ particleCount: 110, angle: 60, spread: 55, origin: { x: 0 } });
+        window.confetti({ particleCount: 110, angle: 120, spread: 55, origin: { x: 1 } });
       }, 700);
     }
 
-    // Determinar ganador de equipo si aplica
-    if (this.gameMode === 'TEAMS') {
-      let scoreA = 0;
-      let scoreB = 0;
-      Object.values(this.players).forEach(p => {
-        if (p.team === 'A') scoreA += p.score || 0;
-        if (p.team === 'B') scoreB += p.score || 0;
-      });
+    let scoreA = 0;
+    let scoreB = 0;
+    Object.values(this.players).forEach(p => {
+      if (p.team === 'A') scoreA += p.score || 0;
+      if (p.team === 'B') scoreB += p.score || 0;
+    });
 
+    let winningTeam = 'TIE';
+    if (scoreA > scoreB) winningTeam = 'A';
+    else if (scoreB > scoreA) winningTeam = 'B';
+
+    if (this.gameMode === 'TEAMS') {
       const winText = document.getElementById('podium-winning-team-text');
       if (winText) {
-        if (scoreA > scoreB) {
+        if (winningTeam === 'A') {
           winText.innerText = `¡El Equipo Ganador es: 🦁 HOMBRES (${scoreA.toLocaleString()} pts vs ${scoreB.toLocaleString()} pts)!`;
           winText.className = 'text-blue-300 font-black text-xl md:text-2xl mb-8';
-        } else if (scoreB > scoreA) {
+        } else if (winningTeam === 'B') {
           winText.innerText = `¡El Equipo Ganador es: 👑 MUJERES (${scoreB.toLocaleString()} pts vs ${scoreA.toLocaleString()} pts)!`;
           winText.className = 'text-pink-300 font-black text-xl md:text-2xl mb-8';
         } else {
@@ -693,11 +741,17 @@ class WiseSheepApp {
       }
     } else {
       const winText = document.getElementById('podium-winning-team-text');
-      if (winText) winText.innerText = '¡Felicitaciones a los mejores sabios de las Escrituras!';
+      if (winText) winText.innerText = '¡Felicitaciones a los más sabios de las Escrituras!';
     }
 
-    // Top 3 Individual
-    const sorted = Object.values(this.players).sort((a, b) => (b.score || 0) - (a.score || 0));
+    const sorted = Object.entries(this.players).map(([id, p]) => ({
+      id,
+      name: p.name,
+      avatar: p.avatar,
+      team: p.team,
+      score: p.score || 0,
+      streak: p.streak || 0
+    })).sort((a, b) => b.score - a.score);
 
     const p1 = sorted[0] || { name: '---', score: 0, avatar: '👑' };
     document.getElementById('podium-1st-name').innerText = `${p1.avatar} ${p1.name}`;
@@ -711,9 +765,14 @@ class WiseSheepApp {
     document.getElementById('podium-3rd-name').innerText = `${p3.avatar} ${p3.name}`;
     document.getElementById('podium-3rd-score').innerText = `${p3.score || 0} pts`;
 
-    roomSync.broadcast('GAME_FINISHED', {
+    // Notificar podio final para que cada teléfono muestre su lugar
+    roomSync.createOrUpdateRoom(this.roomPin, {
       status: 'PODIUM',
-      podium: sorted.slice(0, 3)
+      podium: sorted.slice(0, 3),
+      leaderboard: sorted,
+      winningTeam,
+      scoreTeamA: scoreA,
+      scoreTeamB: scoreB
     });
   }
 
@@ -770,18 +829,15 @@ class WiseSheepApp {
     this.myPlayerName = name;
     roomSync.currentPin = pin;
 
-    // Guardar sesión en localStorage para que resista bloqueos de pantalla
     this.savePlayerSession();
 
-    // Mostrar pantalla de espera en celular
     this.switchView('view-player-lobby');
     document.getElementById('player-my-name').innerText = name;
     document.getElementById('player-my-avatar').innerText = this.myAvatar;
     document.getElementById('player-my-team-badge').innerText = this.myTeam === 'A' ? 'Equipo Hombres 🦁' : 'Equipo Mujeres 👑';
 
-    // Notificar al Anfitrión
-    roomSync.broadcast('PLAYER_JOINED', {
-      playerId: this.myPlayerId,
+    // Registrar jugador en Firestore
+    roomSync.registerPlayer(this.roomPin, this.myPlayerId, {
       name: this.myPlayerName,
       avatar: this.myAvatar,
       team: this.myTeam,
@@ -789,8 +845,8 @@ class WiseSheepApp {
       streak: this.myStreak || 0
     });
 
-    // Conectar escucha Firestore
-    roomSync.listenToOnlineRoom(this.roomPin);
+    // Escuchar el estado de la sala
+    this.startListeningAsPlayer(this.roomPin);
   }
 
   savePlayerSession() {
@@ -803,197 +859,198 @@ class WiseSheepApp {
         playerId: this.myPlayerId,
         score: this.myScore,
         streak: this.myStreak,
+        maxStreak: this.maxStreak,
         updatedAt: Date.now()
       }));
     } catch (e) {}
   }
 
-  submitPlayerAnswer(answerIndex) {
+  startListeningAsPlayer(pin) {
+    roomSync.listenToRoomState(pin, (roomData) => {
+      this.handlePlayerRoomUpdate(roomData);
+    });
+  }
+
+  handlePlayerRoomUpdate(roomData) {
+    if (this.isHost || !roomData || !roomData.status) return;
+
+    console.log('📱 Actualización de sala recibida en teléfono:', roomData.status);
+
+    // 1. Estado: PREGUNTA ACTIVA
+    if (roomData.status === 'QUESTION') {
+      const qIndex = roomData.currentQuestionIndex ?? 0;
+
+      // Si es una pregunta nueva
+      if (this.currentQIndex !== qIndex || this.currentView !== 'view-player-game') {
+        this.currentQIndex = qIndex;
+        this.hasAnsweredCurrent = false;
+        this.qStartTime = roomData.qStartTime || Date.now();
+
+        this.switchView('view-player-game');
+
+        document.getElementById('player-game-name').innerText = this.myPlayerName;
+        document.getElementById('player-game-avatar').innerText = this.myAvatar;
+        document.getElementById('player-game-score').innerText = this.myScore;
+
+        document.getElementById('player-buttons-grid').classList.remove('hidden');
+        document.getElementById('player-waiting-state').classList.add('hidden');
+        document.getElementById('player-feedback-panel').classList.add('hidden');
+
+        // Si la pregunta tiene solo 2 opciones (Verdadero o Falso)
+        if (roomData.options && roomData.options.length === 2) {
+          document.getElementById('btn-answer-2')?.classList.add('hidden');
+          document.getElementById('btn-answer-3')?.classList.add('hidden');
+          document.getElementById('player-btn-label-0').innerText = 'Verdadero';
+          document.getElementById('player-btn-label-1').innerText = 'Falso';
+        } else {
+          document.getElementById('btn-answer-2')?.classList.remove('hidden');
+          document.getElementById('btn-answer-3')?.classList.remove('hidden');
+          document.getElementById('player-btn-label-0').innerText = 'Rojo';
+          document.getElementById('player-btn-label-1').innerText = 'Azul';
+          document.getElementById('player-btn-label-2').innerText = 'Amarillo';
+          document.getElementById('player-btn-label-3').innerText = 'Verde';
+        }
+      }
+    }
+
+    // 2. Estado: TIEMPO AGOTADO / REVELACIÓN
+    if (roomData.status === 'TIMES_UP') {
+      // Actualizar mi puntaje si está en el leaderboard
+      if (roomData.leaderboard && Array.isArray(roomData.leaderboard)) {
+        const myEntry = roomData.leaderboard.find(p => p.id === this.myPlayerId);
+        if (myEntry) {
+          const prevScore = this.myScore;
+          this.myScore = myEntry.score;
+          this.myStreak = myEntry.streak;
+          if (this.myStreak > this.maxStreak) this.maxStreak = this.myStreak;
+
+          document.getElementById('player-game-score').innerText = this.myScore;
+          this.savePlayerSession();
+
+          // Si respondió, mostrar feedback
+          if (this.hasAnsweredCurrent) {
+            const feedback = document.getElementById('player-feedback-panel');
+            const title = document.getElementById('player-feedback-title');
+            const points = document.getElementById('player-feedback-points');
+
+            feedback.classList.remove('hidden');
+            const gained = this.myScore - prevScore;
+
+            if (gained > 0) {
+              sounds.playCorrect();
+              feedback.className = 'mt-3 p-4 rounded-2xl text-center border-2 border-emerald-500 bg-emerald-950/80 text-emerald-200';
+              title.innerText = '¡CORRECTO! 🎉';
+              points.innerText = `+${gained} puntos`;
+            } else {
+              sounds.playWrong();
+              feedback.className = 'mt-3 p-4 rounded-2xl text-center border-2 border-red-500 bg-red-950/80 text-red-200';
+              title.innerText = '¡CASI! 😅';
+              points.innerText = '0 puntos en esta ronda';
+            }
+          }
+        }
+      }
+
+      if (!this.hasAnsweredCurrent) {
+        document.getElementById('player-buttons-grid').classList.add('hidden');
+        const waitingState = document.getElementById('player-waiting-state');
+        waitingState.classList.remove('hidden');
+        document.getElementById('player-state-title').innerText = '¡Tiempo Agotado!';
+        document.getElementById('player-state-desc').innerText = 'Mira la pantalla principal para ver la respuesta correcta y la cita bíblica.';
+      }
+    }
+
+    // 3. Estado: GRAN PODIO FINAL (¡MOSTRAR PUESTO EN EL TELÉFONO!)
+    if (roomData.status === 'PODIUM') {
+      this.showPlayerPodium(roomData);
+    }
+  }
+
+  showPlayerPodium(roomData) {
+    sounds.playFanfare();
+    if (window.confetti) {
+      window.confetti({ particleCount: 120, spread: 80, origin: { y: 0.5 } });
+    }
+
+    this.switchView('view-player-podium');
+
+    const leaderboard = roomData.leaderboard || [];
+    const myIndex = leaderboard.findIndex(p => p.id === this.myPlayerId);
+    const myRank = myIndex !== -1 ? (myIndex + 1) : '-';
+
+    const rankEl = document.getElementById('player-final-rank');
+    const scoreEl = document.getElementById('player-final-score');
+    const iconEl = document.getElementById('player-final-icon');
+    const streakEl = document.getElementById('player-final-streak');
+
+    scoreEl.innerText = `${(this.myScore || 0).toLocaleString()} puntos totales`;
+    streakEl.innerText = `Mejor racha de aciertos: ${this.maxStreak || this.myStreak || 0} seguidas`;
+
+    if (myRank === 1) {
+      iconEl.innerText = '👑';
+      rankEl.innerText = '¡Quedaste en el 1er Lugar! 🥇 CAMPEÓN';
+      rankEl.className = 'text-2xl md:text-3xl font-black text-amber-400';
+    } else if (myRank === 2) {
+      iconEl.innerText = '🥈';
+      rankEl.innerText = '¡Quedaste en el 2do Lugar! 🥈';
+      rankEl.className = 'text-2xl md:text-3xl font-black text-slate-200';
+    } else if (myRank === 3) {
+      iconEl.innerText = '🥉';
+      rankEl.innerText = '¡Quedaste en el 3er Lugar! 🥉';
+      rankEl.className = 'text-2xl md:text-3xl font-black text-amber-600';
+    } else if (myRank > 3) {
+      iconEl.innerText = '🌟';
+      rankEl.innerText = `¡Quedaste en el puesto ${myRank}°! ⭐`;
+      rankEl.className = 'text-xl md:text-2xl font-black text-cyan-300';
+    } else {
+      iconEl.innerText = '🐑';
+      rankEl.innerText = '¡Gran esfuerzo en la trivia!';
+    }
+
+    // Banner de Equipo
+    const teamBanner = document.getElementById('player-final-team-banner');
+    if (roomData.mode === 'TEAMS') {
+      teamBanner.classList.remove('hidden');
+      const winningTeam = roomData.winningTeam;
+      if (winningTeam === this.myTeam) {
+        teamBanner.className = 'p-3.5 rounded-2xl text-xs font-bold mb-5 border border-emerald-500 bg-emerald-950/80 text-emerald-200';
+        teamBanner.innerHTML = `🎉 ¡Tu equipo (${this.myTeam === 'A' ? '🦁 Hombres' : '👑 Mujeres'}) fue el GANADOR DE LA PARTIDA!`;
+      } else if (winningTeam === 'TIE') {
+        teamBanner.className = 'p-3.5 rounded-2xl text-xs font-bold mb-5 border border-amber-500 bg-amber-950/80 text-amber-200';
+        teamBanner.innerHTML = '🤝 ¡Hubo un empate histórico entre Hombres y Mujeres!';
+      } else {
+        teamBanner.className = 'p-3.5 rounded-2xl text-xs font-bold mb-5 border border-slate-700 bg-slate-800 text-slate-300';
+        teamBanner.innerHTML = `👏 ¡Gran batalla de equipos! El equipo ganador fue ${winningTeam === 'A' ? '🦁 Hombres' : '👑 Mujeres'}.`;
+      }
+    } else {
+      teamBanner.classList.add('hidden');
+    }
+  }
+
+  async submitPlayerAnswer(answerIndex) {
     if (this.hasAnsweredCurrent) return;
     this.hasAnsweredCurrent = true;
     sounds.playClick();
 
-    const timeTaken = Math.max(0.5, (Date.now() - this.qStartTime) / 1000);
+    const timeTaken = Math.max(0.4, (Date.now() - this.qStartTime) / 1000);
 
-    // Ocultar botones y mostrar estado de espera
+    // Ocultar botones táctiles y mostrar estado de confirmación
     document.getElementById('player-buttons-grid').classList.add('hidden');
     const waitingState = document.getElementById('player-waiting-state');
     waitingState.classList.remove('hidden');
     document.getElementById('player-state-title').innerText = '¡Respuesta Enviada!';
     document.getElementById('player-state-desc').innerText = 'Esperando a los demás o que termine el tiempo...';
 
-    // Enviar respuesta al Anfitrión
-    roomSync.broadcast('SUBMIT_ANSWER', {
-      playerId: this.myPlayerId,
+    // Enviar voto directamente a la subcolección 'answers' de Firestore
+    const ok = await roomSync.submitAnswer(this.roomPin, this.myPlayerId, {
+      questionIndex: this.currentQIndex,
       answerIndex,
       timeTaken
     });
-  }
 
-  // ==============================================================
-  // SINCRONIZACIÓN DE MENSAJES Y SALAS
-  // ==============================================================
-
-  setupRoomSyncListeners() {
-    roomSync.subscribe((data) => {
-      if (!data || !data.action) return;
-      const { action, payload } = data;
-
-      // Acciones que procesa el Anfitrión (Host)
-      if (this.isHost) {
-        if ((action === 'PLAYER_JOINED' || action === 'PLAYER_RECONNECTED') && payload) {
-          // Si el jugador ya existía, preservar su puntaje; si es nuevo, agregarlo
-          const existingScore = this.players[payload.playerId]?.score || payload.score || 0;
-          const existingStreak = this.players[payload.playerId]?.streak || payload.streak || 0;
-
-          this.players[payload.playerId] = {
-            name: payload.name,
-            avatar: payload.avatar,
-            team: payload.team,
-            score: existingScore,
-            streak: existingStreak
-          };
-
-          this.updateLobbyPlayersList();
-
-          // Actualizar contador en pantalla del anfitrión si el juego está andando
-          const totalCountEl = document.getElementById('host-total-players-count');
-          if (totalCountEl) totalCountEl.innerText = Object.keys(this.players).length;
-
-          // Si el juego ya está andando, responderle al jugador con el estado actual
-          if (this.roomStatus === 'QUESTION') {
-            const q = this.activeQuestions[this.currentQIndex];
-            roomSync.broadcast('SYNC_ACTIVE_STATE', {
-              targetPlayerId: payload.playerId,
-              status: 'QUESTION',
-              questionIndex: this.currentQIndex,
-              totalQuestions: this.activeQuestions.length,
-              timeLimit: this.timeLimit,
-              question: q?.question,
-              options: q?.options,
-              level: q?.level,
-              alreadyAnswered: !!this.receivedAnswers[payload.playerId]
-            });
-          }
-        }
-
-        if (action === 'SUBMIT_ANSWER' && payload) {
-          if (!this.receivedAnswers[payload.playerId]) {
-            const q = this.activeQuestions[this.currentQIndex];
-            const isCorrect = q && payload.answerIndex === q.correctAnswer;
-            let pointsEarned = 0;
-
-            if (isCorrect) {
-              const ratio = Math.max(0, 1 - (payload.timeTaken / this.timeLimit));
-              pointsEarned = Math.round(600 + (ratio * 400));
-            }
-
-            this.receivedAnswers[payload.playerId] = {
-              answerIndex: payload.answerIndex,
-              isCorrect,
-              pointsEarned
-            };
-
-            // Actualizar puntaje del jugador
-            if (this.players[payload.playerId]) {
-              const p = this.players[payload.playerId];
-              if (isCorrect) {
-                p.score = (p.score || 0) + pointsEarned;
-                p.streak = (p.streak || 0) + 1;
-              } else {
-                p.streak = 0;
-              }
-            }
-
-            // Actualizar contador de respuestas recibidas en la pantalla grande
-            const answersCountEl = document.getElementById('host-answers-count');
-            if (answersCountEl) answersCountEl.innerText = Object.keys(this.receivedAnswers).length;
-
-            // Enviar confirmación al jugador
-            roomSync.broadcast('ANSWER_EVALUATED', {
-              playerId: payload.playerId,
-              isCorrect,
-              pointsEarned,
-              newScore: this.players[payload.playerId]?.score || 0,
-              streak: this.players[payload.playerId]?.streak || 0
-            });
-
-            // CIERRE AUTOMÁTICO AL VOTAR TODOS
-            const totalPlayers = Object.keys(this.players).length;
-            const totalAnswers = Object.keys(this.receivedAnswers).length;
-            if (this.autoCloseOnAllAnswered && totalPlayers > 0 && totalAnswers >= totalPlayers) {
-              console.log('⚡ ¡Todos los jugadores respondieron! Cerrando tiempo automáticamente...');
-              this.timeUpReveal();
-            }
-          }
-        }
-      }
-
-      // Acciones que procesa el Jugador (Player)
-      if (!this.isHost) {
-        if (action === 'QUESTION_STARTED' || (action === 'SYNC_ACTIVE_STATE' && payload?.targetPlayerId === this.myPlayerId && payload.status === 'QUESTION')) {
-          this.qStartTime = Date.now();
-          this.switchView('view-player-game');
-
-          document.getElementById('player-game-name').innerText = this.myPlayerName;
-          document.getElementById('player-game-avatar').innerText = this.myAvatar;
-          document.getElementById('player-game-score').innerText = this.myScore;
-
-          if (payload?.alreadyAnswered) {
-            this.hasAnsweredCurrent = true;
-            document.getElementById('player-buttons-grid').classList.add('hidden');
-            document.getElementById('player-waiting-state').classList.remove('hidden');
-            document.getElementById('player-state-title').innerText = '¡Ya Respondiste!';
-            document.getElementById('player-state-desc').innerText = 'Esperando los resultados en la pantalla principal...';
-          } else {
-            this.hasAnsweredCurrent = false;
-            document.getElementById('player-buttons-grid').classList.remove('hidden');
-            document.getElementById('player-waiting-state').classList.add('hidden');
-            document.getElementById('player-feedback-panel').classList.add('hidden');
-          }
-        }
-
-        if (action === 'ANSWER_EVALUATED' && payload && payload.playerId === this.myPlayerId) {
-          this.myScore = payload.newScore;
-          this.myStreak = payload.streak;
-          this.savePlayerSession();
-
-          document.getElementById('player-game-score').innerText = this.myScore;
-
-          const feedback = document.getElementById('player-feedback-panel');
-          const title = document.getElementById('player-feedback-title');
-          const points = document.getElementById('player-feedback-points');
-
-          feedback.classList.remove('hidden');
-          if (payload.isCorrect) {
-            sounds.playCorrect();
-            feedback.className = 'mt-3 p-4 rounded-2xl text-center border-2 border-emerald-500 bg-emerald-950/80 text-emerald-200';
-            title.innerText = '¡CORRECTO! 🎉';
-            points.innerText = `+${payload.pointsEarned} puntos`;
-          } else {
-            sounds.playWrong();
-            feedback.className = 'mt-3 p-4 rounded-2xl text-center border-2 border-red-500 bg-red-950/80 text-red-200';
-            title.innerText = '¡CASI! 😅';
-            points.innerText = '0 puntos en esta ronda';
-          }
-        }
-
-        if (action === 'QUESTION_ENDED') {
-          if (!this.hasAnsweredCurrent) {
-            document.getElementById('player-buttons-grid').classList.add('hidden');
-            const waitingState = document.getElementById('player-waiting-state');
-            waitingState.classList.remove('hidden');
-            document.getElementById('player-state-title').innerText = '¡Tiempo Agotado!';
-            document.getElementById('player-state-desc').innerText = 'Mira la pantalla principal para ver la respuesta correcta y la cita bíblica.';
-          }
-        }
-
-        if (action === 'GAME_FINISHED') {
-          sounds.playFanfare();
-          if (window.confetti) window.confetti();
-        }
-      }
-    });
+    if (ok) {
+      console.log('✅ Voto entregado exitosamente a Firestore');
+    }
   }
 
   // ==============================================================

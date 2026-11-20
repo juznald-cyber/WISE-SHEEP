@@ -19,23 +19,25 @@ export class RoomManager {
     this.isHost = false;
     this.playerId = localStorage.getItem('ws_player_id') || ('player_' + Math.random().toString(36).substring(2, 9));
     localStorage.setItem('ws_player_id', this.playerId);
-    
-    // BroadcastChannel local para sincronizar pestañas en la misma máquina al instante
+
+    this.unsubRoom = null;
+    this.unsubPlayers = null;
+    this.unsubAnswers = null;
+
+    // BroadcastChannel local para pruebas en la misma máquina
     if (typeof BroadcastChannel !== 'undefined') {
       this.channel = new BroadcastChannel('wise_sheep_rooms');
       this.channel.onmessage = (event) => this.handleLocalMessage(event.data);
     }
 
-    // Auto-inicializar Firebase
+    // Inicializar Firebase automáticamente
     this.initFirebase(DEFAULT_FIREBASE_CONFIG);
   }
 
-  // Genera un código PIN aleatorio de 4 a 5 dígitos
   generatePin() {
     return Math.floor(1000 + Math.random() * 9000).toString();
   }
 
-  // Escuchar eventos de la sala
   subscribe(callback) {
     this.listeners.push(callback);
     return () => {
@@ -52,75 +54,188 @@ export class RoomManager {
     this.notify(msg);
   }
 
-  // Emitir evento a través de red local / BroadcastChannel y guardar en localStorage & Firestore
-  async broadcast(action, payload) {
-    const data = {
-      pin: this.currentPin,
-      action,
-      payload,
-      timestamp: Date.now()
-    };
-
-    // Actualizar copia en localStorage para persistencia
-    const roomKey = `ws_room_${this.currentPin}`;
-    const existing = JSON.parse(localStorage.getItem(roomKey) || '{}');
-    const updated = { ...existing, ...payload, lastAction: action, updatedAt: Date.now() };
-    localStorage.setItem(roomKey, JSON.stringify(updated));
-
-    if (this.channel) {
-      this.channel.postMessage(data);
-    }
-    this.notify(data);
-
-    // Sincronizar con Firestore en la nube
-    if (window.firebaseFirestore && window.firebaseFirestoreModule && this.currentPin) {
-      try {
-        const db = window.firebaseFirestore;
-        const { doc, setDoc } = window.firebaseFirestoreModule;
-        await setDoc(doc(db, 'rooms', this.currentPin), updated, { merge: true });
-      } catch (e) {
-        console.warn('Error sincronizando con Firestore:', e);
-      }
-    }
-  }
-
-  // Inicializar Firebase
+  // Inicializar Firebase Modular SDK desde CDN
   async initFirebase(config) {
     if (!config || !config.apiKey) return false;
     try {
-      if (window.firebaseApp) return true;
+      if (window.firebaseApp && window.firebaseFirestore) return true;
       const { initializeApp } = await import('https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js');
-      const { getFirestore, doc, onSnapshot, setDoc } = await import('https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js');
-      
+      const { 
+        getFirestore, 
+        doc, 
+        collection, 
+        setDoc, 
+        updateDoc, 
+        onSnapshot, 
+        getDocs,
+        deleteDoc 
+      } = await import('https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js');
+
       window.firebaseApp = initializeApp(config);
       window.firebaseFirestore = getFirestore(window.firebaseApp);
-      window.firebaseFirestoreModule = { doc, onSnapshot, setDoc };
-      console.log('🔥 Firebase Firestore conectado a wise-sheep exitosamente!');
+      window.firebaseFirestoreModule = { 
+        doc, 
+        collection, 
+        setDoc, 
+        updateDoc, 
+        onSnapshot, 
+        getDocs,
+        deleteDoc 
+      };
+      console.log('🔥 Firebase conectado exitosamente a Firestore (wise-sheep)');
       return true;
     } catch (err) {
-      console.warn('Firebase no inicializado aún:', err.message);
+      console.warn('Firebase no pudo inicializar aún:', err.message);
       return false;
     }
   }
 
-  // Conectar escucha en Firestore para salas en línea remotas
-  listenToOnlineRoom(pin) {
+  // ==============================================================
+  // MÉTODOS DEL ANFITRIÓN (HOST)
+  // ==============================================================
+
+  async createOrUpdateRoom(pin, roomData) {
     this.currentPin = pin;
+    const data = {
+      ...roomData,
+      pin,
+      updatedAt: Date.now()
+    };
+
+    // Guardar en localStorage y BroadcastChannel
+    localStorage.setItem(`ws_room_${pin}`, JSON.stringify(data));
+    if (this.channel) {
+      this.channel.postMessage({ pin, action: 'ROOM_UPDATE', payload: data });
+    }
+
+    // Guardar en Firestore
     if (window.firebaseFirestore && window.firebaseFirestoreModule) {
-      const { doc, onSnapshot } = window.firebaseFirestoreModule;
-      return onSnapshot(doc(window.firebaseFirestore, 'rooms', pin), (docSnap) => {
-        if (docSnap.exists()) {
-          const roomData = docSnap.data();
-          this.notify({
-            pin,
-            action: roomData.lastAction || 'UPDATE',
-            payload: roomData,
-            timestamp: roomData.updatedAt || Date.now()
-          });
-        }
+      try {
+        const db = window.firebaseFirestore;
+        const { doc, setDoc } = window.firebaseFirestoreModule;
+        await setDoc(doc(db, 'rooms', pin), data, { merge: true });
+      } catch (err) {
+        console.error('Error guardando sala en Firestore:', err);
+      }
+    }
+  }
+
+  // El anfitrión escucha a los jugadores conectándose a la sala
+  listenToPlayers(pin, onPlayersUpdate) {
+    this.currentPin = pin;
+    if (this.unsubPlayers) this.unsubPlayers();
+
+    if (window.firebaseFirestore && window.firebaseFirestoreModule) {
+      const db = window.firebaseFirestore;
+      const { collection, onSnapshot } = window.firebaseFirestoreModule;
+      this.unsubPlayers = onSnapshot(collection(db, 'rooms', pin, 'players'), (snapshot) => {
+        const players = {};
+        snapshot.forEach(docSnap => {
+          players[docSnap.id] = docSnap.data();
+        });
+        onPlayersUpdate(players);
+      }, (err) => {
+        console.warn('Error escuchando jugadores:', err);
       });
     }
-    return null;
+  }
+
+  // El anfitrión escucha las respuestas en vivo en la subcolección 'answers'
+  listenToAnswers(pin, onAnswerReceived) {
+    this.currentPin = pin;
+    if (this.unsubAnswers) this.unsubAnswers();
+
+    if (window.firebaseFirestore && window.firebaseFirestoreModule) {
+      const db = window.firebaseFirestore;
+      const { collection, onSnapshot } = window.firebaseFirestoreModule;
+      this.unsubAnswers = onSnapshot(collection(db, 'rooms', pin, 'answers'), (snapshot) => {
+        snapshot.docChanges().forEach((change) => {
+          if (change.type === 'added' || change.type === 'modified') {
+            const answerData = change.doc.data();
+            onAnswerReceived(change.doc.id, answerData);
+          }
+        });
+      }, (err) => {
+        console.warn('Error escuchando respuestas:', err);
+      });
+    }
+  }
+
+  // ==============================================================
+  // MÉTODOS DEL JUGADOR (PLAYER)
+  // ==============================================================
+
+  // El jugador escucha el estado de la sala principal (preguntas, timer, podio)
+  listenToRoomState(pin, onStateChange) {
+    this.currentPin = pin;
+    if (this.unsubRoom) this.unsubRoom();
+
+    if (window.firebaseFirestore && window.firebaseFirestoreModule) {
+      const db = window.firebaseFirestore;
+      const { doc, onSnapshot } = window.firebaseFirestoreModule;
+      this.unsubRoom = onSnapshot(doc(db, 'rooms', pin), (docSnap) => {
+        if (docSnap.exists()) {
+          const roomData = docSnap.data();
+          onStateChange(roomData);
+        }
+      }, (err) => {
+        console.warn('Error escuchando estado de sala:', err);
+      });
+    }
+  }
+
+  // El jugador se registra en la sala
+  async registerPlayer(pin, playerId, playerData) {
+    this.currentPin = pin;
+    const data = {
+      ...playerData,
+      playerId,
+      updatedAt: Date.now()
+    };
+
+    if (this.channel) {
+      this.channel.postMessage({ pin, action: 'PLAYER_JOINED', payload: data });
+    }
+
+    if (window.firebaseFirestore && window.firebaseFirestoreModule) {
+      try {
+        const db = window.firebaseFirestore;
+        const { doc, setDoc } = window.firebaseFirestoreModule;
+        await setDoc(doc(db, 'rooms', pin, 'players', playerId), data, { merge: true });
+        console.log(`Jugador ${playerData.name} registrado en Firestore rooms/${pin}/players/${playerId}`);
+      } catch (err) {
+        console.error('Error registrando jugador en Firestore:', err);
+      }
+    }
+  }
+
+  // El jugador envía su voto a la subcolección 'answers'
+  async submitAnswer(pin, playerId, answerData) {
+    this.currentPin = pin;
+    const data = {
+      ...answerData,
+      playerId,
+      timestamp: Date.now()
+    };
+
+    if (this.channel) {
+      this.channel.postMessage({ pin, action: 'SUBMIT_ANSWER', payload: data });
+    }
+
+    if (window.firebaseFirestore && window.firebaseFirestoreModule) {
+      try {
+        const db = window.firebaseFirestore;
+        const { doc, setDoc } = window.firebaseFirestoreModule;
+        // Guardar respuesta con ID de jugador en la subcolección de respuestas
+        await setDoc(doc(db, 'rooms', pin, 'answers', playerId), data);
+        console.log(`Respuesta enviada a Firestore para jugador ${playerId}:`, data);
+        return true;
+      } catch (err) {
+        console.error('Error enviando respuesta a Firestore:', err);
+        return false;
+      }
+    }
+    return true;
   }
 }
 

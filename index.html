@@ -625,7 +625,7 @@
       <div id="player-waiting-state" class="hidden flex-1 flex flex-col items-center justify-center text-center p-6 bg-slate-900/60 rounded-3xl border border-slate-800 mb-3">
         <div class="text-4xl mb-3 animate-pulse" id="player-state-icon">✅</div>
         <h4 class="text-xl font-bold text-white mb-1" id="player-state-title">¡Respuesta Enviada!</h4>
-        <p class="text-xs text-slate-400" id="player-state-desc">Esperando que termine el tiempo en la pantalla...</p>
+        <p class="text-xs text-slate-400" id="player-state-desc">Esperando a los demás o que termine el tiempo...</p>
       </div>
 
       <!-- 4 Botones Táctiles Gigantes de Respuesta -->
@@ -659,6 +659,42 @@
       <div id="player-feedback-panel" class="hidden mt-3 p-4 rounded-2xl text-center border-2">
         <div class="text-2xl font-black mb-0.5" id="player-feedback-title">¡CORRECTO! 🎉</div>
         <div class="text-xs font-semibold" id="player-feedback-points">+950 puntos</div>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- VIEW 10: PLAYER FINAL PODIUM (En el Celular del Jugador) -->
+    <!-- ============================================================= -->
+    <section id="view-player-podium" class="hidden flex-1 p-6 max-w-md mx-auto w-full flex flex-col items-center justify-center text-center">
+      <div class="bg-slate-900 border-2 border-amber-400/80 rounded-3xl p-8 shadow-2xl w-full relative overflow-hidden glow-gold">
+        <div class="text-6xl mb-3 animate-bounce-slow" id="player-final-icon">👑</div>
+        <h3 class="text-3xl font-black text-white mb-1">¡Partida Finalizada!</h3>
+        <p class="text-xs text-slate-400 mb-6">Gracias por jugar y aprender de las Escrituras</p>
+
+        <!-- Puesto Personal -->
+        <div class="bg-gradient-to-r from-amber-500/20 via-yellow-500/30 to-amber-500/20 border-2 border-amber-400 rounded-2xl p-5 mb-5 shadow-lg">
+          <div class="text-xs uppercase tracking-widest text-amber-300 font-bold mb-1">Tu Resultado Final:</div>
+          <div id="player-final-rank" class="text-3xl font-black text-amber-400">
+            ¡Quedaste en el 1° Lugar! 🥇
+          </div>
+          <div id="player-final-score" class="text-xl font-extrabold text-cyan-300 mt-1">
+            4,850 puntos
+          </div>
+        </div>
+
+        <!-- Banner de Resultado de Equipo (si es TEAMS) -->
+        <div id="player-final-team-banner" class="hidden p-3.5 rounded-2xl text-xs font-bold mb-5 border">
+          <!-- Text for winning or runner up team -->
+        </div>
+
+        <!-- Racha máxima -->
+        <div class="flex items-center justify-center gap-2 text-xs text-slate-300 bg-slate-800/80 py-2 px-4 rounded-xl mb-6">
+          <span>🔥</span> <span id="player-final-streak">Racha de aciertos: 0 seguidas</span>
+        </div>
+
+        <button onclick="app.showHome()" class="w-full btn-3d py-3.5 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-extrabold text-base rounded-2xl shadow-lg">
+          🏠 Volver al Inicio
+        </button>
       </div>
     </section>
 
