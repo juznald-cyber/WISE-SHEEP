@@ -16,7 +16,7 @@ class WiseSheepApp {
     // Estado del Anfitrión (Host)
     this.isHost = false;
     this.roomPin = null;
-    this.roomStatus = 'IDLE'; // 'LOBBY' | 'QUESTION' | 'TIMES_UP' | 'LEADERBOARD' | 'PODIUM'
+    this.roomStatus = 'IDLE'; // 'LOBBY' | 'QUESTION' | 'TIMES_UP' | 'LEADERBOARD' | 'PODIUM' | 'VOTING' | 'VOTING_RESULTS'
     this.players = {}; // { [id]: { name, avatar, team, score, streak } }
     this.activeQuestions = [];
     this.currentQIndex = 0;
@@ -24,6 +24,15 @@ class WiseSheepApp {
     this.timeLeft = 20;
     this.qStartTime = 0;
     this.receivedAnswers = {}; // { [playerId]: { answerIndex, isCorrect, pointsEarned } }
+
+    // Estado de Votaciones / Premios Grupales
+    this.votingTimer = null;
+    this.votingTimeLeft = 30;
+    this.currentPollQuestion = '';
+    this.pollCandidates = []; // array of { id, name, avatar, team }
+    this.receivedVotes = {}; // { [voterId]: candidateId }
+    this.pollBonusPoints = 0;
+    this.previousStateBeforeVoting = 'LOBBY';
 
     // Estado del Jugador (Player)
     this.myPlayerId = roomSync.playerId;
@@ -34,6 +43,7 @@ class WiseSheepApp {
     this.myStreak = 0;
     this.maxStreak = 0;
     this.hasAnsweredCurrent = false;
+    this.hasVotedCurrent = false;
 
     // Avatares disponibles
     this.availableAvatars = ['🐑', '🕊️', '👑', '🐟', '🔥', '🛡️', '🦁', '⛵'];
@@ -46,11 +56,9 @@ class WiseSheepApp {
     this.checkSavedSession();
     this.checkUrlForPin();
 
-    // Actualizar conteo de preguntas en header
     const qCountHeader = document.getElementById('header-q-count');
     if (qCountHeader) qCountHeader.innerText = `${QUESTIONS_DATABASE.length}+`;
 
-    // Cargar config guardada de Firebase si existe
     const savedApiKey = localStorage.getItem('ws_fb_apiKey');
     if (savedApiKey) {
       roomSync.initFirebase({
@@ -60,7 +68,6 @@ class WiseSheepApp {
     }
   }
 
-  // Detectar cuando el teléfono se desbloquea o la pestaña vuelve a estar visible
   setupPhoneVisibilityResume() {
     document.addEventListener('visibilitychange', () => {
       if (document.visibilityState === 'visible') {
@@ -74,7 +81,6 @@ class WiseSheepApp {
     });
   }
 
-  // Comprobar si hay una sesión guardada previa en localStorage
   checkSavedSession() {
     try {
       const saved = localStorage.getItem('ws_player_session');
@@ -117,14 +123,11 @@ class WiseSheepApp {
         this.isHost = false;
         roomSync.currentPin = saved.pin;
 
-        // Ocultar banner
         const banner = document.getElementById('banner-reconnect');
         if (banner) banner.classList.add('hidden');
 
-        // Re-escuchar la sala
         this.startListeningAsPlayer(this.roomPin);
 
-        // Volver a registrar presencia
         roomSync.registerPlayer(this.roomPin, this.myPlayerId, {
           name: this.myPlayerName,
           avatar: this.myAvatar,
@@ -145,7 +148,6 @@ class WiseSheepApp {
 
   resumeActiveGame() {
     if (this.roomPin && !this.isHost) {
-      // Re-conectar escucha
       this.startListeningAsPlayer(this.roomPin);
     }
   }
@@ -174,9 +176,11 @@ class WiseSheepApp {
       'view-host-game',
       'view-host-leaderboard',
       'view-host-podium',
+      'view-host-voting',
       'view-player-join',
       'view-player-lobby',
       'view-player-game',
+      'view-player-voting',
       'view-player-podium'
     ];
     views.forEach(id => {
@@ -251,6 +255,9 @@ class WiseSheepApp {
     this.currentQIndex = 0;
     this.roomStatus = 'LOBBY';
 
+    // Mostrar botón de Votación en el header para el host
+    document.getElementById('header-btn-poll')?.classList.remove('hidden');
+
     this.switchView('view-host-lobby');
     const pinDisplay = document.getElementById('lobby-pin-display');
     if (pinDisplay) pinDisplay.innerText = this.roomPin;
@@ -278,7 +285,7 @@ class WiseSheepApp {
       leaderboard: []
     });
 
-    // 2. Escuchar a los jugadores que se van uniendo
+    // 2. Escuchar jugadores
     roomSync.listenToPlayers(this.roomPin, (playersData) => {
       this.players = playersData || {};
       this.updateLobbyPlayersList();
@@ -286,9 +293,14 @@ class WiseSheepApp {
       if (totalCountEl) totalCountEl.innerText = Object.keys(this.players).length;
     });
 
-    // 3. Escuchar las respuestas de los jugadores en vivo
+    // 3. Escuchar respuestas de trivia
     roomSync.listenToAnswers(this.roomPin, (playerId, answerData) => {
       this.handleHostAnswerReceived(playerId, answerData);
+    });
+
+    // 4. Escuchar votos de dinámicas/premios
+    roomSync.listenToVotes(this.roomPin, (playerId, voteData) => {
+      this.handleHostVoteReceived(playerId, voteData);
     });
   }
 
@@ -447,7 +459,6 @@ class WiseSheepApp {
     document.getElementById('host-explanation-box').classList.add('hidden');
     document.getElementById('host-game-controls').classList.add('hidden');
 
-    // Actualizar estado de la sala en Firestore para todos los dispositivos
     roomSync.createOrUpdateRoom(this.roomPin, {
       status: 'QUESTION',
       currentQuestionIndex: index,
@@ -484,7 +495,6 @@ class WiseSheepApp {
       const totalPlayers = Object.keys(this.players).length;
       const totalAnswers = Object.keys(this.receivedAnswers).length;
 
-      // CIERRE AUTOMÁTICO INMEDIATO AL VOTAR TODOS
       const allAnswered = this.autoCloseOnAllAnswered && totalPlayers > 0 && totalAnswers >= totalPlayers;
 
       if (this.timeLeft <= 0 || allAnswered) {
@@ -493,11 +503,10 @@ class WiseSheepApp {
     }, 1000);
   }
 
-  // Manejar respuesta recibida en la subcolección 'answers'
   handleHostAnswerReceived(playerId, answerData) {
     if (!this.isHost || this.roomStatus !== 'QUESTION') return;
     if (answerData.questionIndex !== this.currentQIndex) return;
-    if (this.receivedAnswers[playerId]) return; // ya evaluado
+    if (this.receivedAnswers[playerId]) return;
 
     const q = this.activeQuestions[this.currentQIndex];
     if (!q) return;
@@ -517,7 +526,6 @@ class WiseSheepApp {
       pointsEarned
     };
 
-    // Actualizar jugador en memoria y en Firestore
     if (this.players[playerId]) {
       const p = this.players[playerId];
       if (isCorrect) {
@@ -526,22 +534,16 @@ class WiseSheepApp {
       } else {
         p.streak = 0;
       }
-
-      // Guardar puntaje actualizado del jugador en Firestore
       roomSync.registerPlayer(this.roomPin, playerId, p);
     }
 
-    // Actualizar conteo en pantalla principal
     const answersCountEl = document.getElementById('host-answers-count');
     if (answersCountEl) answersCountEl.innerText = Object.keys(this.receivedAnswers).length;
 
-    console.log(`✅ Respuesta de ${this.players[playerId]?.name || playerId}: ${isCorrect ? 'Correcta' : 'Incorrecta'} (+${pointsEarned} pts). Total respondieron: ${Object.keys(this.receivedAnswers).length}/${Object.keys(this.players).length}`);
-
-    // Verificar si todos respondieron para cierre automático
     const totalPlayers = Object.keys(this.players).length;
     const totalAnswers = Object.keys(this.receivedAnswers).length;
     if (this.autoCloseOnAllAnswered && totalPlayers > 0 && totalAnswers >= totalPlayers) {
-      console.log('⚡ ¡Todos los participantes han votado! Cerrando tiempo de inmediato...');
+      console.log('⚡ ¡Todos los participantes han votado! Cerrando tiempo...');
       this.timeUpReveal();
     }
   }
@@ -555,7 +557,6 @@ class WiseSheepApp {
     const q = this.activeQuestions[this.currentQIndex];
     const isLastQuestion = (this.currentQIndex + 1 >= this.activeQuestions.length);
 
-    // Resaltar opción correcta y opacar las demás
     for (let i = 0; i < 4; i++) {
       const optCard = document.getElementById(`host-opt-${i}`);
       if (i === q.correctAnswer) {
@@ -565,7 +566,6 @@ class WiseSheepApp {
       }
     }
 
-    // Mostrar explicación con versículo bíblico
     const expBox = document.getElementById('host-explanation-box');
     const expVerse = document.getElementById('host-explanation-verse');
     const expText = document.getElementById('host-explanation-text');
@@ -592,7 +592,6 @@ class WiseSheepApp {
       }
     }
 
-    // Notificar a Firestore el fin del tiempo y la respuesta correcta
     const sorted = Object.entries(this.players).map(([id, p]) => ({
       id,
       name: p.name,
@@ -765,7 +764,6 @@ class WiseSheepApp {
     document.getElementById('podium-3rd-name').innerText = `${p3.avatar} ${p3.name}`;
     document.getElementById('podium-3rd-score').innerText = `${p3.score || 0} pts`;
 
-    // Notificar podio final para que cada teléfono muestre su lugar
     roomSync.createOrUpdateRoom(this.roomPin, {
       status: 'PODIUM',
       podium: sorted.slice(0, 3),
@@ -774,6 +772,284 @@ class WiseSheepApp {
       scoreTeamA: scoreA,
       scoreTeamB: scoreB
     });
+  }
+
+  // ==============================================================
+  // MODALIDAD: VOTACIÓN / PREMIOS GRUPALES EN VIVO
+  // ==============================================================
+
+  openLaunchPollModal() {
+    sounds.playClick();
+    document.getElementById('modal-launch-poll').classList.remove('hidden');
+    const customInput = document.getElementById('poll-custom-question');
+    const select = document.getElementById('poll-preset-select');
+    if (select.value !== 'CUSTOM') {
+      customInput.value = select.value;
+    }
+  }
+
+  closeLaunchPollModal() {
+    sounds.playClick();
+    document.getElementById('modal-launch-poll').classList.add('hidden');
+  }
+
+  handlePresetPollChange(val) {
+    const customInput = document.getElementById('poll-custom-question');
+    if (val === 'CUSTOM') {
+      customInput.value = '';
+      customInput.focus();
+    } else {
+      customInput.value = val;
+    }
+  }
+
+  handleCandidateModeChange(mode) {
+    const customBox = document.getElementById('poll-custom-candidates-box');
+    if (mode === 'CUSTOM_LIST') {
+      customBox.classList.remove('hidden');
+    } else {
+      customBox.classList.add('hidden');
+    }
+  }
+
+  launchPollFromModal() {
+    const questionText = document.getElementById('poll-custom-question')?.value.trim();
+    if (!questionText) {
+      alert('Por favor escribe o selecciona la pregunta de la votación.');
+      return;
+    }
+
+    const candidateMode = document.querySelector('input[name="poll-candidates-mode"]:checked')?.value || 'ALL_PLAYERS';
+    let candidates = [];
+
+    if (candidateMode === 'ALL_PLAYERS') {
+      // Tomar a todos los jugadores conectados
+      const playerIds = Object.keys(this.players);
+      if (playerIds.length === 0) {
+        // En caso de prueba sin jugadores
+        candidates = [
+          { id: 'c1', name: 'Hermano Juan', avatar: '🐑', team: 'A' },
+          { id: 'c2', name: 'Hermana María', avatar: '👑', team: 'B' },
+          { id: 'c3', name: 'Hermano Pedro', avatar: '🦁', team: 'A' },
+          { id: 'c4', name: 'Hermana Sara', avatar: '🕊️', team: 'B' }
+        ];
+      } else {
+        candidates = playerIds.map(id => ({
+          id,
+          name: this.players[id].name,
+          avatar: this.players[id].avatar,
+          team: this.players[id].team
+        }));
+      }
+    } else {
+      const customRaw = document.getElementById('poll-custom-candidates-input')?.value.trim();
+      if (!customRaw) {
+        alert('Por favor escribe al menos 2 candidatos separados por comas.');
+        return;
+      }
+      const names = customRaw.split(',').map(s => s.trim()).filter(Boolean);
+      if (names.length < 2) {
+        alert('Por favor escribe al menos 2 candidatos.');
+        return;
+      }
+      const defaultAvatars = ['🐑', '👑', '🦁', '🕊️', '🔥', '🛡️', '🐟', '⛵'];
+      candidates = names.map((name, idx) => ({
+        id: `custom_${idx}_` + Math.random().toString(36).substring(2, 6),
+        name,
+        avatar: defaultAvatars[idx % defaultAvatars.length],
+        team: 'A'
+      }));
+    }
+
+    const timeLimit = parseInt(document.getElementById('poll-time-limit')?.value || '30');
+    const bonusPoints = parseInt(document.getElementById('poll-bonus-points')?.value || '0');
+
+    this.closeLaunchPollModal();
+    this.startVotingRound(questionText, candidates, timeLimit, bonusPoints);
+  }
+
+  startVotingRound(questionText, candidates, timeLimit, bonusPoints) {
+    sounds.playFanfare();
+    this.previousStateBeforeVoting = this.roomStatus;
+    this.roomStatus = 'VOTING';
+    this.currentPollQuestion = questionText;
+    this.pollCandidates = candidates;
+    this.pollBonusPoints = bonusPoints;
+    this.receivedVotes = {};
+    this.votingTimeLeft = timeLimit;
+
+    // Cambiar vista del Host
+    this.switchView('view-host-voting');
+
+    document.getElementById('voting-q-text').innerText = questionText;
+    document.getElementById('voting-votes-count').innerText = '0';
+    document.getElementById('voting-total-count').innerText = Object.keys(this.players).length;
+    document.getElementById('voting-timer-circle').innerText = this.votingTimeLeft;
+    document.getElementById('voting-status-desc').innerText = 'Esperando que todos los participantes elijan en su celular...';
+
+    // Ocultar card de ganador previo y botón continuar
+    document.getElementById('voting-winner-card').classList.add('hidden');
+    document.getElementById('btn-voting-reveal').classList.remove('hidden');
+    document.getElementById('btn-voting-continue').classList.add('hidden');
+
+    // Renderizar candidatos en la pantalla del host
+    this.renderHostVotingCandidates();
+
+    // Actualizar en Firestore para que los celulares abran la pantalla de votación
+    roomSync.createOrUpdateRoom(this.roomPin, {
+      status: 'VOTING',
+      pollQuestion: questionText,
+      candidates,
+      timeLimit,
+      bonusPoints,
+      pollStartTime: Date.now()
+    });
+
+    // Iniciar temporizador de votación
+    sounds.startTensionMusic();
+    this.runVotingTimer(timeLimit);
+  }
+
+  renderHostVotingCandidates() {
+    const grid = document.getElementById('voting-candidates-grid');
+    if (!grid) return;
+
+    // Contar votos por candidato
+    const voteCounts = {};
+    this.pollCandidates.forEach(c => voteCounts[c.id] = 0);
+    Object.values(this.receivedVotes).forEach(candId => {
+      if (voteCounts[candId] !== undefined) voteCounts[candId]++;
+    });
+
+    const totalVotes = Object.keys(this.receivedVotes).length;
+
+    grid.innerHTML = this.pollCandidates.map(c => {
+      const count = voteCounts[c.id] || 0;
+      const pct = totalVotes > 0 ? Math.round((count / totalVotes) * 100) : 0;
+
+      return `
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex flex-col justify-between shadow-lg relative overflow-hidden" id="host-cand-card-${c.id}">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="text-3xl">${c.avatar}</span>
+            <div class="truncate">
+              <div class="font-extrabold text-base text-white truncate">${c.name}</div>
+              <div class="text-[11px] text-slate-400 font-semibold">${count} voto(s)</div>
+            </div>
+          </div>
+          <!-- Barra de progreso de votos -->
+          <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+            <div class="bg-gradient-to-r from-amber-500 to-yellow-400 h-full transition-all duration-300" style="width: ${pct}%;"></div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  runVotingTimer(limit) {
+    if (this.votingTimer) clearInterval(this.votingTimer);
+
+    const circle = document.getElementById('voting-timer-circle');
+
+    this.votingTimer = setInterval(() => {
+      this.votingTimeLeft--;
+      if (circle) circle.innerText = this.votingTimeLeft;
+      sounds.playTick();
+
+      const totalPlayers = Object.keys(this.players).length;
+      const totalVotes = Object.keys(this.receivedVotes).length;
+
+      if (this.votingTimeLeft <= 0 || (totalPlayers > 0 && totalVotes >= totalPlayers)) {
+        this.closeVotingAndReveal();
+      }
+    }, 1000);
+  }
+
+  handleHostVoteReceived(playerId, voteData) {
+    if (!this.isHost || this.roomStatus !== 'VOTING') return;
+    if (!voteData || !voteData.candidateId) return;
+
+    this.receivedVotes[playerId] = voteData.candidateId;
+
+    const countEl = document.getElementById('voting-votes-count');
+    if (countEl) countEl.innerText = Object.keys(this.receivedVotes).length;
+
+    this.renderHostVotingCandidates();
+
+    const totalPlayers = Object.keys(this.players).length;
+    const totalVotes = Object.keys(this.receivedVotes).length;
+    if (totalPlayers > 0 && totalVotes >= totalPlayers) {
+      console.log('⚡ ¡Todos han votado en la dinámica!');
+      this.closeVotingAndReveal();
+    }
+  }
+
+  closeVotingAndReveal() {
+    clearInterval(this.votingTimer);
+    sounds.stopTensionMusic();
+    sounds.playFanfare();
+    this.roomStatus = 'VOTING_RESULTS';
+
+    if (window.confetti) {
+      window.confetti({ particleCount: 130, spread: 80, origin: { y: 0.5 } });
+    }
+
+    // Calcular quién obtuvo más votos
+    const voteCounts = {};
+    this.pollCandidates.forEach(c => voteCounts[c.id] = 0);
+    Object.values(this.receivedVotes).forEach(candId => {
+      if (voteCounts[candId] !== undefined) voteCounts[candId]++;
+    });
+
+    let maxVotes = -1;
+    let winner = this.pollCandidates[0];
+
+    this.pollCandidates.forEach(c => {
+      const count = voteCounts[c.id] || 0;
+      if (count > maxVotes) {
+        maxVotes = count;
+        winner = c;
+      }
+    });
+
+    // Si hay bonificación de puntos, otorgarla
+    if (this.pollBonusPoints > 0 && this.players[winner.id]) {
+      this.players[winner.id].score = (this.players[winner.id].score || 0) + this.pollBonusPoints;
+      roomSync.registerPlayer(this.roomPin, winner.id, this.players[winner.id]);
+    }
+
+    // Mostrar ganador en la pantalla
+    const winnerCard = document.getElementById('voting-winner-card');
+    const winnerName = document.getElementById('voting-winner-name');
+    const winnerVotes = document.getElementById('voting-winner-votes');
+
+    winnerName.innerText = `${winner.avatar} ${winner.name}`;
+    winnerVotes.innerText = `¡Con ${maxVotes} votos a favor! ${this.pollBonusPoints > 0 ? `(+${this.pollBonusPoints} pts acumulados)` : ''}`;
+    winnerCard.classList.remove('hidden');
+
+    document.getElementById('voting-status-desc').innerText = '¡Votación finalizada con éxito!';
+    document.getElementById('btn-voting-reveal').classList.add('hidden');
+    document.getElementById('btn-voting-continue').classList.remove('hidden');
+
+    // Notificar a Firestore para que los celulares vean quién ganó
+    roomSync.createOrUpdateRoom(this.roomPin, {
+      status: 'VOTING_RESULTS',
+      winner,
+      maxVotes,
+      pollQuestion: this.currentPollQuestion
+    });
+  }
+
+  returnToGameAfterVoting() {
+    sounds.playClick();
+    // Volver al estado anterior
+    if (this.previousStateBeforeVoting === 'QUESTION') {
+      this.startQuestion(this.currentQIndex);
+    } else if (this.previousStateBeforeVoting === 'LEADERBOARD') {
+      this.showLeaderboard();
+    } else {
+      this.switchView('view-host-lobby');
+      roomSync.createOrUpdateRoom(this.roomPin, { status: 'LOBBY' });
+    }
   }
 
   // ==============================================================
@@ -836,7 +1112,6 @@ class WiseSheepApp {
     document.getElementById('player-my-avatar').innerText = this.myAvatar;
     document.getElementById('player-my-team-badge').innerText = this.myTeam === 'A' ? 'Equipo Hombres 🦁' : 'Equipo Mujeres 👑';
 
-    // Registrar jugador en Firestore
     roomSync.registerPlayer(this.roomPin, this.myPlayerId, {
       name: this.myPlayerName,
       avatar: this.myAvatar,
@@ -845,7 +1120,6 @@ class WiseSheepApp {
       streak: this.myStreak || 0
     });
 
-    // Escuchar el estado de la sala
     this.startListeningAsPlayer(this.roomPin);
   }
 
@@ -874,13 +1148,12 @@ class WiseSheepApp {
   handlePlayerRoomUpdate(roomData) {
     if (this.isHost || !roomData || !roomData.status) return;
 
-    console.log('📱 Actualización de sala recibida en teléfono:', roomData.status);
+    console.log('📱 Actualización recibida en celular:', roomData.status);
 
-    // 1. Estado: PREGUNTA ACTIVA
+    // 1. Estado: PREGUNTA DE TRIVIA ACTIVA
     if (roomData.status === 'QUESTION') {
       const qIndex = roomData.currentQuestionIndex ?? 0;
 
-      // Si es una pregunta nueva
       if (this.currentQIndex !== qIndex || this.currentView !== 'view-player-game') {
         this.currentQIndex = qIndex;
         this.hasAnsweredCurrent = false;
@@ -896,7 +1169,6 @@ class WiseSheepApp {
         document.getElementById('player-waiting-state').classList.add('hidden');
         document.getElementById('player-feedback-panel').classList.add('hidden');
 
-        // Si la pregunta tiene solo 2 opciones (Verdadero o Falso)
         if (roomData.options && roomData.options.length === 2) {
           document.getElementById('btn-answer-2')?.classList.add('hidden');
           document.getElementById('btn-answer-3')?.classList.add('hidden');
@@ -913,9 +1185,8 @@ class WiseSheepApp {
       }
     }
 
-    // 2. Estado: TIEMPO AGOTADO / REVELACIÓN
+    // 2. Estado: TIEMPO AGOTADO / REVELACIÓN DE TRIVIA
     if (roomData.status === 'TIMES_UP') {
-      // Actualizar mi puntaje si está en el leaderboard
       if (roomData.leaderboard && Array.isArray(roomData.leaderboard)) {
         const myEntry = roomData.leaderboard.find(p => p.id === this.myPlayerId);
         if (myEntry) {
@@ -927,7 +1198,6 @@ class WiseSheepApp {
           document.getElementById('player-game-score').innerText = this.myScore;
           this.savePlayerSession();
 
-          // Si respondió, mostrar feedback
           if (this.hasAnsweredCurrent) {
             const feedback = document.getElementById('player-feedback-panel');
             const title = document.getElementById('player-feedback-title');
@@ -960,10 +1230,67 @@ class WiseSheepApp {
       }
     }
 
-    // 3. Estado: GRAN PODIO FINAL (¡MOSTRAR PUESTO EN EL TELÉFONO!)
+    // 3. Estado: VOTACIÓN GRUPAL / PREMIO ACTIVO
+    if (roomData.status === 'VOTING') {
+      this.switchView('view-player-voting');
+      document.getElementById('player-voting-question').innerText = roomData.pollQuestion || '¿Quién es el compañero más espiritual?';
+
+      this.hasVotedCurrent = false;
+      document.getElementById('player-vote-done-box').classList.add('hidden');
+      const listEl = document.getElementById('player-candidates-list');
+      listEl.classList.remove('hidden');
+
+      const candidates = roomData.candidates || [];
+      listEl.innerHTML = candidates.map(c => `
+        <button onclick="app.submitPlayerVote('${c.id}', '${c.name.replace(/'/g, "\\'")}')" class="btn-3d w-full p-3.5 bg-slate-900 hover:bg-slate-800 active:bg-amber-600 border border-slate-700 active:border-amber-400 rounded-2xl flex items-center gap-3 text-left shadow-md transition">
+          <span class="text-3xl">${c.avatar}</span>
+          <div class="truncate">
+            <div class="font-extrabold text-base text-white truncate">${c.name}</div>
+            <div class="text-[11px] text-slate-400 font-medium">Toca para votar por este compañero</div>
+          </div>
+        </button>
+      `).join('');
+    }
+
+    // 4. Estado: RESULTADOS DE LA VOTACIÓN
+    if (roomData.status === 'VOTING_RESULTS') {
+      sounds.playFanfare();
+      if (window.confetti) window.confetti();
+
+      const doneBox = document.getElementById('player-vote-done-box');
+      const choiceText = document.getElementById('player-vote-choice-text');
+      const listEl = document.getElementById('player-candidates-list');
+
+      listEl.classList.add('hidden');
+      doneBox.classList.remove('hidden');
+
+      const winner = roomData.winner;
+      if (winner) {
+        choiceText.innerHTML = `👑 ¡El más votado por el grupo fue:<br><strong class="text-lg text-white">${winner.avatar} ${winner.name}</strong> (${roomData.maxVotes} votos)!`;
+      }
+    }
+
+    // 5. Estado: GRAN PODIO FINAL
     if (roomData.status === 'PODIUM') {
       this.showPlayerPodium(roomData);
     }
+  }
+
+  async submitPlayerVote(candidateId, candidateName) {
+    if (this.hasVotedCurrent) return;
+    this.hasVotedCurrent = true;
+    sounds.playClick();
+
+    document.getElementById('player-candidates-list').classList.add('hidden');
+    const doneBox = document.getElementById('player-vote-done-box');
+    doneBox.classList.remove('hidden');
+    document.getElementById('player-vote-choice-text').innerText = `Tu voto fue registrado por: ${candidateName}`;
+
+    await roomSync.submitVote(this.roomPin, this.myPlayerId, {
+      candidateId,
+      candidateName,
+      timestamp: Date.now()
+    });
   }
 
   showPlayerPodium(roomData) {
@@ -1007,7 +1334,6 @@ class WiseSheepApp {
       rankEl.innerText = '¡Gran esfuerzo en la trivia!';
     }
 
-    // Banner de Equipo
     const teamBanner = document.getElementById('player-final-team-banner');
     if (roomData.mode === 'TEAMS') {
       teamBanner.classList.remove('hidden');
@@ -1034,23 +1360,17 @@ class WiseSheepApp {
 
     const timeTaken = Math.max(0.4, (Date.now() - this.qStartTime) / 1000);
 
-    // Ocultar botones táctiles y mostrar estado de confirmación
     document.getElementById('player-buttons-grid').classList.add('hidden');
     const waitingState = document.getElementById('player-waiting-state');
     waitingState.classList.remove('hidden');
     document.getElementById('player-state-title').innerText = '¡Respuesta Enviada!';
     document.getElementById('player-state-desc').innerText = 'Esperando a los demás o que termine el tiempo...';
 
-    // Enviar voto directamente a la subcolección 'answers' de Firestore
-    const ok = await roomSync.submitAnswer(this.roomPin, this.myPlayerId, {
+    await roomSync.submitAnswer(this.roomPin, this.myPlayerId, {
       questionIndex: this.currentQIndex,
       answerIndex,
       timeTaken
     });
-
-    if (ok) {
-      console.log('✅ Voto entregado exitosamente a Firestore');
-    }
   }
 
   // ==============================================================

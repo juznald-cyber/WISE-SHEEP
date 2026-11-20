@@ -23,6 +23,7 @@ export class RoomManager {
     this.unsubRoom = null;
     this.unsubPlayers = null;
     this.unsubAnswers = null;
+    this.unsubVotes = null;
 
     // BroadcastChannel local para pruebas en la misma máquina
     if (typeof BroadcastChannel !== 'undefined') {
@@ -54,7 +55,6 @@ export class RoomManager {
     this.notify(msg);
   }
 
-  // Inicializar Firebase Modular SDK desde CDN
   async initFirebase(config) {
     if (!config || !config.apiKey) return false;
     try {
@@ -102,13 +102,11 @@ export class RoomManager {
       updatedAt: Date.now()
     };
 
-    // Guardar en localStorage y BroadcastChannel
     localStorage.setItem(`ws_room_${pin}`, JSON.stringify(data));
     if (this.channel) {
       this.channel.postMessage({ pin, action: 'ROOM_UPDATE', payload: data });
     }
 
-    // Guardar en Firestore
     if (window.firebaseFirestore && window.firebaseFirestoreModule) {
       try {
         const db = window.firebaseFirestore;
@@ -120,7 +118,6 @@ export class RoomManager {
     }
   }
 
-  // El anfitrión escucha a los jugadores conectándose a la sala
   listenToPlayers(pin, onPlayersUpdate) {
     this.currentPin = pin;
     if (this.unsubPlayers) this.unsubPlayers();
@@ -140,7 +137,6 @@ export class RoomManager {
     }
   }
 
-  // El anfitrión escucha las respuestas en vivo en la subcolección 'answers'
   listenToAnswers(pin, onAnswerReceived) {
     this.currentPin = pin;
     if (this.unsubAnswers) this.unsubAnswers();
@@ -161,11 +157,31 @@ export class RoomManager {
     }
   }
 
+  // El anfitrión escucha las votaciones en vivo
+  listenToVotes(pin, onVoteReceived) {
+    this.currentPin = pin;
+    if (this.unsubVotes) this.unsubVotes();
+
+    if (window.firebaseFirestore && window.firebaseFirestoreModule) {
+      const db = window.firebaseFirestore;
+      const { collection, onSnapshot } = window.firebaseFirestoreModule;
+      this.unsubVotes = onSnapshot(collection(db, 'rooms', pin, 'votes'), (snapshot) => {
+        snapshot.docChanges().forEach((change) => {
+          if (change.type === 'added' || change.type === 'modified') {
+            const voteData = change.doc.data();
+            onVoteReceived(change.doc.id, voteData);
+          }
+        });
+      }, (err) => {
+        console.warn('Error escuchando votos:', err);
+      });
+    }
+  }
+
   // ==============================================================
   // MÉTODOS DEL JUGADOR (PLAYER)
   // ==============================================================
 
-  // El jugador escucha el estado de la sala principal (preguntas, timer, podio)
   listenToRoomState(pin, onStateChange) {
     this.currentPin = pin;
     if (this.unsubRoom) this.unsubRoom();
@@ -184,7 +200,6 @@ export class RoomManager {
     }
   }
 
-  // El jugador se registra en la sala
   async registerPlayer(pin, playerId, playerData) {
     this.currentPin = pin;
     const data = {
@@ -209,7 +224,6 @@ export class RoomManager {
     }
   }
 
-  // El jugador envía su voto a la subcolección 'answers'
   async submitAnswer(pin, playerId, answerData) {
     this.currentPin = pin;
     const data = {
@@ -226,12 +240,39 @@ export class RoomManager {
       try {
         const db = window.firebaseFirestore;
         const { doc, setDoc } = window.firebaseFirestoreModule;
-        // Guardar respuesta con ID de jugador en la subcolección de respuestas
         await setDoc(doc(db, 'rooms', pin, 'answers', playerId), data);
         console.log(`Respuesta enviada a Firestore para jugador ${playerId}:`, data);
         return true;
       } catch (err) {
         console.error('Error enviando respuesta a Firestore:', err);
+        return false;
+      }
+    }
+    return true;
+  }
+
+  // Enviar voto de la dinámica / encuesta
+  async submitVote(pin, playerId, voteData) {
+    this.currentPin = pin;
+    const data = {
+      ...voteData,
+      playerId,
+      timestamp: Date.now()
+    };
+
+    if (this.channel) {
+      this.channel.postMessage({ pin, action: 'SUBMIT_VOTE', payload: data });
+    }
+
+    if (window.firebaseFirestore && window.firebaseFirestoreModule) {
+      try {
+        const db = window.firebaseFirestore;
+        const { doc, setDoc } = window.firebaseFirestoreModule;
+        await setDoc(doc(db, 'rooms', pin, 'votes', playerId), data);
+        console.log(`Voto registrado en Firestore para jugador ${playerId}:`, data);
+        return true;
+      } catch (err) {
+        console.error('Error enviando voto a Firestore:', err);
         return false;
       }
     }

@@ -70,6 +70,10 @@
       </div>
     </div>
     <div class="flex items-center gap-2">
+      <!-- Botón de Lanzar Votación Dinámica (visible para el anfitrión) -->
+      <button id="header-btn-poll" onclick="app.openLaunchPollModal()" class="hidden px-3 py-1.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 text-xs font-bold border border-amber-500/50 flex items-center gap-1.5 transition">
+        <span>🗳️</span> Votación / Premio
+      </button>
       <!-- Mute Button -->
       <button id="btn-sound-toggle" onclick="app.toggleSound()" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 transition" title="Activar/Silenciar Sonido">
         <span id="sound-icon">🔊</span>
@@ -85,7 +89,7 @@
     </div>
   </header>
 
-  <!-- Banner de Reconexión Rápida (para cuando el teléfono se bloquea o reconecta) -->
+  <!-- Banner de Reconexión Rápida -->
   <div id="banner-reconnect" class="hidden bg-gradient-to-r from-cyan-900 to-indigo-900 border-b border-cyan-500/40 px-4 py-2.5 flex items-center justify-between text-xs z-40">
     <div class="flex items-center gap-2 text-cyan-100">
       <span class="text-base animate-pulse">⚡</span>
@@ -117,7 +121,7 @@
         ¿Listos para desafiar su <span class="bg-gradient-to-r from-amber-400 to-yellow-200 bg-clip-text text-transparent">sabiduría bíblica</span>?
       </h2>
       <p class="text-slate-300 text-sm md:text-lg max-w-xl mb-8">
-        Conéctense a la pantalla principal con sus teléfonos, compitan individualmente o en equipos (¡Hombres vs Mujeres!) y aprendan más de las Escrituras.
+        Conéctense a la pantalla principal con sus teléfonos, compitan individualmente o en equipos (¡Hombres vs Mujeres!) y participen en votaciones del grupo.
       </p>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-lg">
@@ -141,7 +145,7 @@
           <span>🦁 vs 👑</span> Hombres vs Mujeres
         </span>
         <span class="flex items-center gap-1.5 bg-slate-900 px-3 py-1.5 rounded-full border border-slate-800">
-          <span>🌱 📜 👑</span> 3 Niveles de Dificultad
+          <span>🗳️</span> Votaciones y Premios Grupales
         </span>
         <span class="flex items-center gap-1.5 bg-slate-900 px-3 py-1.5 rounded-full border border-slate-800">
           <span>🎲</span> Preguntas Aleatorias y Frescas
@@ -292,9 +296,14 @@
           <div class="text-sm font-semibold text-slate-300 flex items-center gap-2">
             <span>👥</span> Jugadores conectados: <span id="lobby-player-count" class="text-xl font-bold text-cyan-400">0</span>
           </div>
-          <button id="btn-start-game" onclick="app.startGameCountdown()" class="btn-3d w-full md:w-auto px-8 py-3.5 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 font-black text-lg rounded-2xl shadow-lg flex items-center justify-center gap-2 glow-gold">
-            <span>▶️</span> ¡INICIAR JUEGO!
-          </button>
+          <div class="flex items-center gap-2 w-full md:w-auto">
+            <button onclick="app.openLaunchPollModal()" class="btn-3d px-4 py-3.5 bg-amber-600/30 hover:bg-amber-600/50 border border-amber-500/60 font-bold text-sm text-amber-200 rounded-2xl flex items-center justify-center gap-1.5 transition">
+              <span>🗳️</span> Votación Grupal
+            </button>
+            <button id="btn-start-game" onclick="app.startGameCountdown()" class="btn-3d flex-1 md:flex-none px-8 py-3.5 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 font-black text-lg rounded-2xl shadow-lg flex items-center justify-center gap-2 glow-gold">
+              <span>▶️</span> ¡INICIAR JUEGO!
+            </button>
+          </div>
         </div>
       </div>
 
@@ -402,7 +411,7 @@
         </div>
       </div>
 
-      <!-- Caja de Cita Bíblica Explicativa (se revela al terminar el tiempo) -->
+      <!-- Caja de Cita Bíblica Explicativa -->
       <div id="host-explanation-box" class="hidden bg-gradient-to-r from-indigo-950 via-purple-950 to-slate-900 border-2 border-amber-400/60 rounded-2xl p-5 mb-4 shadow-xl">
         <div class="flex items-start gap-3">
           <span class="text-3xl">📖</span>
@@ -418,17 +427,15 @@
         </div>
       </div>
 
-      <!-- Barra Inferior de Acción del Host (Control Flexible de Posiciones) -->
+      <!-- Barra Inferior de Acción del Host -->
       <div id="host-game-controls" class="hidden flex flex-col sm:flex-row items-center justify-between bg-slate-900/90 border border-slate-800 px-5 py-3 rounded-2xl gap-3">
         <div class="text-xs text-slate-400">
           ¿Deseas ver las posiciones ahora o pasar directo a la siguiente pregunta?
         </div>
         <div class="flex items-center gap-3 w-full sm:w-auto">
-          <!-- Botón opcional para ver Leaderboard -->
           <button id="btn-show-optional-lb" onclick="app.showLeaderboard()" class="btn-3d px-4 py-2.5 bg-slate-800 hover:bg-slate-700 border border-slate-700 font-bold text-xs rounded-xl text-slate-300 flex items-center gap-1.5 transition">
             <span>📊</span> Ver Posiciones
           </button>
-          <!-- Botón directo para pasar a la siguiente pregunta -->
           <button id="btn-direct-next-q" onclick="app.nextQuestionOrPodium()" class="btn-3d flex-1 sm:flex-none px-6 py-2.5 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 font-extrabold text-sm rounded-xl text-white flex items-center justify-center gap-2 glow-gold">
             <span>Siguiente Pregunta</span> <span>➡️</span>
           </button>
@@ -464,7 +471,6 @@
         <!-- Cards -->
       </div>
 
-      <!-- Siguiente Pregunta Button -->
       <div class="flex justify-end">
         <button id="btn-next-question" onclick="app.nextQuestionOrPodium()" class="btn-3d px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 font-black text-lg rounded-2xl text-white shadow-xl flex items-center gap-2 glow-gold">
           <span>Siguiente Pregunta</span> <span>➡️</span>
@@ -488,9 +494,7 @@
         ¡El Equipo Ganador es: 🦁 HOMBRES!
       </p>
 
-      <!-- Pedestales Olímpicos 1, 2 y 3 -->
       <div class="flex items-end justify-center gap-3 md:gap-6 w-full max-w-lg mb-10 h-72">
-        <!-- 2nd Place -->
         <div class="flex-1 flex flex-col items-center">
           <div class="text-3xl mb-1">🥈</div>
           <div id="podium-2nd-name" class="font-bold text-sm text-slate-200 truncate max-w-[100px]">Jugador 2</div>
@@ -500,7 +504,6 @@
           </div>
         </div>
 
-        <!-- 1st Place -->
         <div class="flex-1 flex flex-col items-center">
           <div class="text-4xl mb-1 animate-bounce-slow">👑</div>
           <div id="podium-1st-name" class="font-extrabold text-base text-amber-300 truncate max-w-[120px]">Campeón</div>
@@ -510,7 +513,6 @@
           </div>
         </div>
 
-        <!-- 3rd Place -->
         <div class="flex-1 flex flex-col items-center">
           <div class="text-3xl mb-1">🥉</div>
           <div id="podium-3rd-name" class="font-bold text-sm text-amber-600 truncate max-w-[100px]">Jugador 3</div>
@@ -532,7 +534,72 @@
     </section>
 
     <!-- ============================================================= -->
-    <!-- VIEW 7: PLAYER JOIN SCREEN (Pantalla en Celulares) -->
+    <!-- VIEW 7: HOST VOTING SCREEN (Pantalla de Votación en TV) -->
+    <!-- ============================================================= -->
+    <section id="view-host-voting" class="hidden flex-1 flex flex-col p-4 md:p-8 max-w-5xl mx-auto w-full justify-between">
+      <!-- Top Header -->
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center gap-2">
+          <span class="bg-amber-500/20 text-amber-300 border border-amber-500/40 px-3.5 py-1.5 rounded-xl font-bold text-sm flex items-center gap-1.5">
+            <span>🗳️</span> VOTACIÓN GRUPAL
+          </span>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="flex items-center gap-1.5 text-xs text-slate-400">
+            <span>Votos recibidos:</span>
+            <span id="voting-votes-count" class="font-bold text-white text-base">0</span>
+            <span class="text-slate-500">/</span>
+            <span id="voting-total-count" class="font-bold text-slate-300 text-base">0</span>
+          </div>
+          <div id="voting-timer-circle" class="w-12 h-12 rounded-full border-4 border-amber-400 flex items-center justify-center font-black text-lg text-white bg-slate-900 shadow-lg">
+            25
+          </div>
+        </div>
+      </div>
+
+      <!-- Pregunta de Votación en Grande -->
+      <div class="bg-slate-900 border-2 border-amber-400/40 rounded-3xl p-6 md:p-8 shadow-2xl text-center mb-6">
+        <span class="text-xs uppercase tracking-widest text-amber-400 font-bold mb-2 block">Premio de la Reunión</span>
+        <h3 id="voting-q-text" class="text-2xl md:text-4xl font-black text-white leading-tight">
+          ¿Quién es el compañero más espiritual del grupo?
+        </h3>
+      </div>
+
+      <!-- Grid de Candidatos con Barras de Votos -->
+      <div id="voting-candidates-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 flex-1 overflow-y-auto mb-6 content-start">
+        <!-- Candidate cards dynamically rendered -->
+      </div>
+
+      <!-- Anuncio del Ganador (aparece al cerrar la votación) -->
+      <div id="voting-winner-card" class="hidden bg-gradient-to-r from-amber-600/30 via-yellow-500/40 to-amber-600/30 border-4 border-amber-400 rounded-3xl p-6 text-center mb-6 shadow-2xl glow-gold animate-bounce-slow">
+        <div class="text-5xl mb-2">👑</div>
+        <div class="text-xs uppercase tracking-widest text-amber-300 font-extrabold mb-1">¡EL MÁS VOTADO POR EL GRUPO!</div>
+        <div id="voting-winner-name" class="text-3xl md:text-5xl font-black text-white mb-1">
+          Hermano Juan
+        </div>
+        <div id="voting-winner-votes" class="text-sm font-bold text-amber-200">
+          Con 8 votos a favor
+        </div>
+      </div>
+
+      <!-- Controles de la Votación -->
+      <div class="flex items-center justify-between bg-slate-900/90 border border-slate-800 px-5 py-3 rounded-2xl">
+        <div class="text-xs text-slate-400" id="voting-status-desc">
+          Esperando que todos los participantes elijan en su celular...
+        </div>
+        <div class="flex items-center gap-3">
+          <button id="btn-voting-reveal" onclick="app.closeVotingAndReveal()" class="btn-3d px-6 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 font-black text-sm text-slate-950 rounded-xl flex items-center gap-2 glow-gold">
+            <span>🏆</span> Revelar Ganador
+          </button>
+          <button id="btn-voting-continue" onclick="app.returnToGameAfterVoting()" class="hidden btn-3d px-6 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-600 font-bold text-sm text-white rounded-xl flex items-center gap-2">
+            <span>➡️</span> Continuar Trivia
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- VIEW 8: PLAYER JOIN SCREEN (Pantalla en Celulares) -->
     <!-- ============================================================= -->
     <section id="view-player-join" class="hidden flex-1 p-5 max-w-md mx-auto w-full flex flex-col justify-center">
       <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-2xl">
@@ -543,27 +610,21 @@
         </div>
 
         <form onsubmit="event.preventDefault(); app.joinRoomAsPlayer();" class="space-y-4">
-          <!-- PIN Input -->
           <div>
             <label class="block text-xs uppercase tracking-wider font-bold text-slate-400 mb-1">Código PIN:</label>
             <input type="number" id="player-input-pin" required placeholder="Ej. 7429" class="w-full bg-slate-800 border-2 border-slate-700 focus:border-amber-400 rounded-2xl px-4 py-3 text-center text-2xl font-black tracking-widest text-white outline-none" />
           </div>
 
-          <!-- Nombre / Apodo -->
           <div>
             <label class="block text-xs uppercase tracking-wider font-bold text-slate-400 mb-1">Tu Nombre o Apodo:</label>
             <input type="text" id="player-input-name" required maxlength="15" placeholder="Tu nombre" class="w-full bg-slate-800 border-2 border-slate-700 focus:border-cyan-400 rounded-2xl px-4 py-3 text-center text-lg font-bold text-white outline-none" />
           </div>
 
-          <!-- Selección de Avatar -->
           <div>
             <label class="block text-xs uppercase tracking-wider font-bold text-slate-400 mb-1.5 text-center">Elige tu Avatar:</label>
-            <div class="flex justify-center gap-2" id="avatar-selector">
-              <!-- Avatares dinámicos -->
-            </div>
+            <div class="flex justify-center gap-2" id="avatar-selector"></div>
           </div>
 
-          <!-- Selección de Equipo -->
           <div>
             <label class="block text-xs uppercase tracking-wider font-bold text-slate-400 mb-1.5 text-center">Tu Equipo:</label>
             <div class="grid grid-cols-2 gap-2">
@@ -576,7 +637,6 @@
             </div>
           </div>
 
-          <!-- Botón Entrar -->
           <button type="submit" class="w-full btn-3d py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-black text-lg rounded-2xl glow-blue">
             ¡ENTRAR AHORA! 🚀
           </button>
@@ -589,7 +649,7 @@
     </section>
 
     <!-- ============================================================= -->
-    <!-- VIEW 8: PLAYER LOBBY SCREEN (Esperando Inicio) -->
+    <!-- VIEW 9: PLAYER LOBBY SCREEN (Esperando Inicio) -->
     <!-- ============================================================= -->
     <section id="view-player-lobby" class="hidden flex-1 p-6 max-w-md mx-auto w-full flex flex-col items-center justify-center text-center">
       <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-2xl w-full">
@@ -606,10 +666,9 @@
     </section>
 
     <!-- ============================================================= -->
-    <!-- VIEW 9: PLAYER CONTROLLER (Botones para responder en celular) -->
+    <!-- VIEW 10: PLAYER GAME CONTROLLER (Trivia) -->
     <!-- ============================================================= -->
     <section id="view-player-game" class="hidden flex-1 p-3 md:p-6 max-w-md mx-auto w-full flex flex-col justify-between">
-      <!-- Player Status Header -->
       <div class="flex items-center justify-between bg-slate-900 border border-slate-800 px-4 py-2.5 rounded-2xl mb-3">
         <div class="flex items-center gap-2">
           <span id="player-game-avatar" class="text-xl">🐑</span>
@@ -621,41 +680,31 @@
         </div>
       </div>
 
-      <!-- State: Esperando Pregunta o Ya Respondió -->
       <div id="player-waiting-state" class="hidden flex-1 flex flex-col items-center justify-center text-center p-6 bg-slate-900/60 rounded-3xl border border-slate-800 mb-3">
         <div class="text-4xl mb-3 animate-pulse" id="player-state-icon">✅</div>
         <h4 class="text-xl font-bold text-white mb-1" id="player-state-title">¡Respuesta Enviada!</h4>
         <p class="text-xs text-slate-400" id="player-state-desc">Esperando a los demás o que termine el tiempo...</p>
       </div>
 
-      <!-- 4 Botones Táctiles Gigantes de Respuesta -->
       <div id="player-buttons-grid" class="grid grid-cols-2 gap-3 flex-1">
-        <!-- Button 0: Red Triangle -->
         <button onclick="app.submitPlayerAnswer(0)" id="btn-answer-0" class="btn-3d bg-red-600 active:bg-red-700 rounded-3xl flex flex-col items-center justify-center p-4 text-white shadow-xl">
           <span class="text-5xl font-black mb-1">▲</span>
           <span id="player-btn-label-0" class="text-xs font-bold text-red-100 uppercase tracking-wider">Rojo</span>
         </button>
-
-        <!-- Button 1: Blue Diamond -->
         <button onclick="app.submitPlayerAnswer(1)" id="btn-answer-1" class="btn-3d bg-blue-600 active:bg-blue-700 rounded-3xl flex flex-col items-center justify-center p-4 text-white shadow-xl">
           <span class="text-5xl font-black mb-1">◆</span>
           <span id="player-btn-label-1" class="text-xs font-bold text-blue-100 uppercase tracking-wider">Azul</span>
         </button>
-
-        <!-- Button 2: Yellow Circle -->
         <button onclick="app.submitPlayerAnswer(2)" id="btn-answer-2" class="btn-3d bg-amber-500 active:bg-amber-600 rounded-3xl flex flex-col items-center justify-center p-4 text-white shadow-xl">
           <span class="text-5xl font-black mb-1">●</span>
           <span id="player-btn-label-2" class="text-xs font-bold text-amber-100 uppercase tracking-wider">Amarillo</span>
         </button>
-
-        <!-- Button 3: Green Square -->
         <button onclick="app.submitPlayerAnswer(3)" id="btn-answer-3" class="btn-3d bg-emerald-600 active:bg-emerald-700 rounded-3xl flex flex-col items-center justify-center p-4 text-white shadow-xl">
           <span class="text-5xl font-black mb-1">■</span>
           <span id="player-btn-label-3" class="text-xs font-bold text-emerald-100 uppercase tracking-wider">Verde</span>
         </button>
       </div>
 
-      <!-- Feedback de Acierto / Error -->
       <div id="player-feedback-panel" class="hidden mt-3 p-4 rounded-2xl text-center border-2">
         <div class="text-2xl font-black mb-0.5" id="player-feedback-title">¡CORRECTO! 🎉</div>
         <div class="text-xs font-semibold" id="player-feedback-points">+950 puntos</div>
@@ -663,7 +712,35 @@
     </section>
 
     <!-- ============================================================= -->
-    <!-- VIEW 10: PLAYER FINAL PODIUM (En el Celular del Jugador) -->
+    <!-- VIEW 11: PLAYER VOTING SCREEN (Votar por un compañero en el celular) -->
+    <!-- ============================================================= -->
+    <section id="view-player-voting" class="hidden flex-1 p-4 md:p-6 max-w-md mx-auto w-full flex flex-col justify-between">
+      <div class="text-center mb-4">
+        <span class="bg-amber-500/20 text-amber-300 border border-amber-500/40 px-3 py-1 rounded-full text-xs font-bold inline-flex items-center gap-1">
+          <span>🗳️</span> ¡HORA DE VOTAR!
+        </span>
+        <h3 id="player-voting-question" class="text-lg font-extrabold text-white mt-2 leading-snug">
+          ¿Quién es el compañero más espiritual?
+        </h3>
+        <p class="text-xs text-slate-400 mt-1">Toca a tu candidato favorito para emitir tu voto:</p>
+      </div>
+
+      <!-- Estado: Ya votó -->
+      <div id="player-vote-done-box" class="hidden flex-1 flex flex-col items-center justify-center text-center p-6 bg-slate-900 border border-amber-500/40 rounded-3xl mb-4">
+        <div class="text-5xl mb-2 animate-bounce-slow">🗳️</div>
+        <h4 class="text-xl font-black text-white mb-1">¡Voto Registrado!</h4>
+        <p class="text-xs text-amber-300 font-semibold" id="player-vote-choice-text">Votaste por: ---</p>
+        <p class="text-xs text-slate-400 mt-2">Mira la pantalla del anfitrión para ver quién se lleva la corona...</p>
+      </div>
+
+      <!-- Lista Táctil de Candidatos -->
+      <div id="player-candidates-list" class="space-y-2.5 flex-1 overflow-y-auto mb-4">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- VIEW 12: PLAYER FINAL PODIUM (En el Celular del Jugador) -->
     <!-- ============================================================= -->
     <section id="view-player-podium" class="hidden flex-1 p-6 max-w-md mx-auto w-full flex flex-col items-center justify-center text-center">
       <div class="bg-slate-900 border-2 border-amber-400/80 rounded-3xl p-8 shadow-2xl w-full relative overflow-hidden glow-gold">
@@ -682,12 +759,8 @@
           </div>
         </div>
 
-        <!-- Banner de Resultado de Equipo (si es TEAMS) -->
-        <div id="player-final-team-banner" class="hidden p-3.5 rounded-2xl text-xs font-bold mb-5 border">
-          <!-- Text for winning or runner up team -->
-        </div>
+        <div id="player-final-team-banner" class="hidden p-3.5 rounded-2xl text-xs font-bold mb-5 border"></div>
 
-        <!-- Racha máxima -->
         <div class="flex items-center justify-center gap-2 text-xs text-slate-300 bg-slate-800/80 py-2 px-4 rounded-xl mb-6">
           <span>🔥</span> <span id="player-final-streak">Racha de aciertos: 0 seguidas</span>
         </div>
@@ -701,6 +774,88 @@
   </main>
 
   <!-- ============================================================= -->
+  <!-- MODAL: LANZAR VOTACIÓN EN VIVO (Para el Anfitrión) -->
+  <!-- ============================================================= -->
+  <div id="modal-launch-poll" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-lg w-full p-6 shadow-2xl flex flex-col max-h-[90vh]">
+      <div class="flex items-center justify-between mb-4 border-b border-slate-800 pb-3">
+        <h3 class="font-extrabold text-lg text-white flex items-center gap-2">
+          <span>🗳️</span> Lanzar Votación / Premio Grupal
+        </h3>
+        <button onclick="app.closeLaunchPollModal()" class="text-slate-400 hover:text-white text-xl">✕</button>
+      </div>
+
+      <div class="space-y-4 overflow-y-auto flex-1 pr-1 text-xs">
+        <div>
+          <label class="block font-bold text-slate-300 mb-1.5">1. Elige una pregunta popular o escribe la tuya:</label>
+          <select id="poll-preset-select" onchange="app.handlePresetPollChange(this.value)" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white font-medium outline-none mb-2">
+            <option value="CUSTOM">-- Escribir mi propia pregunta personalizada --</option>
+            <option value="¿Quién es el compañero más espiritual del grupo?" selected>🕊️ ¿Quién es el compañero más espiritual del grupo?</option>
+            <option value="¿Quién conoce más versículos bíblicos de memoria?">📖 ¿Quién conoce más versículos bíblicos de memoria?</option>
+            <option value="¿Quién llega siempre más temprano a la reunión?">⏰ ¿Quién llega siempre más temprano a la reunión?</option>
+            <option value="¿Quién canta con más pasión en la alabanza?">🎶 ¿Quién canta con más pasión en la alabanza?</option>
+            <option value="¿Quién es el más valiente y decidido como David?">🦁 ¿Quién es el más valiente y decidido como David?</option>
+            <option value="¿Quién da los mejores y más sabios consejos?">👑 ¿Quién da los mejores y más sabios consejos?</option>
+            <option value="¿Quién es la oveja más madrugadora para orar?">🐑 ¿Quién es la oveja más madrugadora para orar?</option>
+            <option value="¿Quién tiene la sonrisa más contagiosa del grupo?">😊 ¿Quién tiene la sonrisa más contagiosa del grupo?</option>
+            <option value="¿Quién lleva siempre los mejores bocadillos o comida?">🍰 ¿Quién lleva siempre los mejores bocadillos o comida?</option>
+          </select>
+
+          <input type="text" id="poll-custom-question" placeholder="Escribe aquí tu pregunta de votación..." class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white font-bold outline-none focus:ring-1 focus:ring-amber-400" />
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-300 mb-1.5">2. Candidatos a votar:</label>
+          <div class="space-y-2">
+            <label class="flex items-center gap-2 cursor-pointer bg-slate-800/80 p-3 rounded-xl border border-slate-700">
+              <input type="radio" name="poll-candidates-mode" value="ALL_PLAYERS" checked onchange="app.handleCandidateModeChange('ALL_PLAYERS')" class="accent-amber-500" />
+              <div>
+                <div class="font-bold text-white">Todos los participantes conectados en la sala</div>
+                <div class="text-[11px] text-slate-400">Cada persona votará eligiendo a uno de los compañeros en la sala</div>
+              </div>
+            </label>
+
+            <label class="flex items-center gap-2 cursor-pointer bg-slate-800/80 p-3 rounded-xl border border-slate-700">
+              <input type="radio" name="poll-candidates-mode" value="CUSTOM_LIST" onchange="app.handleCandidateModeChange('CUSTOM_LIST')" class="accent-amber-500" />
+              <div>
+                <div class="font-bold text-white">Escribir candidatos específicos</div>
+                <div class="text-[11px] text-slate-400">Si deseas poner opciones o personas específicas</div>
+              </div>
+            </label>
+          </div>
+
+          <div id="poll-custom-candidates-box" class="hidden mt-2">
+            <textarea id="poll-custom-candidates-input" rows="2" placeholder="Escribe los nombres separados por comas (ej. Carlos, Andrea, Pastor David, Sara)" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-2.5 text-white outline-none"></textarea>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-semibold text-slate-400 mb-1">Tiempo de votación:</label>
+            <select id="poll-time-limit" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white outline-none">
+              <option value="20">20 Segundos</option>
+              <option value="30" selected>30 Segundos</option>
+              <option value="45">45 Segundos</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-400 mb-1">Puntos para el ganador:</label>
+            <select id="poll-bonus-points" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white outline-none">
+              <option value="0" selected>0 pts (Solo reconocimiento)</option>
+              <option value="500">+500 pts de bonificación</option>
+              <option value="1000">+1,000 pts de bonificación</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <button onclick="app.launchPollFromModal()" class="w-full btn-3d mt-4 py-3.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black text-sm rounded-2xl glow-gold flex items-center justify-center gap-2">
+        <span>🚀</span> ¡LANZAR VOTACIÓN EN LA SALA!
+      </button>
+    </div>
+  </div>
+
+  <!-- ============================================================= -->
   <!-- MODAL: BANCO DE PREGUNTAS & EXPLORADOR -->
   <!-- ============================================================= -->
   <div id="modal-questions" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
@@ -712,7 +867,6 @@
         <button onclick="app.closeQuestionsModal()" class="text-slate-400 hover:text-white text-xl">✕</button>
       </div>
 
-      <!-- Filtro por Dificultad -->
       <div class="px-5 pt-3 pb-2 flex gap-2 border-b border-slate-800/60 overflow-x-auto text-xs">
         <button onclick="app.filterQuestionsList('ALL')" id="qfilter-ALL" class="px-3 py-1.5 rounded-lg bg-cyan-600 text-white font-bold">Todas</button>
         <button onclick="app.filterQuestionsList('EASY')" id="qfilter-EASY" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-semibold hover:bg-slate-700">🌱 Corderito</button>
@@ -720,10 +874,7 @@
         <button onclick="app.filterQuestionsList('HARD')" id="qfilter-HARD" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-semibold hover:bg-slate-700">👑 Maestro</button>
       </div>
 
-      <!-- Lista de Preguntas -->
-      <div id="modal-questions-scroll" class="p-5 space-y-4 overflow-y-auto flex-1">
-        <!-- Rendered items -->
-      </div>
+      <div id="modal-questions-scroll" class="p-5 space-y-4 overflow-y-auto flex-1"></div>
     </div>
   </div>
 
@@ -764,7 +915,6 @@
     </div>
   </div>
 
-  <!-- Main JavaScript App Logic -->
   <script type="module" src="./src/app.js"></script>
 </body>
 </html>
