@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full bg-slate-950 text-slate-100">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>WISE SHEEP - Trivia Bíblica Multijugador</title>
+  <meta name="description" content="Juego interactivo de trivia bíblica para reuniones y amigos al estilo Kahoot. Juega en pantalla grande y responde desde tu teléfono." />
+  <link rel="icon" type="image/jpeg" href="./logo.jpg" />
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+  <!-- QR Code Generator -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Outfit', 'Inter', 'sans-serif'],
+            display: ['Outfit', 'sans-serif']
+          },
+          colors: {
+            brand: {
+              purple: '#6D28D9',
+              blue: '#2563EB',
+              cyan: '#06B6D4',
+              gold: '#F59E0B',
+              dark: '#0B0F19'
+            },
+            kahoot: {
+              red: '#E21B3C',
+              blue: '#1368CE',
+              yellow: '#D89E00',
+              green: '#26890C'
+            }
+          },
+          animation: {
+            'bounce-slow': 'bounce 2.5s infinite',
+            'pulse-fast': 'pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Estilos de botones Kahoot táctiles con elevación 3D */
+    .btn-3d {
+      transition: all 0.1s ease;
+      box-shadow: 0 6px 0 rgba(0,0,0,0.35);
+    }
+    .btn-3d:active {
+      transform: translateY(4px);
+      box-shadow: 0 2px 0 rgba(0,0,0,0.35);
+    }
+    .glow-gold {
+      box-shadow: 0 0 25px rgba(245, 158, 11, 0.45);
+    }
+    .glow-blue {
+      box-shadow: 0 0 25px rgba(6, 182, 212, 0.35);
+    }
+  </style>
+</head>
+<body class="h-full bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-cyan-500 selection:text-black">
+
+  <!-- Top Navigation Bar -->
+  <header class="bg-slate-900/90 backdrop-blur border-b border-slate-800 px-4 py-3 flex items-center justify-between sticky top-0 z-50">
+    <div class="flex items-center gap-3 cursor-pointer" onclick="app.showHome()">
+      <img src="./logo.jpg" alt="Wise Sheep Logo" class="w-10 h-10 rounded-full border-2 border-amber-400 shadow-md object-cover" />
+      <div>
+        <h1 class="font-extrabold text-lg tracking-tight bg-gradient-to-r from-cyan-400 via-amber-300 to-purple-400 bg-clip-text text-transparent">WISE SHEEP</h1>
+        <p class="text-xs text-slate-400 font-medium">Trivia Bíblica en Vivo</p>
+      </div>
+    </div>
+    <div class="flex items-center gap-2">
+      <!-- Mute Button -->
+      <button id="btn-sound-toggle" onclick="app.toggleSound()" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 transition" title="Activar/Silenciar Sonido">
+        <span id="sound-icon">🔊</span>
+      </button>
+      <!-- Firebase / Settings Button -->
+      <button onclick="app.showSettingsModal()" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 transition" title="Configuración de Firebase">
+        ⚙️
+      </button>
+      <!-- Questions Database Button -->
+      <button onclick="app.showQuestionsModal()" class="px-3 py-1.5 rounded-xl bg-indigo-900/70 hover:bg-indigo-800 text-indigo-200 text-xs font-semibold border border-indigo-700/50 flex items-center gap-1.5 transition">
+        <span>📖</span> Preguntas
+      </button>
+    </div>
+  </header>
+
+  <!-- Main View Container -->
+  <main id="app-container" class="flex-1 flex flex-col relative overflow-hidden">
+
+    <!-- ============================================================= -->
+    <!-- VIEW 1: HOME SELECTION SCREEN -->
+    <!-- ============================================================= -->
+    <section id="view-home" class="flex-1 flex flex-col items-center justify-center p-6 text-center max-w-4xl mx-auto w-full">
+      <div class="relative mb-6">
+        <div class="absolute -inset-4 bg-gradient-to-r from-cyan-500 via-purple-600 to-amber-500 rounded-full blur-xl opacity-40 animate-pulse"></div>
+        <img src="./logo.jpg" alt="Wise Sheep Logo" class="relative w-36 h-36 md:w-44 md:h-44 rounded-3xl border-4 border-amber-400/80 shadow-2xl object-cover glow-gold mx-auto" />
+      </div>
+
+      <h2 class="text-3xl md:text-5xl font-black tracking-tight mb-3">
+        ¿Listos para desafiar su <span class="bg-gradient-to-r from-amber-400 to-yellow-200 bg-clip-text text-transparent">sabiduría bíblica</span>?
+      </h2>
+      <p class="text-slate-300 text-sm md:text-lg max-w-xl mb-8">
+        Conéctense a la pantalla principal con sus teléfonos, compitan individualmente o en equipos (¡Hombres vs Mujeres!) y aprendan más de las Escrituras.
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-lg">
+        <!-- Botón Anfitrión -->
+        <button onclick="app.startHostSetup()" class="btn-3d bg-gradient-to-br from-indigo-600 to-purple-700 hover:from-indigo-500 hover:to-purple-600 border border-purple-400/30 p-5 rounded-2xl flex flex-col items-center justify-center text-center group">
+          <span class="text-4xl mb-2 group-hover:scale-110 transition-transform">🖥️</span>
+          <span class="font-bold text-xl text-white">Soy el Anfitrión</span>
+          <span class="text-xs text-indigo-200 mt-1">Proyectar en TV, Monitor o Computador</span>
+        </button>
+
+        <!-- Botón Jugador -->
+        <button onclick="app.startPlayerJoin()" class="btn-3d bg-gradient-to-br from-cyan-600 to-blue-700 hover:from-cyan-500 hover:to-blue-600 border border-cyan-400/30 p-5 rounded-2xl flex flex-col items-center justify-center text-center group">
+          <span class="text-4xl mb-2 group-hover:scale-110 transition-transform">📱</span>
+          <span class="font-bold text-xl text-white">Unirme a una Sala</span>
+          <span class="text-xs text-cyan-200 mt-1">Jugar desde mi teléfono con PIN</span>
+        </button>
+      </div>
+
+      <div class="mt-10 flex flex-wrap items-center justify-center gap-4 text-xs text-slate-400">
+        <span class="flex items-center gap-1.5 bg-slate-900 px-3 py-1.5 rounded-full border border-slate-800">
+          <span>🦁 vs 👑</span> Hombres vs Mujeres
+        </span>
+        <span class="flex items-center gap-1.5 bg-slate-900 px-3 py-1.5 rounded-full border border-slate-800">
+          <span>🌱 📜 👑</span> 3 Niveles de Dificultad
+        </span>
+        <span class="flex items-center gap-1.5 bg-slate-900 px-3 py-1.5 rounded-full border border-slate-800">
+          <span>⚡</span> Tiempo Real con Firebase
+        </span>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- VIEW 2: HOST SETUP SCREEN (Configurar Sala) -->
+    <!-- ============================================================= -->
+    <section id="view-host-setup" class="hidden flex-1 p-6 max-w-3xl mx-auto w-full flex flex-col justify-center">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 md:p-8 shadow-2xl">
+        <div class="flex items-center justify-between mb-6 border-b border-slate-800 pb-4">
+          <h3 class="text-2xl font-bold flex items-center gap-2">
+            <span>⚙️</span> Configurar Nueva Sala
+          </h3>
+          <button onclick="app.showHome()" class="text-slate-400 hover:text-white text-sm">Cancelar</button>
+        </div>
+
+        <div class="space-y-6">
+          <!-- Modo de Juego -->
+          <div>
+            <label class="block text-sm font-semibold text-slate-300 mb-2">Modalidad de Juego:</label>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <label class="cursor-pointer border-2 border-indigo-600 bg-indigo-950/40 rounded-2xl p-4 flex items-center gap-3 transition" id="mode-opt-teams">
+                <input type="radio" name="game-mode" value="TEAMS" checked onchange="app.updateModeSelection(this.value)" class="text-indigo-600 focus:ring-0" />
+                <div>
+                  <div class="font-bold text-white flex items-center gap-2">
+                    <span>⚔️</span> Por Equipos (Hombres vs Mujeres)
+                  </div>
+                  <div class="text-xs text-indigo-300">Suman puntos juntos y compiten por bando</div>
+                </div>
+              </label>
+
+              <label class="cursor-pointer border-2 border-slate-800 bg-slate-900 rounded-2xl p-4 flex items-center gap-3 transition" id="mode-opt-indiv">
+                <input type="radio" name="game-mode" value="INDIVIDUAL" onchange="app.updateModeSelection(this.value)" class="text-indigo-600 focus:ring-0" />
+                <div>
+                  <div class="font-bold text-white flex items-center gap-2">
+                    <span>🏆</span> Individual (Todos contra todos)
+                  </div>
+                  <div class="text-xs text-slate-400">Cada persona acumula sus propios puntos</div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Nivel de Dificultad -->
+          <div>
+            <label class="block text-sm font-semibold text-slate-300 mb-2">Nivel de Dificultad:</label>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+              <button type="button" onclick="app.selectDifficulty('ALL')" id="diff-btn-ALL" class="p-3 rounded-xl border border-amber-500 bg-amber-500/20 text-amber-300 font-bold text-xs text-center">
+                ✨ Progresivo<br><span class="font-normal text-[10px] text-slate-300">Menos a más</span>
+              </button>
+              <button type="button" onclick="app.selectDifficulty('EASY')" id="diff-btn-EASY" class="p-3 rounded-xl border border-slate-800 bg-slate-900 text-slate-300 font-bold text-xs text-center hover:border-slate-700">
+                🌱 Corderito<br><span class="font-normal text-[10px] text-slate-400">Fácil / Básico</span>
+              </button>
+              <button type="button" onclick="app.selectDifficulty('MEDIUM')" id="diff-btn-MEDIUM" class="p-3 rounded-xl border border-slate-800 bg-slate-900 text-slate-300 font-bold text-xs text-center hover:border-slate-700">
+                📜 Discípulo<br><span class="font-normal text-[10px] text-slate-400">Intermedio</span>
+              </button>
+              <button type="button" onclick="app.selectDifficulty('HARD')" id="diff-btn-HARD" class="p-3 rounded-xl border border-slate-800 bg-slate-900 text-slate-300 font-bold text-xs text-center hover:border-slate-700">
+                👑 Maestro<br><span class="font-normal text-[10px] text-slate-400">Avanzado</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Cantidad de Preguntas y Tiempo -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-semibold text-slate-300 mb-1">Cantidad de Preguntas:</label>
+              <select id="setup-question-count" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white font-medium focus:ring-2 focus:ring-cyan-500 outline-none">
+                <option value="5">5 Preguntas (Ronda rápida)</option>
+                <option value="10" selected>10 Preguntas (Recomendado)</option>
+                <option value="15">15 Preguntas (Completo)</option>
+                <option value="20">20 Preguntas (Gran Maratón)</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-slate-300 mb-1">Tiempo para responder:</label>
+              <select id="setup-time-limit" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white font-medium focus:ring-2 focus:ring-cyan-500 outline-none">
+                <option value="15">15 Segundos (Rápido)</option>
+                <option value="20" selected>20 Segundos (Ideal)</option>
+                <option value="30">30 Segundos (Más tiempo para leer)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Botón Crear Sala -->
+          <button onclick="app.createRoom()" class="w-full btn-3d bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-black text-lg py-4 rounded-2xl flex items-center justify-center gap-2 glow-gold">
+            <span>🚀</span> CREAR SALA Y ABRIR PANTALLA
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- VIEW 3: HOST LOBBY SCREEN (Pantalla de Espera en TV) -->
+    <!-- ============================================================= -->
+    <section id="view-host-lobby" class="hidden flex-1 flex flex-col p-6 max-w-6xl mx-auto w-full">
+      <!-- Top Lobby Bar: PIN y QR -->
+      <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6 mb-6">
+        <div class="flex items-center gap-5">
+          <div id="lobby-qr-container" class="bg-white p-2.5 rounded-2xl shadow-lg border-2 border-amber-400">
+            <!-- QR Code Canvas goes here -->
+          </div>
+          <div>
+            <div class="text-xs uppercase tracking-widest text-slate-400 font-semibold mb-1">Entra desde tu celular con este código:</div>
+            <div class="flex items-center gap-3">
+              <span id="lobby-pin-display" class="font-black text-5xl md:text-6xl tracking-wider text-amber-400 font-display">----</span>
+              <button onclick="app.copyRoomLink()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 rounded-lg text-xs font-semibold text-slate-300 border border-slate-700 flex items-center gap-1 transition" title="Copiar enlace directo">
+                📋 Copiar Link
+              </button>
+            </div>
+            <div class="text-xs text-slate-400 mt-1">
+              Escanea el código QR o ingresa a esta app y digita el PIN
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col items-center md:items-end gap-3 w-full md:w-auto">
+          <div class="text-sm font-semibold text-slate-300 flex items-center gap-2">
+            <span>👥</span> Jugadores conectados: <span id="lobby-player-count" class="text-xl font-bold text-cyan-400">0</span>
+          </div>
+          <button id="btn-start-game" onclick="app.startGameCountdown()" class="btn-3d w-full md:w-auto px-8 py-3.5 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 font-black text-lg rounded-2xl shadow-lg flex items-center justify-center gap-2 glow-gold">
+            <span>▶️</span> ¡INICIAR JUEGO!
+          </button>
+        </div>
+      </div>
+
+      <!-- Mode & Players Container -->
+      <div id="lobby-teams-container" class="grid grid-cols-1 md:grid-cols-2 gap-6 flex-1 mb-6">
+        <!-- Team A: Hombres -->
+        <div class="bg-blue-950/40 border-2 border-blue-500/40 rounded-3xl p-5 flex flex-col">
+          <div class="flex items-center justify-between border-b border-blue-800/50 pb-3 mb-4">
+            <h4 class="font-extrabold text-xl text-blue-300 flex items-center gap-2">
+              <span>🦁</span> Equipo Hombres
+            </h4>
+            <span id="team-a-count" class="bg-blue-900/80 text-blue-200 text-xs px-2.5 py-1 rounded-full font-bold">0 miembros</span>
+          </div>
+          <div id="team-a-players" class="flex-1 flex flex-wrap gap-2.5 content-start min-h-[120px]">
+            <!-- Player tags go here -->
+          </div>
+        </div>
+
+        <!-- Team B: Mujeres -->
+        <div class="bg-pink-950/40 border-2 border-pink-500/40 rounded-3xl p-5 flex flex-col">
+          <div class="flex items-center justify-between border-b border-pink-800/50 pb-3 mb-4">
+            <h4 class="font-extrabold text-xl text-pink-300 flex items-center gap-2">
+              <span>👑</span> Equipo Mujeres
+            </h4>
+            <span id="team-b-count" class="bg-pink-900/80 text-pink-200 text-xs px-2.5 py-1 rounded-full font-bold">0 miembros</span>
+          </div>
+          <div id="team-b-players" class="flex-1 flex flex-wrap gap-2.5 content-start min-h-[120px]">
+            <!-- Player tags go here -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Individual Players Container (when mode is Individual) -->
+      <div id="lobby-indiv-container" class="hidden bg-slate-900/80 border border-slate-800 rounded-3xl p-6 flex-1 mb-6 flex flex-col">
+        <h4 class="text-sm uppercase tracking-wider font-bold text-slate-400 mb-4 flex items-center gap-2">
+          <span>👥</span> Jugadores en la sala
+        </h4>
+        <div id="indiv-players-list" class="flex-1 flex flex-wrap gap-3 content-start">
+          <!-- Player pills go here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- VIEW 4: HOST GAME SCREEN (Pantalla de Pregunta y Resultados) -->
+    <!-- ============================================================= -->
+    <section id="view-host-game" class="hidden flex-1 flex flex-col p-4 md:p-8 max-w-5xl mx-auto w-full justify-between">
+      <!-- Game Top Header -->
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center gap-3">
+          <span id="game-q-counter" class="bg-slate-800 px-3.5 py-1.5 rounded-xl font-bold text-sm text-cyan-400 border border-slate-700">
+            Pregunta 1 de 10
+          </span>
+          <span id="game-q-badge" class="bg-amber-500/20 text-amber-300 border border-amber-500/40 px-3 py-1 rounded-xl text-xs font-bold">
+            🌱 Corderito
+          </span>
+        </div>
+        <!-- Temporizador Circular / Indicador -->
+        <div class="flex items-center gap-3">
+          <div class="flex items-center gap-1.5 text-xs text-slate-400">
+            <span>✍️ Respuestas:</span>
+            <span id="host-answers-count" class="font-bold text-white text-base">0</span>
+          </div>
+          <div id="host-timer-circle" class="w-12 h-12 rounded-full border-4 border-cyan-400 flex items-center justify-center font-black text-lg text-white bg-slate-900 shadow-lg">
+            20
+          </div>
+        </div>
+      </div>
+
+      <!-- Barra de tiempo decreciente animada -->
+      <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden mb-6">
+        <div id="host-timer-bar" class="h-full bg-gradient-to-r from-cyan-400 to-amber-400 w-full transition-all duration-100 ease-linear"></div>
+      </div>
+
+      <!-- Pregunta Gigante -->
+      <div class="bg-slate-900 border-2 border-slate-800 rounded-3xl p-6 md:p-10 shadow-2xl text-center mb-6 flex-1 flex flex-col items-center justify-center relative overflow-hidden">
+        <span id="game-q-category" class="text-xs uppercase tracking-widest text-slate-400 font-semibold mb-2">Historias Bíblicas</span>
+        <h3 id="game-q-text" class="text-2xl md:text-4xl font-extrabold text-white leading-tight max-w-3xl">
+          ¿Cuántos días y noches llovió durante el diluvio en el arca de Noé?
+        </h3>
+      </div>
+
+      <!-- 4 Opciones de Respuesta al estilo Kahoot -->
+      <div id="host-options-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        <!-- Option 0: Red -->
+        <div id="host-opt-0" class="btn-3d bg-red-600 border border-red-400/40 p-5 rounded-2xl flex items-center gap-4 text-left shadow-lg">
+          <span class="w-9 h-9 rounded-xl bg-red-800/80 flex items-center justify-center font-black text-xl text-white">▲</span>
+          <span id="host-opt-text-0" class="font-bold text-lg md:text-xl text-white">Opción 1</span>
+        </div>
+        <!-- Option 1: Blue -->
+        <div id="host-opt-1" class="btn-3d bg-blue-600 border border-blue-400/40 p-5 rounded-2xl flex items-center gap-4 text-left shadow-lg">
+          <span class="w-9 h-9 rounded-xl bg-blue-800/80 flex items-center justify-center font-black text-xl text-white">◆</span>
+          <span id="host-opt-text-1" class="font-bold text-lg md:text-xl text-white">Opción 2</span>
+        </div>
+        <!-- Option 2: Yellow -->
+        <div id="host-opt-2" class="btn-3d bg-amber-500 border border-amber-300/40 p-5 rounded-2xl flex items-center gap-4 text-left shadow-lg">
+          <span class="w-9 h-9 rounded-xl bg-amber-700/80 flex items-center justify-center font-black text-xl text-white">●</span>
+          <span id="host-opt-text-2" class="font-bold text-lg md:text-xl text-white">Opción 3</span>
+        </div>
+        <!-- Option 3: Green -->
+        <div id="host-opt-3" class="btn-3d bg-emerald-600 border border-emerald-400/40 p-5 rounded-2xl flex items-center gap-4 text-left shadow-lg">
+          <span class="w-9 h-9 rounded-xl bg-emerald-800/80 flex items-center justify-center font-black text-xl text-white">■</span>
+          <span id="host-opt-text-3" class="font-bold text-lg md:text-xl text-white">Opción 4</span>
+        </div>
+      </div>
+
+      <!-- Caja de Cita Bíblica Explicativa (se revela al terminar el tiempo) -->
+      <div id="host-explanation-box" class="hidden bg-gradient-to-r from-indigo-950 via-purple-950 to-slate-900 border-2 border-amber-400/60 rounded-2xl p-5 mb-4 shadow-xl">
+        <div class="flex items-start gap-3">
+          <span class="text-3xl">📖</span>
+          <div class="flex-1">
+            <div class="flex items-center gap-2 font-bold text-amber-300 text-base">
+              <span>Respuesta Correcta:</span>
+              <span id="host-explanation-verse" class="bg-amber-400 text-slate-950 px-2 py-0.5 rounded text-xs font-black">Génesis 7:12</span>
+            </div>
+            <p id="host-explanation-text" class="text-slate-200 text-sm mt-1">
+              "Y hubo lluvia sobre la tierra cuarenta días y cuarenta noches."
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Barra Inferior de Acción del Host -->
+      <div id="host-game-controls" class="hidden flex items-center justify-between bg-slate-900/90 border border-slate-800 px-5 py-3 rounded-2xl">
+        <div class="text-xs text-slate-400">
+          Revisen la respuesta y pasen a ver el puntaje.
+        </div>
+        <button onclick="app.showLeaderboard()" class="btn-3d px-6 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 font-bold text-sm rounded-xl text-white flex items-center gap-2">
+          <span>📊</span> Ver Tabla de Posiciones
+        </button>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- VIEW 5: HOST LEADERBOARD (Tabla de Posiciones en Vivo) -->
+    <!-- ============================================================= -->
+    <section id="view-host-leaderboard" class="hidden flex-1 flex flex-col p-6 max-w-4xl mx-auto w-full justify-between">
+      <div class="text-center mb-6">
+        <h3 class="text-3xl md:text-4xl font-black text-amber-400 tracking-tight flex items-center justify-center gap-2">
+          <span>🏆</span> TABLA DE POSICIONES
+        </h3>
+        <p class="text-slate-400 text-sm">Puntajes acumulados tras la ronda</p>
+      </div>
+
+      <!-- Marcador de Equipos (si el modo es TEAMS) -->
+      <div id="leaderboard-teams-banner" class="bg-slate-900 border border-slate-800 rounded-3xl p-5 mb-6 shadow-xl">
+        <div class="flex items-center justify-between mb-3 text-sm font-bold">
+          <span class="text-blue-400 flex items-center gap-1.5">🦁 Hombres: <span id="lb-score-team-a" class="text-white text-lg">0</span> pts</span>
+          <span class="text-pink-400 flex items-center gap-1.5">👑 Mujeres: <span id="lb-score-team-b" class="text-white text-lg">0</span> pts</span>
+        </div>
+        <div class="w-full bg-slate-800 h-4 rounded-full overflow-hidden flex">
+          <div id="lb-team-a-bar" class="bg-blue-500 h-full transition-all duration-500" style="width: 50%;"></div>
+          <div id="lb-team-b-bar" class="bg-pink-500 h-full transition-all duration-500" style="width: 50%;"></div>
+        </div>
+      </div>
+
+      <!-- Top Jugadores Individuales -->
+      <div id="leaderboard-players-list" class="space-y-3 flex-1 overflow-y-auto mb-6">
+        <!-- Top player cards go here -->
+      </div>
+
+      <!-- Siguiente Pregunta Button -->
+      <div class="flex justify-end">
+        <button id="btn-next-question" onclick="app.nextQuestionOrPodium()" class="btn-3d px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 font-black text-lg rounded-2xl text-white shadow-xl flex items-center gap-2 glow-gold">
+          <span>Siguiente Pregunta</span> <span>➡️</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- VIEW 6: HOST PODIUM SCREEN (Gran Podio Final) -->
+    <!-- ============================================================= -->
+    <section id="view-host-podium" class="hidden flex-1 flex flex-col p-6 max-w-4xl mx-auto w-full items-center justify-center text-center">
+      <div class="relative mb-6">
+        <div class="absolute -inset-6 bg-gradient-to-r from-amber-500 via-yellow-300 to-cyan-400 rounded-full blur-2xl opacity-50 animate-pulse"></div>
+        <img src="./logo.jpg" alt="Wise Sheep" class="relative w-28 h-28 rounded-3xl border-4 border-amber-400 shadow-2xl glow-gold mx-auto" />
+      </div>
+
+      <h2 class="text-4xl md:text-5xl font-black text-white mb-2">
+        ¡VICTORIA Y BENDICIÓN! 🎉
+      </h2>
+      <p id="podium-winning-team-text" class="text-amber-300 font-bold text-lg md:text-xl mb-8">
+        ¡El Equipo Ganador es: 🦁 HOMBRES!
+      </p>
+
+      <!-- Pedestales Olímpicos 1, 2 y 3 -->
+      <div class="flex items-end justify-center gap-3 md:gap-6 w-full max-w-lg mb-10 h-72">
+        <!-- 2nd Place -->
+        <div class="flex-1 flex flex-col items-center">
+          <div class="text-3xl mb-1">🥈</div>
+          <div id="podium-2nd-name" class="font-bold text-sm text-slate-200 truncate max-w-[100px]">Jugador 2</div>
+          <div id="podium-2nd-score" class="text-xs text-slate-400 font-semibold mb-2">0 pts</div>
+          <div class="w-full bg-slate-700/80 border-t-4 border-slate-400 rounded-t-2xl h-36 flex items-center justify-center text-3xl font-black text-slate-300 shadow-xl">
+            2
+          </div>
+        </div>
+
+        <!-- 1st Place -->
+        <div class="flex-1 flex flex-col items-center">
+          <div class="text-4xl mb-1 animate-bounce-slow">👑</div>
+          <div id="podium-1st-name" class="font-extrabold text-base text-amber-300 truncate max-w-[120px]">Campeón</div>
+          <div id="podium-1st-score" class="text-xs text-amber-200/90 font-bold mb-2">0 pts</div>
+          <div class="w-full bg-gradient-to-t from-amber-600 to-amber-500 border-t-4 border-yellow-200 rounded-t-2xl h-52 flex items-center justify-center text-4xl font-black text-slate-950 shadow-2xl glow-gold">
+            1
+          </div>
+        </div>
+
+        <!-- 3rd Place -->
+        <div class="flex-1 flex flex-col items-center">
+          <div class="text-3xl mb-1">🥉</div>
+          <div id="podium-3rd-name" class="font-bold text-sm text-amber-600 truncate max-w-[100px]">Jugador 3</div>
+          <div id="podium-3rd-score" class="text-xs text-slate-400 font-semibold mb-2">0 pts</div>
+          <div class="w-full bg-amber-950/80 border-t-4 border-amber-700 rounded-t-2xl h-24 flex items-center justify-center text-3xl font-black text-amber-600 shadow-lg">
+            3
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <button onclick="app.showHome()" class="btn-3d px-6 py-3.5 bg-slate-800 hover:bg-slate-700 text-white font-bold rounded-2xl text-sm border border-slate-700">
+          🏠 Menú Principal
+        </button>
+        <button onclick="app.startHostSetup()" class="btn-3d px-8 py-3.5 bg-gradient-to-r from-emerald-500 to-teal-600 font-extrabold rounded-2xl text-white text-sm glow-gold">
+          🔄 Jugar Otra Partida
+        </button>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- VIEW 7: PLAYER JOIN SCREEN (Pantalla en Celulares) -->
+    <!-- ============================================================= -->
+    <section id="view-player-join" class="hidden flex-1 p-5 max-w-md mx-auto w-full flex flex-col justify-center">
+      <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-2xl">
+        <div class="text-center mb-6">
+          <img src="./logo.jpg" alt="Logo" class="w-16 h-16 rounded-2xl border-2 border-amber-400 mx-auto mb-2 object-cover glow-gold" />
+          <h3 class="font-black text-2xl text-white">Unirse a la Trivia</h3>
+          <p class="text-xs text-slate-400">Ingresa el PIN de la pantalla principal</p>
+        </div>
+
+        <form onsubmit="event.preventDefault(); app.joinRoomAsPlayer();" class="space-y-4">
+          <!-- PIN Input -->
+          <div>
+            <label class="block text-xs uppercase tracking-wider font-bold text-slate-400 mb-1">Código PIN:</label>
+            <input type="number" id="player-input-pin" required placeholder="Ej. 7429" class="w-full bg-slate-800 border-2 border-slate-700 focus:border-amber-400 rounded-2xl px-4 py-3 text-center text-2xl font-black tracking-widest text-white outline-none" />
+          </div>
+
+          <!-- Nombre / Apodo -->
+          <div>
+            <label class="block text-xs uppercase tracking-wider font-bold text-slate-400 mb-1">Tu Nombre o Apodo:</label>
+            <input type="text" id="player-input-name" required maxlength="15" placeholder="Tu nombre" class="w-full bg-slate-800 border-2 border-slate-700 focus:border-cyan-400 rounded-2xl px-4 py-3 text-center text-lg font-bold text-white outline-none" />
+          </div>
+
+          <!-- Selección de Avatar -->
+          <div>
+            <label class="block text-xs uppercase tracking-wider font-bold text-slate-400 mb-1.5 text-center">Elige tu Avatar:</label>
+            <div class="flex justify-center gap-2" id="avatar-selector">
+              <!-- Avatar options generated dynamically -->
+            </div>
+          </div>
+
+          <!-- Selección de Equipo (Hombres vs Mujeres) -->
+          <div>
+            <label class="block text-xs uppercase tracking-wider font-bold text-slate-400 mb-1.5 text-center">Tu Equipo:</label>
+            <div class="grid grid-cols-2 gap-2">
+              <button type="button" onclick="app.selectPlayerTeam('A')" id="btn-player-team-a" class="p-3 rounded-2xl border-2 border-blue-500 bg-blue-600/30 text-blue-200 font-bold text-sm flex items-center justify-center gap-1.5">
+                <span>🦁</span> Hombres
+              </button>
+              <button type="button" onclick="app.selectPlayerTeam('B')" id="btn-player-team-b" class="p-3 rounded-2xl border-2 border-slate-700 bg-slate-800 text-slate-400 font-bold text-sm flex items-center justify-center gap-1.5">
+                <span>👑</span> Mujeres
+              </button>
+            </div>
+          </div>
+
+          <!-- Botón Entrar -->
+          <button type="submit" class="w-full btn-3d py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-black text-lg rounded-2xl glow-blue">
+            ¡ENTRAR AHORA! 🚀
+          </button>
+        </form>
+
+        <button onclick="app.showHome()" class="w-full text-center text-xs text-slate-500 hover:text-slate-300 mt-4">
+          Volver al Inicio
+        </button>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- VIEW 8: PLAYER LOBBY SCREEN (Esperando Inicio) -->
+    <!-- ============================================================= -->
+    <section id="view-player-lobby" class="hidden flex-1 p-6 max-w-md mx-auto w-full flex flex-col items-center justify-center text-center">
+      <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-2xl w-full">
+        <div class="text-5xl mb-4 animate-bounce-slow" id="player-my-avatar">🐑</div>
+        <h3 class="text-2xl font-black text-white" id="player-my-name">Corderito</h3>
+        <p class="text-xs text-cyan-400 font-bold mt-1" id="player-my-team-badge">Equipo Hombres 🦁</p>
+
+        <div class="mt-8 p-4 bg-slate-800/80 rounded-2xl border border-slate-700/50">
+          <div class="inline-block animate-spin text-2xl mb-2">⏳</div>
+          <p class="font-bold text-slate-200 text-sm">¡Estás dentro de la sala!</p>
+          <p class="text-xs text-slate-400 mt-1">Mira el monitor principal mientras el anfitrión inicia la partida...</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- VIEW 9: PLAYER CONTROLLER (Botones para responder en celular) -->
+    <!-- ============================================================= -->
+    <section id="view-player-game" class="hidden flex-1 p-3 md:p-6 max-w-md mx-auto w-full flex flex-col justify-between">
+      <!-- Player Status Header -->
+      <div class="flex items-center justify-between bg-slate-900 border border-slate-800 px-4 py-2.5 rounded-2xl mb-3">
+        <div class="flex items-center gap-2">
+          <span id="player-game-avatar" class="text-xl">🐑</span>
+          <span id="player-game-name" class="font-bold text-sm text-slate-200">Jugador</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-xs text-slate-400">Puntos:</span>
+          <span id="player-game-score" class="font-black text-amber-400 text-base">0</span>
+        </div>
+      </div>
+
+      <!-- State: Esperando Pregunta o Ya Respondió -->
+      <div id="player-waiting-state" class="hidden flex-1 flex flex-col items-center justify-center text-center p-6 bg-slate-900/60 rounded-3xl border border-slate-800 mb-3">
+        <div class="text-4xl mb-3 animate-pulse" id="player-state-icon">✅</div>
+        <h4 class="text-xl font-bold text-white mb-1" id="player-state-title">¡Respuesta Enviada!</h4>
+        <p class="text-xs text-slate-400" id="player-state-desc">Esperando que termine el tiempo en la pantalla...</p>
+      </div>
+
+      <!-- 4 Botones Táctiles Gigantes de Respuesta -->
+      <div id="player-buttons-grid" class="grid grid-cols-2 gap-3 flex-1">
+        <!-- Button 0: Red Triangle -->
+        <button onclick="app.submitPlayerAnswer(0)" id="btn-answer-0" class="btn-3d bg-red-600 active:bg-red-700 rounded-3xl flex flex-col items-center justify-center p-4 text-white shadow-xl">
+          <span class="text-5xl font-black mb-1">▲</span>
+          <span id="player-btn-label-0" class="text-xs font-bold text-red-100 uppercase tracking-wider">Rojo</span>
+        </button>
+
+        <!-- Button 1: Blue Diamond -->
+        <button onclick="app.submitPlayerAnswer(1)" id="btn-answer-1" class="btn-3d bg-blue-600 active:bg-blue-700 rounded-3xl flex flex-col items-center justify-center p-4 text-white shadow-xl">
+          <span class="text-5xl font-black mb-1">◆</span>
+          <span id="player-btn-label-1" class="text-xs font-bold text-blue-100 uppercase tracking-wider">Azul</span>
+        </button>
+
+        <!-- Button 2: Yellow Circle -->
+        <button onclick="app.submitPlayerAnswer(2)" id="btn-answer-2" class="btn-3d bg-amber-500 active:bg-amber-600 rounded-3xl flex flex-col items-center justify-center p-4 text-white shadow-xl">
+          <span class="text-5xl font-black mb-1">●</span>
+          <span id="player-btn-label-2" class="text-xs font-bold text-amber-100 uppercase tracking-wider">Amarillo</span>
+        </button>
+
+        <!-- Button 3: Green Square -->
+        <button onclick="app.submitPlayerAnswer(3)" id="btn-answer-3" class="btn-3d bg-emerald-600 active:bg-emerald-700 rounded-3xl flex flex-col items-center justify-center p-4 text-white shadow-xl">
+          <span class="text-5xl font-black mb-1">■</span>
+          <span id="player-btn-label-3" class="text-xs font-bold text-emerald-100 uppercase tracking-wider">Verde</span>
+        </button>
+      </div>
+
+      <!-- Feedback de Acierto / Error (se muestra al cerrar la pregunta) -->
+      <div id="player-feedback-panel" class="hidden mt-3 p-4 rounded-2xl text-center border-2">
+        <div class="text-2xl font-black mb-0.5" id="player-feedback-title">¡CORRECTO! 🎉</div>
+        <div class="text-xs font-semibold" id="player-feedback-points">+950 puntos</div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================= -->
+  <!-- MODAL: BANCO DE PREGUNTAS & EDITOR -->
+  <!-- ============================================================= -->
+  <div id="modal-questions" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl">
+      <div class="p-5 border-b border-slate-800 flex items-center justify-between">
+        <h3 class="font-extrabold text-lg text-white flex items-center gap-2">
+          <span>📖</span> Banco de Preguntas Bíblicas (<span id="modal-q-total">0</span>)
+        </h3>
+        <button onclick="app.closeQuestionsModal()" class="text-slate-400 hover:text-white text-xl">✕</button>
+      </div>
+
+      <!-- Filtro por Dificultad -->
+      <div class="px-5 pt-3 pb-2 flex gap-2 border-b border-slate-800/60 overflow-x-auto text-xs">
+        <button onclick="app.filterQuestionsList('ALL')" id="qfilter-ALL" class="px-3 py-1.5 rounded-lg bg-cyan-600 text-white font-bold">Todas</button>
+        <button onclick="app.filterQuestionsList('EASY')" id="qfilter-EASY" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-semibold hover:bg-slate-700">🌱 Corderito</button>
+        <button onclick="app.filterQuestionsList('MEDIUM')" id="qfilter-MEDIUM" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-semibold hover:bg-slate-700">📜 Discípulo</button>
+        <button onclick="app.filterQuestionsList('HARD')" id="qfilter-HARD" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-semibold hover:bg-slate-700">👑 Maestro</button>
+      </div>
+
+      <!-- Lista de Preguntas -->
+      <div id="modal-questions-scroll" class="p-5 space-y-4 overflow-y-auto flex-1">
+        <!-- Rendered items go here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================= -->
+  <!-- MODAL: CONFIGURACIÓN FIREBASE -->
+  <!-- ============================================================= -->
+  <div id="modal-settings" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-md w-full p-6 shadow-2xl">
+      <div class="flex items-center justify-between mb-4 border-b border-slate-800 pb-3">
+        <h3 class="font-bold text-lg text-white flex items-center gap-2">
+          <span>🔥</span> Configuración Firebase
+        </h3>
+        <button onclick="app.closeSettingsModal()" class="text-slate-400 hover:text-white text-xl">✕</button>
+      </div>
+
+      <p class="text-xs text-slate-300 mb-4">
+        Tu proyecto está enlazado a <strong class="text-amber-400">wise-sheep</strong>. Para juego en línea entre dispositivos remotos, puedes ingresar tu API Key de Firebase o jugar en modo local sincronizado.
+      </p>
+
+      <form onsubmit="event.preventDefault(); app.saveFirebaseSettings();" class="space-y-3 text-xs">
+        <div>
+          <label class="block font-semibold text-slate-400 mb-1">Project ID:</label>
+          <input type="text" id="cfg-project-id" value="wise-sheep" readonly class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-3 py-2 text-slate-300 font-mono" />
+        </div>
+        <div>
+          <label class="block font-semibold text-slate-400 mb-1">API Key (de Firebase Console):</label>
+          <input type="text" id="cfg-api-key" placeholder="AIzaSy..." class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white font-mono focus:ring-1 focus:ring-amber-400 outline-none" />
+        </div>
+        <div>
+          <label class="block font-semibold text-slate-400 mb-1">App ID:</label>
+          <input type="text" id="cfg-app-id" placeholder="1:123456789:web:abcdef" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white font-mono focus:ring-1 focus:ring-amber-400 outline-none" />
+        </div>
+
+        <button type="submit" class="w-full btn-3d mt-4 py-3 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-black rounded-xl">
+          Guardar Configuración
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Main JavaScript App Logic -->
+  <script type="module" src="./src/app.js"></script>
+</body>
+</html>
