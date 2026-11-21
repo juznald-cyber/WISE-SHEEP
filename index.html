@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="es" class="h-full bg-slate-950 text-slate-100">
+<html lang="es" class="min-h-full bg-slate-950 text-slate-100">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <title>WISE SHEEP - Trivia Bíblica Multijugador</title>
   <meta name="description" content="Juego interactivo de trivia bíblica para reuniones y amigos al estilo Kahoot. Juega en pantalla grande y responde desde tu teléfono." />
   <link rel="icon" type="image/jpeg" href="./logo.jpg" />
@@ -42,9 +42,38 @@
     }
   </script>
   <style>
+    /* Optimizaciones táctiles y móviles para que se sienta como una aplicación nativa */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+    html {
+      min-height: 100%;
+      height: auto;
+      overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
+    }
+    body {
+      min-height: 100dvh;
+      min-height: -webkit-fill-available;
+      width: 100%;
+      max-width: 100vw;
+      overflow-x: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-y;
+      padding-top: env(safe-area-inset-top, 0);
+      padding-bottom: env(safe-area-inset-bottom, 0);
+      padding-left: env(safe-area-inset-left, 0);
+      padding-right: env(safe-area-inset-right, 0);
+    }
+    button, a, input, select, textarea, label {
+      touch-action: manipulation;
+    }
     .btn-3d {
       transition: all 0.1s ease;
       box-shadow: 0 6px 0 rgba(0,0,0,0.35);
+      user-select: none;
     }
     .btn-3d:active {
       transform: translateY(4px);
@@ -56,35 +85,58 @@
     .glow-blue {
       box-shadow: 0 0 25px rgba(6, 182, 212, 0.35);
     }
+    /* Barras de desplazamiento limpias */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.6);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(51, 65, 85, 0.8);
+      border-radius: 9999px;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
   </style>
 </head>
-<body class="h-full bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-cyan-500 selection:text-black">
+<body class="min-h-[100dvh] bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-cyan-500 selection:text-black overflow-x-hidden overflow-y-auto antialiased">
 
   <!-- Top Navigation Bar -->
-  <header class="bg-slate-900/90 backdrop-blur border-b border-slate-800 px-4 py-3 flex items-center justify-between sticky top-0 z-50">
-    <div class="flex items-center gap-3 cursor-pointer" onclick="app.showHome()">
-      <img src="./logo.jpg" onerror="this.onerror=null; this.src='./public/logo.jpg';" alt="Wise Sheep Logo" class="w-10 h-10 rounded-full border-2 border-amber-400 shadow-md object-cover bg-slate-800" />
-      <div>
-        <h1 class="font-extrabold text-lg tracking-tight bg-gradient-to-r from-cyan-400 via-amber-300 to-purple-400 bg-clip-text text-transparent">WISE SHEEP</h1>
-        <p class="text-xs text-slate-400 font-medium">Trivia Bíblica en Vivo</p>
+  <header class="bg-slate-900/95 backdrop-blur border-b border-slate-800 px-3 sm:px-4 py-2 sm:py-3 flex items-center justify-between sticky top-0 z-50 shrink-0">
+    <div class="flex items-center gap-2 sm:gap-3 cursor-pointer min-w-0" onclick="app.showHome()">
+      <img src="./logo.jpg" onerror="this.onerror=null; this.src='./public/logo.jpg';" alt="Wise Sheep Logo" class="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-amber-400 shadow-md object-cover bg-slate-800 shrink-0" />
+      <div class="truncate">
+        <h1 class="font-extrabold text-base sm:text-lg tracking-tight bg-gradient-to-r from-cyan-400 via-amber-300 to-purple-400 bg-clip-text text-transparent truncate">WISE SHEEP</h1>
+        <p class="text-[10px] sm:text-xs text-slate-400 font-medium truncate">Trivia Bíblica</p>
       </div>
     </div>
-    <div class="flex items-center gap-2">
+    <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
       <!-- Botón de Lanzar Votación Dinámica (visible para el anfitrión) -->
-      <button id="header-btn-poll" onclick="app.openLaunchPollModal()" class="hidden px-3 py-1.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 text-xs font-bold border border-amber-500/50 flex items-center gap-1.5 transition">
-        <span>🗳️</span> Votación / Premio
+      <button id="header-btn-poll" onclick="app.openLaunchPollModal()" class="hidden px-2.5 py-1.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 text-xs font-bold border border-amber-500/50 flex items-center gap-1 transition">
+        <span>🗳️</span> <span class="hidden sm:inline">Votaciones</span>
+      </button>
+      <!-- Botón Mis Cuestionarios Personales -->
+      <button onclick="app.openCustomQuizModal()" class="px-2.5 py-1.5 rounded-xl bg-purple-900/70 hover:bg-purple-800 text-purple-200 text-xs font-semibold border border-purple-700/50 flex items-center gap-1 transition" title="Mis Cuestionarios Personales">
+        <span>⭐</span> <span class="hidden md:inline">Mis Quizzes</span>
       </button>
       <!-- Mute Button -->
-      <button id="btn-sound-toggle" onclick="app.toggleSound()" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 transition" title="Activar/Silenciar Sonido">
+      <button id="btn-sound-toggle" onclick="app.toggleSound()" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 transition text-sm" title="Sonido">
         <span id="sound-icon">🔊</span>
       </button>
       <!-- Firebase / Settings Button -->
-      <button onclick="app.showSettingsModal()" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 transition" title="Configuración de Firebase">
+      <button onclick="app.showSettingsModal()" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 transition text-sm" title="Configuración de Firebase">
         ⚙️
       </button>
       <!-- Questions Database Button -->
-      <button onclick="app.showQuestionsModal()" class="px-3 py-1.5 rounded-xl bg-indigo-900/70 hover:bg-indigo-800 text-indigo-200 text-xs font-semibold border border-indigo-700/50 flex items-center gap-1.5 transition">
-        <span>📖</span> Preguntas (<span id="header-q-count">75+</span>)
+      <button onclick="app.showQuestionsModal()" class="px-2.5 py-1.5 rounded-xl bg-indigo-900/70 hover:bg-indigo-800 text-indigo-200 text-xs font-semibold border border-indigo-700/50 flex items-center gap-1 transition" title="Explorar Banco de Preguntas">
+        <span>📖</span> <span class="hidden sm:inline">Banco</span> (<span id="header-q-count">525+</span>)
       </button>
     </div>
   </header>
@@ -106,49 +158,49 @@
   </div>
 
   <!-- Main View Container -->
-  <main id="app-container" class="flex-1 flex flex-col relative overflow-hidden">
+  <main id="app-container" class="flex-1 flex flex-col relative w-full overflow-x-hidden overflow-y-visible">
 
     <!-- ============================================================= -->
     <!-- VIEW 1: HOME SELECTION SCREEN -->
     <!-- ============================================================= -->
-    <section id="view-home" class="flex-1 flex flex-col items-center justify-center p-6 text-center max-w-4xl mx-auto w-full">
-      <div class="relative mb-6">
+    <section id="view-home" class="flex-1 flex flex-col items-center justify-start sm:justify-center py-6 px-4 sm:p-8 text-center max-w-4xl mx-auto w-full my-auto">
+      <div class="relative mb-4 sm:mb-6">
         <div class="absolute -inset-4 bg-gradient-to-r from-cyan-500 via-purple-600 to-amber-500 rounded-full blur-xl opacity-40 animate-pulse"></div>
-        <img src="./logo.jpg" onerror="this.onerror=null; this.src='./public/logo.jpg';" alt="Wise Sheep Logo" class="relative w-36 h-36 md:w-44 md:h-44 rounded-3xl border-4 border-amber-400/80 shadow-2xl object-cover glow-gold mx-auto bg-slate-900" />
+        <img src="./logo.jpg" onerror="this.onerror=null; this.src='./public/logo.jpg';" alt="Wise Sheep Logo" class="relative w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 rounded-3xl border-4 border-amber-400/80 shadow-2xl object-cover glow-gold mx-auto bg-slate-900" />
       </div>
 
-      <h2 class="text-3xl md:text-5xl font-black tracking-tight mb-3">
+      <h2 class="text-2xl sm:text-3xl md:text-5xl font-black tracking-tight mb-2 sm:mb-3">
         ¿Listos para desafiar su <span class="bg-gradient-to-r from-amber-400 to-yellow-200 bg-clip-text text-transparent">sabiduría bíblica</span>?
       </h2>
-      <p class="text-slate-300 text-sm md:text-lg max-w-xl mb-8">
+      <p class="text-slate-300 text-xs sm:text-sm md:text-lg max-w-xl mb-6 sm:mb-8">
         Conéctense a la pantalla principal con sus teléfonos, compitan individualmente o en equipos (¡Hombres vs Mujeres!) y participen en votaciones del grupo.
       </p>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-lg">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4 w-full max-w-lg">
         <!-- Botón Anfitrión -->
-        <button onclick="app.startHostSetup()" class="btn-3d bg-gradient-to-br from-indigo-600 to-purple-700 hover:from-indigo-500 hover:to-purple-600 border border-purple-400/30 p-5 rounded-2xl flex flex-col items-center justify-center text-center group">
-          <span class="text-4xl mb-2 group-hover:scale-110 transition-transform">🖥️</span>
-          <span class="font-bold text-xl text-white">Soy el Anfitrión</span>
+        <button onclick="app.startHostSetup()" class="btn-3d bg-gradient-to-br from-indigo-600 to-purple-700 hover:from-indigo-500 hover:to-purple-600 border border-purple-400/30 p-4 sm:p-5 rounded-2xl flex flex-col items-center justify-center text-center group">
+          <span class="text-3xl sm:text-4xl mb-1.5 sm:mb-2 group-hover:scale-110 transition-transform">🖥️</span>
+          <span class="font-bold text-lg sm:text-xl text-white">Soy el Anfitrión</span>
           <span class="text-xs text-indigo-200 mt-1">Proyectar en TV, Monitor o Computador</span>
         </button>
 
         <!-- Botón Jugador -->
-        <button onclick="app.startPlayerJoin()" class="btn-3d bg-gradient-to-br from-cyan-600 to-blue-700 hover:from-cyan-500 hover:to-blue-600 border border-cyan-400/30 p-5 rounded-2xl flex flex-col items-center justify-center text-center group">
-          <span class="text-4xl mb-2 group-hover:scale-110 transition-transform">📱</span>
-          <span class="font-bold text-xl text-white">Unirme a una Sala</span>
+        <button onclick="app.startPlayerJoin()" class="btn-3d bg-gradient-to-br from-cyan-600 to-blue-700 hover:from-cyan-500 hover:to-blue-600 border border-cyan-400/30 p-4 sm:p-5 rounded-2xl flex flex-col items-center justify-center text-center group">
+          <span class="text-3xl sm:text-4xl mb-1.5 sm:mb-2 group-hover:scale-110 transition-transform">📱</span>
+          <span class="font-bold text-lg sm:text-xl text-white">Unirme a una Sala</span>
           <span class="text-xs text-cyan-200 mt-1">Jugar desde mi teléfono con PIN</span>
         </button>
       </div>
 
-      <div class="mt-10 flex flex-wrap items-center justify-center gap-4 text-xs text-slate-400">
+      <div class="mt-6 sm:mt-10 flex flex-wrap items-center justify-center gap-2.5 sm:gap-4 text-xs text-slate-400">
         <span class="flex items-center gap-1.5 bg-slate-900 px-3 py-1.5 rounded-full border border-slate-800">
           <span>🦁 vs 👑</span> Hombres vs Mujeres
         </span>
         <span class="flex items-center gap-1.5 bg-slate-900 px-3 py-1.5 rounded-full border border-slate-800">
-          <span>🗳️</span> Votaciones y Premios Grupales
+          <span>🗳️</span> Votaciones y Premios
         </span>
         <span class="flex items-center gap-1.5 bg-slate-900 px-3 py-1.5 rounded-full border border-slate-800">
-          <span>🎲</span> Preguntas Aleatorias y Frescas
+          <span>🎲</span> Preguntas Aleatorias
         </span>
       </div>
     </section>
@@ -156,8 +208,8 @@
     <!-- ============================================================= -->
     <!-- VIEW 2: HOST SETUP SCREEN (Configurar Sala) -->
     <!-- ============================================================= -->
-    <section id="view-host-setup" class="hidden flex-1 p-6 max-w-3xl mx-auto w-full flex flex-col justify-center">
-      <div class="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 md:p-8 shadow-2xl">
+    <section id="view-host-setup" class="hidden flex-1 py-6 px-4 sm:p-6 max-w-3xl mx-auto w-full flex flex-col">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-3xl p-5 sm:p-8 shadow-2xl my-auto w-full">
         <div class="flex items-center justify-between mb-6 border-b border-slate-800 pb-4">
           <h3 class="text-2xl font-bold flex items-center gap-2">
             <span>⚙️</span> Configurar Nueva Sala
@@ -192,36 +244,72 @@
             </div>
           </div>
 
-          <!-- Nivel de Dificultad -->
+          <!-- Nivel de Dificultad / Cuestionario -->
           <div>
-            <label class="block text-sm font-semibold text-slate-300 mb-2">Nivel de Dificultad:</label>
+            <label class="block text-sm font-semibold text-slate-300 mb-2">Nivel de Dificultad / Tipo de Cuestionario:</label>
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
-              <button type="button" onclick="app.selectDifficulty('ALL')" id="diff-btn-ALL" class="p-3 rounded-xl border border-amber-500 bg-amber-500/20 text-amber-300 font-bold text-xs text-center">
-                ✨ Progresivo<br><span class="font-normal text-[10px] text-slate-300">Menos a más (Aleatorio)</span>
+              <button type="button" onclick="app.selectDifficulty('ALL')" id="diff-btn-ALL" class="p-3 rounded-xl border border-amber-500 bg-amber-500/20 text-amber-300 font-bold text-xs text-center transition">
+                ✨ Progresivo<br><span class="font-normal text-[10px] text-slate-300">Aleatorio variado</span>
               </button>
-              <button type="button" onclick="app.selectDifficulty('EASY')" id="diff-btn-EASY" class="p-3 rounded-xl border border-slate-800 bg-slate-900 text-slate-300 font-bold text-xs text-center hover:border-slate-700">
-                🌱 Corderito<br><span class="font-normal text-[10px] text-slate-400">Fácil / Básico</span>
+              <button type="button" onclick="app.selectDifficulty('EASY')" id="diff-btn-EASY" class="p-3 rounded-xl border border-slate-800 bg-slate-900 text-slate-300 font-bold text-xs text-center hover:border-slate-700 transition">
+                🌱 Corderito<br><span class="font-normal text-[10px] text-slate-400">Fácil (175 preg)</span>
               </button>
-              <button type="button" onclick="app.selectDifficulty('MEDIUM')" id="diff-btn-MEDIUM" class="p-3 rounded-xl border border-slate-800 bg-slate-900 text-slate-300 font-bold text-xs text-center hover:border-slate-700">
-                📜 Discípulo<br><span class="font-normal text-[10px] text-slate-400">Intermedio</span>
+              <button type="button" onclick="app.selectDifficulty('MEDIUM')" id="diff-btn-MEDIUM" class="p-3 rounded-xl border border-slate-800 bg-slate-900 text-slate-300 font-bold text-xs text-center hover:border-slate-700 transition">
+                📜 Discípulo<br><span class="font-normal text-[10px] text-slate-400">Intermedio (175 preg)</span>
               </button>
-              <button type="button" onclick="app.selectDifficulty('HARD')" id="diff-btn-HARD" class="p-3 rounded-xl border border-slate-800 bg-slate-900 text-slate-300 font-bold text-xs text-center hover:border-slate-700">
-                👑 Maestro<br><span class="font-normal text-[10px] text-slate-400">Avanzado</span>
+              <button type="button" onclick="app.selectDifficulty('HARD')" id="diff-btn-HARD" class="p-3 rounded-xl border border-slate-800 bg-slate-900 text-slate-300 font-bold text-xs text-center hover:border-slate-700 transition">
+                👑 Maestro<br><span class="font-normal text-[10px] text-slate-400">Avanzado (175 preg)</span>
               </button>
+            </div>
+
+            <!-- Opción para Cuestionario Personal separado -->
+            <div class="mt-3">
+              <button type="button" onclick="app.selectDifficulty('CUSTOM')" id="diff-btn-CUSTOM" class="w-full p-3 rounded-2xl border border-purple-500/40 bg-purple-950/20 text-purple-200 font-bold text-xs text-left hover:border-purple-400 transition flex items-center justify-between">
+                <span class="flex items-center gap-2.5">
+                  <span class="text-2xl">⭐</span>
+                  <span>
+                    <strong class="block text-white text-sm">Cuestionario Personal (Tu propia clasificación)</strong>
+                    <span class="text-[11px] text-purple-300 font-normal">Clasifícalo aparte de Corderito, Discípulo o Maestro con tus propias preguntas</span>
+                  </span>
+                </span>
+                <span id="diff-custom-badge" class="text-xs bg-purple-900/80 px-3 py-1 rounded-xl border border-purple-500/50 font-bold">Seleccionar</span>
+              </button>
+
+              <!-- Panel Desplegable de Cuestionario Personal -->
+              <div id="setup-custom-quiz-container" class="hidden mt-2 p-3.5 bg-purple-950/40 border border-purple-500/40 rounded-2xl space-y-2.5">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-purple-200">Elige tu cuestionario o categoría personal:</span>
+                  <button type="button" onclick="app.openCustomQuizModal()" class="text-[11px] text-cyan-300 hover:text-cyan-200 underline font-semibold">
+                    ➕ Crear / Gestionar
+                  </button>
+                </div>
+                <select id="setup-custom-quiz-select" onchange="app.handleCustomQuizSelect(this.value)" class="w-full bg-slate-900 border border-purple-400/50 rounded-xl px-3 py-2 text-xs text-white font-medium outline-none">
+                  <!-- Se llena dinámicamente -->
+                </select>
+                <div id="setup-custom-quiz-info" class="text-[11px] text-purple-300 font-medium italic"></div>
+              </div>
             </div>
           </div>
 
           <!-- Cantidad de Preguntas y Tiempo -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label class="block text-sm font-semibold text-slate-300 mb-1">Cantidad de Preguntas:</label>
-              <select id="setup-question-count" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white font-medium focus:ring-2 focus:ring-cyan-500 outline-none">
-                <option value="5">5 Preguntas (Ronda rápida)</option>
-                <option value="10" selected>10 Preguntas (Recomendado)</option>
-                <option value="15">15 Preguntas (Completo)</option>
-                <option value="20">20 Preguntas (Gran Maratón)</option>
-                <option value="25">25 Preguntas (Super Trivia)</option>
+              <label class="block text-sm font-semibold text-slate-300 mb-1">Rondas / Preguntas a jugar:</label>
+              <select id="setup-question-count" onchange="app.handleQuestionCountChange(this.value)" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white font-medium focus:ring-2 focus:ring-cyan-500 outline-none">
+                <option value="3">3 Rondas (Rápida)</option>
+                <option value="5">5 Rondas (Corta)</option>
+                <option value="7">7 Rondas (Dinámica)</option>
+                <option value="10" selected>10 Rondas (Recomendado)</option>
+                <option value="15">15 Rondas (Completo)</option>
+                <option value="20">20 Rondas (Gran Maratón)</option>
+                <option value="25">25 Rondas (Desafío Total)</option>
+                <option value="30">30 Rondas (Super Trivia)</option>
+                <option value="50">50 Rondas (Maratón Bíblico)</option>
+                <option value="CUSTOM">Elegir cantidad personalizada...</option>
               </select>
+              <div id="setup-custom-count-box" class="hidden mt-2">
+                <input type="number" id="setup-custom-question-count" min="1" max="525" placeholder="Escribe el número de rondas (ej. 12, 18, 40)" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white text-xs outline-none focus:ring-1 focus:ring-cyan-400 font-bold" />
+              </div>
             </div>
 
             <div>
@@ -230,6 +318,7 @@
                 <option value="15">15 Segundos (Rápido)</option>
                 <option value="20" selected>20 Segundos (Ideal)</option>
                 <option value="30">30 Segundos (Con calma)</option>
+                <option value="45">45 Segundos (Pensativo)</option>
               </select>
             </div>
           </div>
@@ -481,7 +570,7 @@
     <!-- ============================================================= -->
     <!-- VIEW 6: HOST PODIUM SCREEN (Gran Podio Final) -->
     <!-- ============================================================= -->
-    <section id="view-host-podium" class="hidden flex-1 flex flex-col p-6 max-w-4xl mx-auto w-full items-center justify-center text-center">
+    <section id="view-host-podium" class="hidden flex-1 flex flex-col py-6 px-4 sm:p-6 max-w-4xl mx-auto w-full items-center justify-start sm:justify-center text-center my-auto">
       <div class="relative mb-6">
         <div class="absolute -inset-6 bg-gradient-to-r from-amber-500 via-yellow-300 to-cyan-400 rounded-full blur-2xl opacity-50 animate-pulse"></div>
         <img src="./logo.jpg" onerror="this.onerror=null; this.src='./public/logo.jpg';" alt="Wise Sheep" class="relative w-28 h-28 rounded-3xl border-4 border-amber-400 shadow-2xl glow-gold mx-auto object-cover bg-slate-900" />
@@ -543,6 +632,9 @@
           <span class="bg-amber-500/20 text-amber-300 border border-amber-500/40 px-3.5 py-1.5 rounded-xl font-bold text-sm flex items-center gap-1.5">
             <span>🗳️</span> VOTACIÓN GRUPAL
           </span>
+          <span id="voting-q-counter" class="bg-amber-400 text-slate-950 px-2.5 py-1 rounded-xl font-black text-xs">
+            Pregunta 1 de 1
+          </span>
         </div>
         <div class="flex items-center gap-3">
           <div class="flex items-center gap-1.5 text-xs text-slate-400">
@@ -583,13 +675,16 @@
       </div>
 
       <!-- Controles de la Votación -->
-      <div class="flex items-center justify-between bg-slate-900/90 border border-slate-800 px-5 py-3 rounded-2xl">
+      <div class="flex flex-col sm:flex-row items-center justify-between bg-slate-900/90 border border-slate-800 px-5 py-3 rounded-2xl gap-3">
         <div class="text-xs text-slate-400" id="voting-status-desc">
           Esperando que todos los participantes elijan en su celular...
         </div>
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-3 w-full sm:w-auto justify-end">
           <button id="btn-voting-reveal" onclick="app.closeVotingAndReveal()" class="btn-3d px-6 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 font-black text-sm text-slate-950 rounded-xl flex items-center gap-2 glow-gold">
             <span>🏆</span> Revelar Ganador
+          </button>
+          <button id="btn-voting-next-q" onclick="app.nextVotingQuestion()" class="hidden btn-3d px-6 py-2.5 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 font-extrabold text-sm text-white rounded-xl flex items-center gap-2 glow-gold">
+            <span>Siguiente Votación</span> <span>➡️</span>
           </button>
           <button id="btn-voting-continue" onclick="app.returnToGameAfterVoting()" class="hidden btn-3d px-6 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-600 font-bold text-sm text-white rounded-xl flex items-center gap-2">
             <span>➡️</span> Continuar Trivia
@@ -601,8 +696,8 @@
     <!-- ============================================================= -->
     <!-- VIEW 8: PLAYER JOIN SCREEN (Pantalla en Celulares) -->
     <!-- ============================================================= -->
-    <section id="view-player-join" class="hidden flex-1 p-5 max-w-md mx-auto w-full flex flex-col justify-center">
-      <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-2xl">
+    <section id="view-player-join" class="hidden flex-1 py-6 px-4 sm:p-6 max-w-md mx-auto w-full flex flex-col">
+      <div class="bg-slate-900 border border-slate-800 rounded-3xl p-5 sm:p-6 shadow-2xl my-auto w-full">
         <div class="text-center mb-6">
           <img src="./logo.jpg" onerror="this.onerror=null; this.src='./public/logo.jpg';" alt="Logo" class="w-16 h-16 rounded-2xl border-2 border-amber-400 mx-auto mb-2 object-cover glow-gold bg-slate-800" />
           <h3 class="font-black text-2xl text-white">Unirse a la Trivia</h3>
@@ -651,8 +746,8 @@
     <!-- ============================================================= -->
     <!-- VIEW 9: PLAYER LOBBY SCREEN (Esperando Inicio) -->
     <!-- ============================================================= -->
-    <section id="view-player-lobby" class="hidden flex-1 p-6 max-w-md mx-auto w-full flex flex-col items-center justify-center text-center">
-      <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-2xl w-full">
+    <section id="view-player-lobby" class="hidden flex-1 py-6 px-4 max-w-md mx-auto w-full flex flex-col items-center text-center">
+      <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl w-full my-auto">
         <div class="text-5xl mb-4 animate-bounce-slow" id="player-my-avatar">🐑</div>
         <h3 class="text-2xl font-black text-white" id="player-my-name">Corderito</h3>
         <p class="text-xs text-cyan-400 font-bold mt-1" id="player-my-team-badge">Equipo Hombres 🦁</p>
@@ -742,8 +837,8 @@
     <!-- ============================================================= -->
     <!-- VIEW 12: PLAYER FINAL PODIUM (En el Celular del Jugador) -->
     <!-- ============================================================= -->
-    <section id="view-player-podium" class="hidden flex-1 p-6 max-w-md mx-auto w-full flex flex-col items-center justify-center text-center">
-      <div class="bg-slate-900 border-2 border-amber-400/80 rounded-3xl p-8 shadow-2xl w-full relative overflow-hidden glow-gold">
+    <section id="view-player-podium" class="hidden flex-1 py-6 px-4 max-w-md mx-auto w-full flex flex-col items-center text-center">
+      <div class="bg-slate-900 border-2 border-amber-400/80 rounded-3xl p-6 sm:p-8 shadow-2xl w-full relative overflow-hidden glow-gold my-auto">
         <div class="text-6xl mb-3 animate-bounce-slow" id="player-final-icon">👑</div>
         <h3 class="text-3xl font-black text-white mb-1">¡Partida Finalizada!</h3>
         <p class="text-xs text-slate-400 mb-6">Gracias por jugar y aprender de las Escrituras</p>
@@ -774,65 +869,100 @@
   </main>
 
   <!-- ============================================================= -->
-  <!-- MODAL: LANZAR VOTACIÓN EN VIVO (Para el Anfitrión) -->
+  <!-- MODAL: LANZAR VOTACIÓN EN VIVO (Para el Anfitrión - Con soporte para Múltiples Preguntas) -->
   <!-- ============================================================= -->
-  <div id="modal-launch-poll" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-lg w-full p-6 shadow-2xl flex flex-col max-h-[90vh]">
-      <div class="flex items-center justify-between mb-4 border-b border-slate-800 pb-3">
-        <h3 class="font-extrabold text-lg text-white flex items-center gap-2">
-          <span>🗳️</span> Lanzar Votación / Premio Grupal
+  <div id="modal-launch-poll" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4 overscroll-contain">
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-lg w-full p-5 sm:p-6 shadow-2xl flex flex-col max-h-[92vh] overflow-hidden">
+      <div class="shrink-0 flex items-center justify-between mb-3 border-b border-slate-800 pb-3">
+        <h3 class="font-extrabold text-base sm:text-lg text-white flex items-center gap-2">
+          <span>🗳️</span> Votación / Premios Grupales
         </h3>
-        <button onclick="app.closeLaunchPollModal()" class="text-slate-400 hover:text-white text-xl">✕</button>
+        <button onclick="app.closeLaunchPollModal()" class="text-slate-400 hover:text-white text-2xl px-2 py-1 leading-none">✕</button>
       </div>
 
-      <div class="space-y-4 overflow-y-auto flex-1 pr-1 text-xs">
-        <div>
-          <label class="block font-bold text-slate-300 mb-1.5">1. Elige una pregunta popular o escribe la tuya:</label>
-          <select id="poll-preset-select" onchange="app.handlePresetPollChange(this.value)" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white font-medium outline-none mb-2">
-            <option value="CUSTOM">-- Escribir mi propia pregunta personalizada --</option>
-            <option value="¿Quién es el compañero más espiritual del grupo?" selected>🕊️ ¿Quién es el compañero más espiritual del grupo?</option>
-            <option value="¿Quién conoce más versículos bíblicos de memoria?">📖 ¿Quién conoce más versículos bíblicos de memoria?</option>
-            <option value="¿Quién llega siempre más temprano a la reunión?">⏰ ¿Quién llega siempre más temprano a la reunión?</option>
-            <option value="¿Quién canta con más pasión en la alabanza?">🎶 ¿Quién canta con más pasión en la alabanza?</option>
-            <option value="¿Quién es el más valiente y decidido como David?">🦁 ¿Quién es el más valiente y decidido como David?</option>
-            <option value="¿Quién da los mejores y más sabios consejos?">👑 ¿Quién da los mejores y más sabios consejos?</option>
-            <option value="¿Quién es la oveja más madrugadora para orar?">🐑 ¿Quién es la oveja más madrugadora para orar?</option>
-            <option value="¿Quién tiene la sonrisa más contagiosa del grupo?">😊 ¿Quién tiene la sonrisa más contagiosa del grupo?</option>
-            <option value="¿Quién lleva siempre los mejores bocadillos o comida?">🍰 ¿Quién lleva siempre los mejores bocadillos o comida?</option>
-          </select>
-
-          <input type="text" id="poll-custom-question" placeholder="Escribe aquí tu pregunta de votación..." class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white font-bold outline-none focus:ring-1 focus:ring-amber-400" />
+      <div class="space-y-4 overflow-y-auto flex-1 pr-1 text-xs overscroll-contain min-h-0">
+        <!-- 1. Cola de Preguntas para la Sesión de Votación -->
+        <div class="bg-slate-800/80 border border-slate-700/70 rounded-2xl p-3.5 space-y-2.5">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-slate-200 flex items-center gap-1.5">
+              <span>📋</span> Preguntas en esta sesión (<span id="poll-queue-count" class="text-amber-400 font-extrabold">1</span>):
+            </span>
+            <button type="button" onclick="app.clearPollQueue()" class="text-[11px] text-slate-400 hover:text-red-400 transition">Vaciar lista</button>
+          </div>
+          
+          <div id="poll-queue-list" class="space-y-1.5 max-h-36 overflow-y-auto">
+            <!-- Questions in the queue rendered dynamically -->
+          </div>
         </div>
 
+        <!-- 2. Agregar preguntas a la lista -->
+        <div class="bg-slate-800/40 border border-slate-800 rounded-2xl p-3.5 space-y-2.5">
+          <label class="block font-bold text-amber-300">Agregar pregunta a la lista de votación:</label>
+          
+          <div class="space-y-1">
+            <span class="text-[11px] text-slate-400">Sugerencias populares:</span>
+            <div class="flex gap-2">
+              <select id="poll-preset-select" class="flex-1 bg-slate-800 border border-slate-700 rounded-xl px-2.5 py-2 text-white font-medium outline-none text-xs">
+                <option value="¿Quién es el compañero más espiritual del grupo?">🕊️ ¿Quién es el compañero más espiritual del grupo?</option>
+                <option value="¿Quién conoce más versículos bíblicos de memoria?">📖 ¿Quién conoce más versículos bíblicos de memoria?</option>
+                <option value="¿Quién llega siempre más temprano a la reunión?">⏰ ¿Quién llega siempre más temprano a la reunión?</option>
+                <option value="¿Quién canta con más pasión en la alabanza?">🎶 ¿Quién canta con más pasión en la alabanza?</option>
+                <option value="¿Quién es el más valiente y decidido como David?">🦁 ¿Quién es el más valiente y decidido como David?</option>
+                <option value="¿Quién da los mejores y más sabios consejos?">👑 ¿Quién da los mejores y más sabios consejos?</option>
+                <option value="¿Quién es la oveja más madrugadora para orar?">🐑 ¿Quién es la oveja más madrugadora para orar?</option>
+                <option value="¿Quién tiene la sonrisa más contagiosa del grupo?">😊 ¿Quién tiene la sonrisa más contagiosa del grupo?</option>
+                <option value="¿Quién lleva siempre los mejores bocadillos o comida?">🍰 ¿Quién lleva siempre los mejores bocadillos o comida?</option>
+                <option value="¿Quién es el más servicial y atento con todos?">🤝 ¿Quién es el más servicial y atento con todos?</option>
+                <option value="¿Quién tiene las mejores historias o anécdotas bíblicas?">📜 ¿Quién tiene las mejores historias o anécdotas?</option>
+              </select>
+              <button type="button" onclick="app.addPresetToPollQueue()" class="btn-3d px-3 py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black rounded-xl text-xs shrink-0">
+                + Agregar
+              </button>
+            </div>
+          </div>
+
+          <div class="space-y-1 pt-1.5 border-t border-slate-700/50">
+            <span class="text-[11px] text-slate-400">O escribe una personalizada:</span>
+            <div class="flex gap-2">
+              <input type="text" id="poll-custom-question-input" placeholder="Ej. ¿Quién da los abrazos más cálidos de bienvenida?" class="flex-1 bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white text-xs outline-none focus:border-amber-400" />
+              <button type="button" onclick="app.addCustomToPollQueue()" class="btn-3d px-3 py-2 bg-cyan-600 hover:bg-cyan-500 text-white font-bold rounded-xl text-xs shrink-0">
+                + Agregar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Candidatos a votar -->
         <div>
-          <label class="block font-bold text-slate-300 mb-1.5">2. Candidatos a votar:</label>
+          <label class="block font-bold text-slate-300 mb-1.5">Candidatos a votar:</label>
           <div class="space-y-2">
-            <label class="flex items-center gap-2 cursor-pointer bg-slate-800/80 p-3 rounded-xl border border-slate-700">
+            <label class="flex items-center gap-2 cursor-pointer bg-slate-800/80 p-2.5 rounded-xl border border-slate-700">
               <input type="radio" name="poll-candidates-mode" value="ALL_PLAYERS" checked onchange="app.handleCandidateModeChange('ALL_PLAYERS')" class="accent-amber-500" />
               <div>
-                <div class="font-bold text-white">Todos los participantes conectados en la sala</div>
-                <div class="text-[11px] text-slate-400">Cada persona votará eligiendo a uno de los compañeros en la sala</div>
+                <div class="font-bold text-white text-xs">Todos los participantes conectados en la sala</div>
+                <div class="text-[10px] text-slate-400">Cada persona votará eligiendo a uno de los compañeros presentes</div>
               </div>
             </label>
 
-            <label class="flex items-center gap-2 cursor-pointer bg-slate-800/80 p-3 rounded-xl border border-slate-700">
+            <label class="flex items-center gap-2 cursor-pointer bg-slate-800/80 p-2.5 rounded-xl border border-slate-700">
               <input type="radio" name="poll-candidates-mode" value="CUSTOM_LIST" onchange="app.handleCandidateModeChange('CUSTOM_LIST')" class="accent-amber-500" />
               <div>
-                <div class="font-bold text-white">Escribir candidatos específicos</div>
-                <div class="text-[11px] text-slate-400">Si deseas poner opciones o personas específicas</div>
+                <div class="font-bold text-white text-xs">Escribir candidatos o nominados específicos</div>
+                <div class="text-[10px] text-slate-400">Poner nombres concretos para esta votación</div>
               </div>
             </label>
           </div>
 
           <div id="poll-custom-candidates-box" class="hidden mt-2">
-            <textarea id="poll-custom-candidates-input" rows="2" placeholder="Escribe los nombres separados por comas (ej. Carlos, Andrea, Pastor David, Sara)" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-2.5 text-white outline-none"></textarea>
+            <textarea id="poll-custom-candidates-input" rows="2" placeholder="Escribe los nombres separados por comas (ej. Carlos, Andrea, Pastor David, Sara)" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-2 text-white text-xs outline-none"></textarea>
           </div>
         </div>
 
+        <!-- 4. Tiempo y Bonificación -->
         <div class="grid grid-cols-2 gap-3">
           <div>
-            <label class="block font-semibold text-slate-400 mb-1">Tiempo de votación:</label>
-            <select id="poll-time-limit" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white outline-none">
+            <label class="block font-semibold text-slate-400 mb-1">Tiempo por pregunta:</label>
+            <select id="poll-time-limit" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-2.5 py-1.5 text-white outline-none">
               <option value="20">20 Segundos</option>
               <option value="30" selected>30 Segundos</option>
               <option value="45">45 Segundos</option>
@@ -840,7 +970,7 @@
           </div>
           <div>
             <label class="block font-semibold text-slate-400 mb-1">Puntos para el ganador:</label>
-            <select id="poll-bonus-points" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white outline-none">
+            <select id="poll-bonus-points" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-2.5 py-1.5 text-white outline-none">
               <option value="0" selected>0 pts (Solo reconocimiento)</option>
               <option value="500">+500 pts de bonificación</option>
               <option value="1000">+1,000 pts de bonificación</option>
@@ -849,69 +979,221 @@
         </div>
       </div>
 
-      <button onclick="app.launchPollFromModal()" class="w-full btn-3d mt-4 py-3.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black text-sm rounded-2xl glow-gold flex items-center justify-center gap-2">
-        <span>🚀</span> ¡LANZAR VOTACIÓN EN LA SALA!
-      </button>
+      <!-- BOTÓN LANZAR -->
+      <div class="shrink-0 pt-3 border-t border-slate-800">
+        <button onclick="app.launchPollFromModal()" class="w-full btn-3d py-3.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black text-sm rounded-2xl glow-gold flex items-center justify-center gap-2">
+          <span>🚀</span> <span id="btn-launch-poll-text">¡LANZAR SESIÓN DE VOTACIÓN EN LA SALA!</span>
+        </button>
+      </div>
     </div>
   </div>
 
   <!-- ============================================================= -->
   <!-- MODAL: BANCO DE PREGUNTAS & EXPLORADOR -->
   <!-- ============================================================= -->
-  <div id="modal-questions" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl">
-      <div class="p-5 border-b border-slate-800 flex items-center justify-between">
-        <h3 class="font-extrabold text-lg text-white flex items-center gap-2">
+  <div id="modal-questions" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4 overscroll-contain">
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-2xl w-full max-h-[92vh] sm:max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
+      <!-- HEADER (shrink-0) -->
+      <div class="shrink-0 p-4 sm:p-5 border-b border-slate-800 flex items-center justify-between bg-slate-900">
+        <h3 class="font-extrabold text-base sm:text-lg text-white flex items-center gap-2">
           <span>📖</span> Banco de Preguntas Bíblicas (<span id="modal-q-total">0</span>)
         </h3>
-        <button onclick="app.closeQuestionsModal()" class="text-slate-400 hover:text-white text-xl">✕</button>
+        <button onclick="app.closeQuestionsModal()" class="text-slate-400 hover:text-white text-2xl px-2 py-1 leading-none">✕</button>
       </div>
 
-      <div class="px-5 pt-3 pb-2 flex gap-2 border-b border-slate-800/60 overflow-x-auto text-xs">
-        <button onclick="app.filterQuestionsList('ALL')" id="qfilter-ALL" class="px-3 py-1.5 rounded-lg bg-cyan-600 text-white font-bold">Todas</button>
-        <button onclick="app.filterQuestionsList('EASY')" id="qfilter-EASY" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-semibold hover:bg-slate-700">🌱 Corderito</button>
-        <button onclick="app.filterQuestionsList('MEDIUM')" id="qfilter-MEDIUM" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-semibold hover:bg-slate-700">📜 Discípulo</button>
-        <button onclick="app.filterQuestionsList('HARD')" id="qfilter-HARD" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-semibold hover:bg-slate-700">👑 Maestro</button>
+      <!-- PESTAÑAS SUPERIORES (shrink-0 + overflow-x-auto + whitespace-nowrap -> RESUELVE QUE NO SE VEAN) -->
+      <div class="shrink-0 px-3 sm:px-5 py-2.5 sm:py-3 flex items-center gap-2 border-b border-slate-800/80 overflow-x-auto whitespace-nowrap text-xs bg-slate-900/95 no-scrollbar">
+        <button onclick="app.filterQuestionsList('ALL')" id="qfilter-ALL" class="px-3 py-1.5 rounded-xl bg-cyan-600 text-white font-bold transition shrink-0">Todas (525+)</button>
+        <button onclick="app.filterQuestionsList('EASY')" id="qfilter-EASY" class="px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 font-semibold hover:bg-slate-700 transition shrink-0">🌱 Corderito (175)</button>
+        <button onclick="app.filterQuestionsList('MEDIUM')" id="qfilter-MEDIUM" class="px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 font-semibold hover:bg-slate-700 transition shrink-0">📜 Discípulo (175)</button>
+        <button onclick="app.filterQuestionsList('HARD')" id="qfilter-HARD" class="px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 font-semibold hover:bg-slate-700 transition shrink-0">👑 Maestro (175)</button>
+        <button onclick="app.filterQuestionsList('CUSTOM')" id="qfilter-CUSTOM" class="px-3 py-1.5 rounded-xl bg-purple-950/80 border border-purple-500/50 text-purple-200 font-bold hover:bg-purple-900 transition shrink-0 flex items-center gap-1">
+          <span>⭐</span> Mis Cuestionarios Personales
+        </button>
       </div>
 
-      <div id="modal-questions-scroll" class="p-5 space-y-4 overflow-y-auto flex-1"></div>
+      <!-- BARRA DE BÚSQUEDA RÁPIDA -->
+      <div class="shrink-0 px-3 sm:px-5 py-2 border-b border-slate-800/60 bg-slate-900/60 flex items-center gap-2">
+        <input type="text" id="qsearch-input" oninput="app.searchQuestionsList(this.value)" placeholder="🔍 Buscar por palabra clave, versículo o categoría..." class="w-full bg-slate-800/90 border border-slate-700/80 rounded-xl px-3 py-1.5 text-xs text-white outline-none focus:border-cyan-400 placeholder:text-slate-500" />
+      </div>
+
+      <!-- LISTA DE PREGUNTAS CON SCROLL (flex-1 min-h-0) -->
+      <div id="modal-questions-scroll" class="p-3 sm:p-5 space-y-3.5 overflow-y-auto flex-1 min-h-0 overscroll-contain"></div>
+    </div>
+  </div>
+
+  <!-- ============================================================= -->
+  <!-- MODAL: MIS CUESTIONARIOS PERSONALES & CLASIFICACIÓN PROPIA -->
+  <!-- ============================================================= -->
+  <div id="modal-custom-quiz" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4 overscroll-contain">
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-2xl w-full max-h-[92vh] sm:max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
+      <!-- HEADER -->
+      <div class="shrink-0 p-4 sm:p-5 border-b border-slate-800 flex items-center justify-between bg-slate-900">
+        <h3 class="font-extrabold text-base sm:text-lg text-white flex items-center gap-2">
+          <span>⭐</span> Mis Cuestionarios Personales
+        </h3>
+        <button onclick="app.closeCustomQuizModal()" class="text-slate-400 hover:text-white text-2xl px-2 py-1 leading-none">✕</button>
+      </div>
+
+      <!-- TABS INTERNOS: LISTA DE CUESTIONARIOS vs CREAR / AGREGAR -->
+      <div class="shrink-0 px-4 py-2.5 flex items-center gap-2 border-b border-slate-800 bg-slate-900/95 text-xs">
+        <button onclick="app.switchCustomQuizTab('LIST')" id="cqtab-LIST" class="px-3.5 py-1.5 rounded-xl bg-purple-600 text-white font-bold transition">
+          📋 Cuestionarios Creados
+        </button>
+        <button onclick="app.switchCustomQuizTab('CREATE')" id="cqtab-CREATE" class="px-3.5 py-1.5 rounded-xl bg-slate-800 text-slate-300 font-semibold hover:bg-slate-700 transition">
+          ➕ Crear Cuestionario
+        </button>
+        <button onclick="app.switchCustomQuizTab('ADD_Q')" id="cqtab-ADD_Q" class="hidden px-3.5 py-1.5 rounded-xl bg-slate-800 text-slate-300 font-semibold hover:bg-slate-700 transition">
+          ✏️ Agregar Pregunta
+        </button>
+      </div>
+
+      <!-- CONTENIDO TAB 1: LISTA DE CUESTIONARIOS -->
+      <div id="cq-view-list" class="flex-1 p-4 sm:p-5 overflow-y-auto min-h-0 space-y-3">
+        <div id="cq-list-container" class="space-y-3"></div>
+      </div>
+
+      <!-- CONTENIDO TAB 2: CREAR CUESTIONARIO NUEVO -->
+      <div id="cq-view-create" class="hidden flex-1 p-4 sm:p-5 overflow-y-auto min-h-0 space-y-4 text-xs">
+        <div class="bg-purple-950/30 border border-purple-500/30 rounded-2xl p-4">
+          <h4 class="font-bold text-sm text-purple-200 mb-1 flex items-center gap-2">
+            <span>✨</span> Crea tu propio cuestionario temático
+          </h4>
+          <p class="text-[11px] text-slate-300">
+            Define una <strong>clasificación personalizada</strong> (por ejemplo: <em>"Jóvenes"</em>, <em>"Campamento 2026"</em>, <em>"Célula"</em>, <em>"Matrimonios"</em>) que funcionará totalmente aparte de Corderito, Discípulo o Maestro.
+          </p>
+        </div>
+
+        <form onsubmit="event.preventDefault(); app.saveNewCustomQuiz();" class="space-y-3">
+          <div>
+            <label class="block font-bold text-slate-300 mb-1">Nombre o Título del Cuestionario:</label>
+            <input type="text" id="cq-input-title" required placeholder="Ej. Especial Jóvenes - Campamento 2026" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white font-medium outline-none focus:border-purple-400" />
+          </div>
+
+          <div>
+            <label class="block font-bold text-slate-300 mb-1">Tu Clasificación Personal (Categoría o Etiqueta Propia):</label>
+            <input type="text" id="cq-input-classification" required placeholder="Ej. Jóvenes, Campamento, Matrimonios, Niños..." class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white font-medium outline-none focus:border-purple-400" />
+            <span class="text-[10px] text-slate-400 mt-0.5 block">Esta clasificación será única y no se mezclará con Corderito, Discípulo ni Maestro.</span>
+          </div>
+
+          <div>
+            <label class="block font-bold text-slate-300 mb-1">Descripción breve (opcional):</label>
+            <input type="text" id="cq-input-desc" placeholder="Ej. Preguntas especiales preparadas para la noche de fogata" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white outline-none focus:border-purple-400" />
+          </div>
+
+          <button type="submit" class="w-full btn-3d py-3 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold rounded-xl mt-2 flex items-center justify-center gap-1.5">
+            <span>💾</span> Crear y Comenzar a Agregar Preguntas
+          </button>
+        </form>
+      </div>
+
+      <!-- CONTENIDO TAB 3: AGREGAR PREGUNTA AL CUESTIONARIO ACTIVO -->
+      <div id="cq-view-add-q" class="hidden flex-1 p-4 sm:p-5 overflow-y-auto min-h-0 space-y-4 text-xs">
+        <div class="flex items-center justify-between bg-slate-800/80 p-3 rounded-xl border border-slate-700">
+          <div>
+            <span class="text-[10px] text-purple-300 uppercase tracking-widest font-bold">Cuestionario en edición:</span>
+            <div id="cq-active-title" class="font-bold text-white text-sm">---</div>
+            <div id="cq-active-classification" class="text-[11px] text-purple-300">Clasificación: ---</div>
+          </div>
+          <button type="button" onclick="app.switchCustomQuizTab('LIST')" class="text-xs text-slate-400 hover:text-white px-2 py-1">
+            ✕ Salir
+          </button>
+        </div>
+
+        <form onsubmit="event.preventDefault(); app.saveQuestionToActiveQuiz();" class="space-y-3">
+          <div>
+            <label class="block font-bold text-slate-300 mb-1">Pregunta:</label>
+            <textarea id="cq-q-text" required rows="2" placeholder="Escribe aquí la pregunta..." class="w-full bg-slate-800 border border-slate-700 rounded-xl p-2.5 text-white font-medium outline-none focus:border-purple-400"></textarea>
+          </div>
+
+          <div class="space-y-2">
+            <label class="block font-bold text-slate-300">Opciones de respuesta (marca el círculo de la CORRECTA):</label>
+            
+            <div class="flex items-center gap-2 bg-slate-800/60 p-2 rounded-xl border border-slate-700">
+              <input type="radio" name="cq-correct-opt" value="0" checked class="accent-emerald-500 w-4 h-4" />
+              <input type="text" id="cq-opt-0" required placeholder="Opción 1" class="flex-1 bg-transparent text-white outline-none text-xs" />
+              <span class="text-[10px] font-bold text-emerald-400">Opción 1</span>
+            </div>
+
+            <div class="flex items-center gap-2 bg-slate-800/60 p-2 rounded-xl border border-slate-700">
+              <input type="radio" name="cq-correct-opt" value="1" class="accent-emerald-500 w-4 h-4" />
+              <input type="text" id="cq-opt-1" required placeholder="Opción 2" class="flex-1 bg-transparent text-white outline-none text-xs" />
+              <span class="text-[10px] font-bold text-blue-400">Opción 2</span>
+            </div>
+
+            <div class="flex items-center gap-2 bg-slate-800/60 p-2 rounded-xl border border-slate-700">
+              <input type="radio" name="cq-correct-opt" value="2" class="accent-emerald-500 w-4 h-4" />
+              <input type="text" id="cq-opt-2" required placeholder="Opción 3" class="flex-1 bg-transparent text-white outline-none text-xs" />
+              <span class="text-[10px] font-bold text-amber-400">Opción 3</span>
+            </div>
+
+            <div class="flex items-center gap-2 bg-slate-800/60 p-2 rounded-xl border border-slate-700">
+              <input type="radio" name="cq-correct-opt" value="3" class="accent-emerald-500 w-4 h-4" />
+              <input type="text" id="cq-opt-3" required placeholder="Opción 4" class="flex-1 bg-transparent text-white outline-none text-xs" />
+              <span class="text-[10px] font-bold text-pink-400">Opción 4</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            <div>
+              <label class="block font-semibold text-slate-400 mb-0.5">Cita Bíblica (opcional):</label>
+              <input type="text" id="cq-q-verse" placeholder="Ej. Juan 3:16" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-2.5 py-1.5 text-white outline-none focus:border-purple-400" />
+            </div>
+            <div>
+              <label class="block font-semibold text-slate-400 mb-0.5">Explicación breve (opcional):</label>
+              <input type="text" id="cq-q-explanation" placeholder="Ej. Jesús le dijo esto a Nicodemo..." class="w-full bg-slate-800 border border-slate-700 rounded-xl px-2.5 py-1.5 text-white outline-none focus:border-purple-400" />
+            </div>
+          </div>
+
+          <button type="submit" class="w-full btn-3d py-3 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold rounded-xl mt-2 flex items-center justify-center gap-1.5">
+            <span>➕</span> Guardar Pregunta en el Cuestionario
+          </button>
+        </form>
+
+        <div class="pt-3 border-t border-slate-800">
+          <h5 class="font-bold text-slate-300 mb-2">Preguntas ya guardadas en este cuestionario:</h5>
+          <div id="cq-active-questions-list" class="space-y-2"></div>
+        </div>
+      </div>
     </div>
   </div>
 
   <!-- ============================================================= -->
   <!-- MODAL: CONFIGURACIÓN FIREBASE -->
   <!-- ============================================================= -->
-  <div id="modal-settings" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-md w-full p-6 shadow-2xl">
-      <div class="flex items-center justify-between mb-4 border-b border-slate-800 pb-3">
+  <div id="modal-settings" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4 overscroll-contain">
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-md w-full p-5 sm:p-6 shadow-2xl max-h-[92vh] flex flex-col overflow-hidden">
+      <div class="shrink-0 flex items-center justify-between mb-3 border-b border-slate-800 pb-3">
         <h3 class="font-bold text-lg text-white flex items-center gap-2">
           <span>🔥</span> Configuración Firebase
         </h3>
         <button onclick="app.closeSettingsModal()" class="text-slate-400 hover:text-white text-xl">✕</button>
       </div>
 
-      <p class="text-xs text-slate-300 mb-4">
-        Conectado automáticamente al proyecto Firebase <strong class="text-amber-400">wise-sheep</strong>. Sincroniza salas y jugadores en vivo 24/7.
-      </p>
+      <div class="overflow-y-auto flex-1 min-h-0 pr-1 space-y-3 text-xs overscroll-contain">
+        <p class="text-xs text-slate-300 mb-2">
+          Conectado automáticamente al proyecto Firebase <strong class="text-amber-400">wise-sheep</strong>. Sincroniza salas y jugadores en vivo 24/7.
+        </p>
 
-      <form onsubmit="event.preventDefault(); app.saveFirebaseSettings();" class="space-y-3 text-xs">
-        <div>
-          <label class="block font-semibold text-slate-400 mb-1">Project ID:</label>
-          <input type="text" id="cfg-project-id" value="wise-sheep" readonly class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-3 py-2 text-slate-300 font-mono" />
-        </div>
-        <div>
-          <label class="block font-semibold text-slate-400 mb-1">API Key:</label>
-          <input type="text" id="cfg-api-key" placeholder="AIzaSy..." class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white font-mono focus:ring-1 focus:ring-amber-400 outline-none" />
-        </div>
-        <div>
-          <label class="block font-semibold text-slate-400 mb-1">App ID:</label>
-          <input type="text" id="cfg-app-id" placeholder="1:1020836902632:web:..." class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white font-mono focus:ring-1 focus:ring-amber-400 outline-none" />
-        </div>
+        <form onsubmit="event.preventDefault(); app.saveFirebaseSettings();" class="space-y-3">
+          <div>
+            <label class="block font-semibold text-slate-400 mb-1">Project ID:</label>
+            <input type="text" id="cfg-project-id" value="wise-sheep" readonly class="w-full bg-slate-800/50 border border-slate-700 rounded-xl px-3 py-2 text-slate-300 font-mono" />
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-400 mb-1">API Key:</label>
+            <input type="text" id="cfg-api-key" placeholder="AIzaSy..." class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white font-mono focus:ring-1 focus:ring-amber-400 outline-none" />
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-400 mb-1">App ID:</label>
+            <input type="text" id="cfg-app-id" placeholder="1:1020836902632:web:..." class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white font-mono focus:ring-1 focus:ring-amber-400 outline-none" />
+          </div>
 
-        <button type="submit" class="w-full btn-3d mt-4 py-3 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-black rounded-xl">
-          Guardar Configuración
-        </button>
-      </form>
+          <button type="submit" class="w-full btn-3d mt-4 py-3 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-black rounded-xl">
+            Guardar Configuración
+          </button>
+        </form>
+      </div>
     </div>
   </div>
 

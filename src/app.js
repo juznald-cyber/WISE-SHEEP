@@ -25,14 +25,26 @@ class WiseSheepApp {
     this.qStartTime = 0;
     this.receivedAnswers = {}; // { [playerId]: { answerIndex, isCorrect, pointsEarned } }
 
-    // Estado de Votaciones / Premios Grupales
+    // Estado de Votaciones / Premios Grupales (Soporte Múltiples Preguntas)
     this.votingTimer = null;
     this.votingTimeLeft = 30;
+    this.pollQueue = ['¿Quién es el compañero más espiritual del grupo?'];
+    this.currentPollIndex = 0;
     this.currentPollQuestion = '';
     this.pollCandidates = []; // array of { id, name, avatar, team }
     this.receivedVotes = {}; // { [voterId]: candidateId }
     this.pollBonusPoints = 0;
+    this.pollTimeLimit = 30;
     this.previousStateBeforeVoting = 'LOBBY';
+
+    // Cuestionarios Personales con Clasificación Propia
+    this.customQuestionnaires = [];
+    this.selectedCustomQuizId = null;
+    this.activeEditingQuizId = null;
+
+    // Búsqueda y Filtros del Banco de Preguntas
+    this.currentQuestionFilter = 'ALL';
+    this.questionSearchQuery = '';
 
     // Estado del Jugador (Player)
     this.myPlayerId = roomSync.playerId;
@@ -50,9 +62,11 @@ class WiseSheepApp {
   }
 
   init() {
-    console.log('Iniciando WISE SHEEP App...');
+    console.log('Iniciando WISE SHEEP App con 525+ preguntas...');
     this.renderAvatarSelector();
     this.setupPhoneVisibilityResume();
+    this.loadCustomQuestionnaires();
+    this.populateCustomQuizSelect();
     this.checkSavedSession();
     this.checkUrlForPin();
 
@@ -195,6 +209,9 @@ class WiseSheepApp {
 
   showHome() {
     sounds.playClick();
+    this.myScore = 0;
+    this.myStreak = 0;
+    this.maxStreak = 0;
     this.switchView('view-home');
   }
 
@@ -206,6 +223,7 @@ class WiseSheepApp {
     sounds.playClick();
     this.isHost = true;
     this.switchView('view-host-setup');
+    this.populateCustomQuizSelect();
   }
 
   updateModeSelection(val) {
@@ -232,12 +250,49 @@ class WiseSheepApp {
       const btn = document.getElementById(`diff-btn-${d}`);
       if (btn) {
         if (d === diff) {
-          btn.className = 'p-3 rounded-xl border border-amber-500 bg-amber-500/20 text-amber-300 font-bold text-xs text-center';
+          btn.className = 'p-3 rounded-xl border border-amber-500 bg-amber-500/20 text-amber-300 font-bold text-xs text-center transition';
         } else {
-          btn.className = 'p-3 rounded-xl border border-slate-800 bg-slate-900 text-slate-300 font-bold text-xs text-center hover:border-slate-700';
+          btn.className = 'p-3 rounded-xl border border-slate-800 bg-slate-900 text-slate-300 font-bold text-xs text-center hover:border-slate-700 transition';
         }
       }
     });
+
+    const customBtn = document.getElementById('diff-btn-CUSTOM');
+    const customContainer = document.getElementById('setup-custom-quiz-container');
+    const customBadge = document.getElementById('diff-custom-badge');
+
+    if (diff === 'CUSTOM') {
+      if (customBtn) customBtn.className = 'w-full p-3 rounded-2xl border-2 border-purple-400 bg-purple-950/60 text-white font-bold text-xs text-left shadow-lg glow-blue transition flex items-center justify-between';
+      if (customContainer) customContainer.classList.remove('hidden');
+      if (customBadge) {
+        customBadge.innerText = '✓ ACTIVO';
+        customBadge.className = 'text-xs bg-purple-600 text-white px-3 py-1 rounded-xl font-black border border-purple-300';
+      }
+      this.populateCustomQuizSelect();
+    } else {
+      if (customBtn) customBtn.className = 'w-full p-3 rounded-2xl border border-purple-500/40 bg-purple-950/20 text-purple-200 font-bold text-xs text-left hover:border-purple-400 transition flex items-center justify-between';
+      if (customContainer) customContainer.classList.add('hidden');
+      if (customBadge) {
+        customBadge.innerText = 'Seleccionar';
+        customBadge.className = 'text-xs bg-purple-900/80 px-3 py-1 rounded-xl border border-purple-500/50 font-bold';
+      }
+    }
+  }
+
+  handleQuestionCountChange(val) {
+    const customBox = document.getElementById('setup-custom-count-box');
+    if (val === 'CUSTOM') {
+      if (customBox) customBox.classList.remove('hidden');
+      const input = document.getElementById('setup-custom-question-count');
+      if (input && input.value) {
+        this.questionCount = Math.max(1, parseInt(input.value) || 10);
+      } else {
+        this.questionCount = 10;
+      }
+    } else {
+      if (customBox) customBox.classList.add('hidden');
+      this.questionCount = parseInt(val) || 10;
+    }
   }
 
   createRoom() {
@@ -245,11 +300,19 @@ class WiseSheepApp {
     this.roomPin = roomSync.generatePin();
     roomSync.currentPin = this.roomPin;
 
-    this.questionCount = parseInt(document.getElementById('setup-question-count')?.value || '10');
+    const countSelect = document.getElementById('setup-question-count')?.value || '10';
+    if (countSelect === 'CUSTOM') {
+      const customInput = document.getElementById('setup-custom-question-count')?.value;
+      this.questionCount = Math.max(1, parseInt(customInput) || 10);
+    } else {
+      this.questionCount = parseInt(countSelect) || 10;
+    }
+
     this.timeLimit = parseInt(document.getElementById('setup-time-limit')?.value || '20');
     this.autoCloseOnAllAnswered = document.getElementById('setup-auto-close')?.checked ?? true;
     this.leaderboardMode = document.getElementById('setup-leaderboard-mode')?.value || 'MANUAL';
 
+    // Preparar preguntas aleatorias
     this.prepareQuestions();
     this.players = {};
     this.currentQIndex = 0;
@@ -305,22 +368,38 @@ class WiseSheepApp {
   }
 
   prepareQuestions() {
+    let pool = [];
+
+    if (this.selectedDifficulty === 'CUSTOM') {
+      const quiz = this.customQuestionnaires.find(q => q.id === this.selectedCustomQuizId);
+      if (quiz && quiz.questions && quiz.questions.length > 0) {
+        pool = [...quiz.questions];
+      } else if (this.customQuestionnaires.length > 0 && this.customQuestionnaires[0].questions.length > 0) {
+        pool = [...this.customQuestionnaires[0].questions];
+      } else {
+        alert('No se encontraron preguntas en tu cuestionario personal. Usaremos preguntas bíblicas generales.');
+        pool = [...QUESTIONS_DATABASE];
+      }
+      this.activeQuestions = shuffleArray(pool).slice(0, this.questionCount);
+      return;
+    }
+
     const all = [...QUESTIONS_DATABASE];
     if (this.selectedDifficulty === 'ALL') {
       const easyPool = shuffleArray(all.filter(q => q.level === 'EASY'));
       const medPool = shuffleArray(all.filter(q => q.level === 'MEDIUM'));
       const hardPool = shuffleArray(all.filter(q => q.level === 'HARD'));
 
-      let countEasy = Math.max(1, Math.round(this.questionCount * 0.4));
+      let countEasy = Math.max(1, Math.round(this.questionCount * 0.35));
       let countMed = Math.max(1, Math.round(this.questionCount * 0.35));
-      let countHard = this.questionCount - countEasy - countMed;
-      if (countHard <= 0) countHard = 1;
+      let countHard = Math.max(1, this.questionCount - countEasy - countMed);
 
       const selectedEasy = easyPool.slice(0, countEasy);
       const selectedMed = medPool.slice(0, countMed);
       const selectedHard = hardPool.slice(0, countHard);
 
-      this.activeQuestions = [...selectedEasy, ...selectedMed, ...selectedHard];
+      // Barajar juntos para aleatoriedad completa en cada partida
+      this.activeQuestions = shuffleArray([...selectedEasy, ...selectedMed, ...selectedHard]).slice(0, this.questionCount);
     } else {
       const filtered = shuffleArray(all.filter(q => q.level === this.selectedDifficulty));
       this.activeQuestions = filtered.slice(0, this.questionCount);
@@ -415,6 +494,19 @@ class WiseSheepApp {
     }
 
     sounds.playClick();
+
+    // 1. REINICIAR PUNTOS Y RACHA DE TODOS LOS JUGADORES (CORRECCIÓN CRÍTICA DE ACUMULACIÓN)
+    Object.keys(this.players).forEach(id => {
+      if (this.players[id]) {
+        this.players[id].score = 0;
+        this.players[id].streak = 0;
+        roomSync.registerPlayer(this.roomPin, id, this.players[id]);
+      }
+    });
+
+    // 2. Barajar y asegurar preguntas completamente aleatorias en cada nueva partida
+    this.prepareQuestions();
+
     this.currentQIndex = 0;
     this.startQuestion(this.currentQIndex);
   }
@@ -435,59 +527,82 @@ class WiseSheepApp {
     this.switchView('view-host-game');
 
     document.getElementById('game-q-counter').innerText = `Pregunta ${index + 1} de ${this.activeQuestions.length}`;
-    document.getElementById('game-q-category').innerText = q.category || 'Trivia Bíblica';
+    document.getElementById('game-q-category').innerText = q.category || q.customCategory || 'Trivia Bíblica';
     document.getElementById('game-q-text').innerText = q.question;
     document.getElementById('host-answers-count').innerText = '0';
     document.getElementById('host-total-players-count').innerText = Object.keys(this.players).length;
     document.getElementById('host-timer-circle').innerText = this.timeLeft;
 
     const badgeEl = document.getElementById('game-q-badge');
-    const lvlInfo = QUESTION_LEVELS[q.level] || QUESTION_LEVELS.EASY;
-    badgeEl.innerText = `${lvlInfo.badge} ${lvlInfo.name}`;
+    if (q.level === 'CUSTOM') {
+      badgeEl.innerText = `⭐ ${q.customCategory || 'Personal'}`;
+      badgeEl.className = 'bg-purple-900/80 text-purple-200 border border-purple-500/50 px-3 py-1 rounded-xl text-xs font-bold';
+    } else {
+      const lvlInfo = QUESTION_LEVELS[q.level] || QUESTION_LEVELS.EASY;
+      badgeEl.innerText = `${lvlInfo.badge} ${lvlInfo.name}`;
+      badgeEl.className = 'bg-amber-500/20 text-amber-300 border border-amber-500/40 px-3 py-1 rounded-xl text-xs font-bold';
+    }
 
     for (let i = 0; i < 4; i++) {
       const optCard = document.getElementById(`host-opt-${i}`);
       const optText = document.getElementById(`host-opt-text-${i}`);
-      if (q.options[i]) {
-        optCard.classList.remove('hidden', 'opacity-30', 'ring-4', 'ring-white', 'scale-105');
-        optText.innerText = q.options[i];
-      } else {
-        optCard.classList.add('hidden');
+      if (optCard && optText) {
+        if (i < q.options.length) {
+          optCard.classList.remove('hidden');
+          optText.innerText = q.options[i];
+          optCard.className = this.getOptionColorClass(i, false);
+        } else {
+          optCard.classList.add('hidden');
+        }
       }
     }
 
     document.getElementById('host-explanation-box').classList.add('hidden');
     document.getElementById('host-game-controls').classList.add('hidden');
 
+    // Notificar a Firestore / jugadores
     roomSync.createOrUpdateRoom(this.roomPin, {
       status: 'QUESTION',
       currentQuestionIndex: index,
       totalQuestions: this.activeQuestions.length,
-      timeLimit: this.timeLimit,
       question: q.question,
       options: q.options,
-      level: q.level,
-      category: q.category,
-      qStartTime: this.qStartTime
+      qStartTime: this.qStartTime,
+      timeLimit: this.timeLimit,
+      category: q.category || q.customCategory || 'Trivia'
     });
 
     sounds.startTensionMusic();
-    this.runTimer();
+    this.runQuestionTimer();
   }
 
-  runTimer() {
+  getOptionColorClass(idx, isHighlighted = false) {
+    const baseColors = [
+      'bg-red-600 border border-red-400/40',
+      'bg-blue-600 border border-blue-400/40',
+      'bg-amber-500 border border-amber-300/40',
+      'bg-emerald-600 border border-emerald-400/40'
+    ];
+    let cls = 'btn-3d p-4 sm:p-5 rounded-2xl flex items-center gap-3 sm:gap-4 text-left shadow-lg ' + (baseColors[idx] || 'bg-slate-700');
+    if (isHighlighted) {
+      cls += ' ring-4 ring-white scale-[1.02] shadow-2xl';
+    }
+    return cls;
+  }
+
+  runQuestionTimer() {
     if (this.questionTimer) clearInterval(this.questionTimer);
 
-    const timerCircle = document.getElementById('host-timer-circle');
     const timerBar = document.getElementById('host-timer-bar');
+    const timerCircle = document.getElementById('host-timer-circle');
 
     this.questionTimer = setInterval(() => {
       this.timeLeft--;
       if (timerCircle) timerCircle.innerText = this.timeLeft;
 
       if (timerBar) {
-        const percent = Math.max(0, (this.timeLeft / this.timeLimit) * 100);
-        timerBar.style.width = `${percent}%`;
+        const pct = Math.max(0, (this.timeLeft / this.timeLimit) * 100);
+        timerBar.style.width = `${pct}%`;
       }
 
       sounds.playTick();
@@ -495,29 +610,26 @@ class WiseSheepApp {
       const totalPlayers = Object.keys(this.players).length;
       const totalAnswers = Object.keys(this.receivedAnswers).length;
 
-      const allAnswered = this.autoCloseOnAllAnswered && totalPlayers > 0 && totalAnswers >= totalPlayers;
-
-      if (this.timeLeft <= 0 || allAnswered) {
-        this.timeUpReveal();
+      if (this.timeLeft <= 0 || (this.autoCloseOnAllAnswered && totalPlayers > 0 && totalAnswers >= totalPlayers)) {
+        this.closeQuestionAndReveal();
       }
     }, 1000);
   }
 
   handleHostAnswerReceived(playerId, answerData) {
     if (!this.isHost || this.roomStatus !== 'QUESTION') return;
-    if (answerData.questionIndex !== this.currentQIndex) return;
-    if (this.receivedAnswers[playerId]) return;
+    if (!answerData || answerData.questionIndex !== this.currentQIndex) return;
 
     const q = this.activeQuestions[this.currentQIndex];
     if (!q) return;
 
-    const isCorrect = (answerData.answerIndex === q.correctAnswer);
+    const isCorrect = answerData.answerIndex === q.correctAnswer;
     let pointsEarned = 0;
 
     if (isCorrect) {
       const timeTaken = answerData.timeTaken || 1;
-      const ratio = Math.max(0, 1 - (timeTaken / this.timeLimit));
-      pointsEarned = Math.round(600 + (ratio * 400));
+      const speedBonus = Math.max(0, Math.round((1 - (timeTaken / this.timeLimit)) * 500));
+      pointsEarned = 500 + speedBonus;
     }
 
     this.receivedAnswers[playerId] = {
@@ -537,59 +649,56 @@ class WiseSheepApp {
       roomSync.registerPlayer(this.roomPin, playerId, p);
     }
 
-    const answersCountEl = document.getElementById('host-answers-count');
-    if (answersCountEl) answersCountEl.innerText = Object.keys(this.receivedAnswers).length;
+    const hostAnswersCountEl = document.getElementById('host-answers-count');
+    if (hostAnswersCountEl) hostAnswersCountEl.innerText = Object.keys(this.receivedAnswers).length;
 
     const totalPlayers = Object.keys(this.players).length;
     const totalAnswers = Object.keys(this.receivedAnswers).length;
+
     if (this.autoCloseOnAllAnswered && totalPlayers > 0 && totalAnswers >= totalPlayers) {
-      console.log('⚡ ¡Todos los participantes han votado! Cerrando tiempo...');
-      this.timeUpReveal();
+      console.log('⚡ ¡Todos los jugadores respondieron! Cerrando pregunta...');
+      this.closeQuestionAndReveal();
     }
   }
 
-  timeUpReveal() {
+  closeQuestionAndReveal() {
     clearInterval(this.questionTimer);
     sounds.stopTensionMusic();
-    sounds.playWrong();
+    sounds.playFanfare();
     this.roomStatus = 'TIMES_UP';
 
     const q = this.activeQuestions[this.currentQIndex];
-    const isLastQuestion = (this.currentQIndex + 1 >= this.activeQuestions.length);
+    if (!q) return;
 
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < q.options.length; i++) {
       const optCard = document.getElementById(`host-opt-${i}`);
-      if (i === q.correctAnswer) {
-        optCard.classList.add('ring-4', 'ring-white', 'scale-105');
-      } else {
-        optCard.classList.add('opacity-30');
+      if (optCard) {
+        if (i === q.correctAnswer) {
+          optCard.className = 'btn-3d p-4 sm:p-5 rounded-2xl flex items-center gap-4 text-left bg-emerald-600 border-4 border-white shadow-2xl ring-4 ring-emerald-400 scale-[1.02]';
+        } else {
+          optCard.className = 'p-4 sm:p-5 rounded-2xl flex items-center gap-4 text-left bg-slate-800/40 border border-slate-700/40 opacity-40 grayscale';
+        }
       }
     }
 
-    const expBox = document.getElementById('host-explanation-box');
-    const expVerse = document.getElementById('host-explanation-verse');
-    const expText = document.getElementById('host-explanation-text');
-
-    expVerse.innerText = q.verse || 'Referencia Bíblica';
-    expText.innerText = q.explanation || '¡Excelente oportunidad para aprender más de la Palabra de Dios!';
-    expBox.classList.remove('hidden');
+    const explBox = document.getElementById('host-explanation-box');
+    const explVerse = document.getElementById('host-explanation-verse');
+    const explText = document.getElementById('host-explanation-text');
+    if (explBox && explVerse && explText) {
+      explVerse.innerText = q.verse || 'Cita Bíblica';
+      explText.innerText = q.explanation || 'Respuesta verificada en las Escrituras.';
+      explBox.classList.remove('hidden');
+    }
 
     const controls = document.getElementById('host-game-controls');
-    const btnNextDirect = document.getElementById('btn-direct-next-q');
-    const btnOptLb = document.getElementById('btn-show-optional-lb');
+    if (controls) controls.classList.remove('hidden');
 
-    controls.classList.remove('hidden');
-
-    if (isLastQuestion) {
-      btnNextDirect.innerHTML = '<span>👑 Ver Gran Podio Final</span>';
-      if (btnOptLb) btnOptLb.classList.add('hidden');
-    } else {
-      btnNextDirect.innerHTML = '<span>Siguiente Pregunta</span> <span>➡️</span>';
-      if (this.leaderboardMode === 'END_ONLY') {
-        if (btnOptLb) btnOptLb.classList.add('hidden');
-      } else {
-        if (btnOptLb) btnOptLb.classList.remove('hidden');
-      }
+    const nextBtn = document.getElementById('btn-direct-next-q');
+    const isLastQuestion = (this.currentQIndex + 1 >= this.activeQuestions.length);
+    if (nextBtn) {
+      nextBtn.innerHTML = isLastQuestion
+        ? '<span>Ver Podio Final</span> <span>🏆</span>'
+        : '<span>Siguiente Pregunta</span> <span>➡️</span>';
     }
 
     const sorted = Object.entries(this.players).map(([id, p]) => ({
@@ -764,6 +873,11 @@ class WiseSheepApp {
     document.getElementById('podium-3rd-name').innerText = `${p3.avatar} ${p3.name}`;
     document.getElementById('podium-3rd-score').innerText = `${p3.score || 0} pts`;
 
+    // Limpiar sesión local del jugador para que no arrastre puntos a futuras partidas
+    try {
+      localStorage.removeItem('ws_player_session');
+    } catch (e) {}
+
     roomSync.createOrUpdateRoom(this.roomPin, {
       status: 'PODIUM',
       podium: sorted.slice(0, 3),
@@ -775,47 +889,98 @@ class WiseSheepApp {
   }
 
   // ==============================================================
-  // MODALIDAD: VOTACIÓN / PREMIOS GRUPALES EN VIVO
+  // MODALIDAD: VOTACIÓN / PREMIOS GRUPALES CON MÚLTIPLES PREGUNTAS
   // ==============================================================
+
+  renderPollQueueList() {
+    const listEl = document.getElementById('poll-queue-list');
+    const countEl = document.getElementById('poll-queue-count');
+    const launchBtnText = document.getElementById('btn-launch-poll-text');
+    if (countEl) countEl.innerText = this.pollQueue.length;
+    if (launchBtnText) {
+      launchBtnText.innerText = this.pollQueue.length > 1
+        ? `¡LANZAR SESIÓN DE VOTACIÓN (${this.pollQueue.length} PREGUNTAS)!`
+        : '¡LANZAR VOTACIÓN EN LA SALA!';
+    }
+    if (!listEl) return;
+
+    if (this.pollQueue.length === 0) {
+      listEl.innerHTML = '<span class="text-slate-400 italic text-[11px]">No hay preguntas en la lista. Agrega una arriba.</span>';
+      return;
+    }
+
+    listEl.innerHTML = this.pollQueue.map((q, idx) => `
+      <div class="bg-slate-900 border border-slate-700/80 rounded-xl px-3 py-2 flex items-center justify-between text-xs text-white">
+        <span class="truncate pr-2"><strong class="text-amber-400">#${idx + 1}.</strong> ${q}</span>
+        <button onclick="app.removePollFromQueue(${idx})" class="text-slate-400 hover:text-red-400 font-bold px-1.5 py-0.5" title="Eliminar">✕</button>
+      </div>
+    `).join('');
+  }
+
+  addPresetToPollQueue() {
+    const sel = document.getElementById('poll-preset-select');
+    if (!sel || !sel.value) return;
+    this.pollQueue.push(sel.value);
+    sounds.playClick();
+    this.renderPollQueueList();
+  }
+
+  addCustomToPollQueue() {
+    const input = document.getElementById('poll-custom-question-input');
+    const val = input?.value.trim();
+    if (!val) {
+      alert('Por favor escribe tu pregunta personalizada.');
+      return;
+    }
+    this.pollQueue.push(val);
+    input.value = '';
+    sounds.playClick();
+    this.renderPollQueueList();
+  }
+
+  removePollFromQueue(idx) {
+    sounds.playClick();
+    this.pollQueue.splice(idx, 1);
+    this.renderPollQueueList();
+  }
+
+  clearPollQueue() {
+    sounds.playClick();
+    this.pollQueue = [];
+    this.renderPollQueueList();
+  }
 
   openLaunchPollModal() {
     sounds.playClick();
-    document.getElementById('modal-launch-poll').classList.remove('hidden');
-    const customInput = document.getElementById('poll-custom-question');
-    const select = document.getElementById('poll-preset-select');
-    if (select.value !== 'CUSTOM') {
-      customInput.value = select.value;
+    document.getElementById('modal-launch-poll')?.classList.remove('hidden');
+    if (this.pollQueue.length === 0) {
+      this.pollQueue = ['¿Quién es el compañero más espiritual del grupo?'];
     }
+    this.renderPollQueueList();
   }
 
   closeLaunchPollModal() {
     sounds.playClick();
-    document.getElementById('modal-launch-poll').classList.add('hidden');
-  }
-
-  handlePresetPollChange(val) {
-    const customInput = document.getElementById('poll-custom-question');
-    if (val === 'CUSTOM') {
-      customInput.value = '';
-      customInput.focus();
-    } else {
-      customInput.value = val;
-    }
+    document.getElementById('modal-launch-poll')?.classList.add('hidden');
   }
 
   handleCandidateModeChange(mode) {
     const customBox = document.getElementById('poll-custom-candidates-box');
     if (mode === 'CUSTOM_LIST') {
-      customBox.classList.remove('hidden');
+      customBox?.classList.remove('hidden');
     } else {
-      customBox.classList.add('hidden');
+      customBox?.classList.add('hidden');
     }
   }
 
   launchPollFromModal() {
-    const questionText = document.getElementById('poll-custom-question')?.value.trim();
-    if (!questionText) {
-      alert('Por favor escribe o selecciona la pregunta de la votación.');
+    const customVal = document.getElementById('poll-custom-question-input')?.value.trim();
+    if (customVal && this.pollQueue.length === 0) {
+      this.pollQueue.push(customVal);
+    }
+
+    if (this.pollQueue.length === 0) {
+      alert('Por favor agrega al menos una pregunta a la lista de votación.');
       return;
     }
 
@@ -823,10 +988,8 @@ class WiseSheepApp {
     let candidates = [];
 
     if (candidateMode === 'ALL_PLAYERS') {
-      // Tomar a todos los jugadores conectados
       const playerIds = Object.keys(this.players);
       if (playerIds.length === 0) {
-        // En caso de prueba sin jugadores
         candidates = [
           { id: 'c1', name: 'Hermano Juan', avatar: '🐑', team: 'A' },
           { id: 'c2', name: 'Hermana María', avatar: '👑', team: 'B' },
@@ -861,16 +1024,21 @@ class WiseSheepApp {
       }));
     }
 
-    const timeLimit = parseInt(document.getElementById('poll-time-limit')?.value || '30');
-    const bonusPoints = parseInt(document.getElementById('poll-bonus-points')?.value || '0');
+    this.pollCandidates = candidates;
+    this.pollTimeLimit = parseInt(document.getElementById('poll-time-limit')?.value || '30');
+    this.pollBonusPoints = parseInt(document.getElementById('poll-bonus-points')?.value || '0');
 
+    this.currentPollIndex = 0;
     this.closeLaunchPollModal();
-    this.startVotingRound(questionText, candidates, timeLimit, bonusPoints);
+    this.startVotingRound(this.pollQueue[0], candidates, this.pollTimeLimit, this.pollBonusPoints);
   }
 
   startVotingRound(questionText, candidates, timeLimit, bonusPoints) {
     sounds.playFanfare();
-    this.previousStateBeforeVoting = this.roomStatus;
+    this.previousStateBeforeVoting = (this.roomStatus === 'VOTING' || this.roomStatus === 'VOTING_RESULTS')
+      ? this.previousStateBeforeVoting
+      : this.roomStatus;
+
     this.roomStatus = 'VOTING';
     this.currentPollQuestion = questionText;
     this.pollCandidates = candidates;
@@ -881,40 +1049,56 @@ class WiseSheepApp {
     // Cambiar vista del Host
     this.switchView('view-host-voting');
 
+    const counterEl = document.getElementById('voting-q-counter');
+    if (counterEl) {
+      counterEl.innerText = `Pregunta ${this.currentPollIndex + 1} de ${this.pollQueue.length}`;
+    }
+
     document.getElementById('voting-q-text').innerText = questionText;
     document.getElementById('voting-votes-count').innerText = '0';
     document.getElementById('voting-total-count').innerText = Object.keys(this.players).length;
     document.getElementById('voting-timer-circle').innerText = this.votingTimeLeft;
     document.getElementById('voting-status-desc').innerText = 'Esperando que todos los participantes elijan en su celular...';
 
-    // Ocultar card de ganador previo y botón continuar
+    // Ocultar card de ganador previo y botones
     document.getElementById('voting-winner-card').classList.add('hidden');
     document.getElementById('btn-voting-reveal').classList.remove('hidden');
+    document.getElementById('btn-voting-next-q').classList.add('hidden');
     document.getElementById('btn-voting-continue').classList.add('hidden');
 
-    // Renderizar candidatos en la pantalla del host
     this.renderHostVotingCandidates();
 
-    // Actualizar en Firestore para que los celulares abran la pantalla de votación
+    // Actualizar en Firestore para sincronizar celulares
     roomSync.createOrUpdateRoom(this.roomPin, {
       status: 'VOTING',
       pollQuestion: questionText,
+      pollIndex: this.currentPollIndex,
+      pollTotal: this.pollQueue.length,
       candidates,
       timeLimit,
       bonusPoints,
       pollStartTime: Date.now()
     });
 
-    // Iniciar temporizador de votación
     sounds.startTensionMusic();
     this.runVotingTimer(timeLimit);
+  }
+
+  nextVotingQuestion() {
+    sounds.playClick();
+    this.currentPollIndex++;
+    if (this.currentPollIndex < this.pollQueue.length) {
+      const nextQ = this.pollQueue[this.currentPollIndex];
+      this.startVotingRound(nextQ, this.pollCandidates, this.pollTimeLimit, this.pollBonusPoints);
+    } else {
+      this.returnToGameAfterVoting();
+    }
   }
 
   renderHostVotingCandidates() {
     const grid = document.getElementById('voting-candidates-grid');
     if (!grid) return;
 
-    // Contar votos por candidato
     const voteCounts = {};
     this.pollCandidates.forEach(c => voteCounts[c.id] = 0);
     Object.values(this.receivedVotes).forEach(candId => {
@@ -936,7 +1120,6 @@ class WiseSheepApp {
               <div class="text-[11px] text-slate-400 font-semibold">${count} voto(s)</div>
             </div>
           </div>
-          <!-- Barra de progreso de votos -->
           <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
             <div class="bg-gradient-to-r from-amber-500 to-yellow-400 h-full transition-all duration-300" style="width: ${pct}%;"></div>
           </div>
@@ -993,7 +1176,6 @@ class WiseSheepApp {
       window.confetti({ particleCount: 130, spread: 80, origin: { y: 0.5 } });
     }
 
-    // Calcular quién obtuvo más votos
     const voteCounts = {};
     this.pollCandidates.forEach(c => voteCounts[c.id] = 0);
     Object.values(this.receivedVotes).forEach(candId => {
@@ -1011,37 +1193,51 @@ class WiseSheepApp {
       }
     });
 
-    // Si hay bonificación de puntos, otorgarla
     if (this.pollBonusPoints > 0 && this.players[winner.id]) {
       this.players[winner.id].score = (this.players[winner.id].score || 0) + this.pollBonusPoints;
       roomSync.registerPlayer(this.roomPin, winner.id, this.players[winner.id]);
     }
 
-    // Mostrar ganador en la pantalla
     const winnerCard = document.getElementById('voting-winner-card');
     const winnerName = document.getElementById('voting-winner-name');
     const winnerVotes = document.getElementById('voting-winner-votes');
 
     winnerName.innerText = `${winner.avatar} ${winner.name}`;
-    winnerVotes.innerText = `¡Con ${maxVotes} votos a favor! ${this.pollBonusPoints > 0 ? `(+${this.pollBonusPoints} pts acumulados)` : ''}`;
+    winnerVotes.innerText = `¡Con ${maxVotes} votos a favor! ${this.pollBonusPoints > 0 ? `(+ ${this.pollBonusPoints} pts acumulados)` : ''}`;
     winnerCard.classList.remove('hidden');
 
     document.getElementById('voting-status-desc').innerText = '¡Votación finalizada con éxito!';
     document.getElementById('btn-voting-reveal').classList.add('hidden');
-    document.getElementById('btn-voting-continue').classList.remove('hidden');
 
-    // Notificar a Firestore para que los celulares vean quién ganó
+    const nextBtn = document.getElementById('btn-voting-next-q');
+    const continueBtn = document.getElementById('btn-voting-continue');
+
+    if (this.currentPollIndex + 1 < this.pollQueue.length) {
+      if (nextBtn) {
+        nextBtn.classList.remove('hidden');
+        nextBtn.innerHTML = `<span>Siguiente Votación (${this.currentPollIndex + 2} de ${this.pollQueue.length})</span> <span>➡️</span>`;
+      }
+      if (continueBtn) continueBtn.classList.add('hidden');
+    } else {
+      if (nextBtn) nextBtn.classList.add('hidden');
+      if (continueBtn) {
+        continueBtn.classList.remove('hidden');
+        continueBtn.innerHTML = '<span>➡️</span> Finalizar y Continuar Trivia';
+      }
+    }
+
     roomSync.createOrUpdateRoom(this.roomPin, {
       status: 'VOTING_RESULTS',
       winner,
       maxVotes,
+      pollIndex: this.currentPollIndex,
+      pollTotal: this.pollQueue.length,
       pollQuestion: this.currentPollQuestion
     });
   }
 
   returnToGameAfterVoting() {
     sounds.playClick();
-    // Volver al estado anterior
     if (this.previousStateBeforeVoting === 'QUESTION') {
       this.startQuestion(this.currentQIndex);
     } else if (this.previousStateBeforeVoting === 'LEADERBOARD') {
@@ -1053,12 +1249,350 @@ class WiseSheepApp {
   }
 
   // ==============================================================
+  // CUESTIONARIOS PERSONALES CON CLASIFICACIÓN PROPIA
+  // ==============================================================
+
+  loadCustomQuestionnaires() {
+    try {
+      const raw = localStorage.getItem('ws_custom_questionnaires');
+      if (raw) {
+        this.customQuestionnaires = JSON.parse(raw);
+      } else {
+        this.customQuestionnaires = [
+          {
+            id: 'quiz_jovenes_demo',
+            title: 'Cuestionario Jóvenes Valientes',
+            classification: 'Jóvenes',
+            description: 'Preguntas preparadas especialmente para la juventud',
+            createdAt: Date.now(),
+            questions: [
+              {
+                id: 'cq_1',
+                level: 'CUSTOM',
+                category: 'Jóvenes',
+                customCategory: 'Jóvenes',
+                question: '¿Con qué arma venció el joven David a Goliat en el valle de Ela?',
+                options: ['Una espada de bronce', 'Una honda y una piedra lisa', 'Un arco con flechas de fuego', 'Una lanza con punta de hierro'],
+                correctAnswer: 1,
+                verse: '1 Samuel 17:50',
+                explanation: 'Así venció David al filisteo con honda y piedra en el nombre de Jehová de los ejércitos.'
+              },
+              {
+                id: 'cq_2',
+                level: 'CUSTOM',
+                category: 'Jóvenes',
+                customCategory: 'Jóvenes',
+                question: '¿Qué joven profeta respondió a Dios en la noche: "Habla, porque tu siervo oye"?',
+                options: ['Samuel', 'Jeremías', 'Daniel', 'Josías'],
+                correctAnswer: 0,
+                verse: '1 Samuel 3:10',
+                explanation: 'Samuel escuchó el llamado de Dios en el santuario de Silo.'
+              },
+              {
+                id: 'cq_3',
+                level: 'CUSTOM',
+                category: 'Jóvenes',
+                customCategory: 'Jóvenes',
+                question: '¿A qué joven apóstol le escribió Pablo: "Ninguno tenga en poco tu juventud, sino sé ejemplo"?',
+                options: ['Tito', 'Timoteo', 'Lucas', 'Onésimo'],
+                correctAnswer: 1,
+                verse: '1 Timoteo 4:12',
+                explanation: 'Pablo aconsejó a Timoteo a ser ejemplo en palabra, conducta, amor, fe y pureza.'
+              }
+            ]
+          }
+        ];
+        this.saveCustomQuestionnaires();
+      }
+
+      if (this.customQuestionnaires.length > 0) {
+        this.selectedCustomQuizId = this.customQuestionnaires[0].id;
+      }
+    } catch (e) {
+      console.warn('Error cargando cuestionarios personales:', e);
+      this.customQuestionnaires = [];
+    }
+  }
+
+  saveCustomQuestionnaires() {
+    try {
+      localStorage.setItem('ws_custom_questionnaires', JSON.stringify(this.customQuestionnaires));
+    } catch (e) {
+      console.error('Error guardando cuestionarios personales:', e);
+    }
+  }
+
+  openCustomQuizModal() {
+    sounds.playClick();
+    document.getElementById('modal-custom-quiz')?.classList.remove('hidden');
+    this.switchCustomQuizTab('LIST');
+    this.renderCustomQuizList();
+  }
+
+  closeCustomQuizModal() {
+    sounds.playClick();
+    document.getElementById('modal-custom-quiz')?.classList.add('hidden');
+    this.populateCustomQuizSelect();
+  }
+
+  switchCustomQuizTab(tab) {
+    sounds.playClick();
+    ['LIST', 'CREATE', 'ADD_Q'].forEach(t => {
+      const btn = document.getElementById(`cqtab-${t}`);
+      const view = document.getElementById(`cq-view-${t === 'LIST' ? 'list' : t === 'CREATE' ? 'create' : 'add-q'}`);
+      if (btn) {
+        if (t === tab) {
+          btn.className = 'px-3.5 py-1.5 rounded-xl bg-purple-600 text-white font-bold transition';
+        } else {
+          btn.className = 'px-3.5 py-1.5 rounded-xl bg-slate-800 text-slate-300 font-semibold hover:bg-slate-700 transition';
+        }
+      }
+      if (view) {
+        if (t === tab) view.classList.remove('hidden');
+        else view.classList.add('hidden');
+      }
+    });
+
+    if (tab === 'LIST') this.renderCustomQuizList();
+  }
+
+  renderCustomQuizList() {
+    const container = document.getElementById('cq-list-container');
+    if (!container) return;
+
+    if (this.customQuestionnaires.length === 0) {
+      container.innerHTML = `
+        <div class="text-center py-10 bg-slate-800/40 border border-slate-700/50 rounded-2xl p-6">
+          <span class="text-4xl block mb-2">⭐</span>
+          <h4 class="font-bold text-white text-base">Aún no has creado ningún cuestionario personal</h4>
+          <p class="text-xs text-slate-400 mt-1 max-w-sm mx-auto">Crea cuestionarios temáticos con tu propia clasificación (ej. Jóvenes, Retiro, Campamento, etc.).</p>
+          <button onclick="app.switchCustomQuizTab('CREATE')" class="btn-3d mt-4 px-5 py-2.5 bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs rounded-xl">
+            ➕ Crear mi primer cuestionario
+          </button>
+        </div>
+      `;
+      return;
+    }
+
+    container.innerHTML = this.customQuestionnaires.map((quiz, idx) => `
+      <div class="bg-slate-800/80 border border-slate-700/80 rounded-2xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-lg">
+        <div class="flex-1">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="bg-purple-900/80 text-purple-200 border border-purple-500/50 px-2.5 py-0.5 rounded-lg text-[10px] font-black uppercase tracking-wider">
+              ⭐ ${quiz.classification || 'Personal'}
+            </span>
+            <span class="text-xs text-slate-400 font-medium">${(quiz.questions || []).length} preguntas</span>
+          </div>
+          <h4 class="font-black text-white text-base">${quiz.title}</h4>
+          ${quiz.description ? `<p class="text-xs text-slate-300 mt-0.5">${quiz.description}</p>` : ''}
+        </div>
+        <div class="flex items-center gap-2 w-full sm:w-auto justify-end shrink-0">
+          <button onclick="app.editCustomQuiz('${quiz.id}')" class="btn-3d px-3 py-1.5 bg-slate-700 hover:bg-slate-600 text-white rounded-xl text-xs font-bold flex items-center gap-1" title="Ver y agregar preguntas">
+            <span>✏️</span> Preguntas (${(quiz.questions || []).length})
+          </button>
+          <button onclick="app.selectCustomQuizForGame('${quiz.id}')" class="btn-3d px-3.5 py-1.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 text-white rounded-xl text-xs font-black glow-gold flex items-center gap-1" title="Jugar con este cuestionario">
+            <span>▶️</span> Jugar
+          </button>
+          <button onclick="app.deleteCustomQuiz('${quiz.id}')" class="p-1.5 text-slate-400 hover:text-red-400 rounded-lg text-sm" title="Eliminar cuestionario">
+            🗑️
+          </button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  saveNewCustomQuiz() {
+    const title = document.getElementById('cq-input-title')?.value.trim();
+    const classification = document.getElementById('cq-input-classification')?.value.trim();
+    const desc = document.getElementById('cq-input-desc')?.value.trim();
+
+    if (!title || !classification) {
+      alert('Por favor escribe el título y tu clasificación personal.');
+      return;
+    }
+
+    const newQuiz = {
+      id: 'quiz_' + Date.now() + '_' + Math.random().toString(36).substring(2, 6),
+      title,
+      classification,
+      description: desc,
+      createdAt: Date.now(),
+      questions: []
+    };
+
+    this.customQuestionnaires.unshift(newQuiz);
+    this.saveCustomQuestionnaires();
+    this.populateCustomQuizSelect();
+
+    document.getElementById('cq-input-title').value = '';
+    document.getElementById('cq-input-classification').value = '';
+    document.getElementById('cq-input-desc').value = '';
+
+    this.editCustomQuiz(newQuiz.id);
+  }
+
+  editCustomQuiz(id) {
+    const quiz = this.customQuestionnaires.find(q => q.id === id);
+    if (!quiz) return;
+
+    this.activeEditingQuizId = id;
+    const addQTab = document.getElementById('cqtab-ADD_Q');
+    if (addQTab) addQTab.classList.remove('hidden');
+
+    document.getElementById('cq-active-title').innerText = quiz.title;
+    document.getElementById('cq-active-classification').innerText = `⭐ Clasificación Propia: ${quiz.classification}`;
+
+    this.switchCustomQuizTab('ADD_Q');
+    this.renderActiveQuizQuestions();
+  }
+
+  saveQuestionToActiveQuiz() {
+    const quiz = this.customQuestionnaires.find(q => q.id === this.activeEditingQuizId);
+    if (!quiz) return;
+
+    const qText = document.getElementById('cq-q-text')?.value.trim();
+    const opt0 = document.getElementById('cq-opt-0')?.value.trim();
+    const opt1 = document.getElementById('cq-opt-1')?.value.trim();
+    const opt2 = document.getElementById('cq-opt-2')?.value.trim();
+    const opt3 = document.getElementById('cq-opt-3')?.value.trim();
+    const correctVal = document.querySelector('input[name="cq-correct-opt"]:checked')?.value || '0';
+    const verse = document.getElementById('cq-q-verse')?.value.trim() || 'Cuestionario Personal';
+    const explanation = document.getElementById('cq-q-explanation')?.value.trim() || 'Pregunta personalizada del anfitrión.';
+
+    if (!qText || !opt0 || !opt1) {
+      alert('Por favor escribe la pregunta y al menos dos opciones.');
+      return;
+    }
+
+    const options = [opt0, opt1];
+    if (opt2) options.push(opt2);
+    if (opt3) options.push(opt3);
+
+    const newQ = {
+      id: `cq_${Date.now()}_` + Math.random().toString(36).substring(2, 6),
+      level: 'CUSTOM',
+      category: quiz.classification || 'Personal',
+      customCategory: quiz.classification || 'Personal',
+      type: options.length === 2 ? 'TRUE_FALSE' : 'MULTIPLE_CHOICE',
+      question: qText,
+      options,
+      correctAnswer: Math.min(options.length - 1, parseInt(correctVal) || 0),
+      verse,
+      explanation
+    };
+
+    if (!quiz.questions) quiz.questions = [];
+    quiz.questions.push(newQ);
+    this.saveCustomQuestionnaires();
+
+    document.getElementById('cq-q-text').value = '';
+    document.getElementById('cq-opt-0').value = '';
+    document.getElementById('cq-opt-1').value = '';
+    document.getElementById('cq-opt-2').value = '';
+    document.getElementById('cq-opt-3').value = '';
+    document.getElementById('cq-q-verse').value = '';
+    document.getElementById('cq-q-explanation').value = '';
+
+    sounds.playCorrect();
+    this.renderActiveQuizQuestions();
+    this.populateCustomQuizSelect();
+  }
+
+  renderActiveQuizQuestions() {
+    const list = document.getElementById('cq-active-questions-list');
+    const quiz = this.customQuestionnaires.find(q => q.id === this.activeEditingQuizId);
+    if (!list || !quiz) return;
+
+    if (!quiz.questions || quiz.questions.length === 0) {
+      list.innerHTML = '<span class="text-slate-400 italic text-[11px]">Aún no hay preguntas agregadas a este cuestionario.</span>';
+      return;
+    }
+
+    list.innerHTML = quiz.questions.map((q, idx) => `
+      <div class="bg-slate-800/90 border border-slate-700 rounded-xl p-3 text-xs space-y-1 relative">
+        <div class="flex items-center justify-between">
+          <span class="font-bold text-amber-300">#${idx + 1}. ${q.question}</span>
+          <button onclick="app.deleteQuestionFromQuiz('${q.id}')" class="text-slate-400 hover:text-red-400 p-1 text-sm leading-none" title="Eliminar pregunta">✕</button>
+        </div>
+        <div class="grid grid-cols-2 gap-1 text-[11px] pt-1">
+          ${q.options.map((opt, oIdx) => `
+            <span class="${oIdx === q.correctAnswer ? 'text-emerald-300 font-bold' : 'text-slate-400'}">
+              ${oIdx === q.correctAnswer ? '✓ ' : '• '}${opt}
+            </span>
+          `).join('')}
+        </div>
+      </div>
+    `).join('');
+  }
+
+  deleteQuestionFromQuiz(qId) {
+    const quiz = this.customQuestionnaires.find(q => q.id === this.activeEditingQuizId);
+    if (!quiz) return;
+    quiz.questions = quiz.questions.filter(q => q.id !== qId);
+    this.saveCustomQuestionnaires();
+    this.renderActiveQuizQuestions();
+    this.populateCustomQuizSelect();
+  }
+
+  deleteCustomQuiz(id) {
+    if (!confirm('¿Estás seguro de que deseas eliminar este cuestionario personal?')) return;
+    this.customQuestionnaires = this.customQuestionnaires.filter(q => q.id !== id);
+    this.saveCustomQuestionnaires();
+    this.renderCustomQuizList();
+    this.populateCustomQuizSelect();
+  }
+
+  populateCustomQuizSelect() {
+    const select = document.getElementById('setup-custom-quiz-select');
+    const info = document.getElementById('setup-custom-quiz-info');
+    if (!select) return;
+
+    if (this.customQuestionnaires.length === 0) {
+      select.innerHTML = '<option value="">(No has creado cuestionarios aún)</option>';
+      if (info) info.innerText = 'Crea uno con el botón "➕ Crear / Gestionar"';
+      return;
+    }
+
+    select.innerHTML = this.customQuestionnaires.map(q => `
+      <option value="${q.id}" ${q.id === this.selectedCustomQuizId ? 'selected' : ''}>
+        ⭐ [${q.classification}] ${q.title} (${(q.questions || []).length} preguntas)
+      </option>
+    `).join('');
+
+    const current = this.customQuestionnaires.find(q => q.id === this.selectedCustomQuizId) || this.customQuestionnaires[0];
+    if (current && info) {
+      this.selectedCustomQuizId = current.id;
+      info.innerText = `Clasificación propia: "${current.classification}" • ${(current.questions || []).length} preguntas disponibles`;
+    }
+  }
+
+  handleCustomQuizSelect(quizId) {
+    this.selectedCustomQuizId = quizId;
+    const current = this.customQuestionnaires.find(q => q.id === quizId);
+    const info = document.getElementById('setup-custom-quiz-info');
+    if (current && info) {
+      info.innerText = `Clasificación propia: "${current.classification}" • ${(current.questions || []).length} preguntas disponibles`;
+    }
+  }
+
+  selectCustomQuizForGame(quizId) {
+    this.selectedCustomQuizId = quizId;
+    this.closeCustomQuizModal();
+    this.startHostSetup();
+    this.selectDifficulty('CUSTOM');
+    this.handleCustomQuizSelect(quizId);
+  }
+
+  // ==============================================================
   // FLUJO DEL JUGADOR (MÓVIL / SMARTPHONE)
   // ==============================================================
 
   startPlayerJoin() {
     sounds.playClick();
     this.isHost = false;
+    this.myScore = 0;
+    this.myStreak = 0;
+    this.maxStreak = 0;
     this.switchView('view-player-join');
   }
 
@@ -1103,6 +1637,9 @@ class WiseSheepApp {
     sounds.playClick();
     this.roomPin = pin;
     this.myPlayerName = name;
+    this.myScore = 0;
+    this.myStreak = 0;
+    this.maxStreak = 0;
     roomSync.currentPin = pin;
 
     this.savePlayerSession();
@@ -1116,8 +1653,8 @@ class WiseSheepApp {
       name: this.myPlayerName,
       avatar: this.myAvatar,
       team: this.myTeam,
-      score: this.myScore || 0,
-      streak: this.myStreak || 0
+      score: 0,
+      streak: 0
     });
 
     this.startListeningAsPlayer(this.roomPin);
@@ -1147,12 +1684,21 @@ class WiseSheepApp {
 
   handlePlayerRoomUpdate(roomData) {
     if (this.isHost || !roomData || !roomData.status) return;
-
     console.log('📱 Actualización recibida en celular:', roomData.status);
 
     // 1. Estado: PREGUNTA DE TRIVIA ACTIVA
     if (roomData.status === 'QUESTION') {
       const qIndex = roomData.currentQuestionIndex ?? 0;
+
+      // Al iniciar la primera pregunta de una nueva partida, forzar puntaje en 0
+      if (qIndex === 0 && this.currentQIndex !== 0) {
+        this.myScore = 0;
+        this.myStreak = 0;
+        this.maxStreak = 0;
+        const scoreEl = document.getElementById('player-game-score');
+        if (scoreEl) scoreEl.innerText = '0';
+        this.savePlayerSession();
+      }
 
       if (this.currentQIndex !== qIndex || this.currentView !== 'view-player-game') {
         this.currentQIndex = qIndex;
@@ -1351,6 +1897,11 @@ class WiseSheepApp {
     } else {
       teamBanner.classList.add('hidden');
     }
+
+    // Limpiar sesión guardada para que en el próximo juego empiece desde cero
+    try {
+      localStorage.removeItem('ws_player_session');
+    } catch (e) {}
   }
 
   async submitPlayerAnswer(answerIndex) {
@@ -1379,45 +1930,108 @@ class WiseSheepApp {
 
   showQuestionsModal() {
     sounds.playClick();
-    document.getElementById('modal-questions').classList.remove('hidden');
+    document.getElementById('modal-questions')?.classList.remove('hidden');
+    this.questionSearchQuery = '';
+    const searchInput = document.getElementById('qsearch-input');
+    if (searchInput) searchInput.value = '';
     this.filterQuestionsList('ALL');
   }
 
   closeQuestionsModal() {
     sounds.playClick();
-    document.getElementById('modal-questions').classList.add('hidden');
+    document.getElementById('modal-questions')?.classList.add('hidden');
+  }
+
+  searchQuestionsList(query) {
+    this.questionSearchQuery = (query || '').toLowerCase().trim();
+    this.renderQuestionsScroll();
   }
 
   filterQuestionsList(filter) {
+    this.currentQuestionFilter = filter;
+
+    ['ALL', 'EASY', 'MEDIUM', 'HARD', 'CUSTOM'].forEach(f => {
+      const btn = document.getElementById(`qfilter-${f}`);
+      if (btn) {
+        if (f === filter) {
+          btn.className = f === 'CUSTOM'
+            ? 'px-3 py-1.5 rounded-xl bg-purple-600 text-white font-bold transition shrink-0'
+            : 'px-3 py-1.5 rounded-xl bg-cyan-600 text-white font-bold transition shrink-0';
+        } else {
+          btn.className = f === 'CUSTOM'
+            ? 'px-3 py-1.5 rounded-xl bg-purple-950/80 border border-purple-500/50 text-purple-200 font-bold hover:bg-purple-900 transition shrink-0'
+            : 'px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 font-semibold hover:bg-slate-700 transition shrink-0';
+        }
+      }
+    });
+
+    this.renderQuestionsScroll();
+  }
+
+  renderQuestionsScroll() {
     const listEl = document.getElementById('modal-questions-scroll');
     const totalEl = document.getElementById('modal-q-total');
     if (!listEl) return;
 
-    ['ALL', 'EASY', 'MEDIUM', 'HARD'].forEach(f => {
-      const btn = document.getElementById(`qfilter-${f}`);
-      if (btn) {
-        btn.className = f === filter
-          ? 'px-3 py-1.5 rounded-lg bg-cyan-600 text-white font-bold'
-          : 'px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-semibold hover:bg-slate-700';
-      }
-    });
+    let baseItems = [];
+    if (this.currentQuestionFilter === 'CUSTOM') {
+      this.customQuestionnaires.forEach(quiz => {
+        (quiz.questions || []).forEach(q => {
+          baseItems.push({
+            ...q,
+            customQuizTitle: quiz.title,
+            customCategory: quiz.classification || 'Personal'
+          });
+        });
+      });
+    } else if (this.currentQuestionFilter === 'ALL') {
+      baseItems = QUESTIONS_DATABASE;
+    } else {
+      baseItems = QUESTIONS_DATABASE.filter(q => q.level === this.currentQuestionFilter);
+    }
 
-    const items = filter === 'ALL'
-      ? QUESTIONS_DATABASE
-      : QUESTIONS_DATABASE.filter(q => q.level === filter);
+    let items = baseItems;
+    if (this.questionSearchQuery) {
+      items = items.filter(q =>
+        q.question.toLowerCase().includes(this.questionSearchQuery) ||
+        (q.category && q.category.toLowerCase().includes(this.questionSearchQuery)) ||
+        (q.verse && q.verse.toLowerCase().includes(this.questionSearchQuery)) ||
+        (q.explanation && q.explanation.toLowerCase().includes(this.questionSearchQuery)) ||
+        (q.customCategory && q.customCategory.toLowerCase().includes(this.questionSearchQuery))
+      );
+    }
 
     if (totalEl) totalEl.innerText = items.length;
 
+    if (items.length === 0) {
+      listEl.innerHTML = `
+        <div class="text-center py-12 text-slate-400">
+          <span class="text-3xl block mb-2">🔍</span>
+          <p class="font-bold">No se encontraron preguntas que coincidan con la búsqueda.</p>
+          ${this.currentQuestionFilter === 'CUSTOM' ? '<button onclick="app.openCustomQuizModal()" class="mt-3 px-4 py-2 bg-purple-600 text-white rounded-xl text-xs font-bold">➕ Crear preguntas en Cuestionarios Personales</button>' : ''}
+        </div>
+      `;
+      return;
+    }
+
     listEl.innerHTML = items.map((q, idx) => {
-      const lvl = QUESTION_LEVELS[q.level] || QUESTION_LEVELS.EASY;
+      const isCustom = q.level === 'CUSTOM';
+      const lvl = isCustom
+        ? { name: `⭐ ${q.customCategory || 'Personal'}`, badge: '⭐' }
+        : (QUESTION_LEVELS[q.level] || QUESTION_LEVELS.EASY);
+
       return `
-        <div class="bg-slate-800/80 border border-slate-700/80 rounded-2xl p-4 text-xs">
+        <div class="bg-slate-800/80 border ${isCustom ? 'border-purple-500/40' : 'border-slate-700/80'} rounded-2xl p-4 text-xs shadow">
           <div class="flex items-center justify-between mb-2">
-            <span class="bg-slate-700 text-cyan-300 font-bold px-2 py-0.5 rounded">#${idx + 1} - ${q.category}</span>
-            <span class="text-amber-300 font-semibold">${lvl.badge} ${lvl.name}</span>
+            <span class="${isCustom ? 'bg-purple-900/80 text-purple-200' : 'bg-slate-700 text-cyan-300'} font-bold px-2 py-0.5 rounded">
+              #${idx + 1} - ${q.category || q.customCategory}
+            </span>
+            <span class="${isCustom ? 'text-purple-300 font-bold' : 'text-amber-300 font-semibold'}">
+              ${lvl.badge} ${lvl.name}
+            </span>
           </div>
-          <p class="font-bold text-sm text-white mb-2">${q.question}</p>
-          <div class="grid grid-cols-2 gap-1.5 mb-2">
+          <p class="font-bold text-sm text-white mb-2 leading-snug">${q.question}</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5 mb-2">
             ${q.options.map((opt, oIdx) => `
               <div class="p-1.5 rounded-lg ${oIdx === q.correctAnswer ? 'bg-emerald-900/60 border border-emerald-500 text-emerald-200 font-bold' : 'bg-slate-900/60 text-slate-400'}">
                 ${oIdx === q.correctAnswer ? '✓ ' : ''}${opt}
@@ -1434,7 +2048,7 @@ class WiseSheepApp {
 
   showSettingsModal() {
     sounds.playClick();
-    document.getElementById('modal-settings').classList.remove('hidden');
+    document.getElementById('modal-settings')?.classList.remove('hidden');
     const apiKey = localStorage.getItem('ws_fb_apiKey') || DEFAULT_FIREBASE_CONFIG.apiKey;
     const appId = localStorage.getItem('ws_fb_appId') || DEFAULT_FIREBASE_CONFIG.appId;
     document.getElementById('cfg-api-key').value = apiKey;
@@ -1443,7 +2057,7 @@ class WiseSheepApp {
 
   closeSettingsModal() {
     sounds.playClick();
-    document.getElementById('modal-settings').classList.add('hidden');
+    document.getElementById('modal-settings')?.classList.add('hidden');
   }
 
   saveFirebaseSettings() {
