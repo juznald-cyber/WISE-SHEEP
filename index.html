@@ -226,9 +226,9 @@
                 <input type="radio" name="game-mode" value="TEAMS" checked onchange="app.updateModeSelection(this.value)" class="text-indigo-600 focus:ring-0" />
                 <div>
                   <div class="font-bold text-white flex items-center gap-2">
-                    <span>⚔️</span> Por Equipos (Hombres vs Mujeres)
+                    <span>⚔️</span> Por Equipos (Hasta 7 Equipos)
                   </div>
-                  <div class="text-xs text-indigo-300">Suman puntos juntos y compiten por bando</div>
+                  <div class="text-xs text-indigo-300">Compite en bandos con nombres personalizados</div>
                 </div>
               </label>
 
@@ -241,6 +241,37 @@
                   <div class="text-xs text-slate-400">Cada persona acumula sus propios puntos</div>
                 </div>
               </label>
+            </div>
+          </div>
+
+          <!-- Panel de Configuración de Equipos (Hasta 7 equipos editables) -->
+          <div id="setup-teams-panel" class="space-y-3 bg-slate-800/40 border border-slate-700/60 rounded-2xl p-4 sm:p-5">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-700/60 pb-3">
+              <div>
+                <h4 class="font-bold text-sm text-white flex items-center gap-2">
+                  <span>⚔️</span> Equipos en Competencia (<span id="setup-teams-count-label" class="text-amber-400 font-extrabold">2</span> de 7):
+                </h4>
+                <p class="text-[11px] text-slate-400">Edita los nombres a tu gusto o agrega más equipos (hasta 7).</p>
+              </div>
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <button type="button" onclick="app.setTeamsPreset(2)" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-[11px] font-semibold border border-slate-700">
+                  2 Equipos
+                </button>
+                <button type="button" onclick="app.setTeamsPreset(3)" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-[11px] font-semibold border border-slate-700">
+                  3 Equipos
+                </button>
+                <button type="button" onclick="app.setTeamsPreset(4)" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-[11px] font-semibold border border-slate-700">
+                  4 Equipos
+                </button>
+                <button type="button" onclick="app.addTeam()" id="btn-add-team" class="px-3 py-1.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold text-xs flex items-center gap-1 shadow">
+                  <span>➕</span> Agregar
+                </button>
+              </div>
+            </div>
+
+            <!-- Lista editable de equipos -->
+            <div id="setup-teams-list" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <!-- Dynamically populated team editors -->
             </div>
           </div>
 
@@ -437,33 +468,9 @@
         </div>
       </div>
 
-      <!-- Mode & Players Container -->
-      <div id="lobby-teams-container" class="grid grid-cols-1 md:grid-cols-2 gap-6 flex-1 mb-6">
-        <!-- Team A: Hombres -->
-        <div class="bg-blue-950/40 border-2 border-blue-500/40 rounded-3xl p-5 flex flex-col">
-          <div class="flex items-center justify-between border-b border-blue-800/50 pb-3 mb-4">
-            <h4 class="font-extrabold text-xl text-blue-300 flex items-center gap-2">
-              <span>🦁</span> Equipo Hombres
-            </h4>
-            <span id="team-a-count" class="bg-blue-900/80 text-blue-200 text-xs px-2.5 py-1 rounded-full font-bold">0 miembros</span>
-          </div>
-          <div id="team-a-players" class="flex-1 flex flex-wrap gap-2.5 content-start min-h-[120px]">
-            <!-- Player tags -->
-          </div>
-        </div>
-
-        <!-- Team B: Mujeres -->
-        <div class="bg-pink-950/40 border-2 border-pink-500/40 rounded-3xl p-5 flex flex-col">
-          <div class="flex items-center justify-between border-b border-pink-800/50 pb-3 mb-4">
-            <h4 class="font-extrabold text-xl text-pink-300 flex items-center gap-2">
-              <span>👑</span> Equipo Mujeres
-            </h4>
-            <span id="team-b-count" class="bg-pink-900/80 text-pink-200 text-xs px-2.5 py-1 rounded-full font-bold">0 miembros</span>
-          </div>
-          <div id="team-b-players" class="flex-1 flex flex-wrap gap-2.5 content-start min-h-[120px]">
-            <!-- Player tags -->
-          </div>
-        </div>
+      <!-- Mode & Players Container (Dinámico para 2 hasta 7 equipos) -->
+      <div id="lobby-teams-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 flex-1 mb-6">
+        <!-- Generado dinámicamente según la cantidad de equipos configurados -->
       </div>
 
       <!-- Individual Players Container -->
@@ -584,15 +591,14 @@
         <p id="leaderboard-subtitle" class="text-slate-400 text-sm">Puntajes acumulados tras la ronda</p>
       </div>
 
-      <!-- Marcador de Equipos -->
+      <!-- Marcador Dinámico de Equipos (Hasta 7 Equipos) -->
       <div id="leaderboard-teams-banner" class="bg-slate-900 border border-slate-800 rounded-3xl p-5 mb-6 shadow-xl">
-        <div class="flex items-center justify-between mb-3 text-sm font-bold">
-          <span class="text-blue-400 flex items-center gap-1.5">🦁 Hombres: <span id="lb-score-team-a" class="text-white text-lg">0</span> pts</span>
-          <span class="text-pink-400 flex items-center gap-1.5">👑 Mujeres: <span id="lb-score-team-b" class="text-white text-lg">0</span> pts</span>
-        </div>
-        <div class="w-full bg-slate-800 h-4 rounded-full overflow-hidden flex">
-          <div id="lb-team-a-bar" class="bg-blue-500 h-full transition-all duration-500" style="width: 50%;"></div>
-          <div id="lb-team-b-bar" class="bg-pink-500 h-full transition-all duration-500" style="width: 50%;"></div>
+        <h4 class="text-xs uppercase tracking-widest text-slate-400 font-bold mb-3 flex items-center justify-between">
+          <span class="flex items-center gap-2"><span>⚔️</span> Tabla de Posiciones por Equipos</span>
+          <span id="lb-teams-round-note" class="text-amber-400 text-[11px] font-semibold">Puntajes Acumulados</span>
+        </h4>
+        <div id="leaderboard-teams-list" class="space-y-2.5">
+          <!-- Rendered dynamically for 2 to 7 teams -->
         </div>
       </div>
 
@@ -624,11 +630,12 @@
         ¡El Equipo Ganador es: 🦁 HOMBRES!
       </p>
 
-      <div class="flex items-end justify-center gap-3 md:gap-6 w-full max-w-lg mb-10 h-72">
+      <div class="flex items-end justify-center gap-3 md:gap-6 w-full max-w-lg mb-8 h-72">
         <div class="flex-1 flex flex-col items-center">
           <div class="text-3xl mb-1">🥈</div>
           <div id="podium-2nd-name" class="font-bold text-sm text-slate-200 truncate max-w-[100px]">Jugador 2</div>
-          <div id="podium-2nd-score" class="text-xs text-slate-400 font-semibold mb-2">0 pts</div>
+          <div id="podium-2nd-score" class="text-xs text-slate-400 font-semibold mb-1">0 pts</div>
+          <div id="podium-2nd-stats" class="text-[10px] text-slate-300 font-medium mb-2">0 aciertos</div>
           <div class="w-full bg-slate-700/80 border-t-4 border-slate-400 rounded-t-2xl h-36 flex items-center justify-center text-3xl font-black text-slate-300 shadow-xl">
             2
           </div>
@@ -637,7 +644,8 @@
         <div class="flex-1 flex flex-col items-center">
           <div class="text-4xl mb-1 animate-bounce-slow">👑</div>
           <div id="podium-1st-name" class="font-extrabold text-base text-amber-300 truncate max-w-[120px]">Campeón</div>
-          <div id="podium-1st-score" class="text-xs text-amber-200/90 font-bold mb-2">0 pts</div>
+          <div id="podium-1st-score" class="text-xs text-amber-200/90 font-bold mb-1">0 pts</div>
+          <div id="podium-1st-stats" class="text-[10px] text-amber-300 font-medium mb-2">0 aciertos</div>
           <div class="w-full bg-gradient-to-t from-amber-600 to-amber-500 border-t-4 border-yellow-200 rounded-t-2xl h-52 flex items-center justify-center text-4xl font-black text-slate-950 shadow-2xl glow-gold">
             1
           </div>
@@ -646,12 +654,16 @@
         <div class="flex-1 flex flex-col items-center">
           <div class="text-3xl mb-1">🥉</div>
           <div id="podium-3rd-name" class="font-bold text-sm text-amber-600 truncate max-w-[100px]">Jugador 3</div>
-          <div id="podium-3rd-score" class="text-xs text-slate-400 font-semibold mb-2">0 pts</div>
+          <div id="podium-3rd-score" class="text-xs text-slate-400 font-semibold mb-1">0 pts</div>
+          <div id="podium-3rd-stats" class="text-[10px] text-amber-500 font-medium mb-2">0 aciertos</div>
           <div class="w-full bg-amber-950/80 border-t-4 border-amber-700 rounded-t-2xl h-24 flex items-center justify-center text-3xl font-black text-amber-600 shadow-lg">
             3
           </div>
         </div>
       </div>
+
+      <!-- Resumen Final de Todos los Equipos -->
+      <div id="podium-teams-summary" class="w-full max-w-lg mb-8 space-y-2"></div>
 
       <div class="flex items-center gap-4">
         <button onclick="app.showHome()" class="btn-3d px-6 py-3.5 bg-slate-800 hover:bg-slate-700 text-white font-bold rounded-2xl text-sm border border-slate-700">
@@ -761,15 +773,10 @@
             <div class="flex justify-center gap-2" id="avatar-selector"></div>
           </div>
 
-          <div>
-            <label class="block text-xs uppercase tracking-wider font-bold text-slate-400 mb-1.5 text-center">Tu Equipo:</label>
-            <div class="grid grid-cols-2 gap-2">
-              <button type="button" onclick="app.selectPlayerTeam('A')" id="btn-player-team-a" class="p-3 rounded-2xl border-2 border-blue-500 bg-blue-600/30 text-blue-200 font-bold text-sm flex items-center justify-center gap-1.5">
-                <span>🦁</span> Hombres
-              </button>
-              <button type="button" onclick="app.selectPlayerTeam('B')" id="btn-player-team-b" class="p-3 rounded-2xl border-2 border-slate-700 bg-slate-800 text-slate-400 font-bold text-sm flex items-center justify-center gap-1.5">
-                <span>👑</span> Mujeres
-              </button>
+          <div id="player-team-selection-block">
+            <label class="block text-xs uppercase tracking-wider font-bold text-slate-400 mb-1.5 text-center">Elige tu Equipo:</label>
+            <div id="player-teams-list" class="grid grid-cols-2 gap-2">
+              <!-- Dynamically populated teams for 2 to 7 teams -->
             </div>
           </div>
 
@@ -896,7 +903,26 @@
           </div>
         </div>
 
-        <div id="player-final-team-banner" class="hidden p-3.5 rounded-2xl text-xs font-bold mb-5 border"></div>
+        <div id="player-final-team-banner" class="hidden p-3.5 rounded-2xl text-xs font-bold mb-4 border"></div>
+
+        <!-- Estadísticas Personales de Aciertos vs Fallos -->
+        <div class="grid grid-cols-2 gap-3 mb-4">
+          <div class="bg-emerald-950/60 border border-emerald-500/50 p-3 rounded-2xl text-center">
+            <span class="text-2xl mb-0.5 block">✅</span>
+            <span class="text-[10px] uppercase tracking-wider text-emerald-300 font-bold block">Acertadas</span>
+            <div id="player-stat-correct" class="text-2xl font-black text-emerald-400">0</div>
+          </div>
+          <div class="bg-red-950/60 border border-red-500/50 p-3 rounded-2xl text-center">
+            <span class="text-2xl mb-0.5 block">❌</span>
+            <span class="text-[10px] uppercase tracking-wider text-red-300 font-bold block">No Acertadas</span>
+            <div id="player-stat-incorrect" class="text-2xl font-black text-red-400">0</div>
+          </div>
+        </div>
+
+        <div class="bg-slate-800/80 border border-slate-700/80 p-3 rounded-xl text-xs text-slate-300 mb-4 flex items-center justify-between">
+          <span>🎯 Precisión de respuestas:</span>
+          <span id="player-stat-accuracy" class="font-extrabold text-cyan-300 text-sm">0%</span>
+        </div>
 
         <div class="flex items-center justify-center gap-2 text-xs text-slate-300 bg-slate-800/80 py-2 px-4 rounded-xl mb-6">
           <span>🔥</span> <span id="player-final-streak">Racha de aciertos: 0 seguidas</span>
@@ -1239,6 +1265,6 @@
     </div>
   </div>
 
-  <script type="module" src="./src/app.js"></script>
+  <script type="module" src="./src/app.js?v=2.2"></script>
 </body>
 </html>

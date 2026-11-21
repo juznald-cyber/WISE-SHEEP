@@ -3,6 +3,16 @@ import { QUESTIONS_DATABASE, QUESTION_LEVELS, QUESTION_TYPES, shuffleArray } fro
 import { sounds } from './services/sound.js';
 import { roomSync, DEFAULT_FIREBASE_CONFIG } from './services/firebase.js';
 
+export const DEFAULT_TEAMS = [
+  { id: 'T1', name: 'Hombres', icon: '🦁', color: 'from-blue-600 to-indigo-700', border: 'border-blue-500', bg: 'bg-blue-600/30', text: 'text-blue-200', barBg: 'bg-blue-500' },
+  { id: 'T2', name: 'Mujeres', icon: '👑', color: 'from-pink-600 to-rose-700', border: 'border-pink-500', bg: 'bg-pink-600/30', text: 'text-pink-200', barBg: 'bg-pink-500' },
+  { id: 'T3', name: 'Águilas', icon: '🦅', color: 'from-amber-500 to-yellow-600', border: 'border-amber-500', bg: 'bg-amber-600/30', text: 'text-amber-200', barBg: 'bg-amber-500' },
+  { id: 'T4', name: 'Corderos', icon: '🐑', color: 'from-emerald-500 to-teal-600', border: 'border-emerald-500', bg: 'bg-emerald-600/30', text: 'text-emerald-200', barBg: 'bg-emerald-500' },
+  { id: 'T5', name: 'Valientes', icon: '🔥', color: 'from-red-600 to-orange-600', border: 'border-red-500', bg: 'bg-red-600/30', text: 'text-red-200', barBg: 'bg-red-500' },
+  { id: 'T6', name: 'Vencedores', icon: '⚓', color: 'from-purple-600 to-indigo-600', border: 'border-purple-500', bg: 'bg-purple-600/30', text: 'text-purple-200', barBg: 'bg-purple-500' },
+  { id: 'T7', name: 'Mensajeros', icon: '🕊️', color: 'from-cyan-500 to-teal-600', border: 'border-cyan-500', bg: 'bg-cyan-600/30', text: 'text-cyan-200', barBg: 'bg-cyan-500' }
+];
+
 class WiseSheepApp {
   constructor() {
     this.currentView = 'view-home';
@@ -10,6 +20,9 @@ class WiseSheepApp {
     this.gameMode = 'TEAMS'; // 'TEAMS' | 'INDIVIDUAL'
     this.totalRounds = 3;
     this.questionsPerRound = 20;
+    this.teams = DEFAULT_TEAMS.slice(0, 2).map(t => ({ ...t })); // 2 a 7 equipos configurables
+    this.myCorrectCount = 0;
+    this.myIncorrectCount = 0;
     this.timeLimit = 20;
     this.autoCloseOnAllAnswered = true;
     this.leaderboardMode = 'MANUAL'; // 'MANUAL' | 'EVERY_ROUND' | 'END_ONLY'
@@ -51,7 +64,7 @@ class WiseSheepApp {
     this.myPlayerId = roomSync.playerId;
     this.myPlayerName = '';
     this.myAvatar = '🐑';
-    this.myTeam = 'A'; // 'A': Hombres, 'B': Mujeres
+    this.myTeam = 'T1'; // 'A': Hombres, 'B': Mujeres
     this.myScore = 0;
     this.myStreak = 0;
     this.maxStreak = 0;
@@ -69,6 +82,8 @@ class WiseSheepApp {
     this.loadCustomQuestionnaires();
     this.populateCustomQuizSelect();
     this.updateRoundsSummary();
+    this.renderSetupTeamsList();
+    this.renderPlayerTeamsList();
     this.checkSavedSession();
     this.checkUrlForPin();
 
@@ -226,6 +241,8 @@ class WiseSheepApp {
     this.isHost = true;
     this.switchView('view-host-setup');
     this.populateCustomQuizSelect();
+    this.renderSetupTeamsList();
+    this.updateRoundsSummary();
   }
 
   updateModeSelection(val) {
@@ -233,14 +250,150 @@ class WiseSheepApp {
     this.gameMode = val;
     const optTeams = document.getElementById('mode-opt-teams');
     const optIndiv = document.getElementById('mode-opt-indiv');
+    const teamsPanel = document.getElementById('setup-teams-panel');
     if (val === 'TEAMS') {
       optTeams.classList.add('border-indigo-600', 'bg-indigo-950/40');
       optIndiv.classList.remove('border-indigo-600', 'bg-indigo-950/40');
       optIndiv.classList.add('border-slate-800', 'bg-slate-900');
+      if (teamsPanel) teamsPanel.classList.remove('hidden');
     } else {
       optIndiv.classList.add('border-indigo-600', 'bg-indigo-950/40');
       optTeams.classList.remove('border-indigo-600', 'bg-indigo-950/40');
       optTeams.classList.add('border-slate-800', 'bg-slate-900');
+      if (teamsPanel) teamsPanel.classList.add('hidden');
+    }
+  }
+
+  // ==============================================================
+  // GESTOR DE EQUIPOS (HASTA 7 EQUIPOS PERSONALIZABLES)
+  // ==============================================================
+  renderSetupTeamsList() {
+    const list = document.getElementById('setup-teams-list');
+    const countLabel = document.getElementById('setup-teams-count-label');
+    const btnAdd = document.getElementById('btn-add-team');
+    if (countLabel) countLabel.innerText = this.teams.length;
+    if (btnAdd) {
+      if (this.teams.length >= 7) {
+        btnAdd.classList.add('opacity-50', 'cursor-not-allowed');
+        btnAdd.disabled = true;
+      } else {
+        btnAdd.classList.remove('opacity-50', 'cursor-not-allowed');
+        btnAdd.disabled = false;
+      }
+    }
+
+    if (!list) return;
+    list.innerHTML = this.teams.map((team, idx) => `
+      <div class="bg-slate-900 border ${team.border || 'border-slate-700'} rounded-2xl p-3 flex items-center justify-between gap-3 shadow-md">
+        <div class="flex items-center gap-2 flex-1 min-w-0">
+          <span class="text-2xl w-8 text-center shrink-0">${team.icon}</span>
+          <div class="flex-1 min-w-0">
+            <label class="text-[10px] text-slate-400 uppercase font-bold block">Equipo ${idx + 1}:</label>
+            <input type="text" value="${team.name}" maxlength="20" placeholder="Nombre del equipo" oninput="app.updateTeamName('${team.id}', this.value)" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-2.5 py-1 text-xs text-white font-bold outline-none focus:border-cyan-400" />
+          </div>
+        </div>
+        ${this.teams.length > 2 ? `
+          <button type="button" onclick="app.removeTeam('${team.id}')" class="text-slate-500 hover:text-red-400 text-sm p-1 transition shrink-0" title="Eliminar equipo">
+            ✕
+          </button>
+        ` : ''}
+      </div>
+    `).join('');
+  }
+
+  addTeam() {
+    if (this.teams.length >= 7) {
+      alert('Has alcanzado el límite máximo de 7 equipos.');
+      return;
+    }
+    sounds.playClick();
+    const nextIdx = this.teams.length;
+    const defaultData = DEFAULT_TEAMS[nextIdx] || {
+      id: 'T' + (nextIdx + 1),
+      name: 'Equipo ' + (nextIdx + 1),
+      icon: '🛡️',
+      color: 'from-slate-600 to-slate-800',
+      border: 'border-slate-500',
+      bg: 'bg-slate-800/40',
+      text: 'text-slate-200',
+      barBg: 'bg-slate-500'
+    };
+    this.teams.push({ ...defaultData });
+    this.renderSetupTeamsList();
+  }
+
+  removeTeam(teamId) {
+    if (this.teams.length <= 2) {
+      alert('Debe haber al menos 2 equipos para jugar en modalidad de equipos.');
+      return;
+    }
+    sounds.playClick();
+    this.teams = this.teams.filter(t => t.id !== teamId);
+    this.renderSetupTeamsList();
+  }
+
+  setTeamsPreset(count) {
+    sounds.playClick();
+    const clamped = Math.max(2, Math.min(7, count));
+    this.teams = DEFAULT_TEAMS.slice(0, clamped).map(t => ({ ...t }));
+    this.renderSetupTeamsList();
+  }
+
+  updateTeamName(teamId, newName) {
+    const t = this.teams.find(item => item.id === teamId);
+    if (t) {
+      t.name = (newName || '').trim() || ('Equipo ' + teamId);
+    }
+  }
+
+  getTeamById(teamId) {
+    return this.teams.find(t => t.id === teamId) || {
+      id: teamId,
+      name: 'Equipo ' + teamId,
+      icon: '🐑',
+      color: 'from-slate-600 to-slate-800',
+      border: 'border-slate-700',
+      bg: 'bg-slate-800/40',
+      text: 'text-slate-200',
+      barBg: 'bg-slate-500'
+    };
+  }
+
+  renderPlayerTeamsList() {
+    const list = document.getElementById('player-teams-list');
+    if (!list) return;
+
+    if (!this.myTeam || !this.teams.some(t => t.id === this.myTeam)) {
+      this.myTeam = this.teams[0]?.id || 'T1';
+    }
+
+    list.innerHTML = this.teams.map(team => {
+      const isSelected = this.myTeam === team.id;
+      const borderClass = isSelected ? 'border-amber-400 ring-2 ring-amber-400 bg-amber-500/20' : (team.border || 'border-slate-700');
+      return `
+        <button type="button" onclick="app.selectPlayerTeam('${team.id}')" id="btn-player-team-${team.id}" class="p-3 rounded-2xl border-2 ${borderClass} ${team.bg || 'bg-slate-800'} ${team.text || 'text-white'} font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition shadow-md">
+          <span class="text-xl">${team.icon}</span>
+          <span class="truncate">${team.name}</span>
+          ${isSelected ? '<span class="text-amber-400">✓</span>' : ''}
+        </button>
+      `;
+    }).join('');
+
+    const badge = document.getElementById('player-my-team-badge');
+    const myTeamObj = this.getTeamById(this.myTeam);
+    if (badge && myTeamObj) {
+      badge.innerText = `Equipo ${myTeamObj.name} ${myTeamObj.icon}`;
+    }
+  }
+
+  selectPlayerTeam(teamId) {
+    sounds.playClick();
+    this.myTeam = teamId;
+    this.renderPlayerTeamsList();
+    const teamObj = this.getTeamById(teamId);
+    const badge = document.getElementById('player-my-team-badge');
+    if (badge && teamObj) {
+      badge.innerText = `Equipo ${teamObj.name} ${teamObj.icon}`;
     }
   }
 
@@ -341,6 +494,8 @@ class WiseSheepApp {
     this.roomPin = roomSync.generatePin();
     roomSync.currentPin = this.roomPin;
 
+    this.totalRounds = this.getRoundsCount();
+    this.questionsPerRound = this.getQuestionsPerRound();
     this.updateRoundsSummary();
 
     this.timeLimit = parseInt(document.getElementById('setup-time-limit')?.value || '20');
@@ -365,6 +520,7 @@ class WiseSheepApp {
     if (this.gameMode === 'TEAMS') {
       teamsCont.classList.remove('hidden');
       indivCont.classList.add('hidden');
+      this.updateLobbyPlayersList();
     } else {
       teamsCont.classList.add('hidden');
       indivCont.classList.remove('hidden');
@@ -372,10 +528,11 @@ class WiseSheepApp {
 
     this.generateLobbyQRCode();
 
-    // 1. Guardar estado inicial en Firestore
+    // 1. Guardar estado inicial en Firestore con equipos completos
     roomSync.createOrUpdateRoom(this.roomPin, {
       status: 'LOBBY',
       mode: this.gameMode,
+      teams: this.teams,
       timeLimit: this.timeLimit,
       totalQuestions: this.activeQuestions.length,
       totalRounds: this.totalRounds,
@@ -491,33 +648,33 @@ class WiseSheepApp {
     if (pCountEl) pCountEl.innerText = playerIds.length;
 
     if (this.gameMode === 'TEAMS') {
-      const teamAPlayersEl = document.getElementById('team-a-players');
-      const teamBPlayersEl = document.getElementById('team-b-players');
-      const teamACountEl = document.getElementById('team-a-count');
-      const teamBCountEl = document.getElementById('team-b-count');
+      const teamsCont = document.getElementById('lobby-teams-container');
+      if (teamsCont) {
+        teamsCont.innerHTML = this.teams.map(team => {
+          const members = playerIds.filter(id => this.players[id].team === team.id);
+          const membersHtml = members.map(id => `
+            <div class="${team.bg || 'bg-slate-800'} ${team.text || 'text-slate-100'} px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 border ${team.border || 'border-slate-700'} shadow-sm">
+              <span>${this.players[id].avatar}</span>
+              <span class="truncate">${this.players[id].name}</span>
+            </div>
+          `).join('') || `<span class="text-xs ${team.text || 'text-slate-400'} opacity-60 italic">Esperando miembros...</span>`;
 
-      const teamA = playerIds.filter(id => this.players[id].team === 'A');
-      const teamB = playerIds.filter(id => this.players[id].team === 'B');
-
-      if (teamACountEl) teamACountEl.innerText = `${teamA.length} miembros`;
-      if (teamBCountEl) teamBCountEl.innerText = `${teamB.length} miembros`;
-
-      if (teamAPlayersEl) {
-        teamAPlayersEl.innerHTML = teamA.map(id => `
-          <div class="bg-blue-900/90 text-blue-100 px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 border border-blue-500/50 shadow-sm animate-pulse-fast">
-            <span>${this.players[id].avatar}</span>
-            <span>${this.players[id].name}</span>
-          </div>
-        `).join('') || '<span class="text-xs text-blue-400 italic">Esperando muchachos...</span>';
-      }
-
-      if (teamBPlayersEl) {
-        teamBPlayersEl.innerHTML = teamB.map(id => `
-          <div class="bg-pink-900/90 text-pink-100 px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 border border-pink-500/50 shadow-sm animate-pulse-fast">
-            <span>${this.players[id].avatar}</span>
-            <span>${this.players[id].name}</span>
-          </div>
-        `).join('') || '<span class="text-xs text-pink-400 italic">Esperando chicas...</span>';
+          return `
+            <div class="${team.bg || 'bg-slate-900'} border-2 ${team.border || 'border-slate-700'} rounded-3xl p-5 flex flex-col shadow-lg">
+              <div class="flex items-center justify-between border-b border-slate-700/50 pb-3 mb-4">
+                <h4 class="font-extrabold text-lg ${team.text || 'text-white'} flex items-center gap-2 truncate">
+                  <span>${team.icon}</span> ${team.name}
+                </h4>
+                <span class="text-xs bg-slate-900/80 px-2.5 py-1 rounded-full font-bold ${team.text || 'text-white'} border border-slate-700">
+                  ${members.length} miembros
+                </span>
+              </div>
+              <div class="flex-1 flex flex-wrap gap-2 content-start min-h-[90px]">
+                ${membersHtml}
+              </div>
+            </div>
+          `;
+        }).join('');
       }
     } else {
       const indivListEl = document.getElementById('indiv-players-list');
@@ -541,11 +698,17 @@ class WiseSheepApp {
 
     sounds.playClick();
 
-    // 1. REINICIAR PUNTOS Y RACHA DE TODOS LOS JUGADORES (CORRECCIÓN CRÍTICA DE ACUMULACIÓN)
+    // Re-asegurar que las rondas y preguntas se lean directamente de la configuración
+    this.totalRounds = this.getRoundsCount();
+    this.questionsPerRound = this.getQuestionsPerRound();
+
+    // 1. REINICIAR PUNTOS, RACHAS Y ESTADÍSTICAS DE ACIERTOS/FALLOS
     Object.keys(this.players).forEach(id => {
       if (this.players[id]) {
         this.players[id].score = 0;
         this.players[id].streak = 0;
+        this.players[id].correctCount = 0;
+        this.players[id].incorrectCount = 0;
         roomSync.registerPlayer(this.roomPin, id, this.players[id]);
       }
     });
@@ -696,8 +859,10 @@ class WiseSheepApp {
       if (isCorrect) {
         p.score = (p.score || 0) + pointsEarned;
         p.streak = (p.streak || 0) + 1;
+        p.correctCount = (p.correctCount || 0) + 1;
       } else {
         p.streak = 0;
+        p.incorrectCount = (p.incorrectCount || 0) + 1;
       }
       roomSync.registerPlayer(this.roomPin, playerId, p);
     }
@@ -768,7 +933,9 @@ class WiseSheepApp {
       avatar: p.avatar,
       team: p.team,
       score: p.score || 0,
-      streak: p.streak || 0
+      streak: p.streak || 0,
+      correctCount: p.correctCount || 0,
+      incorrectCount: p.incorrectCount || 0
     })).sort((a, b) => b.score - a.score);
 
     roomSync.createOrUpdateRoom(this.roomPin, {
@@ -832,27 +999,58 @@ class WiseSheepApp {
     }
 
     const teamBanner = document.getElementById('leaderboard-teams-banner');
-    let scoreTeamA = 0;
-    let scoreTeamB = 0;
+    const teamsListEl = document.getElementById('leaderboard-teams-list');
 
-    Object.values(this.players).forEach(p => {
-      if (p.team === 'A') scoreTeamA += p.score || 0;
-      if (p.team === 'B') scoreTeamB += p.score || 0;
-    });
+    // Calcular estadísticas para cada equipo configurado
+    const teamStats = this.teams.map(team => {
+      let score = 0;
+      let correct = 0;
+      let members = 0;
+      Object.values(this.players).forEach(p => {
+        if (p.team === team.id) {
+          score += p.score || 0;
+          correct += p.correctCount || 0;
+          members++;
+        }
+      });
+      return {
+        ...team,
+        score,
+        correct,
+        members
+      };
+    }).sort((a, b) => b.score - a.score);
 
     if (this.gameMode === 'TEAMS') {
-      teamBanner.classList.remove('hidden');
-      document.getElementById('lb-score-team-a').innerText = scoreTeamA.toLocaleString();
-      document.getElementById('lb-score-team-b').innerText = scoreTeamB.toLocaleString();
-
-      const total = scoreTeamA + scoreTeamB;
-      const pctA = total > 0 ? (scoreTeamA / total) * 100 : 50;
-      const pctB = total > 0 ? (scoreTeamB / total) * 100 : 50;
-
-      document.getElementById('lb-team-a-bar').style.width = `${pctA}%`;
-      document.getElementById('lb-team-b-bar').style.width = `${pctB}%`;
+      if (teamBanner) teamBanner.classList.remove('hidden');
+      if (teamsListEl) {
+        const maxScore = Math.max(1, ...teamStats.map(t => t.score));
+        teamsListEl.innerHTML = teamStats.map((team, idx) => {
+          const medal = idx === 0 ? '🥇' : idx === 1 ? '🥈' : idx === 2 ? '🥉' : `${idx + 1}°`;
+          const pct = Math.max(8, Math.round((team.score / maxScore) * 100));
+          return `
+            <div class="bg-slate-950/70 border ${team.border || 'border-slate-800'} rounded-2xl p-3.5 shadow-md">
+              <div class="flex items-center justify-between mb-2">
+                <div class="flex items-center gap-2">
+                  <span class="font-extrabold text-base w-7 text-center text-amber-400">${medal}</span>
+                  <span class="text-xl">${team.icon}</span>
+                  <span class="font-bold text-sm text-white">${team.name}</span>
+                  <span class="text-[10px] text-slate-400">(${team.members} jug)</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="text-xs text-emerald-400 font-semibold">✅ ${team.correct} aciertos</span>
+                  <span class="font-black text-lg text-cyan-400">${team.score.toLocaleString()} <span class="text-xs text-slate-400">pts</span></span>
+                </div>
+              </div>
+              <div class="w-full bg-slate-800 h-3 rounded-full overflow-hidden flex">
+                <div class="${team.barBg || 'bg-cyan-500'} h-full transition-all duration-700 rounded-full" style="width: ${pct}%;"></div>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
     } else {
-      teamBanner.classList.add('hidden');
+      if (teamBanner) teamBanner.classList.add('hidden');
     }
 
     const sorted = Object.entries(this.players).map(([id, p]) => ({
@@ -869,7 +1067,9 @@ class WiseSheepApp {
       lbList.innerHTML = sorted.map((p, idx) => {
         const medal = idx === 0 ? '🥇' : idx === 1 ? '🥈' : idx === 2 ? '🥉' : `${idx + 1}°`;
         const streakBadge = (p.streak && p.streak >= 2) ? `<span class="text-xs bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-full font-bold">🔥 Racha ${p.streak}</span>` : '';
-        const teamBadge = this.gameMode === 'TEAMS' ? (p.team === 'A' ? '🦁' : '👑') : '';
+        const tObj = this.getTeamById(p.team);
+        const teamBadge = this.gameMode === 'TEAMS' && tObj ? `<span class="text-xs ${tObj.text || 'text-cyan-300'} bg-slate-800 px-2 py-0.5 rounded-lg border border-slate-700">${tObj.icon} ${tObj.name}</span>` : '';
+        const accuracyStats = `<span class="text-[11px] text-slate-400">✅ ${p.correctCount || 0} | ❌ ${p.incorrectCount || 0}</span>`;
 
         return `
           <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex items-center justify-between shadow-lg">
@@ -881,6 +1081,7 @@ class WiseSheepApp {
                   <span>${p.name}</span> ${teamBadge}
                 </div>
                 ${streakBadge}
+                ${accuracyStats}
               </div>
             </div>
             <div class="font-extrabold text-xl text-cyan-400">
@@ -894,13 +1095,30 @@ class WiseSheepApp {
     roomSync.createOrUpdateRoom(this.roomPin, {
       status: 'LEADERBOARD',
       leaderboard: sorted,
-      scoreTeamA,
-      scoreTeamB
+      teamStats
     });
   }
 
   nextQuestionOrPodium() {
     sounds.playClick();
+    const currentRound = Math.floor(this.currentQIndex / this.questionsPerRound) + 1;
+    const questionInRound = (this.currentQIndex % this.questionsPerRound) + 1;
+    const isLastQuestionOfRound = (questionInRound === this.questionsPerRound) || (this.currentQIndex + 1 >= this.activeQuestions.length);
+    const isLastQuestionOfGame = (this.currentQIndex + 1 >= this.activeQuestions.length);
+
+    if (isLastQuestionOfGame) {
+      this.showFinalPodium();
+      return;
+    }
+
+    // Si estamos en la vista de juego y acaba de terminar la última pregunta de la ronda,
+    // mostrar el resumen intermedio de posiciones de equipos
+    if (this.currentView === 'view-host-game' && isLastQuestionOfRound) {
+      this.showLeaderboard();
+      return;
+    }
+
+    // Si ya estamos en el resumen o es una pregunta intermedia, avanzar a la siguiente pregunta
     if (this.currentQIndex + 1 < this.activeQuestions.length) {
       this.startQuestion(this.currentQIndex + 1);
     } else {
@@ -926,33 +1144,63 @@ class WiseSheepApp {
       }, 700);
     }
 
-    let scoreA = 0;
-    let scoreB = 0;
-    Object.values(this.players).forEach(p => {
-      if (p.team === 'A') scoreA += p.score || 0;
-      if (p.team === 'B') scoreB += p.score || 0;
-    });
+    const teamStats = this.teams.map(team => {
+      let score = 0;
+      let correct = 0;
+      let members = 0;
+      Object.values(this.players).forEach(p => {
+        if (p.team === team.id) {
+          score += p.score || 0;
+          correct += p.correctCount || 0;
+          members++;
+        }
+      });
+      return {
+        ...team,
+        score,
+        correct,
+        members
+      };
+    }).sort((a, b) => b.score - a.score);
 
-    let winningTeam = 'TIE';
-    if (scoreA > scoreB) winningTeam = 'A';
-    else if (scoreB > scoreA) winningTeam = 'B';
+    let winningTeam = teamStats[0]?.id || 'T1';
+    const isTie = teamStats.length > 1 && teamStats[0].score === teamStats[1].score && teamStats[0].score > 0;
 
+    const winText = document.getElementById('podium-winning-team-text');
     if (this.gameMode === 'TEAMS') {
-      const winText = document.getElementById('podium-winning-team-text');
       if (winText) {
-        if (winningTeam === 'A') {
-          winText.innerText = `¡El Equipo Ganador es: 🦁 HOMBRES (${scoreA.toLocaleString()} pts vs ${scoreB.toLocaleString()} pts)!`;
-          winText.className = 'text-blue-300 font-black text-xl md:text-2xl mb-8';
-        } else if (winningTeam === 'B') {
-          winText.innerText = `¡El Equipo Ganador es: 👑 MUJERES (${scoreB.toLocaleString()} pts vs ${scoreA.toLocaleString()} pts)!`;
-          winText.className = 'text-pink-300 font-black text-xl md:text-2xl mb-8';
+        if (isTie) {
+          winText.innerText = `¡EMPATE HISTÓRICO ENTRE ${teamStats[0].icon} ${teamStats[0].name} y ${teamStats[1].icon} ${teamStats[1].name} (${teamStats[0].score.toLocaleString()} pts)!`;
+          winText.className = 'text-amber-300 font-black text-xl md:text-2xl mb-6';
         } else {
-          winText.innerText = `¡EMPATE GLORIOSO ENTRE AMBOS EQUIPOS! (${scoreA.toLocaleString()} pts)`;
-          winText.className = 'text-amber-300 font-black text-xl md:text-2xl mb-8';
+          winText.innerText = `¡El Equipo Campeón es: ${teamStats[0].icon} ${teamStats[0].name.toUpperCase()} (${teamStats[0].score.toLocaleString()} pts)!`;
+          winText.className = 'text-amber-300 font-black text-xl md:text-2xl mb-6';
         }
       }
+
+      // Mostrar resumen de todos los equipos en el podio
+      const teamsSummaryEl = document.getElementById('podium-teams-summary');
+      if (teamsSummaryEl) {
+        teamsSummaryEl.innerHTML = `
+          <h4 class="text-xs uppercase tracking-widest text-slate-400 font-bold mb-2">Clasificación Final por Equipos:</h4>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-left">
+            ${teamStats.map((team, idx) => `
+              <div class="bg-slate-900/90 border ${team.border || 'border-slate-800'} rounded-xl p-3 flex items-center justify-between text-xs">
+                <div class="flex items-center gap-2">
+                  <span class="font-bold text-amber-400 w-5">${idx === 0 ? '🥇' : idx === 1 ? '🥈' : idx === 2 ? '🥉' : `${idx + 1}°`}</span>
+                  <span class="text-base">${team.icon}</span>
+                  <span class="font-bold text-white truncate max-w-[90px]">${team.name}</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-emerald-400 font-semibold">✅ ${team.correct}</span>
+                  <span class="font-bold text-cyan-300">${team.score.toLocaleString()} pts</span>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      }
     } else {
-      const winText = document.getElementById('podium-winning-team-text');
       if (winText) winText.innerText = '¡Felicitaciones a los más sabios de las Escrituras!';
     }
 
@@ -962,20 +1210,28 @@ class WiseSheepApp {
       avatar: p.avatar,
       team: p.team,
       score: p.score || 0,
-      streak: p.streak || 0
+      streak: p.streak || 0,
+      correctCount: p.correctCount || 0,
+      incorrectCount: p.incorrectCount || 0
     })).sort((a, b) => b.score - a.score);
 
-    const p1 = sorted[0] || { name: '---', score: 0, avatar: '👑' };
+    const p1 = sorted[0] || { name: '---', score: 0, avatar: '👑', correctCount: 0, incorrectCount: 0 };
     document.getElementById('podium-1st-name').innerText = `${p1.avatar} ${p1.name}`;
     document.getElementById('podium-1st-score').innerText = `${p1.score || 0} pts`;
+    const s1 = document.getElementById('podium-1st-stats');
+    if (s1) s1.innerText = `✅ ${p1.correctCount || 0} | ❌ ${p1.incorrectCount || 0}`;
 
-    const p2 = sorted[1] || { name: '---', score: 0, avatar: '🥈' };
+    const p2 = sorted[1] || { name: '---', score: 0, avatar: '🥈', correctCount: 0, incorrectCount: 0 };
     document.getElementById('podium-2nd-name').innerText = `${p2.avatar} ${p2.name}`;
     document.getElementById('podium-2nd-score').innerText = `${p2.score || 0} pts`;
+    const s2 = document.getElementById('podium-2nd-stats');
+    if (s2) s2.innerText = `✅ ${p2.correctCount || 0} | ❌ ${p2.incorrectCount || 0}`;
 
-    const p3 = sorted[2] || { name: '---', score: 0, avatar: '🥉' };
+    const p3 = sorted[2] || { name: '---', score: 0, avatar: '🥉', correctCount: 0, incorrectCount: 0 };
     document.getElementById('podium-3rd-name').innerText = `${p3.avatar} ${p3.name}`;
     document.getElementById('podium-3rd-score').innerText = `${p3.score || 0} pts`;
+    const s3 = document.getElementById('podium-3rd-stats');
+    if (s3) s3.innerText = `✅ ${p3.correctCount || 0} | ❌ ${p3.incorrectCount || 0}`;
 
     // Limpiar sesión local del jugador para que no arrastre puntos a futuras partidas
     try {
@@ -987,8 +1243,7 @@ class WiseSheepApp {
       podium: sorted.slice(0, 3),
       leaderboard: sorted,
       winningTeam,
-      scoreTeamA: scoreA,
-      scoreTeamB: scoreB
+      teamStats
     });
   }
 
@@ -1698,6 +1953,7 @@ class WiseSheepApp {
     this.myStreak = 0;
     this.maxStreak = 0;
     this.switchView('view-player-join');
+    this.renderPlayerTeamsList();
   }
 
   renderAvatarSelector() {
@@ -1716,19 +1972,7 @@ class WiseSheepApp {
     this.renderAvatarSelector();
   }
 
-  selectPlayerTeam(team) {
-    sounds.playClick();
-    this.myTeam = team;
-    const btnA = document.getElementById('btn-player-team-a');
-    const btnB = document.getElementById('btn-player-team-b');
-    if (team === 'A') {
-      btnA.className = 'p-3 rounded-2xl border-2 border-blue-500 bg-blue-600/30 text-blue-200 font-bold text-sm flex items-center justify-center gap-1.5';
-      btnB.className = 'p-3 rounded-2xl border-2 border-slate-700 bg-slate-800 text-slate-400 font-bold text-sm flex items-center justify-center gap-1.5';
-    } else {
-      btnB.className = 'p-3 rounded-2xl border-2 border-pink-500 bg-pink-600/30 text-pink-200 font-bold text-sm flex items-center justify-center gap-1.5';
-      btnA.className = 'p-3 rounded-2xl border-2 border-slate-700 bg-slate-800 text-slate-400 font-bold text-sm flex items-center justify-center gap-1.5';
-    }
-  }
+
 
   joinRoomAsPlayer() {
     const pin = document.getElementById('player-input-pin')?.value.trim();
@@ -1782,6 +2026,16 @@ class WiseSheepApp {
 
   startListeningAsPlayer(pin) {
     roomSync.listenToRoomState(pin, (roomData) => {
+      if (roomData) {
+        if (roomData.teams && Array.isArray(roomData.teams)) {
+          this.teams = roomData.teams;
+          this.renderPlayerTeamsList();
+        }
+        if (roomData.mode === 'INDIVIDUAL') {
+          const tSection = document.getElementById('player-team-selection-block');
+          if (tSection) tSection.classList.add('hidden');
+        }
+      }
       this.handlePlayerRoomUpdate(roomData);
     });
   }
@@ -1794,14 +2048,20 @@ class WiseSheepApp {
     if (roomData.status === 'QUESTION') {
       const qIndex = roomData.currentQuestionIndex ?? 0;
 
-      // Al iniciar la primera pregunta de una nueva partida, forzar puntaje en 0
+      // Al iniciar la primera pregunta de una nueva partida, forzar puntaje y estadísticas en 0
       if (qIndex === 0 && this.currentQIndex !== 0) {
         this.myScore = 0;
         this.myStreak = 0;
         this.maxStreak = 0;
+        this.myCorrectCount = 0;
+        this.myIncorrectCount = 0;
         const scoreEl = document.getElementById('player-game-score');
         if (scoreEl) scoreEl.innerText = '0';
         this.savePlayerSession();
+      }
+
+      if (roomData.teams && Array.isArray(roomData.teams) && roomData.teams.length > 0) {
+        this.teams = roomData.teams;
       }
 
       if (this.currentQIndex !== qIndex || this.currentView !== 'view-player-game') {
@@ -1867,11 +2127,13 @@ class WiseSheepApp {
 
             if (gained > 0) {
               sounds.playCorrect();
+              this.myCorrectCount = (this.myCorrectCount || 0) + 1;
               feedback.className = 'mt-3 p-4 rounded-2xl text-center border-2 border-emerald-500 bg-emerald-950/80 text-emerald-200';
               title.innerText = '¡CORRECTO! 🎉';
               points.innerText = `+${gained} puntos`;
             } else {
               sounds.playWrong();
+              this.myIncorrectCount = (this.myIncorrectCount || 0) + 1;
               feedback.className = 'mt-3 p-4 rounded-2xl text-center border-2 border-red-500 bg-red-950/80 text-red-200';
               title.innerText = '¡CASI! 😅';
               points.innerText = '0 puntos en esta ronda';
@@ -1881,6 +2143,7 @@ class WiseSheepApp {
       }
 
       if (!this.hasAnsweredCurrent) {
+        this.myIncorrectCount = (this.myIncorrectCount || 0) + 1;
         document.getElementById('player-buttons-grid').classList.add('hidden');
         const waitingState = document.getElementById('player-waiting-state');
         waitingState.classList.remove('hidden');
@@ -1993,21 +2256,35 @@ class WiseSheepApp {
       rankEl.innerText = '¡Gran esfuerzo en la trivia!';
     }
 
+    // Mostrar estadísticas de aciertos vs fallos personales
+    const correctEl = document.getElementById('player-stat-correct');
+    const incorrectEl = document.getElementById('player-stat-incorrect');
+    const accEl = document.getElementById('player-stat-accuracy');
+
+    const cCount = this.myCorrectCount || 0;
+    const iCount = this.myIncorrectCount || 0;
+    const totalCount = cCount + iCount;
+    const pct = totalCount > 0 ? Math.round((cCount / totalCount) * 100) : 0;
+
+    if (correctEl) correctEl.innerText = cCount;
+    if (incorrectEl) incorrectEl.innerText = iCount;
+    if (accEl) accEl.innerText = `${pct}% (${cCount} de ${totalCount})`;
+
     const teamBanner = document.getElementById('player-final-team-banner');
-    if (roomData.mode === 'TEAMS') {
+    if (roomData.mode === 'TEAMS' && teamBanner) {
       teamBanner.classList.remove('hidden');
       const winningTeam = roomData.winningTeam;
+      const myTeamObj = this.getTeamById(this.myTeam);
+      const winTeamObj = this.getTeamById(winningTeam);
+
       if (winningTeam === this.myTeam) {
-        teamBanner.className = 'p-3.5 rounded-2xl text-xs font-bold mb-5 border border-emerald-500 bg-emerald-950/80 text-emerald-200';
-        teamBanner.innerHTML = `🎉 ¡Tu equipo (${this.myTeam === 'A' ? '🦁 Hombres' : '👑 Mujeres'}) fue el GANADOR DE LA PARTIDA!`;
-      } else if (winningTeam === 'TIE') {
-        teamBanner.className = 'p-3.5 rounded-2xl text-xs font-bold mb-5 border border-amber-500 bg-amber-950/80 text-amber-200';
-        teamBanner.innerHTML = '🤝 ¡Hubo un empate histórico entre Hombres y Mujeres!';
+        teamBanner.className = 'p-3.5 rounded-2xl text-xs font-bold mb-4 border border-emerald-500 bg-emerald-950/80 text-emerald-200';
+        teamBanner.innerHTML = `🎉 ¡Tu equipo (${myTeamObj.icon} ${myTeamObj.name}) fue el GANADOR DE LA PARTIDA!`;
       } else {
-        teamBanner.className = 'p-3.5 rounded-2xl text-xs font-bold mb-5 border border-slate-700 bg-slate-800 text-slate-300';
-        teamBanner.innerHTML = `👏 ¡Gran batalla de equipos! El equipo ganador fue ${winningTeam === 'A' ? '🦁 Hombres' : '👑 Mujeres'}.`;
+        teamBanner.className = 'p-3.5 rounded-2xl text-xs font-bold mb-4 border border-slate-700 bg-slate-800 text-slate-300';
+        teamBanner.innerHTML = `👏 ¡Gran batalla de equipos! Tu equipo fue ${myTeamObj.icon} ${myTeamObj.name}. El equipo campeón fue ${winTeamObj.icon} ${winTeamObj.name}.`;
       }
-    } else {
+    } else if (teamBanner) {
       teamBanner.classList.add('hidden');
     }
 
