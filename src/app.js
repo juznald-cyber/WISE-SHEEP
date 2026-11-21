@@ -8,7 +8,8 @@ class WiseSheepApp {
     this.currentView = 'view-home';
     this.selectedDifficulty = 'ALL';
     this.gameMode = 'TEAMS'; // 'TEAMS' | 'INDIVIDUAL'
-    this.questionCount = 10;
+    this.totalRounds = 3;
+    this.questionsPerRound = 20;
     this.timeLimit = 20;
     this.autoCloseOnAllAnswered = true;
     this.leaderboardMode = 'MANUAL'; // 'MANUAL' | 'EVERY_ROUND' | 'END_ONLY'
@@ -67,6 +68,7 @@ class WiseSheepApp {
     this.setupPhoneVisibilityResume();
     this.loadCustomQuestionnaires();
     this.populateCustomQuizSelect();
+    this.updateRoundsSummary();
     this.checkSavedSession();
     this.checkUrlForPin();
 
@@ -279,19 +281,58 @@ class WiseSheepApp {
     }
   }
 
-  handleQuestionCountChange(val) {
-    const customBox = document.getElementById('setup-custom-count-box');
+  handleRoundsCountChange(val) {
+    const customBox = document.getElementById('setup-custom-rounds-box');
     if (val === 'CUSTOM') {
       if (customBox) customBox.classList.remove('hidden');
-      const input = document.getElementById('setup-custom-question-count');
-      if (input && input.value) {
-        this.questionCount = Math.max(1, parseInt(input.value) || 10);
-      } else {
-        this.questionCount = 10;
-      }
     } else {
       if (customBox) customBox.classList.add('hidden');
-      this.questionCount = parseInt(val) || 10;
+    }
+    this.updateRoundsSummary();
+  }
+
+  handleQuestionsPerRoundChange(val) {
+    const customBox = document.getElementById('setup-custom-questions-box');
+    if (val === 'CUSTOM') {
+      if (customBox) customBox.classList.remove('hidden');
+    } else {
+      if (customBox) customBox.classList.add('hidden');
+    }
+    this.updateRoundsSummary();
+  }
+
+  getRoundsCount() {
+    const sel = document.getElementById('setup-rounds-count')?.value || '3';
+    if (sel === 'CUSTOM') {
+      const customVal = document.getElementById('setup-custom-rounds-input')?.value;
+      return Math.max(1, parseInt(customVal) || 3);
+    }
+    return Math.max(1, parseInt(sel) || 3);
+  }
+
+  getQuestionsPerRound() {
+    const sel = document.getElementById('setup-questions-per-round')?.value || '20';
+    if (sel === 'CUSTOM') {
+      const customVal = document.getElementById('setup-custom-questions-input')?.value;
+      return Math.max(1, parseInt(customVal) || 20);
+    }
+    return Math.max(1, parseInt(sel) || 20);
+  }
+
+  updateRoundsSummary() {
+    this.totalRounds = this.getRoundsCount();
+    this.questionsPerRound = this.getQuestionsPerRound();
+    const totalQuestions = this.totalRounds * this.questionsPerRound;
+
+    const rBadge = document.getElementById('rounds-count-badge');
+    if (rBadge) rBadge.innerText = `${this.totalRounds} ${this.totalRounds === 1 ? 'Ronda' : 'Rondas'}`;
+
+    const qBadge = document.getElementById('questions-per-round-badge');
+    if (qBadge) qBadge.innerText = `${this.questionsPerRound} ${this.questionsPerRound === 1 ? 'Pregunta' : 'Preguntas'}`;
+
+    const summaryText = document.getElementById('setup-rounds-summary-text');
+    if (summaryText) {
+      summaryText.innerHTML = `Partida de <strong>${this.totalRounds} ${this.totalRounds === 1 ? 'ronda' : 'rondas'}</strong> con <strong>${this.questionsPerRound} preguntas</strong> cada una (Total: <strong class="text-amber-400 font-bold">${totalQuestions} preguntas</strong>). Los puntos se acumularán durante las ${this.totalRounds} ${this.totalRounds === 1 ? 'ronda' : 'rondas'} y se reiniciarán a 0 automáticamente al terminar la partida.`;
     }
   }
 
@@ -300,19 +341,13 @@ class WiseSheepApp {
     this.roomPin = roomSync.generatePin();
     roomSync.currentPin = this.roomPin;
 
-    const countSelect = document.getElementById('setup-question-count')?.value || '10';
-    if (countSelect === 'CUSTOM') {
-      const customInput = document.getElementById('setup-custom-question-count')?.value;
-      this.questionCount = Math.max(1, parseInt(customInput) || 10);
-    } else {
-      this.questionCount = parseInt(countSelect) || 10;
-    }
+    this.updateRoundsSummary();
 
     this.timeLimit = parseInt(document.getElementById('setup-time-limit')?.value || '20');
     this.autoCloseOnAllAnswered = document.getElementById('setup-auto-close')?.checked ?? true;
     this.leaderboardMode = document.getElementById('setup-leaderboard-mode')?.value || 'MANUAL';
 
-    // Preparar preguntas aleatorias
+    // Preparar preguntas aleatorias para todas las rondas
     this.prepareQuestions();
     this.players = {};
     this.currentQIndex = 0;
@@ -343,7 +378,10 @@ class WiseSheepApp {
       mode: this.gameMode,
       timeLimit: this.timeLimit,
       totalQuestions: this.activeQuestions.length,
+      totalRounds: this.totalRounds,
+      questionsPerRound: this.questionsPerRound,
       currentQuestionIndex: 0,
+      currentRound: 1,
       leaderboardMode: this.leaderboardMode,
       leaderboard: []
     });
@@ -368,6 +406,7 @@ class WiseSheepApp {
   }
 
   prepareQuestions() {
+    const totalNeeded = this.totalRounds * this.questionsPerRound;
     let pool = [];
 
     if (this.selectedDifficulty === 'CUSTOM') {
@@ -380,7 +419,14 @@ class WiseSheepApp {
         alert('No se encontraron preguntas en tu cuestionario personal. Usaremos preguntas bíblicas generales.');
         pool = [...QUESTIONS_DATABASE];
       }
-      this.activeQuestions = shuffleArray(pool).slice(0, this.questionCount);
+      this.activeQuestions = shuffleArray(pool).slice(0, totalNeeded);
+      if (this.activeQuestions.length < totalNeeded && pool.length > 0) {
+        while (this.activeQuestions.length < totalNeeded) {
+          const extra = shuffleArray([...pool]);
+          this.activeQuestions.push(...extra);
+        }
+        this.activeQuestions = this.activeQuestions.slice(0, totalNeeded);
+      }
       return;
     }
 
@@ -390,24 +436,24 @@ class WiseSheepApp {
       const medPool = shuffleArray(all.filter(q => q.level === 'MEDIUM'));
       const hardPool = shuffleArray(all.filter(q => q.level === 'HARD'));
 
-      let countEasy = Math.max(1, Math.round(this.questionCount * 0.35));
-      let countMed = Math.max(1, Math.round(this.questionCount * 0.35));
-      let countHard = Math.max(1, this.questionCount - countEasy - countMed);
+      let countEasy = Math.max(1, Math.round(totalNeeded * 0.35));
+      let countMed = Math.max(1, Math.round(totalNeeded * 0.35));
+      let countHard = Math.max(1, totalNeeded - countEasy - countMed);
 
       const selectedEasy = easyPool.slice(0, countEasy);
       const selectedMed = medPool.slice(0, countMed);
       const selectedHard = hardPool.slice(0, countHard);
 
       // Barajar juntos para aleatoriedad completa en cada partida
-      this.activeQuestions = shuffleArray([...selectedEasy, ...selectedMed, ...selectedHard]).slice(0, this.questionCount);
+      this.activeQuestions = shuffleArray([...selectedEasy, ...selectedMed, ...selectedHard]).slice(0, totalNeeded);
     } else {
       const filtered = shuffleArray(all.filter(q => q.level === this.selectedDifficulty));
-      this.activeQuestions = filtered.slice(0, this.questionCount);
+      this.activeQuestions = filtered.slice(0, totalNeeded);
     }
 
-    if (this.activeQuestions.length < this.questionCount) {
+    if (this.activeQuestions.length < totalNeeded) {
       const remaining = shuffleArray(all.filter(q => !this.activeQuestions.some(aq => aq.id === q.id)));
-      this.activeQuestions = [...this.activeQuestions, ...remaining].slice(0, this.questionCount);
+      this.activeQuestions = [...this.activeQuestions, ...remaining].slice(0, totalNeeded);
     }
   }
 
@@ -526,8 +572,11 @@ class WiseSheepApp {
 
     this.switchView('view-host-game');
 
-    document.getElementById('game-q-counter').innerText = `Pregunta ${index + 1} de ${this.activeQuestions.length}`;
-    document.getElementById('game-q-category').innerText = q.category || q.customCategory || 'Trivia Bíblica';
+    const currentRound = Math.floor(index / this.questionsPerRound) + 1;
+    const questionInRound = (index % this.questionsPerRound) + 1;
+
+    document.getElementById('game-q-counter').innerText = `Ronda ${currentRound} de ${this.totalRounds} • Pregunta ${questionInRound}/${this.questionsPerRound}`;
+    document.getElementById('game-q-category').innerText = `${q.category || q.customCategory || 'Trivia Bíblica'} (P${index + 1}/${this.activeQuestions.length})`;
     document.getElementById('game-q-text').innerText = q.question;
     document.getElementById('host-answers-count').innerText = '0';
     document.getElementById('host-total-players-count').innerText = Object.keys(this.players).length;
@@ -565,6 +614,10 @@ class WiseSheepApp {
       status: 'QUESTION',
       currentQuestionIndex: index,
       totalQuestions: this.activeQuestions.length,
+      currentRound: currentRound,
+      totalRounds: this.totalRounds,
+      questionInRound: questionInRound,
+      questionsPerRound: this.questionsPerRound,
       question: q.question,
       options: q.options,
       qStartTime: this.qStartTime,
@@ -693,12 +746,20 @@ class WiseSheepApp {
     const controls = document.getElementById('host-game-controls');
     if (controls) controls.classList.remove('hidden');
 
+    const currentRound = Math.floor(this.currentQIndex / this.questionsPerRound) + 1;
+    const questionInRound = (this.currentQIndex % this.questionsPerRound) + 1;
+    const isLastQuestionOfRound = (questionInRound === this.questionsPerRound) || (this.currentQIndex + 1 >= this.activeQuestions.length);
+    const isLastQuestionOfGame = (this.currentQIndex + 1 >= this.activeQuestions.length);
+
     const nextBtn = document.getElementById('btn-direct-next-q');
-    const isLastQuestion = (this.currentQIndex + 1 >= this.activeQuestions.length);
     if (nextBtn) {
-      nextBtn.innerHTML = isLastQuestion
-        ? '<span>Ver Podio Final</span> <span>🏆</span>'
-        : '<span>Siguiente Pregunta</span> <span>➡️</span>';
+      if (isLastQuestionOfGame) {
+        nextBtn.innerHTML = '<span>🏆 Ver Gran Podio Final (Fin del Juego)</span>';
+      } else if (isLastQuestionOfRound) {
+        nextBtn.innerHTML = `<span>🏁 Fin de Ronda ${currentRound} (Ver Posiciones)</span> <span>➡️</span>`;
+      } else {
+        nextBtn.innerHTML = `<span>Siguiente Pregunta (${questionInRound + 1}/${this.questionsPerRound})</span> <span>➡️</span>`;
+      }
     }
 
     const sorted = Object.entries(this.players).map(([id, p]) => ({
@@ -715,10 +776,16 @@ class WiseSheepApp {
       correctAnswer: q.correctAnswer,
       verse: q.verse,
       explanation: q.explanation,
-      leaderboard: sorted
+      leaderboard: sorted,
+      currentRound,
+      totalRounds: this.totalRounds,
+      questionInRound,
+      questionsPerRound: this.questionsPerRound,
+      isLastQuestionOfRound,
+      isLastQuestionOfGame
     });
 
-    if (this.leaderboardMode === 'EVERY_ROUND' && !isLastQuestion) {
+    if (this.leaderboardMode === 'EVERY_ROUND' && !isLastQuestionOfGame) {
       setTimeout(() => {
         if (this.roomStatus === 'TIMES_UP') {
           this.showLeaderboard();
@@ -731,6 +798,38 @@ class WiseSheepApp {
     sounds.playClick();
     this.roomStatus = 'LEADERBOARD';
     this.switchView('view-host-leaderboard');
+
+    const currentRound = Math.floor(this.currentQIndex / this.questionsPerRound) + 1;
+    const questionInRound = (this.currentQIndex % this.questionsPerRound) + 1;
+    const isLastQuestionOfRound = (questionInRound === this.questionsPerRound) || (this.currentQIndex + 1 >= this.activeQuestions.length);
+    const isLastQuestionOfGame = (this.currentQIndex + 1 >= this.activeQuestions.length);
+
+    const titleEl = document.getElementById('leaderboard-title');
+    const subtitleEl = document.getElementById('leaderboard-subtitle');
+    const nextBtn = document.getElementById('btn-next-question');
+
+    if (titleEl && subtitleEl) {
+      if (isLastQuestionOfGame) {
+        titleEl.innerHTML = `<span>🏆</span> TABLA FINAL (Completadas ${this.totalRounds} Rondas)`;
+        subtitleEl.innerText = `¡Se han jugado todas las ${this.totalRounds} rondas seleccionadas (${this.activeQuestions.length} preguntas bíblicas en total)!`;
+      } else if (isLastQuestionOfRound) {
+        titleEl.innerHTML = `<span>🏁</span> ¡FIN DE LA RONDA ${currentRound} DE ${this.totalRounds}!`;
+        subtitleEl.innerText = `¡Puntajes acumulados hasta la Ronda ${currentRound}! Todos los puntos se conservan para la Ronda ${currentRound + 1}.`;
+      } else {
+        titleEl.innerHTML = `<span>🏆</span> TABLA DE POSICIONES (Ronda ${currentRound} de ${this.totalRounds})`;
+        subtitleEl.innerText = `Puntajes acumulados tras la pregunta ${questionInRound} de ${this.questionsPerRound}`;
+      }
+    }
+
+    if (nextBtn) {
+      if (isLastQuestionOfGame) {
+        nextBtn.innerHTML = '<span>🏆 Ver Gran Podio Final</span> <span>👑</span>';
+      } else if (isLastQuestionOfRound) {
+        nextBtn.innerHTML = `<span>▶️ Iniciar Ronda ${currentRound + 1} de ${this.totalRounds} (${this.questionsPerRound} preguntas)</span> <span>🚀</span>`;
+      } else {
+        nextBtn.innerHTML = '<span>Siguiente Pregunta</span> <span>➡️</span>';
+      }
+    }
 
     const teamBanner = document.getElementById('leaderboard-teams-banner');
     let scoreTeamA = 0;
@@ -813,6 +912,11 @@ class WiseSheepApp {
     sounds.playFanfare();
     this.roomStatus = 'PODIUM';
     this.switchView('view-host-podium');
+
+    const mainTitle = document.getElementById('podium-main-title');
+    if (mainTitle) {
+      mainTitle.innerText = `¡VICTORIA TRAS ${this.totalRounds} RONDAS! 🎉`;
+    }
 
     if (window.confetti) {
       window.confetti({ particleCount: 160, spread: 90, origin: { y: 0.6 } });
@@ -1710,6 +1814,15 @@ class WiseSheepApp {
         document.getElementById('player-game-name').innerText = this.myPlayerName;
         document.getElementById('player-game-avatar').innerText = this.myAvatar;
         document.getElementById('player-game-score').innerText = this.myScore;
+
+        const roundBadge = document.getElementById('player-game-round-badge');
+        if (roundBadge) {
+          const r = roomData.currentRound || 1;
+          const tr = roomData.totalRounds || 1;
+          const qR = roomData.questionInRound || 1;
+          const qTot = roomData.questionsPerRound || 20;
+          roundBadge.innerText = `Ronda ${r}/${tr} • P${qR}/${qTot}`;
+        }
 
         document.getElementById('player-buttons-grid').classList.remove('hidden');
         document.getElementById('player-waiting-state').classList.add('hidden');

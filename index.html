@@ -291,36 +291,77 @@
             </div>
           </div>
 
-          <!-- Cantidad de Preguntas y Tiempo -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label class="block text-sm font-semibold text-slate-300 mb-1">Rondas / Preguntas a jugar:</label>
-              <select id="setup-question-count" onchange="app.handleQuestionCountChange(this.value)" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white font-medium focus:ring-2 focus:ring-cyan-500 outline-none">
-                <option value="3">3 Rondas (Rápida)</option>
-                <option value="5">5 Rondas (Corta)</option>
-                <option value="7">7 Rondas (Dinámica)</option>
-                <option value="10" selected>10 Rondas (Recomendado)</option>
-                <option value="15">15 Rondas (Completo)</option>
-                <option value="20">20 Rondas (Gran Maratón)</option>
-                <option value="25">25 Rondas (Desafío Total)</option>
-                <option value="30">30 Rondas (Super Trivia)</option>
-                <option value="50">50 Rondas (Maratón Bíblico)</option>
-                <option value="CUSTOM">Elegir cantidad personalizada...</option>
-              </select>
-              <div id="setup-custom-count-box" class="hidden mt-2">
-                <input type="number" id="setup-custom-question-count" min="1" max="525" placeholder="Escribe el número de rondas (ej. 12, 18, 40)" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white text-xs outline-none focus:ring-1 focus:ring-cyan-400 font-bold" />
+          <!-- Configuración de Rondas y Preguntas por Ronda -->
+          <div class="space-y-4 bg-slate-800/40 border border-slate-700/60 rounded-2xl p-4 sm:p-5">
+            <div class="flex items-center gap-2 border-b border-slate-700/60 pb-2.5">
+              <span class="text-xl">🎯</span>
+              <div>
+                <h4 class="font-bold text-sm text-white">Estructura del Juego (Rondas y Preguntas):</h4>
+                <p class="text-[11px] text-slate-400">Escoge cuántas rondas jugar y cuántas preguntas tendrá cada ronda.</p>
               </div>
             </div>
 
-            <div>
-              <label class="block text-sm font-semibold text-slate-300 mb-1">Tiempo por Pregunta:</label>
-              <select id="setup-time-limit" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white font-medium focus:ring-2 focus:ring-cyan-500 outline-none">
-                <option value="15">15 Segundos (Rápido)</option>
-                <option value="20" selected>20 Segundos (Ideal)</option>
-                <option value="30">30 Segundos (Con calma)</option>
-                <option value="45">45 Segundos (Pensativo)</option>
-              </select>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <!-- Selector de Rondas -->
+              <div>
+                <label class="block text-xs uppercase tracking-wider font-bold text-slate-300 mb-1.5 flex items-center justify-between">
+                  <span>🔄 Cantidad de Rondas:</span>
+                  <span id="rounds-count-badge" class="text-[10px] text-amber-400 font-bold bg-amber-500/10 px-2 py-0.5 rounded-md border border-amber-500/30">3 Rondas</span>
+                </label>
+                <select id="setup-rounds-count" onchange="app.handleRoundsCountChange(this.value)" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white font-medium focus:ring-2 focus:ring-cyan-500 outline-none text-xs sm:text-sm">
+                  <option value="1">1 Ronda</option>
+                  <option value="2">2 Rondas</option>
+                  <option value="3" selected>3 Rondas (Recomendado)</option>
+                  <option value="4">4 Rondas</option>
+                  <option value="5">5 Rondas</option>
+                  <option value="10">10 Rondas</option>
+                  <option value="CUSTOM">✏️ Personalizado (Escribir cantidad)...</option>
+                </select>
+                <div id="setup-custom-rounds-box" class="hidden mt-2">
+                  <input type="number" id="setup-custom-rounds-input" min="1" max="50" placeholder="Ej. 3, 6, 8 rondas" oninput="app.updateRoundsSummary()" class="w-full bg-slate-900 border border-cyan-500 rounded-xl px-3 py-2 text-white text-xs outline-none focus:ring-1 focus:ring-cyan-400 font-bold" />
+                </div>
+              </div>
+
+              <!-- Selector de Preguntas por Ronda -->
+              <div>
+                <label class="block text-xs uppercase tracking-wider font-bold text-slate-300 mb-1.5 flex items-center justify-between">
+                  <span>❓ Preguntas por Ronda:</span>
+                  <span id="questions-per-round-badge" class="text-[10px] text-cyan-400 font-bold bg-cyan-500/10 px-2 py-0.5 rounded-md border border-cyan-500/30">20 Preguntas</span>
+                </label>
+                <select id="setup-questions-per-round" onchange="app.handleQuestionsPerRoundChange(this.value)" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white font-medium focus:ring-2 focus:ring-cyan-500 outline-none text-xs sm:text-sm">
+                  <option value="5">5 Preguntas por ronda</option>
+                  <option value="10">10 Preguntas por ronda</option>
+                  <option value="15">15 Preguntas por ronda</option>
+                  <option value="20" selected>20 Preguntas por ronda (Recomendado)</option>
+                  <option value="25">25 Preguntas por ronda</option>
+                  <option value="30">30 Preguntas por ronda</option>
+                  <option value="50">50 Preguntas por ronda</option>
+                  <option value="CUSTOM">✏️ Personalizado (Escribir cantidad)...</option>
+                </select>
+                <div id="setup-custom-questions-box" class="hidden mt-2">
+                  <input type="number" id="setup-custom-questions-input" min="1" max="175" placeholder="Ej. 12, 18, 25 preguntas" oninput="app.updateRoundsSummary()" class="w-full bg-slate-900 border border-cyan-500 rounded-xl px-3 py-2 text-white text-xs outline-none focus:ring-1 focus:ring-cyan-400 font-bold" />
+                </div>
+              </div>
             </div>
+
+            <!-- Resumen Visual en tiempo real -->
+            <div id="setup-rounds-summary" class="p-3 bg-gradient-to-r from-cyan-950/50 via-slate-900 to-indigo-950/50 border border-cyan-500/30 rounded-xl text-xs flex items-center gap-2.5 text-slate-200">
+              <span class="text-xl">📊</span>
+              <span id="setup-rounds-summary-text">
+                Partida de <strong>3 rondas</strong> con <strong>20 preguntas</strong> cada una (Total: <strong class="text-amber-400">60 preguntas</strong>). Los puntos se acumularán durante las 3 rondas y se reiniciarán a 0 automáticamente al terminar la 3° ronda.
+              </span>
+            </div>
+          </div>
+
+          <!-- Tiempo por Pregunta -->
+          <div>
+            <label class="block text-sm font-semibold text-slate-300 mb-1">Tiempo por Pregunta:</label>
+            <select id="setup-time-limit" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white font-medium focus:ring-2 focus:ring-cyan-500 outline-none">
+              <option value="15">15 Segundos (Rápido)</option>
+              <option value="20" selected>20 Segundos (Ideal)</option>
+              <option value="30">30 Segundos (Con calma)</option>
+              <option value="45">45 Segundos (Pensativo)</option>
+            </select>
           </div>
 
           <!-- Opciones Avanzadas: Cierre Rápido y Frecuencia de Posiciones -->
@@ -537,10 +578,10 @@
     <!-- ============================================================= -->
     <section id="view-host-leaderboard" class="hidden flex-1 flex flex-col p-6 max-w-4xl mx-auto w-full justify-between">
       <div class="text-center mb-6">
-        <h3 class="text-3xl md:text-4xl font-black text-amber-400 tracking-tight flex items-center justify-center gap-2">
+        <h3 id="leaderboard-title" class="text-3xl md:text-4xl font-black text-amber-400 tracking-tight flex items-center justify-center gap-2">
           <span>🏆</span> TABLA DE POSICIONES
         </h3>
-        <p class="text-slate-400 text-sm">Puntajes acumulados tras la ronda</p>
+        <p id="leaderboard-subtitle" class="text-slate-400 text-sm">Puntajes acumulados tras la ronda</p>
       </div>
 
       <!-- Marcador de Equipos -->
@@ -576,7 +617,7 @@
         <img src="./logo.jpg" onerror="this.onerror=null; this.src='./public/logo.jpg';" alt="Wise Sheep" class="relative w-28 h-28 rounded-3xl border-4 border-amber-400 shadow-2xl glow-gold mx-auto object-cover bg-slate-900" />
       </div>
 
-      <h2 class="text-4xl md:text-5xl font-black text-white mb-2">
+      <h2 id="podium-main-title" class="text-4xl md:text-5xl font-black text-white mb-2">
         ¡VICTORIA Y BENDICIÓN! 🎉
       </h2>
       <p id="podium-winning-team-text" class="text-amber-300 font-bold text-lg md:text-xl mb-8">
@@ -764,14 +805,15 @@
     <!-- VIEW 10: PLAYER GAME CONTROLLER (Trivia) -->
     <!-- ============================================================= -->
     <section id="view-player-game" class="hidden flex-1 p-3 md:p-6 max-w-md mx-auto w-full flex flex-col justify-between">
-      <div class="flex items-center justify-between bg-slate-900 border border-slate-800 px-4 py-2.5 rounded-2xl mb-3">
-        <div class="flex items-center gap-2">
-          <span id="player-game-avatar" class="text-xl">🐑</span>
-          <span id="player-game-name" class="font-bold text-sm text-slate-200">Jugador</span>
+      <div class="flex items-center justify-between bg-slate-900 border border-slate-800 px-3.5 py-2 rounded-2xl mb-3">
+        <div class="flex items-center gap-1.5 min-w-0">
+          <span id="player-game-avatar" class="text-xl shrink-0">🐑</span>
+          <span id="player-game-name" class="font-bold text-xs sm:text-sm text-slate-200 truncate max-w-[85px] sm:max-w-[110px]">Jugador</span>
         </div>
-        <div class="flex items-center gap-2">
-          <span class="text-xs text-slate-400">Puntos:</span>
-          <span id="player-game-score" class="font-black text-amber-400 text-base">0</span>
+        <span id="player-game-round-badge" class="text-[10px] sm:text-xs font-bold text-amber-300 bg-amber-950/70 border border-amber-800/80 px-2 py-0.5 rounded-lg shrink-0">Ronda 1/3</span>
+        <div class="flex items-center gap-1 shrink-0">
+          <span class="text-[10px] text-slate-400">Pts:</span>
+          <span id="player-game-score" class="font-black text-cyan-400 text-sm sm:text-base">0</span>
         </div>
       </div>
 
