@@ -278,6 +278,70 @@ export class RoomManager {
     }
     return true;
   }
+
+  // Expulsar a un jugador de la sala (Anfitrión)
+  async removePlayer(pin, playerId) {
+    if (!pin || !playerId) return false;
+    const kickedAt = Date.now();
+
+    if (this.channel) {
+      this.channel.postMessage({
+        pin,
+        action: 'PLAYER_KICKED',
+        payload: { playerId, kickedAt }
+      });
+    }
+
+    if (window.firebaseFirestore && window.firebaseFirestoreModule) {
+      try {
+        const db = window.firebaseFirestore;
+        const { doc, deleteDoc, setDoc } = window.firebaseFirestoreModule;
+
+        // 1. Marcar al jugador como expulsado en el documento de la sala para notificar a su teléfono
+        await setDoc(doc(db, 'rooms', pin), {
+          kickedPlayers: {
+            [playerId]: kickedAt
+          },
+          updatedAt: kickedAt
+        }, { merge: true });
+
+        // 2. Eliminar al jugador de la subcolección players y limpiar su respuesta/voto actual
+        await Promise.allSettled([
+          deleteDoc(doc(db, 'rooms', pin, 'players', playerId)),
+          deleteDoc(doc(db, 'rooms', pin, 'answers', playerId)),
+          deleteDoc(doc(db, 'rooms', pin, 'votes', playerId))
+        ]);
+
+        console.log(`🚫 Jugador ${playerId} expulsado de la sala ${pin}`);
+        return true;
+      } catch (err) {
+        console.error('Error expulsando jugador de Firestore:', err);
+        return false;
+      }
+    }
+    return true;
+  }
+
+  // Desuscribirse de todos los listeners activos de la sala
+  leaveRoom() {
+    if (this.unsubRoom) {
+      this.unsubRoom();
+      this.unsubRoom = null;
+    }
+    if (this.unsubPlayers) {
+      this.unsubPlayers();
+      this.unsubPlayers = null;
+    }
+    if (this.unsubAnswers) {
+      this.unsubAnswers();
+      this.unsubAnswers = null;
+    }
+    if (this.unsubVotes) {
+      this.unsubVotes();
+      this.unsubVotes = null;
+    }
+    this.currentPin = null;
+  }
 }
 
 export const roomSync = new RoomManager();

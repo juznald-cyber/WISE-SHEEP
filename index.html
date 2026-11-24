@@ -118,6 +118,10 @@
       </div>
     </div>
     <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+      <!-- Botón de Gestionar Jugadores / Expulsar (visible para el anfitrión en sala activa) -->
+      <button id="header-btn-players" onclick="app.openManagePlayersModal()" class="hidden px-2.5 py-1.5 rounded-xl bg-rose-500/20 hover:bg-rose-500/30 text-rose-200 text-xs font-bold border border-rose-500/50 flex items-center gap-1 transition" title="Ver o sacar jugadores de la sala">
+        <span>👥</span> <span class="hidden sm:inline">Sala</span> (<span id="header-players-count">0</span>)
+      </button>
       <!-- Botón de Lanzar Votación Dinámica (visible para el anfitrión) -->
       <button id="header-btn-poll" onclick="app.openLaunchPollModal()" class="hidden px-2.5 py-1.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 text-xs font-bold border border-amber-500/50 flex items-center gap-1 transition">
         <span>🗳️</span> <span class="hidden sm:inline">Votaciones</span>
@@ -136,10 +140,19 @@
       </button>
       <!-- Questions Database Button -->
       <button onclick="app.showQuestionsModal()" class="px-2.5 py-1.5 rounded-xl bg-indigo-900/70 hover:bg-indigo-800 text-indigo-200 text-xs font-semibold border border-indigo-700/50 flex items-center gap-1 transition" title="Explorar Banco de Preguntas">
-        <span>📖</span> <span class="hidden sm:inline">Banco</span> (<span id="header-q-count">525+</span>)
+        <span>📖</span> <span class="hidden sm:inline">Banco</span> (<span id="header-q-count">1000+</span>)
       </button>
     </div>
   </header>
+
+  <!-- Banner de Expulsión de Sala (para el jugador retirado por el anfitrión) -->
+  <div id="banner-kicked" class="hidden bg-gradient-to-r from-rose-950 to-red-900 border-b border-rose-500/50 px-4 py-3 flex items-center justify-between text-xs z-40">
+    <div class="flex items-center gap-2 text-rose-100 font-semibold">
+      <span class="text-base">🚫</span>
+      <span id="banner-kicked-msg">El anfitrión te ha retirado de la sala.</span>
+    </div>
+    <button onclick="document.getElementById('banner-kicked')?.classList.add('hidden')" class="text-rose-200 hover:text-white px-2 py-0.5 font-bold">✕</button>
+  </div>
 
   <!-- Banner de Reconexión Rápida -->
   <div id="banner-reconnect" class="hidden bg-gradient-to-r from-cyan-900 to-indigo-900 border-b border-cyan-500/40 px-4 py-2.5 flex items-center justify-between text-xs z-40">
@@ -278,18 +291,21 @@
           <!-- Nivel de Dificultad / Cuestionario -->
           <div>
             <label class="block text-sm font-semibold text-slate-300 mb-2">Nivel de Dificultad / Tipo de Cuestionario:</label>
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+            <div class="grid grid-cols-2 sm:grid-cols-5 gap-2">
               <button type="button" onclick="app.selectDifficulty('ALL')" id="diff-btn-ALL" class="p-3 rounded-xl border border-amber-500 bg-amber-500/20 text-amber-300 font-bold text-xs text-center transition">
-                ✨ Progresivo<br><span class="font-normal text-[10px] text-slate-300">Aleatorio variado</span>
+                ✨ Progresivo<br><span class="font-normal text-[10px] text-slate-300">Fácil a Difícil</span>
               </button>
               <button type="button" onclick="app.selectDifficulty('EASY')" id="diff-btn-EASY" class="p-3 rounded-xl border border-slate-800 bg-slate-900 text-slate-300 font-bold text-xs text-center hover:border-slate-700 transition">
-                🌱 Corderito<br><span class="font-normal text-[10px] text-slate-400">Fácil (175 preg)</span>
+                🌱 Corderito<br><span class="font-normal text-[10px] text-slate-400">Fácil (<span id="setup-count-easy">340</span>)</span>
               </button>
               <button type="button" onclick="app.selectDifficulty('MEDIUM')" id="diff-btn-MEDIUM" class="p-3 rounded-xl border border-slate-800 bg-slate-900 text-slate-300 font-bold text-xs text-center hover:border-slate-700 transition">
-                📜 Discípulo<br><span class="font-normal text-[10px] text-slate-400">Intermedio (175 preg)</span>
+                📜 Discípulo<br><span class="font-normal text-[10px] text-slate-400">Medio (<span id="setup-count-medium">340</span>)</span>
               </button>
               <button type="button" onclick="app.selectDifficulty('HARD')" id="diff-btn-HARD" class="p-3 rounded-xl border border-slate-800 bg-slate-900 text-slate-300 font-bold text-xs text-center hover:border-slate-700 transition">
-                👑 Maestro<br><span class="font-normal text-[10px] text-slate-400">Avanzado (175 preg)</span>
+                👑 Maestro<br><span class="font-normal text-[10px] text-slate-400">Difícil (<span id="setup-count-hard">340</span>)</span>
+              </button>
+              <button type="button" onclick="app.selectDifficulty('EMOJI')" id="diff-btn-EMOJI" class="col-span-2 sm:col-span-1 p-3 rounded-xl border border-slate-800 bg-slate-900 text-slate-300 font-bold text-xs text-center hover:border-slate-700 transition">
+                😎 Emojis<br><span class="font-normal text-[10px] text-slate-400">Adivina (<span id="setup-count-emoji">210+</span>)</span>
               </button>
             </div>
 
@@ -1071,10 +1087,11 @@
 
       <!-- PESTAÑAS SUPERIORES (shrink-0 + overflow-x-auto + whitespace-nowrap -> RESUELVE QUE NO SE VEAN) -->
       <div class="shrink-0 px-3 sm:px-5 py-2.5 sm:py-3 flex items-center gap-2 border-b border-slate-800/80 overflow-x-auto whitespace-nowrap text-xs bg-slate-900/95 no-scrollbar">
-        <button onclick="app.filterQuestionsList('ALL')" id="qfilter-ALL" class="px-3 py-1.5 rounded-xl bg-cyan-600 text-white font-bold transition shrink-0">Todas (525+)</button>
-        <button onclick="app.filterQuestionsList('EASY')" id="qfilter-EASY" class="px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 font-semibold hover:bg-slate-700 transition shrink-0">🌱 Corderito (175)</button>
-        <button onclick="app.filterQuestionsList('MEDIUM')" id="qfilter-MEDIUM" class="px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 font-semibold hover:bg-slate-700 transition shrink-0">📜 Discípulo (175)</button>
-        <button onclick="app.filterQuestionsList('HARD')" id="qfilter-HARD" class="px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 font-semibold hover:bg-slate-700 transition shrink-0">👑 Maestro (175)</button>
+        <button onclick="app.filterQuestionsList('ALL')" id="qfilter-ALL" class="px-3 py-1.5 rounded-xl bg-cyan-600 text-white font-bold transition shrink-0">Todas (<span id="qtab-count-all">1000+</span>)</button>
+        <button onclick="app.filterQuestionsList('EASY')" id="qfilter-EASY" class="px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 font-semibold hover:bg-slate-700 transition shrink-0">🌱 Corderito (<span id="qtab-count-easy">340</span>)</button>
+        <button onclick="app.filterQuestionsList('MEDIUM')" id="qfilter-MEDIUM" class="px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 font-semibold hover:bg-slate-700 transition shrink-0">📜 Discípulo (<span id="qtab-count-medium">340</span>)</button>
+        <button onclick="app.filterQuestionsList('HARD')" id="qfilter-HARD" class="px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 font-semibold hover:bg-slate-700 transition shrink-0">👑 Maestro (<span id="qtab-count-hard">340</span>)</button>
+        <button onclick="app.filterQuestionsList('EMOJI')" id="qfilter-EMOJI" class="px-3 py-1.5 rounded-xl bg-amber-950/70 border border-amber-500/40 text-amber-200 font-bold hover:bg-amber-900 transition shrink-0">😎 Emojis (<span id="qtab-count-emoji">210+</span>)</button>
         <button onclick="app.filterQuestionsList('CUSTOM')" id="qfilter-CUSTOM" class="px-3 py-1.5 rounded-xl bg-purple-950/80 border border-purple-500/50 text-purple-200 font-bold hover:bg-purple-900 transition shrink-0 flex items-center gap-1">
           <span>⭐</span> Mis Cuestionarios Personales
         </button>
@@ -1227,6 +1244,33 @@
   </div>
 
   <!-- ============================================================= -->
+  <!-- MODAL: GESTIONAR PARTICIPANTES DE LA SALA (EXPULSAR / VER ESTADO) -->
+  <!-- ============================================================= -->
+  <div id="modal-manage-players" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4 overscroll-contain">
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-lg w-full p-5 sm:p-6 shadow-2xl max-h-[88vh] flex flex-col overflow-hidden">
+      <div class="shrink-0 flex items-center justify-between mb-3 border-b border-slate-800 pb-3">
+        <div>
+          <h3 class="font-extrabold text-base sm:text-lg text-white flex items-center gap-2">
+            <span>👥</span> Participantes en la Sala (<span id="manage-players-total" class="text-cyan-400">0</span>)
+          </h3>
+          <p class="text-[11px] text-slate-400">Puedes retirar jugadores inactivos, duplicados o desconectados en cualquier momento.</p>
+        </div>
+        <button onclick="app.closeManagePlayersModal()" class="text-slate-400 hover:text-white text-2xl px-2 py-1 leading-none">✕</button>
+      </div>
+
+      <div id="manage-players-list" class="overflow-y-auto flex-1 min-h-0 space-y-2 pr-1 overscroll-contain">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <div class="shrink-0 pt-3 mt-3 border-t border-slate-800 flex justify-end">
+        <button onclick="app.closeManagePlayersModal()" class="btn-3d px-5 py-2 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl border border-slate-700">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================= -->
   <!-- MODAL: CONFIGURACIÓN FIREBASE -->
   <!-- ============================================================= -->
   <div id="modal-settings" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4 overscroll-contain">
@@ -1265,6 +1309,6 @@
     </div>
   </div>
 
-  <script type="module" src="./src/app.js?v=2.2"></script>
+  <script type="module" src="./src/app.js?v=3.0"></script>
 </body>
 </html>

@@ -1,5 +1,6 @@
-// Banco Extenso de Preguntas Bíblicas para WISE SHEEP (525+ Preguntas)
+// Banco Extenso de Preguntas Bíblicas para WISE SHEEP (1069 Preguntas)
 // Categorizadas por Niveles (Corderito / Fácil, Discípulo / Intermedio, Maestro / Avanzado)
+// Incluye 213 preguntas de Emojis, 73 Verdadero/Falso balanceadas y distribución uniforme en los 4 colores.
 
 export const QUESTION_LEVELS = {
   EASY: { id: 'EASY', name: 'Corderito (Fácil)', color: 'from-emerald-500 to-teal-600', badge: '🌱' },
@@ -16,8389 +17,1083 @@ export const QUESTION_TYPES = {
 };
 
 export const QUESTIONS_DATABASE = [
-  {
-    "id": "e1",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Historias Bíblicas",
-    "question": "¿Cuántos días y cuántas noches llovió durante el diluvio en el arca de Noé?",
-    "options": [
-      "7 días y 7 noches",
-      "40 días y 40 noches",
-      "100 días y 100 noches",
-      "12 días y 12 noches"
-    ],
-    "correctAnswer": 1,
-    "verse": "Génesis 7:12",
-    "explanation": "Y hubo lluvia sobre la tierra cuarenta días y cuarenta noches."
-  },
-  {
-    "id": "e2",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Antiguo Testamento",
-    "question": "¿Con qué arma venció el joven David al gigante Goliat?",
-    "options": [
-      "Una espada de bronce",
-      "Una honda y una piedra",
-      "Una lanza con punta de hierro",
-      "Un arco y flecha"
-    ],
-    "correctAnswer": 1,
-    "verse": "1 Samuel 17:50",
-    "explanation": "Así venció David al filisteo con honda y piedra; e hirió al filisteo y lo mató."
-  },
-  {
-    "id": "e3",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Nuevo Testamento",
-    "question": "¿En qué ciudad nació Jesús?",
-    "options": [
-      "Nazaret",
-      "Jerusalén",
-      "Belén",
-      "Capernaúm"
-    ],
-    "correctAnswer": 2,
-    "verse": "Miqueas 5:2 / Lucas 2:4-7",
-    "explanation": "Jesús nació en Belén de Judea, cumpliendo la profecía de Miqueas."
-  },
-  {
-    "id": "e4",
-    "level": "EASY",
-    "type": "TRUE_FALSE",
-    "category": "Personajes",
-    "question": "¿Verdadero o Falso? Jonás intentó huir a Tarsis para no ir a predicar a Nínive.",
-    "options": [
-      "Verdadero",
-      "Falso"
-    ],
-    "correctAnswer": 0,
-    "verse": "Jonás 1:3",
-    "explanation": "Jonás se levantó para huir de la presencia de Dios hacia Tarsis."
-  },
-  {
-    "id": "e5",
-    "level": "EASY",
-    "type": "EMOJI_GUESS",
-    "category": "Adivina la Historia",
-    "question": "¿Qué historia bíblica representan estos emojis? 🍎 🐍 🌳 🚫",
-    "options": [
-      "Noé y el diluvio",
-      "Adán y Eva en el Edén",
-      "Moisés y la zarza",
-      "Sansón y Dalila"
-    ],
-    "correctAnswer": 1,
-    "verse": "Génesis 3:1-6",
-    "explanation": "Representa la tentación en el huerto del Edén con Adán, Eva y la serpiente."
-  },
-  {
-    "id": "e6",
-    "level": "EASY",
-    "type": "FILL_VERSE",
-    "category": "Versículos Memorables",
-    "question": "Completa el versículo: \"El Señor es mi pastor, nada me _________\"",
-    "options": [
-      "faltará",
-      "sobrará",
-      "asustará",
-      "apartará"
-    ],
-    "correctAnswer": 0,
-    "verse": "Salmos 23:1",
-    "explanation": "Salmos 23:1: \"Jehová es mi pastor; nada me faltará.\""
-  },
-  {
-    "id": "e7",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Los Discípulos",
-    "question": "¿Cuántos discípulos / apóstoles principales eligió Jesús?",
-    "options": [
-      "7",
-      "10",
-      "12",
-      "14"
-    ],
-    "correctAnswer": 2,
-    "verse": "Mateo 10:1-4",
-    "explanation": "Jesús llamó a sus doce discípulos y les dio autoridad espiritual."
-  },
-  {
-    "id": "e8",
-    "level": "EASY",
-    "type": "WHO_SAID_IT",
-    "category": "¿Quién lo dijo?",
-    "question": "¿Quién dijo: \"¿Acaso soy yo el que cuida a mi hermano?\"",
-    "options": [
-      "Abel",
-      "Caín",
-      "Esaú",
-      "Jacob"
-    ],
-    "correctAnswer": 1,
-    "verse": "Génesis 4:9",
-    "explanation": "Caín respondió esto a Dios cuando le preguntó por su hermano Abel."
-  },
-  {
-    "id": "e9",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "El Éxodo",
-    "question": "¿Qué mar abrió Dios a través de Moisés para que el pueblo cruzara en seco?",
-    "options": [
-      "El Mar Muerto",
-      "El Mar de Galilea",
-      "El Mar Rojo",
-      "El Mar Mediterráneo"
-    ],
-    "correctAnswer": 2,
-    "verse": "Éxodo 14:21",
-    "explanation": "Moisés extendió su mano sobre el mar e hizo Dios que el mar se abriera."
-  },
-  {
-    "id": "e10",
-    "level": "EASY",
-    "type": "EMOJI_GUESS",
-    "category": "Adivina el Personaje",
-    "question": "¿Qué historia representan estos emojis? 🦁 🕳️ 🙏 🛡️",
-    "options": [
-      "Elías en la cueva",
-      "Daniel en el foso de los leones",
-      "Sansón luchando",
-      "David el pastor"
-    ],
-    "correctAnswer": 1,
-    "verse": "Daniel 6:16-22",
-    "explanation": "Daniel fue guardado milagrosamente en el foso de los leones."
-  },
-  {
-    "id": "e11",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "La Creación",
-    "question": "¿En qué día de la creación descansó Dios de toda la obra que había hecho?",
-    "options": [
-      "En el quinto día",
-      "En el sexto día",
-      "En el séptimo día",
-      "En el octavo día"
-    ],
-    "correctAnswer": 2,
-    "verse": "Génesis 2:2",
-    "explanation": "Y acabó Dios en el día séptimo la obra que hizo; y reposó el día séptimo."
-  },
-  {
-    "id": "e12",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Personajes Bíblicos",
-    "question": "¿Quién construyó el gran arca por orden de Dios para salvar a su familia?",
-    "options": [
-      "Abraham",
-      "Noé",
-      "Moisés",
-      "Isaac"
-    ],
-    "correctAnswer": 1,
-    "verse": "Génesis 6:14",
-    "explanation": "Noé construyó el arca de madera de gofer tal como Dios le mandó."
-  },
-  {
-    "id": "e13",
-    "level": "EASY",
-    "type": "TRUE_FALSE",
-    "category": "Milagros de Jesús",
-    "question": "¿Verdadero o Falso? Jesús caminó sobre el agua hacia la barca de sus discípulos.",
-    "options": [
-      "Verdadero",
-      "Falso"
-    ],
-    "correctAnswer": 0,
-    "verse": "Mateo 14:25",
-    "explanation": "Mas a la cuarta vigilia de la noche, Jesús vino a ellos andando sobre el mar."
-  },
-  {
-    "id": "e14",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Los Mandamientos",
-    "question": "¿Dónde entregó Dios las tablas de los 10 Mandamientos a Moisés?",
-    "options": [
-      "En el Monte Sinaí",
-      "En el Monte Carmelo",
-      "En el Monte de los Olivos",
-      "En el Monte Hermón"
-    ],
-    "correctAnswer": 0,
-    "verse": "Éxodo 19:20",
-    "explanation": "Y descendió Jehová sobre el monte Sinaí, y llamó a Moisés a la cumbre."
-  },
-  {
-    "id": "e15",
-    "level": "EASY",
-    "type": "FILL_VERSE",
-    "category": "Versículos Clave",
-    "question": "Juan 3:16: \"Porque de tal manera amó Dios al mundo, que ha dado a su Hijo _________\"",
-    "options": [
-      "unigénito",
-      "amado",
-      "primogénito",
-      "escogido"
-    ],
-    "correctAnswer": 0,
-    "verse": "Juan 3:16",
-    "explanation": "\"...para que todo aquel que en él cree, no se pierda, mas tenga vida eterna.\""
-  },
-  {
-    "id": "e16",
-    "level": "EASY",
-    "type": "EMOJI_GUESS",
-    "category": "Adivina el Milagro",
-    "question": "¿Qué milagro representan estos emojis? 🍞 🍞 🐟 🐟 🐟 🧺 5️⃣0️⃣0️⃣0️⃣",
-    "options": [
-      "La pesca milagrosa",
-      "La multiplicación de los panes y peces",
-      "El maná en el desierto",
-      "La última cena"
-    ],
-    "correctAnswer": 1,
-    "verse": "Mateo 14:19-21",
-    "explanation": "Jesús multiplicó cinco panes y dos peces alimentando a más de 5,000 personas."
-  },
-  {
-    "id": "e17",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Jesús",
-    "question": "¿Quién bautizó a Jesús en el río Jordán?",
-    "options": [
-      "Pedro",
-      "Juan el Bautista",
-      "Eliseo",
-      "Santiago"
-    ],
-    "correctAnswer": 1,
-    "verse": "Mateo 3:13-17",
-    "explanation": "Jesús vino de Galilea a Juan al Jordán, para ser bautizado por él."
-  },
-  {
-    "id": "e18",
-    "level": "EASY",
-    "type": "WHO_SAID_IT",
-    "category": "¿Quién lo dijo?",
-    "question": "¿Quién dijo: \"Heme aquí, envíame a mí\" al escuchar la voz del Señor?",
-    "options": [
-      "Jeremías",
-      "Isaías",
-      "Jonás",
-      "Samuel"
-    ],
-    "correctAnswer": 1,
-    "verse": "Isaías 6:8",
-    "explanation": "Isaías respondió con prontitud al llamamiento santo de Dios."
-  },
-  {
-    "id": "e19",
-    "level": "EASY",
-    "type": "TRUE_FALSE",
-    "category": "Curiosidades Bíblicas",
-    "question": "¿Verdadero o Falso? El libro de los Salmos es el libro con más capítulos en la Biblia.",
-    "options": [
-      "Verdadero",
-      "Falso"
-    ],
-    "correctAnswer": 0,
-    "verse": "Salmos",
-    "explanation": "El libro de Salmos tiene 150 capítulos, siendo el más extenso de toda la Biblia."
-  },
-  {
-    "id": "e20",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Personajes",
-    "question": "¿Quién fue tragado por un gran pez luego de desobedecer a Dios?",
-    "options": [
-      "Pedro",
-      "Pablo",
-      "Jonás",
-      "Elías"
-    ],
-    "correctAnswer": 2,
-    "verse": "Jonás 1:17",
-    "explanation": "Pero Jehová tenía preparado un gran pez que tragase a Jonás."
-  },
-  {
-    "id": "e21",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "La Biblia",
-    "question": "¿Cuál es el primer libro de la Biblia?",
-    "options": [
-      "Éxodo",
-      "Salmos",
-      "Génesis",
-      "Mateo"
-    ],
-    "correctAnswer": 2,
-    "verse": "Génesis 1:1",
-    "explanation": "Génesis significa \"principio u origen\" y es el primer libro de las Escrituras."
-  },
-  {
-    "id": "e22",
-    "level": "EASY",
-    "type": "FILL_VERSE",
-    "category": "Versículos Clave",
-    "question": "Salmos 119:105: \"Lámpara es a mis pies tu palabra, y ________ a mi camino.\"",
-    "options": [
-      "guía",
-      "lumbrera",
-      "sol",
-      "escudo"
-    ],
-    "correctAnswer": 1,
-    "verse": "Salmos 119:105",
-    "explanation": "\"Lámpara es a mis pies tu palabra, y lumbrera a mi camino.\""
-  },
-  {
-    "id": "e23",
-    "level": "EASY",
-    "type": "EMOJI_GUESS",
-    "category": "Adivina el Personaje",
-    "question": "¿Qué personaje bíblico es? 🕊️ 🌿 ⛵ 🌧️ 🌈",
-    "options": [
-      "Moisés",
-      "Noé",
-      "Abraham",
-      "Lot"
-    ],
-    "correctAnswer": 1,
-    "verse": "Génesis 8 y 9",
-    "explanation": "Noé envió la paloma que regresó con una hoja de olivo, y luego vio el arcoíris del pacto."
-  },
-  {
-    "id": "e24",
-    "level": "EASY",
-    "type": "TRUE_FALSE",
-    "category": "La Resurrección",
-    "question": "¿Verdadero o Falso? Al tercer día de morir en la cruz, Jesús resucitó de entre los muertos.",
-    "options": [
-      "Verdadero",
-      "Falso"
-    ],
-    "correctAnswer": 0,
-    "verse": "Lucas 24:6-7",
-    "explanation": "¡No está aquí, sino que ha resucitado, tal como lo había prometido!"
-  },
-  {
-    "id": "e25",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Personajes",
-    "question": "¿Quién tenía una túnica de muchos colores que le regaló su padre Jacob?",
-    "options": [
-      "Benjamín",
-      "José",
-      "Judá",
-      "Rubén"
-    ],
-    "correctAnswer": 1,
-    "verse": "Génesis 37:3",
-    "explanation": "Israel amaba a José más que a todos sus hijos y le hizo una túnica de diversos colores."
-  },
-  {
-    "id": "e26",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "La Creación",
-    "question": "¿Qué creó Dios en el primer día de la creación según Génesis?",
-    "options": [
-      "El sol y la luna",
-      "La luz",
-      "Los animales terrestres",
-      "Las aves del cielo"
-    ],
-    "correctAnswer": 1,
-    "verse": "Génesis 1:3-5",
-    "explanation": "Dios dijo: \"Sea la luz\", y fue la luz en el primer día."
-  },
-  {
-    "id": "e27",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "La Creación",
-    "question": "¿En qué día descansó Dios de toda la obra que había hecho?",
-    "options": [
-      "En el quinto día",
-      "En el sexto día",
-      "En el séptimo día",
-      "En el octavo día"
-    ],
-    "correctAnswer": 2,
-    "verse": "Génesis 2:2",
-    "explanation": "Y reposó el día séptimo de toda la obra que hizo."
-  },
-  {
-    "id": "e28",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Historias Bíblicas",
-    "question": "¿Qué señal puso Dios en el cielo como pacto de que no volvería a destruir la tierra con un diluvio?",
-    "options": [
-      "Una estrella brillante",
-      "Un arcoíris",
-      "Una columna de fuego",
-      "Un eclipse"
-    ],
-    "correctAnswer": 1,
-    "verse": "Génesis 9:13",
-    "explanation": "Mi arco he puesto en las nubes, el cual será por señal del pacto entre mí y la tierra."
-  },
-  {
-    "id": "e29",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Patriarcas",
-    "question": "¿Cómo se llamaba la esposa de Abraham y madre de Isaac?",
-    "options": [
-      "Rebeca",
-      "Sara",
-      "Raquel",
-      "Lea"
-    ],
-    "correctAnswer": 1,
-    "verse": "Génesis 17:15-19",
-    "explanation": "Dios prometió que Sara daría a luz un hijo llamado Isaac."
-  },
-  {
-    "id": "e30",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Patriarcas",
-    "question": "¿Qué regalo especial le dio Jacob a su hijo amado José que causó envidia en sus hermanos?",
-    "options": [
-      "Un anillo de oro",
-      "Una túnica de diversos colores",
-      "Un báculo de cedro",
-      "Un par de sandalias reales"
-    ],
-    "correctAnswer": 1,
-    "verse": "Génesis 37:3",
-    "explanation": "Y le hizo una túnica de diversos colores."
-  },
-  {
-    "id": "e31",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "José en Egipto",
-    "question": "¿A qué país fue llevado José después de ser vendido por sus hermanos?",
-    "options": [
-      "Babilonia",
-      "Asiria",
-      "Egipto",
-      "Persia"
-    ],
-    "correctAnswer": 2,
-    "verse": "Génesis 37:36",
-    "explanation": "Los madianitas lo vendieron en Egipto a Potifar."
-  },
-  {
-    "id": "e32",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Moisés y el Éxodo",
-    "question": "¿Dónde encontró la hija de Faraón al bebé Moisés cuando su madre lo puso en el río?",
-    "options": [
-      "En una cueva secreta",
-      "En una canastilla entre los juncos",
-      "Bajo una palmera",
-      "En una barca de pescadores"
-    ],
-    "correctAnswer": 1,
-    "verse": "Éxodo 2:3-5",
-    "explanation": "Puso al niño en una arquilla de juncos a la orilla del río Nilo."
-  },
-  {
-    "id": "e33",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Moisés y el Éxodo",
-    "question": "¿Qué fenómeno vio Moisés en el monte Horeb donde el arbusto ardía y no se consumía?",
-    "options": [
-      "Un relámpago eterno",
-      "La zarza ardiendo",
-      "Una lluvia de estrellas",
-      "Un pozo de agua viva"
-    ],
-    "correctAnswer": 1,
-    "verse": "Éxodo 3:2",
-    "explanation": "Y se le apareció el Ángel de Jehová en una llama de fuego en medio de una zarza."
-  },
-  {
-    "id": "e34",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Las Plagas",
-    "question": "¿En qué se convirtió el agua del río Nilo en la primera plaga de Egipto?",
-    "options": [
-      "En aceite",
-      "En sangre",
-      "En vino",
-      "En arena"
-    ],
-    "correctAnswer": 1,
-    "verse": "Éxodo 7:20",
-    "explanation": "Todas las aguas que había en el río se convirtieron en sangre."
-  },
-  {
-    "id": "e35",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "El Éxodo",
-    "question": "¿Qué mar abrió Dios para que el pueblo de Israel cruzara en seco huyendo de Faraón?",
-    "options": [
-      "El Mar Muerto",
-      "El Mar Mediterráneo",
-      "El Mar Rojo",
-      "El Mar de Galilea"
-    ],
-    "correctAnswer": 2,
-    "verse": "Éxodo 14:21-22",
-    "explanation": "Jehová hizo que el mar se retirara y los hijos de Israel fueron por en medio en seco."
-  },
-  {
-    "id": "e36",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "El Desierto",
-    "question": "¿Cómo se llamaba el pan que caía del cielo cada mañana para alimentar a los israelitas en el desierto?",
-    "options": [
-      "Maná",
-      "Matzá",
-      "Trigo celestial",
-      "Cebada santa"
-    ],
-    "correctAnswer": 0,
-    "verse": "Éxodo 16:31",
-    "explanation": "La casa de Israel lo llamó Maná; y era como semilla de culantro, blanco, y su sabor como hojuelas con miel."
-  },
-  {
-    "id": "e37",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Los Diez Mandamientos",
-    "question": "¿En qué monte entregó Dios a Moisés las dos tablas de la Ley con los Diez Mandamientos?",
-    "options": [
-      "Monte Carmelo",
-      "Monte de los Olivos",
-      "Monte Sinaí",
-      "Monte Hermón"
-    ],
-    "correctAnswer": 2,
-    "verse": "Éxodo 19:20; 31:18",
-    "explanation": "Descendió Jehová sobre el monte Sinaí y dio a Moisés las tablas de la ley."
-  },
-  {
-    "id": "e38",
-    "level": "EASY",
-    "type": "FILL_VERSE",
-    "category": "Los Diez Mandamientos",
-    "question": "Completa el mandamiento: \"Honra a tu padre y a tu madre, para que tus días se _________ en la tierra.\"",
-    "options": [
-      "acorten",
-      "alarguen",
-      "llenen de oro",
-      "dupliquen"
-    ],
-    "correctAnswer": 1,
-    "verse": "Éxodo 20:12",
-    "explanation": "Éxodo 20:12: \"...para que tus días se alarguen en la tierra que Jehová tu Dios te da.\""
-  },
-  {
-    "id": "e39",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Tierra Prometida",
-    "question": "¿Alrededor de los muros de qué ciudad marchó el pueblo de Israel durante 7 días hasta que los muros cayeron?",
-    "options": [
-      "Jerusalén",
-      "Jericó",
-      "Hebrón",
-      "Betel"
-    ],
-    "correctAnswer": 1,
-    "verse": "Josué 6:20",
-    "explanation": "El pueblo gritó y tocaron las trompetas, y el muro de Jericó cayó a plomo."
-  },
-  {
-    "id": "e40",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Jueces",
-    "question": "¿Quién fue el juez famoso por su fuerza sobrenatural cuyo secreto estaba en su consagración y su cabello?",
-    "options": [
-      "Gedeón",
-      "Sansón",
-      "Barac",
-      "Jefté"
-    ],
-    "correctAnswer": 1,
-    "verse": "Jueces 16:17",
-    "explanation": "Sansón confesó: \"Navaja nunca ha pasado sobre mi cabeza, porque soy nazareo para Dios.\""
-  },
-  {
-    "id": "e41",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Rut",
-    "question": "¿Quién era la suegra amada de Rut a quien acompañó de regreso a Belén?",
-    "options": [
-      "Sara",
-      "Noemí",
-      "Elisabet",
-      "Ana"
-    ],
-    "correctAnswer": 1,
-    "verse": "Rut 1:16",
-    "explanation": "Rut dijo a Noemí: \"Tu pueblo será mi pueblo, y tu Dios mi Dios.\""
-  },
-  {
-    "id": "e42",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Profetas",
-    "question": "¿Qué niño escuchó la voz de Dios en la noche pensando que era el sacerdote Elí quien lo llamaba?",
-    "options": [
-      "Samuel",
-      "David",
-      "Salomón",
-      "Daniel"
-    ],
-    "correctAnswer": 0,
-    "verse": "1 Samuel 3:4-10",
-    "explanation": "Jehová llamó a Samuel; y él respondió: \"Heme aquí... Habla, porque tu siervo oye.\""
-  },
-  {
-    "id": "e43",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Reyes de Israel",
-    "question": "¿Quién fue el primer rey de Israel, ungido por el profeta Samuel?",
-    "options": [
-      "David",
-      "Saúl",
-      "Salomón",
-      "Roboam"
-    ],
-    "correctAnswer": 1,
-    "verse": "1 Samuel 10:1",
-    "explanation": "Tomando entonces Samuel una redoma de aceite, la derramó sobre la cabeza de Saúl y lo ungió rey."
-  },
-  {
-    "id": "e44",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Rey David",
-    "question": "¿Qué oficio realizaba David en el campo antes de ser ungido rey?",
-    "options": [
-      "Carpintero",
-      "Pastor de ovejas",
-      "Pescador",
-      "Herrero"
-    ],
-    "correctAnswer": 1,
-    "verse": "1 Samuel 16:11",
-    "explanation": "David apacentaba las ovejas de su padre Isaí en Belén."
-  },
-  {
-    "id": "e45",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Rey Salomón",
-    "question": "¿Qué le pidió el rey Salomón a Dios en oración cuando comenzó a gobernar?",
-    "options": [
-      "Riquezas y oro",
-      "Larga vida",
-      "Sabiduría y entendimiento para guiar al pueblo",
-      "La victoria sobre todos sus enemigos"
-    ],
-    "correctAnswer": 2,
-    "verse": "1 Reyes 3:9",
-    "explanation": "Salomón pidió: \"Da, pues, a tu siervo corazón con entendimiento para juzgar a tu pueblo.\""
-  },
-  {
-    "id": "e46",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Rey Salomón",
-    "question": "¿Qué gran edificación construyó el rey Salomón en Jerusalén para adorar a Dios?",
-    "options": [
-      "El Arca de la Alianza",
-      "El Templo de Jerusalén",
-      "La Muralla China",
-      "La Torre de Babel"
-    ],
-    "correctAnswer": 1,
-    "verse": "1 Reyes 6:1",
-    "explanation": "Salomón comenzó a edificar la casa de Jehová en el cuarto año de su reinado."
-  },
-  {
-    "id": "e47",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Profeta Elías",
-    "question": "¿Qué aves enviaba Dios para alimentar al profeta Elías junto al arroyo de Querit?",
-    "options": [
-      "Palomas",
-      "Cuervos que traían pan y carne",
-      "Águilas",
-      "Gorriones"
-    ],
-    "correctAnswer": 1,
-    "verse": "1 Reyes 17:6",
-    "explanation": "Y los cuervos le traían pan y carne por la mañana y por la tarde."
-  },
-  {
-    "id": "e48",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Profeta Elías",
-    "question": "¿Cómo fue llevado el profeta Elías al cielo sin ver muerte física?",
-    "options": [
-      "En un barco de oro",
-      "En un torbellino con un carro de fuego y caballos de fuego",
-      "En una nube blanca",
-      "Caminando sobre el agua"
-    ],
-    "correctAnswer": 1,
-    "verse": "2 Reyes 2:11",
-    "explanation": "Un carro de fuego con caballos de fuego apartó a los dos; y Elías subió al cielo en un torbellino."
-  },
-  {
-    "id": "e49",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Reina Ester",
-    "question": "¿Qué valiente reina judía arriesgó su vida entrando ante el rey Asuero para salvar a su pueblo?",
-    "options": [
-      "Vasti",
-      "Ester",
-      "Rut",
-      "Jezabel"
-    ],
-    "correctAnswer": 1,
-    "verse": "Ester 4:16",
-    "explanation": "Ester dijo: \"Y si perezco, que perezca\", intercediendo por los judíos."
-  },
-  {
-    "id": "e50",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Daniel",
-    "question": "¿En qué lugar fue arrojado el profeta Daniel por negarse a dejar de orar a Dios tres veces al día?",
-    "options": [
-      "En un horno de fuego",
-      "En el foso de los leones",
-      "En una cisterna de lodo",
-      "En el mar abierto"
-    ],
-    "correctAnswer": 1,
-    "verse": "Daniel 6:16-22",
-    "explanation": "Dios envió su ángel, el cual cerró la boca de los leones para que no le hicieran daño."
-  },
-  {
-    "id": "e51",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Amigos de Daniel",
-    "question": "¿Cuántos jóvenes hebreos fueron arrojados al horno de fuego ardiendo por no adorar la estatua de oro?",
-    "options": [
-      "2 jóvenes",
-      "3 jóvenes (Sadrac, Mesac y Abed-nego)",
-      "5 jóvenes",
-      "7 jóvenes"
-    ],
-    "correctAnswer": 1,
-    "verse": "Daniel 3:19-25",
-    "explanation": "Sadrac, Mesac y Abed-nego salieron ilesos, y el rey vio a un cuarto varón semejante al Hijo de Dios."
-  },
-  {
-    "id": "e52",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Profeta Jonás",
-    "question": "¿Cuántos días y noches estuvo el profeta Jonás dentro del vientre del gran pez?",
-    "options": [
-      "1 día y 1 noche",
-      "3 días y 3 noches",
-      "7 días y 7 noches",
-      "40 días y 40 noches"
-    ],
-    "correctAnswer": 1,
-    "verse": "Jonás 1:17",
-    "explanation": "Y estuvo Jonás en el vientre del pez tres días y tres noches."
-  },
-  {
-    "id": "e53",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Nacimiento de Jesús",
-    "question": "¿Qué ángel se le apareció a la virgen María para anunciarle que daría a luz al Salvador?",
-    "options": [
-      "El ángel Miguel",
-      "El ángel Gabriel",
-      "El ángel Rafael",
-      "El ángel Uriel"
-    ],
-    "correctAnswer": 1,
-    "verse": "Lucas 1:26-31",
-    "explanation": "El ángel Gabriel fue enviado por Dios a una virgen llamada María."
-  },
-  {
-    "id": "e54",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Nacimiento de Jesús",
-    "question": "¿Dónde fue acostado el niño Jesús al nacer porque no había lugar para ellos en el mesón?",
-    "options": [
-      "En una cuna de marfil",
-      "En un pesebre",
-      "En un trono real",
-      "En un canasto de mimbre"
-    ],
-    "correctAnswer": 1,
-    "verse": "Lucas 2:7",
-    "explanation": "Y lo envolvió en pañales, y lo acostó en un pesebre."
-  },
-  {
-    "id": "e55",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Los Magos de Oriente",
-    "question": "¿Qué tres regalos presentaron los sabios magos de oriente al niño Jesús?",
-    "options": [
-      "Plata, bronce y trigo",
-      "Oro, incienso y mirra",
-      "Vino, pan y aceite",
-      "Perlas, seda y miel"
-    ],
-    "correctAnswer": 1,
-    "verse": "Mateo 2:11",
-    "explanation": "Abrieron sus tesoros y le ofrecieron presentes: oro, incienso y mirra."
-  },
-  {
-    "id": "e56",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Bautismo de Jesús",
-    "question": "¿Quién bautizó a Jesús en las aguas del río Jordán?",
-    "options": [
-      "Pedro",
-      "Juan el Bautista",
-      "El apóstol Pablo",
-      "Nicodemo"
-    ],
-    "correctAnswer": 1,
-    "verse": "Mateo 3:13-17",
-    "explanation": "Jesús vino de Galilea a Juan al Jordán para ser bautizado por él."
-  },
-  {
-    "id": "e57",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Bautismo de Jesús",
-    "question": "¿En forma de qué descendió el Espíritu Santo sobre Jesús en su bautismo?",
-    "options": [
-      "En forma de águila",
-      "En forma de paloma",
-      "En forma de llama de fuego",
-      "En forma de cordero"
-    ],
-    "correctAnswer": 1,
-    "verse": "Mateo 3:16",
-    "explanation": "Vio al Espíritu de Dios que descendía como paloma, y venía sobre él."
-  },
-  {
-    "id": "e58",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Tentación en el Desierto",
-    "question": "¿Cuántos días ayunó Jesús en el desierto antes de ser tentado por el diablo?",
-    "options": [
-      "7 días",
-      "12 días",
-      "40 días y 40 noches",
-      "100 días"
-    ],
-    "correctAnswer": 2,
-    "verse": "Mateo 4:2",
-    "explanation": "Y después de haber ayunado cuarenta días y cuarenta noches, tuvo hambre."
-  },
-  {
-    "id": "e59",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Milagros de Jesús",
-    "question": "¿Cuál fue el primer milagro realizado por Jesús según el Evangelio de Juan?",
-    "options": [
-      "Caminar sobre el agua",
-      "Convertir el agua en vino en las bodas de Caná",
-      "Multiplicar los panes",
-      "Sanar al ciego de nacimiento"
-    ],
-    "correctAnswer": 1,
-    "verse": "Juan 2:1-11",
-    "explanation": "Este principio de señales hizo Jesús en Caná de Galilea, y manifestó su gloria."
-  },
-  {
-    "id": "e60",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Milagros de Jesús",
-    "question": "¿Cuántos panes y cuántos pececillos tenía el muchacho en la multiplicación que alimentó a más de 5,000 personas?",
-    "options": [
-      "2 panes y 2 peces",
-      "5 panes de cebada y 2 pececillos",
-      "7 panes y 3 peces",
-      "10 panes y 5 peces"
-    ],
-    "correctAnswer": 1,
-    "verse": "Juan 6:9",
-    "explanation": "Aquí está un muchacho, que tiene cinco panes de cebada y dos pececillos."
-  },
-  {
-    "id": "e61",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Milagros de Jesús",
-    "question": "¿A qué amigo amado resucitó Jesús en Betania después de estar cuatro días en el sepulcro?",
-    "options": [
-      "Jairo",
-      "Lázaro",
-      "Bartimeo",
-      "Zaqueo"
-    ],
-    "correctAnswer": 1,
-    "verse": "Juan 11:43-44",
-    "explanation": "Clamó a gran voz: ¡Lázaro, ven fuera! Y el que había muerto salió atadas las manos."
-  },
-  {
-    "id": "e62",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Encuentros con Jesús",
-    "question": "¿Quién era el recaudador de impuestos de baja estatura que subió a un árbol sicómoro para ver pasar a Jesús?",
-    "options": [
-      "Mateo",
-      "Zaqueo",
-      "Barrabás",
-      "Cornelio"
-    ],
-    "correctAnswer": 1,
-    "verse": "Lucas 19:1-6",
-    "explanation": "Zaqueo corrió y subió a un árbol sicómoro para ver a Jesús."
-  },
-  {
-    "id": "e63",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Parábolas de Jesús",
-    "question": "En la parábola del Sembrador, ¿cuál de las semillas dio fruto al ciento, al sesenta y al treinta por uno?",
-    "options": [
-      "La que cayó junto al camino",
-      "La que cayó en pedregales",
-      "La que cayó entre espinos",
-      "La que cayó en buena tierra"
-    ],
-    "correctAnswer": 3,
-    "verse": "Mateo 13:8",
-    "explanation": "Pero parte cayó en buena tierra, y dio fruto, cuál a ciento, cuál a sesenta, y cuál a treinta por uno."
-  },
-  {
-    "id": "e64",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Parábolas de Jesús",
-    "question": "¿Quién se detuvo a curar y vendar las heridas del hombre asaltado en el camino a Jericó?",
-    "options": [
-      "Un sacerdote",
-      "Un levita",
-      "Un buen samaritano",
-      "Un soldado romano"
-    ],
-    "correctAnswer": 2,
-    "verse": "Lucas 10:33-34",
-    "explanation": "Un samaritano, que iba de camino, vino cerca de él, y viéndole, fue movido a misericordia."
-  },
-  {
-    "id": "e65",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Parábolas de Jesús",
-    "question": "En la parábola del hijo pródigo, ¿qué hizo el padre cuando vio volver a su hijo arrepentido desde lejos?",
-    "options": [
-      "Le cerró la puerta de la casa",
-      "Corrió, se echó sobre su cuello y le besó",
-      "Le impuso un castigo de 40 azotes",
-      "Le exigió devolver todo el dinero"
-    ],
-    "correctAnswer": 1,
-    "verse": "Lucas 15:20",
-    "explanation": "Y cuando aún estaba lejos, lo vio su padre, y fue movido a misericordia, y corrió, y se echó sobre su cuello, y le besó."
-  },
-  {
-    "id": "e66",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "La Última Cena",
-    "question": "¿Qué elementos usó Jesús en la Última Cena para instituir la Santa Cena en memoria suya?",
-    "options": [
-      "Carne y leche",
-      "El pan y la copa de vino/fruto de la vid",
-      "Miel y agua pura",
-      "Hierbas amargas y trigo"
-    ],
-    "correctAnswer": 1,
-    "verse": "Lucas 22:19-20",
-    "explanation": "Tomó el pan y dio gracias... y de igual manera la copa, diciendo: Esta copa es el nuevo pacto en mi sangre."
-  },
-  {
-    "id": "e67",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "La Pasión de Cristo",
-    "question": "¿En qué huerto oró Jesús intensamente con sudor como grandes gotas de sangre antes de ser entregado?",
-    "options": [
-      "Huerto del Edén",
-      "Huerto de Getsemaní",
-      "Jardín de Salomón",
-      "Monte de la Transfiguración"
-    ],
-    "correctAnswer": 1,
-    "verse": "Lucas 22:39-44",
-    "explanation": "Fue al monte de los Olivos / Getsemaní y estando en agonía, oraba más intensamente."
-  },
-  {
-    "id": "e68",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Los Discípulos",
-    "question": "¿Por cuántas monedas de plata entregó Judas Iscariote al Señor Jesús?",
-    "options": [
-      "10 monedas",
-      "20 monedas",
-      "30 piezas de plata",
-      "50 monedas de oro"
-    ],
-    "correctAnswer": 2,
-    "verse": "Mateo 26:15",
-    "explanation": "Y ellos le asignaron treinta piezas de plata."
-  },
-  {
-    "id": "e69",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Los Discípulos",
-    "question": "¿Cuántas veces negó el apóstol Pedro a Jesús antes de que el gallo cantara?",
-    "options": [
-      "1 vez",
-      "2 veces",
-      "3 veces",
-      "7 veces"
-    ],
-    "correctAnswer": 2,
-    "verse": "Mateo 26:75",
-    "explanation": "Pedro se acordó de las palabras de Jesús: \"Antes que cante el gallo, me negarás tres veces.\""
-  },
-  {
-    "id": "e70",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Resurrección de Jesús",
-    "question": "¿Al cuántos días resucitó Jesús de entre los muertos con gloria y victoria?",
-    "options": [
-      "Al primer día",
-      "Al segundo día",
-      "Al tercer día según las Escrituras",
-      "A los siete días"
-    ],
-    "correctAnswer": 2,
-    "verse": "1 Corintios 15:4",
-    "explanation": "Y que fue sepultado, y que resucitó al tercer día, conforme a las Escrituras."
-  },
-  {
-    "id": "e71",
-    "level": "EASY",
-    "type": "FILL_VERSE",
-    "category": "La Gran Comisión",
-    "question": "Completa Mateo 28:19: \"Por tanto, id, y haced discípulos a todas las naciones, bautizándolos en el nombre del Padre, y del Hijo, y del _________\"",
-    "options": [
-      "profeta Elías",
-      "Espíritu Santo",
-      "apóstol Pedro",
-      "ángel Gabriel"
-    ],
-    "correctAnswer": 1,
-    "verse": "Mateo 28:19",
-    "explanation": "\"...en el nombre del Padre, y del Hijo, y del Espíritu Santo.\""
-  },
-  {
-    "id": "e72",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Hechos de los Apóstoles",
-    "question": "¿Qué gran fiesta celebraban cuando el Espíritu Santo descendió con un viento recio y lenguas de fuego?",
-    "options": [
-      "La Pascua",
-      "Pentecostés",
-      "La fiesta de los Tabernáculos",
-      "El día de Expiación"
-    ],
-    "correctAnswer": 1,
-    "verse": "Hechos 2:1-4",
-    "explanation": "Cuando llegó el día de Pentecostés, estaban todos unánimes juntos y fueron llenos del Espíritu Santo."
-  },
-  {
-    "id": "e73",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Apóstol Pablo",
-    "question": "¿En qué camino una luz del cielo resplandeció alrededor de Saulo de Tarso y escuchó la voz de Jesús?",
-    "options": [
-      "Camino a Jericó",
-      "Camino a Damasco",
-      "Camino a Emaús",
-      "Camino a Roma"
-    ],
-    "correctAnswer": 1,
-    "verse": "Hechos 9:3-4",
-    "explanation": "Y yendo por el camino, aconteció que al llegar cerca de Damasco, repentinamente le rodeó una luz del cielo."
-  },
-  {
-    "id": "e74",
-    "level": "EASY",
-    "type": "FILL_VERSE",
-    "category": "Amor y Caridad",
-    "question": "Completa 1 Corintios 13:13: \"Y ahora permanecen la fe, la esperanza y el amor, estos tres; pero el mayor de ellos es el _________\"",
-    "options": [
-      "conocimiento",
-      "amor",
-      "dinero",
-      "poder"
-    ],
-    "correctAnswer": 1,
-    "verse": "1 Corintios 13:13",
-    "explanation": "1 Corintios 13:13: \"...pero el mayor de ellos es el amor.\""
-  },
-  {
-    "id": "e75",
-    "level": "EASY",
-    "type": "TRUE_FALSE",
-    "category": "Apocalipsis",
-    "question": "¿Verdadero o Falso? En el libro de Apocalipsis, Jesús se llama a sí mismo \"el Alfa y la Omega, el principio y el fin\".",
-    "options": [
-      "Verdadero",
-      "Falso"
-    ],
-    "correctAnswer": 0,
-    "verse": "Apocalipsis 1:8 / 22:13",
-    "explanation": "\"Yo soy el Alfa y la Omega, principio y fin, dice el Señor, el que es y que era y que ha de venir.\""
-  },
-  {
-    "id": "e76",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Génesis",
-    "question": "¿Cómo se llamaban los primeros dos hijos nacidos de Adán y Eva?",
-    "options": [
-      "Caín y Abel",
-      "Jacob y Esaú",
-      "Efraín y Manasés",
-      "David y Salomón"
-    ],
-    "correctAnswer": 0,
-    "verse": "Génesis 4:1-2",
-    "explanation": "Eva dio a luz a Caín y después dio a luz a su hermano Abel."
-  },
-  {
-    "id": "e77",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Génesis",
-    "question": "¿Qué animal envió Noé en primer lugar fuera del arca para ver si las aguas habían bajado?",
-    "options": [
-      "Una paloma",
-      "Un cuervo",
-      "Un águila",
-      "Un gorrión"
-    ],
-    "correctAnswer": 1,
-    "verse": "Génesis 8:7",
-    "explanation": "Y envió a un cuervo, el cual salió, y estuvo yendo y volviendo hasta que las aguas se secaron."
-  },
-  {
-    "id": "e78",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Génesis",
-    "question": "¿Qué trajo la paloma en su pico al regresar al arca de Noé?",
-    "options": [
-      "Una espiga de trigo",
-      "Una hoja verde de olivo",
-      "Una flor de almendro",
-      "Una uva fresca"
-    ],
-    "correctAnswer": 1,
-    "verse": "Génesis 8:11",
-    "explanation": "Y la paloma volvió a él a la hora de la tarde; y he aquí que traía una hoja de olivo en el pico."
-  },
-  {
-    "id": "e79",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Génesis",
-    "question": "¿Qué gran torre intentaron construir los hombres para llegar al cielo antes de que Dios confundiera su lenguaje?",
-    "options": [
-      "La Torre de Siloé",
-      "La Torre de Babel",
-      "La Torre de David",
-      "La Gran Pirámide"
-    ],
-    "correctAnswer": 1,
-    "verse": "Génesis 11:4-9",
-    "explanation": "Por esto fue llamado el nombre de ella Babel, porque allí confundió Jehová el lenguaje de toda la tierra."
-  },
-  {
-    "id": "e80",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Patriarcas",
-    "question": "¿De qué ciudad idólatra llamó Dios a Abraham para ir a la tierra que le mostraría?",
-    "options": [
-      "Ur de los Caldeos",
-      "Nínive",
-      "Damasco",
-      "Tiro"
-    ],
-    "correctAnswer": 0,
-    "verse": "Génesis 11:31; 12:1",
-    "explanation": "Salieron con ellos de Ur de los caldeos para ir a la tierra de Canaán."
-  },
-  {
-    "id": "e81",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Patriarcas",
-    "question": "¿Por qué plato de comida vendió Esaú su primogenitura a su hermano Jacob?",
-    "options": [
-      "Un guisado de lentejas rojas",
-      "Un pan caliente con queso",
-      "Un cordero asado",
-      "Una copa de miel"
-    ],
-    "correctAnswer": 0,
-    "verse": "Génesis 25:34",
-    "explanation": "Entonces Jacob dio a Esaú pan y del guisado de las lentejas; y él comió y bebió."
-  },
-  {
-    "id": "e82",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Patriarcas",
-    "question": "¿Qué vio Jacob en su famoso sueño en Betel mientras dormía con una piedra por cabecera?",
-    "options": [
-      "Un río de cristal",
-      "Una escalera que tocaba el cielo y ángeles de Dios subiendo y bajando",
-      "Un carro de oro",
-      "Un árbol gigantesco"
-    ],
-    "correctAnswer": 1,
-    "verse": "Génesis 28:12",
-    "explanation": "Y soñó: y he aquí una escalera que estaba apoyada en tierra, y su extremo tocaba en el cielo."
-  },
-  {
-    "id": "e83",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "José en Egipto",
-    "question": "¿Qué significado tenían las 7 vacas gordas y las 7 vacas flacas en el sueño de Faraón interpretado por José?",
-    "options": [
-      "7 guerras y 7 victorias",
-      "7 años de gran abundancia y 7 años de hambre",
-      "7 reyes y 7 dinastías",
-      "7 días de fiesta y 7 de luto"
-    ],
-    "correctAnswer": 1,
-    "verse": "Génesis 41:29-30",
-    "explanation": "He aquí vienen siete años de gran abundancia... y tras ellos seguirán siete años de hambre."
-  },
-  {
-    "id": "e84",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Éxodo",
-    "question": "¿Quién era el hermano mayor de Moisés que fue nombrado el primer Sumo Sacerdote de Israel?",
-    "options": [
-      "Josué",
-      "Aarón",
-      "Caleb",
-      "Hur"
-    ],
-    "correctAnswer": 1,
-    "verse": "Éxodo 28:1",
-    "explanation": "Haz llegar delante de ti a Aarón tu hermano... para que sean mis sacerdotes."
-  },
-  {
-    "id": "e85",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Éxodo",
-    "question": "¿Cómo guiaba Dios al pueblo de Israel en el desierto durante el día y durante la noche?",
-    "options": [
-      "Columna de nube de día y columna de fuego de noche",
-      "Con estrellas fugaces",
-      "Con trompetas celestiales",
-      "Con ángeles visibles todo el tiempo"
-    ],
-    "correctAnswer": 0,
-    "verse": "Éxodo 13:21",
-    "explanation": "Jehová iba delante de ellos de día en una columna de nube... y de noche en una columna de fuego."
-  },
-  {
-    "id": "e86",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Éxodo",
-    "question": "¿Qué animal construyó el pueblo de Israel en oro para adorarlo mientras Moisés estaba en el monte Sinaí?",
-    "options": [
-      "Un león de oro",
-      "Un becerro de oro",
-      "Un águila de bronce",
-      "Una serpiente alada"
-    ],
-    "correctAnswer": 1,
-    "verse": "Éxodo 32:4",
-    "explanation": "Y él los tomó de las manos de ellos, y le dio forma con buril, e hizo de ello un becerro de fundición."
-  },
-  {
-    "id": "e87",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Números",
-    "question": "¿Qué animal habló con voz humana al profeta Balaam cuando vio al Ángel de Jehová con la espada desenvainada?",
-    "options": [
-      "Una oveja",
-      "Su asna",
-      "Un camello",
-      "Un perro pastor"
-    ],
-    "correctAnswer": 1,
-    "verse": "Números 22:28",
-    "explanation": "Entonces Jehová abrió la boca al asna, la cual dijo a Balaam: ¿Qué te he hecho, que me has azotado estas tres veces?"
-  },
-  {
-    "id": "e88",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Josué",
-    "question": "¿Quién fue el sucesor de Moisés que lideró al pueblo de Israel para cruzar el Jordán y conquistar la Tierra Prometida?",
-    "options": [
-      "Gedeón",
-      "Josué",
-      "Sansón",
-      "Caleb"
-    ],
-    "correctAnswer": 1,
-    "verse": "Josué 1:1-2",
-    "explanation": "Jehová habló a Josué hijo de Nun: \"Mi siervo Moisés ha muerto; ahora, pues, levántate y pasa este Jordán.\""
-  },
-  {
-    "id": "e89",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Josué",
-    "question": "¿Qué mujer de Jericó escondió a los espías de Israel y puso un cordón de grana en su ventana para salvar a su familia?",
-    "options": [
-      "Débora",
-      "Rahab",
-      "Dalila",
-      "Jael"
-    ],
-    "correctAnswer": 1,
-    "verse": "Josué 2:18; 6:25",
-    "explanation": "Rahab ató el cordón de grana a la ventana y ella y su familia fueron salvadas."
-  },
-  {
-    "id": "e90",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Jueces",
-    "question": "¿Con cuántos hombres escogidos venció Gedeón al inmenso ejército de los madianitas usando cántaros, teas y trompetas?",
-    "options": [
-      "300 hombres",
-      "1,000 hombres",
-      "10,000 hombres",
-      "30,000 hombres"
-    ],
-    "correctAnswer": 0,
-    "verse": "Jueces 7:7",
-    "explanation": "Jehová dijo a Gedeón: Con estos trescientos hombres que lamieron el agua os salvaré."
-  },
-  {
-    "id": "e91",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Jueces",
-    "question": "¿Qué mujer engañó a Sansón hasta descubrir de dónde procedía su gran fuerza?",
-    "options": [
-      "Jezabel",
-      "Dalila",
-      "Atalía",
-      "Mical"
-    ],
-    "correctAnswer": 1,
-    "verse": "Jueces 16:4-19",
-    "explanation": "Dalila rogó a Sansón hasta que él le abrió todo su corazón y reveló el voto de su cabello."
-  },
-  {
-    "id": "e92",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "1 Samuel",
-    "question": "¿Cómo se llamaba la piadosa madre de Samuel que oró llorando en el tabernáculo de Silo pidiendo un hijo?",
-    "options": [
-      "Ana",
-      "Penina",
-      "Elisabet",
-      "Marta"
-    ],
-    "correctAnswer": 0,
-    "verse": "1 Samuel 1:10-20",
-    "explanation": "Ana oró con amargura de alma y Dios se acordó de ella y dio a luz a Samuel."
-  },
-  {
-    "id": "e93",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "1 Samuel",
-    "question": "¿Qué instrumento musical tocaba el joven David para calmar al rey Saúl cuando lo atormentaba un espíritu malo?",
-    "options": [
-      "La flauta",
-      "El arpa",
-      "La trompeta",
-      "El pandero"
-    ],
-    "correctAnswer": 1,
-    "verse": "1 Samuel 16:23",
-    "explanation": "David tomaba el arpa y tocaba con su mano; y Saúl tenía alivio y estaba mejor."
-  },
-  {
-    "id": "e94",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "1 Samuel",
-    "question": "¿Quién fue el hijo del rey Saúl y el mejor amigo entrañable de David?",
-    "options": [
-      "Absalón",
-      "Jonatán",
-      "Amnón",
-      "Adonías"
-    ],
-    "correctAnswer": 1,
-    "verse": "1 Samuel 18:1",
-    "explanation": "El alma de Jonatán quedó ligada con la de David, y lo amó Jonatán como a sí mismo."
-  },
-  {
-    "id": "e95",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "2 Samuel",
-    "question": "¿Qué ciudad conquistó el rey David y la convirtió en la capital de su reino, llamada \"la ciudad de David\"?",
-    "options": [
-      "Hebrón",
-      "Jerusalén (Sión)",
-      "Samaria",
-      "Jericó"
-    ],
-    "correctAnswer": 1,
-    "verse": "2 Samuel 5:7-9",
-    "explanation": "David tomó la fortaleza de Sion, la cual es la ciudad de David."
-  },
-  {
-    "id": "e96",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "1 Reyes",
-    "question": "¿Qué reina extranjera viajó desde los confines de la tierra para comprobar la fama y sabiduría de Salomón?",
-    "options": [
-      "La reina de Saba",
-      "La reina de Egipto",
-      "La reina de Babilonia",
-      "La reina de Tiro"
-    ],
-    "correctAnswer": 0,
-    "verse": "1 Reyes 10:1-2",
-    "explanation": "Oyendo la reina de Sabá la fama que Salomón había alcanzado... vino a probarle con preguntas difíciles."
-  },
-  {
-    "id": "e97",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "1 Reyes",
-    "question": "En el monte Carmelo, ¿contra los profetas de qué dios falso compitió el profeta Elías?",
-    "options": [
-      "Moloc",
-      "Baal (450 profetas de Baal)",
-      "Dagón",
-      "Diana"
-    ],
-    "correctAnswer": 1,
-    "verse": "1 Reyes 18:21-22",
-    "explanation": "Elías desafió a los 450 profetas de Baal; y el Dios que respondió con fuego del cielo fue Jehová."
-  },
-  {
-    "id": "e98",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "2 Reyes",
-    "question": "¿Qué general sirio fue sanado de lepra al lavarse siete veces en las aguas del río Jordán siguiendo el consejo de Eliseo?",
-    "options": [
-      "Ben-hadad",
-      "Naamán",
-      "Hazael",
-      "Senaquerib"
-    ],
-    "correctAnswer": 1,
-    "verse": "2 Reyes 5:14",
-    "explanation": "Naamán descendió y se zambulló siete veces en el Jordán... y su carne se volvió como la de un niño."
-  },
-  {
-    "id": "e99",
-    "level": "EASY",
-    "type": "FILL_VERSE",
-    "category": "Salmos",
-    "question": "Completa el Salmo 119:105: \"Lámpara es a mis pies tu palabra, y _________ a mi camino.\"",
-    "options": [
-      "guía",
-      "lumbrera",
-      "estrella",
-      "antorcha"
-    ],
-    "correctAnswer": 1,
-    "verse": "Salmos 119:105",
-    "explanation": "Salmos 119:105: \"Lámpara es a mis pies tu palabra, y lumbrera a mi camino.\""
-  },
-  {
-    "id": "e100",
-    "level": "EASY",
-    "type": "FILL_VERSE",
-    "category": "Salmos",
-    "question": "Completa el Salmo 46:1: \"Dios es nuestro amparo y fortaleza, nuestro pronto auxilio en las _________\"",
-    "options": [
-      "alegrías",
-      "tribulaciones",
-      "batallas",
-      "noches"
-    ],
-    "correctAnswer": 1,
-    "verse": "Salmos 46:1",
-    "explanation": "Salmos 46:1: \"Dios es nuestro amparo y fortaleza, nuestro pronto auxilio en las tribulaciones.\""
-  },
-  {
-    "id": "e101",
-    "level": "EASY",
-    "type": "FILL_VERSE",
-    "category": "Proverbios",
-    "question": "Completa Proverbios 1:7: \"El principio de la sabiduría es el _________ de Jehová\"",
-    "options": [
-      "amor",
-      "temor",
-      "poder",
-      "nombre"
-    ],
-    "correctAnswer": 1,
-    "verse": "Proverbios 1:7",
-    "explanation": "Proverbios 1:7: \"El principio de la sabiduría es el temor de Jehová; los insensatos desprecian la sabiduría y la enseñanza.\""
-  },
-  {
-    "id": "e102",
-    "level": "EASY",
-    "type": "FILL_VERSE",
-    "category": "Proverbios",
-    "question": "Completa Proverbios 3:5: \"Fíate de Jehová de todo tu corazón, y no te apoyes en tu propia _________\"",
-    "options": [
-      "prudencia",
-      "riqueza",
-      "fuerza",
-      "voluntad"
-    ],
-    "correctAnswer": 0,
-    "verse": "Proverbios 3:5",
-    "explanation": "Proverbios 3:5: \"Fíate de Jehová de todo tu corazón, y no te apoyes en tu propia prudencia.\""
-  },
-  {
-    "id": "e103",
-    "level": "EASY",
-    "type": "FILL_VERSE",
-    "category": "Isaías",
-    "question": "Completa Isaías 40:31: \"Pero los que esperan a Jehová tendrán nuevas fuerzas; levantarán alas como las _________\"",
-    "options": [
-      "palomas",
-      "águilas",
-      "golondrinas",
-      "garzas"
-    ],
-    "correctAnswer": 1,
-    "verse": "Isaías 40:31",
-    "explanation": "Isaías 40:31: \"...levantarán alas como las águilas; correrán, y no se cansarán; caminarán, y no se fatigarán.\""
-  },
-  {
-    "id": "e104",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Evangelios",
-    "question": "¿Cuántos evangelios componen el inicio del Nuevo Testamento en la Biblia?",
-    "options": [
-      "3 evangelios",
-      "4 evangelios (Mateo, Marcos, Lucas, Juan)",
-      "7 evangelios",
-      "12 evangelios"
-    ],
-    "correctAnswer": 1,
-    "verse": "Nuevo Testamento",
-    "explanation": "Los cuatro evangelios canónicos son Mateo, Marcos, Lucas y Juan."
-  },
-  {
-    "id": "e105",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Jesús en el Templo",
-    "question": "¿A qué edad se quedó el niño Jesús en el Templo de Jerusalén dialogando con los doctores de la ley?",
-    "options": [
-      "A los 7 años",
-      "A los 12 años",
-      "A los 15 años",
-      "A los 30 años"
-    ],
-    "correctAnswer": 1,
-    "verse": "Lucas 2:42-46",
-    "explanation": "Cuando tuvo doce años, subieron a Jerusalén conforme a la costumbre de la fiesta."
-  },
-  {
-    "id": "e106",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Ministerio de Jesús",
-    "question": "¿En qué famoso sermón dio Jesús las Bienaventuranzas (\"Bienaventurados los pobres en espíritu...\")?",
-    "options": [
-      "En el Sermón del Monte",
-      "En el Pozo de Jacob",
-      "En el huerto de Getsemaní",
-      "En la barca de Pedro"
-    ],
-    "correctAnswer": 0,
-    "verse": "Mateo 5:1-12",
-    "explanation": "Viendo la multitud, subió al monte; y sentándose... abrió su boca y les enseñaba diciendo: Bienaventurados..."
-  },
-  {
-    "id": "e107",
-    "level": "EASY",
-    "type": "FILL_VERSE",
-    "category": "La Oración del Padre Nuestro",
-    "question": "Completa la oración que Jesús enseñó: \"Padre nuestro que estás en los cielos, santificado sea tu _________\"",
-    "options": [
-      "reino",
-      "nombre",
-      "templo",
-      "trono"
-    ],
-    "correctAnswer": 1,
-    "verse": "Mateo 6:9",
-    "explanation": "Mateo 6:9: \"Padre nuestro que estás en los cielos, santificado sea tu nombre.\""
-  },
-  {
-    "id": "e108",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Milagros de Jesús",
-    "question": "¿Qué discípulo intentó caminar sobre las aguas hacia Jesús pero comenzó a hundirse por dudar?",
-    "options": [
-      "Juan",
-      "Pedro",
-      "Tomás",
-      "Andrés"
-    ],
-    "correctAnswer": 1,
-    "verse": "Mateo 14:28-31",
-    "explanation": "Pedro descendió de la barca y anduvo sobre las aguas para ir a Jesús. Pero al ver el viento fuerte, tuvo miedo y comenzó a hundirse."
-  },
-  {
-    "id": "e109",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Milagros de Jesús",
-    "question": "¿Qué hizo Jesús cuando se desató una gran tempestad en el mar mientras dormía en la barca?",
-    "options": [
-      "Saltó de la barca",
-      "Se despertó y reprendió a los vientos y al mar, y se hizo grande bonanza",
-      "Pidió ayuda a otros barcos",
-      "Les dijo que remaran más rápido"
-    ],
-    "correctAnswer": 1,
-    "verse": "Marcos 4:39",
-    "explanation": "Y levantándose, reprendió al viento, y dijo al mar: Calla, enmudece. Y cesó el viento, y se hizo grande bonanza."
-  },
-  {
-    "id": "e110",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Milagros de Jesús",
-    "question": "¿Cómo sanó una mujer que padecía de flujo de sangre desde hacía 12 años?",
-    "options": [
-      "Tomando medicina herbal",
-      "Tocando con fe el borde del manto de Jesús",
-      "Lavándose en el estanque de Siloé",
-      "Ofreciendo dos monedas de plata"
-    ],
-    "correctAnswer": 1,
-    "verse": "Marcos 5:27-29",
-    "explanation": "Vino por detrás entre la multitud, y tocó su manto... y enseguida la fuente de su sangre se secó."
-  },
-  {
-    "id": "e111",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Milagros de Jesús",
-    "question": "¿A qué niña de 12 años, hija de un principal de la sinagoga, resucitó Jesús diciendo: \"Talita cumi\"?",
-    "options": [
-      "A la hija de Jairo",
-      "A la hija de la viuda de Naín",
-      "A la hija de Marta",
-      "A la hermana de Lázaro"
-    ],
-    "correctAnswer": 0,
-    "verse": "Marcos 5:22; 41-42",
-    "explanation": "Tomando la mano de la niña, le dijo: Talita cumi; que traducido es: Niña, a ti te digo, levántate."
-  },
-  {
-    "id": "e112",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Encuentros con Jesús",
-    "question": "¿Junto a qué pozo le pidió Jesús agua a una mujer samaritana y le ofreció \"agua viva\"?",
-    "options": [
-      "Pozo de Abraham",
-      "Pozo de Jacob en Sicar",
-      "Pozo de Betsaida",
-      "Pozo de Beerseba"
-    ],
-    "correctAnswer": 1,
-    "verse": "Juan 4:5-14",
-    "explanation": "Vino una mujer de Samaria a sacar agua; y Jesús le dijo: Dame de beber... el que bebiere del agua que yo le daré, no tendrá sed jamás."
-  },
-  {
-    "id": "e113",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Encuentros con Jesús",
-    "question": "¿Qué maestro fariseo fue a hablar con Jesús de noche y escuchó que debía \"nacer de nuevo\"?",
-    "options": [
-      "Gamaliel",
-      "Nicodemo",
-      "Caifás",
-      "Anás"
-    ],
-    "correctAnswer": 1,
-    "verse": "Juan 3:1-3",
-    "explanation": "Había un hombre de los fariseos que se llamaba Nicodemo... Jesús le dijo: De cierto te digo, que el que no naciere de nuevo, no puede ver el reino de Dios."
-  },
-  {
-    "id": "e114",
-    "level": "EASY",
-    "type": "FILL_VERSE",
-    "category": "El Versículo de Oro",
-    "question": "Completa Juan 3:16: \"Porque de tal manera amó Dios al mundo, que ha dado a su Hijo unigénito, para que todo aquel que en él cree, no se pierda, mas tenga _________\"",
-    "options": [
-      "riquezas terrenales",
-      "vida eterna",
-      "fama y honra",
-      "paz momentánea"
-    ],
-    "correctAnswer": 1,
-    "verse": "Juan 3:16",
-    "explanation": "Juan 3:16: \"...para que todo aquel que en él cree, no se pierda, mas tenga vida eterna.\""
-  },
-  {
-    "id": "e115",
-    "level": "EASY",
-    "type": "FILL_VERSE",
-    "category": "Jesús el Buen Pastor",
-    "question": "Completa Juan 10:11: \"Yo soy el buen pastor; el buen pastor su _________ da por las ovejas.\"",
-    "options": [
-      "vara",
-      "vida",
-      "oro",
-      "casa"
-    ],
-    "correctAnswer": 1,
-    "verse": "Juan 10:11",
-    "explanation": "Juan 10:11: \"Yo soy el buen pastor; el buen pastor su vida da por las ovejas.\""
-  },
-  {
-    "id": "e116",
-    "level": "EASY",
-    "type": "FILL_VERSE",
-    "category": "Jesús el Camino",
-    "question": "Completa Juan 14:6: \"Jesús le dijo: Yo soy el camino, y la verdad, y la vida; nadie viene al Padre, sino por _________\"",
-    "options": [
-      "las buenas obras",
-      "mí",
-      "la ley de Moisés",
-      "los profetas"
-    ],
-    "correctAnswer": 1,
-    "verse": "Juan 14:6",
-    "explanation": "Juan 14:6: \"Jesús le dijo: Yo soy el camino, y la verdad, y la vida; nadie viene al Padre, sino por mí.\""
-  },
-  {
-    "id": "e117",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Entrada Triunfal",
-    "question": "¿Sobre qué animal montó Jesús al entrar humildemente a Jerusalén mientras la gente aclamaba \"¡Hosanna!\"?",
-    "options": [
-      "Un caballo blanco de guerra",
-      "Un pollino de asna",
-      "Un camello de gala",
-      "Un carruaje de bronce"
-    ],
-    "correctAnswer": 1,
-    "verse": "Mateo 21:5-9",
-    "explanation": "He aquí, tu Rey viene a ti, manso, y sentado sobre una asna, sobre un pollino hijo de animal de carga."
-  },
-  {
-    "id": "e118",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "El Calvario",
-    "question": "¿Qué le pusieron los soldados romanos a Jesús sobre la cabeza como burla a su realeza?",
-    "options": [
-      "Una corona de oro",
-      "Una corona de espinas",
-      "Un gorro de púrpura",
-      "Un velo de luto"
-    ],
-    "correctAnswer": 1,
-    "verse": "Mateo 27:29",
-    "explanation": "Pusieron sobre su cabeza una corona tejida de espinas, y una caña en su mano derecha."
-  },
-  {
-    "id": "e119",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "La Cruz",
-    "question": "¿A quién perdonó Jesús en la cruz cuando le dijo: \"De cierto te digo que hoy estarás conmigo en el paraíso\"?",
-    "options": [
-      "A Poncio Pilato",
-      "Al ladrón arrepentido crucificado a su lado",
-      "Al centurión romano",
-      "A Barrabás"
-    ],
-    "correctAnswer": 1,
-    "verse": "Lucas 23:42-43",
-    "explanation": "El malhechor arrepentido le dijo: Acuérdate de mí cuando vengas en tu reino. Y Jesús le dio la promesa de salvación."
-  },
-  {
-    "id": "e120",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "La Tumba Vacía",
-    "question": "¿Quién fue la primera mujer que fue de madrugada al sepulcro y vio que la piedra había sido quitada?",
-    "options": [
-      "María Magdalena",
-      "Marta de Betania",
-      "Salomé",
-      "Elisabet"
-    ],
-    "correctAnswer": 0,
-    "verse": "Juan 20:1",
-    "explanation": "El primer día de la semana, María Magdalena fue de mañana, siendo aún oscuro, al sepulcro; y vio quitada la piedra."
-  },
-  {
-    "id": "e121",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Apariciones de Jesús",
-    "question": "¿Qué apóstol dijo: \"Si no viere en sus manos la señal de los clavos... no creeré\", hasta que vio a Jesús resucitado?",
-    "options": [
-      "Tomás",
-      "Bartolomé",
-      "Felipe",
-      "Judas Tadeo"
-    ],
-    "correctAnswer": 0,
-    "verse": "Juan 20:25-28",
-    "explanation": "Tomás respondió y le dijo: ¡Señor mío, y Dios mío! Jesús le dijo: Porque me has visto, Tomás, creíste; bienaventurados los que no vieron, y creyeron."
-  },
-  {
-    "id": "e122",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "La Ascensión",
-    "question": "¿Hacia dónde ascendió Jesús a la vista de sus discípulos mientras una nube le ocultó de sus ojos?",
-    "options": [
-      "Hacia el desierto",
-      "Hacia el cielo",
-      "Hacia las profundidades del mar",
-      "Hacia el templo"
-    ],
-    "correctAnswer": 1,
-    "verse": "Hechos 1:9-11",
-    "explanation": "Fue alzado, y le recibió una nube que le ocultó de sus ojos. Y dos varones con vestiduras blancas dijeron: Este mismo Jesús... vendrá otra vez."
-  },
-  {
-    "id": "e123",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Hechos de los Apóstoles",
-    "question": "En la puerta de la Hermosa del templo, ¿en el nombre de quién levantaron Pedro y Juan a un hombre cojo de nacimiento?",
-    "options": [
-      "En el nombre de Moisés",
-      "En el nombre de Jesucristo de Nazaret",
-      "En el nombre de David",
-      "En el nombre del sumo sacerdote"
-    ],
-    "correctAnswer": 1,
-    "verse": "Hechos 3:6",
-    "explanation": "Pedro dijo: No tengo plata ni oro, pero lo que tengo te doy; en el nombre de Jesucristo de Nazaret, levántate y anda."
-  },
-  {
-    "id": "e124",
-    "level": "EASY",
-    "type": "FILL_VERSE",
-    "category": "Fruto del Espíritu",
-    "question": "Completa Gálatas 5:22: \"Mas el fruto del Espíritu es amor, gozo, paz, paciencia, benignidad, bondad, _________\"",
-    "options": [
-      "riqueza",
-      "fe",
-      "orgullo",
-      "fama"
-    ],
-    "correctAnswer": 1,
-    "verse": "Gálatas 5:22-23",
-    "explanation": "Gálatas 5:22: \"Mas el fruto del Espíritu es amor, gozo, paz, paciencia, benignidad, bondad, fe, mansedumbre, templanza.\""
-  },
-  {
-    "id": "e125",
-    "level": "EASY",
-    "type": "FILL_VERSE",
-    "category": "Victoria en Cristo",
-    "question": "Completa Filipenses 4:13: \"Todo lo puedo en Cristo que me _________\"",
-    "options": [
-      "juzga",
-      "fortalece",
-      "observa",
-      "exige"
-    ],
-    "correctAnswer": 1,
-    "verse": "Filipenses 4:13",
-    "explanation": "Filipenses 4:13: \"Todo lo puedo en Cristo que me fortalece.\""
-  },
-  {
-    "id": "e126",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Génesis",
-    "question": "¿De qué material formó Dios al primer hombre, Adán?",
-    "options": [
-      "De oro refinado",
-      "Del polvo de la tierra",
-      "De madera de cedro",
-      "De una roca del Edén"
-    ],
-    "correctAnswer": 1,
-    "verse": "Génesis 2:7",
-    "explanation": "Entonces Jehová Dios formó al hombre del polvo de la tierra, y sopló en su nariz aliento de vida."
-  },
-  {
-    "id": "e127",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Génesis",
-    "question": "¿De qué parte de Adán creó Dios a la primera mujer, Eva?",
-    "options": [
-      "De una de sus costillas",
-      "De un cabello suyo",
-      "De su mano derecha",
-      "Del barro del río"
-    ],
-    "correctAnswer": 0,
-    "verse": "Génesis 2:21-22",
-    "explanation": "De la costilla que Jehová Dios tomó del hombre, hizo una mujer, y la trajo al hombre."
-  },
-  {
-    "id": "e128",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Génesis",
-    "question": "¿Cuántas personas en total se salvaron en el arca de Noé?",
-    "options": [
-      "4 personas",
-      "8 personas (Noé, su esposa, sus 3 hijos y sus 3 nueras)",
-      "12 personas",
-      "70 personas"
-    ],
-    "correctAnswer": 1,
-    "verse": "1 Pedro 3:20 / Génesis 7:13",
-    "explanation": "En los días de Noé... pocas personas, es decir, ocho, fueron salvadas por agua."
-  },
-  {
-    "id": "e129",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Patriarcas",
-    "question": "¿Qué animal proveyó Dios para que Abraham sacrificara en el monte Moriah en lugar de su hijo Isaac?",
-    "options": [
-      "Un carnero trabado en un zarzal por sus cuernos",
-      "Un buey blanco",
-      "Una tórtola limpia",
-      "Un león joven"
-    ],
-    "correctAnswer": 0,
-    "verse": "Génesis 22:13",
-    "explanation": "Alzando Abraham sus ojos, miró, y he aquí a sus espaldas un carnero trabado en un zarzal por sus cuernos."
-  },
-  {
-    "id": "e130",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Patriarcas",
-    "question": "¿Cuántos hijos varones tuvo Jacob, que dieron origen a las 12 tribus de Israel?",
-    "options": [
-      "7 hijos",
-      "10 hijos",
-      "12 hijos",
-      "14 hijos"
-    ],
-    "correctAnswer": 2,
-    "verse": "Génesis 35:22",
-    "explanation": "Los hijos de Jacob fueron doce, cabezas de las doce tribus de Israel."
-  },
-  {
-    "id": "e131",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Patriarcas",
-    "question": "¿Cuál era el hijo menor de Jacob, nacido de su amada esposa Raquel?",
-    "options": [
-      "Rubén",
-      "Judá",
-      "Benjamín",
-      "Dan"
-    ],
-    "correctAnswer": 2,
-    "verse": "Génesis 35:18",
-    "explanation": "Raquel dio a luz a Benjamín, el hijo menor de Jacob."
-  },
-  {
-    "id": "e132",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Éxodo",
-    "question": "¿Qué le mandó Dios hacer a Moisés con su vara frente a la roca en Horeb para que saliera agua para el pueblo?",
-    "options": [
-      "Enterrar la vara",
-      "Golpear la roca",
-      "Quemar la roca",
-      "Echar agua sobre ella"
-    ],
-    "correctAnswer": 1,
-    "verse": "Éxodo 17:6",
-    "explanation": "Golpearás la peña, y saldrán de ella aguas, y beberá el pueblo."
-  },
-  {
-    "id": "e133",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "El Tabernáculo",
-    "question": "¿Qué objeto sagrado con querubines de oro en su cubierta guardaba las tablas de la Ley en el Lugar Santísimo?",
-    "options": [
-      "El Altar del Incienso",
-      "El Arca del Pacto (o del Testimonio)",
-      "El Candelabro de oro",
-      "La Mesa del Pan de la Proposición"
-    ],
-    "correctAnswer": 1,
-    "verse": "Éxodo 25:10-22",
-    "explanation": "Pondrás el propiciatorio encima del arca, y en el arca pondrás el testimonio que yo te daré."
-  },
-  {
-    "id": "e134",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Los Espías",
-    "question": "De los 12 espías que Moisés envió a explorar Canaán, ¿cuáles dos trajeron un informe de fe animando al pueblo a confiar en Dios?",
-    "options": [
-      "Josué y Caleb",
-      "Aarón y Hur",
-      "Nadab y Abiú",
-      "Core y Datán"
-    ],
-    "correctAnswer": 0,
-    "verse": "Números 14:6-9",
-    "explanation": "Josué hijo de Nun y Caleb hijo de Jefone dijeron: \"Si Jehová se agradare de nosotros, él nos llevará a esta tierra.\""
-  },
-  {
-    "id": "e135",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Jueces",
-    "question": "¿Quién fue la única mujer que fue jueza y profetisa en Israel, que se sentaba bajo una palmera a juzgar al pueblo?",
-    "options": [
-      "Rut",
-      "Débora",
-      "Ana",
-      "Ester"
-    ],
-    "correctAnswer": 1,
-    "verse": "Jueces 4:4-5",
-    "explanation": "Gobernaba en aquel tiempo a Israel una mujer, Débora, profetisa... y se sentaba bajo la palmera de Débora."
-  },
-  {
-    "id": "e136",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Jueces",
-    "question": "¿Qué señal pidió Gedeón a Dios usando un vellón de lana en la era para confirmar su llamado?",
-    "options": [
-      "Que el vellón estuviera mojado de rocío y la tierra seca, y luego al revés",
-      "Que el vellón ardiera sin consumirse",
-      "Que el vellón se volviera púrpura",
-      "Que lloviera fuego del cielo"
-    ],
-    "correctAnswer": 0,
-    "verse": "Jueces 6:36-40",
-    "explanation": "Gedeón pidió la señal del rocío sobre el vellón de lana para confirmar que Dios salvaría a Israel."
-  },
-  {
-    "id": "e137",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Rut",
-    "question": "¿Quién fue el pariente redentor rico en Belén que se casó con Rut la moabita?",
-    "options": [
-      "Elimelec",
-      "Booz",
-      "Mahlón",
-      "Quilión"
-    ],
-    "correctAnswer": 1,
-    "verse": "Rut 4:9-13",
-    "explanation": "Booz tomó a Rut y ella fue su mujer, y dio a luz a Obed, abuelo del rey David."
-  },
-  {
-    "id": "e138",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Rey David",
-    "question": "¿Cuántas piedras lisas tomó David del arroyo en su saco de pastor para enfrentar a Goliat?",
-    "options": [
-      "1 piedra",
-      "3 piedras",
-      "5 piedras lisas",
-      "7 piedras"
-    ],
-    "correctAnswer": 2,
-    "verse": "1 Samuel 17:40",
-    "explanation": "Tomó su cayado en su mano, y escogió cinco piedras lisas del arroyo, y las puso en el saco pastoril."
-  },
-  {
-    "id": "e139",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Rey David",
-    "question": "¿Cómo demostró David que no quería hacerle daño al rey Saúl cuando lo encontró durmiendo en una cueva en En-gadi?",
-    "options": [
-      "Le robó su corona",
-      "Le cortó la orilla del manto en silencio",
-      "Despertó a sus soldados",
-      "Le dejó una carta de paz"
-    ],
-    "correctAnswer": 1,
-    "verse": "1 Samuel 24:4",
-    "explanation": "Se levantó David, y calladamente cortó la orilla del manto de Saúl, perdonándole la vida."
-  },
-  {
-    "id": "e140",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "2 Samuel",
-    "question": "¿A qué hijo lisiado de su amigo Jonatán acogió David en su mesa real de por vida?",
-    "options": [
-      "Mefiboset",
-      "Is-boset",
-      "Quilión",
-      "Amnón"
-    ],
-    "correctAnswer": 0,
-    "verse": "2 Samuel 9:6-7",
-    "explanation": "David dijo a Mefiboset: No tengas temor, porque yo a la verdad haré contigo misericordia... y tú comerás siempre a mi mesa."
-  },
-  {
-    "id": "e141",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Profeta Eliseo",
-    "question": "¿Qué objeto de hierro flotó milagrosamente en el río Jordán cuando Eliseo arrojó un leño al agua?",
-    "options": [
-      "Una punta de lanza",
-      "El hacha prestada de un profeta",
-      "Una espada de bronce",
-      "Un yelmo militar"
-    ],
-    "correctAnswer": 1,
-    "verse": "2 Reyes 6:5-7",
-    "explanation": "Cortó un palo, y lo echó allí; e hizo flotar el hierro del hacha."
-  },
-  {
-    "id": "e142",
-    "level": "EASY",
-    "type": "TRUE_FALSE",
-    "category": "Libro de Job",
-    "question": "¿Verdadero o Falso? A pesar de perder sus riquezas, sus hijos y su salud, Job no pecó ni atribuyó a Dios despropósito alguno.",
-    "options": [
-      "Verdadero",
-      "Falso"
-    ],
-    "correctAnswer": 0,
-    "verse": "Job 1:21-22",
-    "explanation": "\"Jehová dio, y Jehová quitó; sea el nombre de Jehová bendito. En todo esto no pecó Job, ni atribuyó a Dios despropósito alguno.\""
-  },
-  {
-    "id": "e143",
-    "level": "EASY",
-    "type": "FILL_VERSE",
-    "category": "Salmos",
-    "question": "Completa el Salmo 100:3: \"Reconoced que Jehová es Dios; él nos hizo, y no nosotros a nosotros mismos; pueblo suyo somos, y _________ de su prado.\"",
-    "options": [
-      "leones",
-      "ovejas",
-      "flores",
-      "guerreros"
-    ],
-    "correctAnswer": 1,
-    "verse": "Salmos 100:3",
-    "explanation": "Salmos 100:3: \"...pueblo suyo somos, y ovejas de su prado.\""
-  },
-  {
-    "id": "e144",
-    "level": "EASY",
-    "type": "FILL_VERSE",
-    "category": "Salmos",
-    "question": "Completa el Salmo 91:1: \"El que habita al abrigo del Altísimo morará bajo la _________ del Omnipotente.\"",
-    "options": [
-      "luz",
-      "sombra",
-      "espada",
-      "mano"
-    ],
-    "correctAnswer": 1,
-    "verse": "Salmos 91:1",
-    "explanation": "Salmos 91:1: \"El que habita al abrigo del Altísimo morará bajo la sombra del Omnipotente.\""
-  },
-  {
-    "id": "e145",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Proverbios",
-    "question": "Según Proverbios 6:6, ¿a qué pequeño insecto laborioso se le manda ir al perezoso para aprender sabiduría?",
-    "options": [
-      "A la abeja",
-      "A la hormiga",
-      "A la mariposa",
-      "A la araña"
-    ],
-    "correctAnswer": 1,
-    "verse": "Proverbios 6:6",
-    "explanation": "Ve a la hormiga, oh perezoso, mira sus caminos, y sé sabio."
-  },
-  {
-    "id": "e146",
-    "level": "EASY",
-    "type": "FILL_VERSE",
-    "category": "Proverbios",
-    "question": "Completa Proverbios 15:1: \"La blanda respuesta quita la ira; mas la palabra áspera hace subir el _________\"",
-    "options": [
-      "furor",
-      "llanto",
-      "miedo",
-      "orgullo"
-    ],
-    "correctAnswer": 0,
-    "verse": "Proverbios 15:1",
-    "explanation": "Proverbios 15:1: \"La blanda respuesta quita la ira; mas la palabra áspera hace subir el furor.\""
-  },
-  {
-    "id": "e147",
-    "level": "EASY",
-    "type": "FILL_VERSE",
-    "category": "Eclesiastés",
-    "question": "Completa Eclesiastés 3:1: \"Todo tiene su tiempo, y todo lo que se quiere debajo del cielo tiene su _________\"",
-    "options": [
-      "precio",
-      "hora",
-      "límite",
-      "fin"
-    ],
-    "correctAnswer": 1,
-    "verse": "Eclesiastés 3:1",
-    "explanation": "Eclesiastés 3:1: \"Todo tiene su tiempo, y todo lo que se quiere debajo del cielo tiene su hora.\""
-  },
-  {
-    "id": "e148",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Profetas",
-    "question": "¿Qué profeta es conocido como \"el profeta llorón\" por su profundo dolor por el pecado y destrucción de Jerusalén?",
-    "options": [
-      "Isaías",
-      "Jeremías",
-      "Ezequiel",
-      "Miqueas"
-    ],
-    "correctAnswer": 1,
-    "verse": "Jeremías 9:1 / Lamentaciones",
-    "explanation": "Jeremías lamentó con lágrimas la rebelión de su pueblo y escribió el libro de Lamentaciones."
-  },
-  {
-    "id": "e149",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Profeta Ezequiel",
-    "question": "¿En qué visión profética vio Ezequiel cómo huesos secos cobraban vida y se levantaban como un gran ejército al soplar el Espíritu?",
-    "options": [
-      "En el monte Sinaí",
-      "En el valle de los huesos secos",
-      "En el mar de cristal",
-      "En el templo de Salomón"
-    ],
-    "correctAnswer": 1,
-    "verse": "Ezequiel 37:1-10",
-    "explanation": "Y profetizó... y entró espíritu en ellos, y vivieron, y estuvieron sobre sus pies, un ejército grande en extremo."
-  },
-  {
-    "id": "e150",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Profeta Daniel",
-    "question": "¿Qué alimento sencillo y agua pidieron comer Daniel y sus tres amigos en Babilonia para no contaminarse con la comida del rey?",
-    "options": [
-      "Legumbres y agua",
-      "Carne de cordero y leche",
-      "Uvas y pan ácimo",
-      "Maná del cielo"
-    ],
-    "correctAnswer": 0,
-    "verse": "Daniel 1:12-15",
-    "explanation": "Pruébanos por diez días dando legumbres a comer y agua a beber; y sus rostros se veían mejores que los demás."
-  },
-  {
-    "id": "e151",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Profeta Jonás",
-    "question": "¿A qué gran ciudad enemiga envió Dios al profeta Jonás a predicar el mensaje de arrepentimiento?",
-    "options": [
-      "Tiro",
-      "Nínive",
-      "Babilonia",
-      "Roma"
-    ],
-    "correctAnswer": 1,
-    "verse": "Jonás 1:2; 3:2-5",
-    "explanation": "Levántate y ve a Nínive, aquella gran ciudad, y proclama en ella el mensaje que yo te diré."
-  },
-  {
-    "id": "e152",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Evangelio de Mateo",
-    "question": "¿Qué profesión tenía Mateo (Leví) antes de dejarlo todo y seguir a Jesús?",
-    "options": [
-      "Pescador de peces",
-      "Recaudador de impuestos (publicano)",
-      "Médico",
-      "Carpintero"
-    ],
-    "correctAnswer": 1,
-    "verse": "Mateo 9:9",
-    "explanation": "Vio Jesús a un hombre llamado Mateo, que estaba sentado al banco de los tributos públicos, y le dijo: Sígueme."
-  },
-  {
-    "id": "e153",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Evangelio de Lucas",
-    "question": "¿Qué profesión tenía Lucas, el autor del tercer Evangelio y del libro de Hechos de los Apóstoles?",
-    "options": [
-      "Pescador",
-      "Médico amado",
-      "Centurión",
-      "Escriba fariseo"
-    ],
-    "correctAnswer": 1,
-    "verse": "Colosenses 4:14",
-    "explanation": "Pablo lo describe en Colosenses 4:14: \"Os saluda Lucas el médico amado.\""
-  },
-  {
-    "id": "e154",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Nacimiento de Jesús",
-    "question": "¿A quiénes se les aparecieron los ángeles en el campo en la noche cantando: \"¡Gloria a Dios en las alturas y en la tierra paz!\"?",
-    "options": [
-      "A los reyes del palacio",
-      "A los pastores que velaban sus rebaños",
-      "A los sacerdotes en el templo",
-      "A los pescadores en el lago"
-    ],
-    "correctAnswer": 1,
-    "verse": "Lucas 2:8-14",
-    "explanation": "Había pastores en la misma región velando sus rebaños y se les presentó un ángel del Señor con buenas nuevas de gran gozo."
-  },
-  {
-    "id": "e155",
-    "level": "EASY",
-    "type": "FILL_VERSE",
-    "category": "Ministerio de Jesús",
-    "question": "Completa Mateo 5:14: \"Vosotros sois la _________ del mundo; una ciudad asentada sobre un monte no se puede esconder.\"",
-    "options": [
-      "luz",
-      "sal",
-      "fuerza",
-      "voz"
-    ],
-    "correctAnswer": 0,
-    "verse": "Mateo 5:14",
-    "explanation": "Mateo 5:14: \"Vosotros sois la luz del mundo; una ciudad asentada sobre un monte no se puede esconder.\""
-  },
-  {
-    "id": "e156",
-    "level": "EASY",
-    "type": "FILL_VERSE",
-    "category": "Ministerio de Jesús",
-    "question": "Completa Mateo 5:13: \"Vosotros sois la _________ de la tierra; pero si pierde su sabor, ¿con qué será salada?\"",
-    "options": [
-      "luz",
-      "sal",
-      "agua",
-      "semilla"
-    ],
-    "correctAnswer": 1,
-    "verse": "Mateo 5:13",
-    "explanation": "Mateo 5:13: \"Vosotros sois la sal de la tierra.\""
-  },
-  {
-    "id": "e157",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Milagros de Jesús",
-    "question": "¿Qué mendigo ciego clamaba junto al camino de Jericó: \"¡Jesús, Hijo de David, ten misericordia de mí!\" hasta recibir la vista?",
-    "options": [
-      "Bartimeo",
-      "Zaqueo",
-      "Lázaro",
-      "Simón"
-    ],
-    "correctAnswer": 0,
-    "verse": "Marcos 10:46-52",
-    "explanation": "Bartimeo el ciego... comenzó a dar voces y a decir: ¡Jesús, Hijo de David, ten misericordia de mí! Y recobró la vista."
-  },
-  {
-    "id": "e158",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Milagros de Jesús",
-    "question": "¿A cuántos hombres leprosos limpió Jesús de los cuales solo uno (un samaritano) regresó a darle gracias?",
-    "options": [
-      "3 leprosos",
-      "7 leprosos",
-      "10 leprosos",
-      "12 leprosos"
-    ],
-    "correctAnswer": 2,
-    "verse": "Lucas 17:12-17",
-    "explanation": "Jesús dijo: ¿No son diez los que fueron limpiados? Y los nueve, ¿dónde están? ¿No hubo quien volviese a dar gloria a Dios sino este extranjero?"
-  },
-  {
-    "id": "e159",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Milagros de Jesús",
-    "question": "¿Cómo bajaron cuatro amigos a un hombre paralítico hasta los pies de Jesús en Capernaúm?",
-    "options": [
-      "Por la puerta trasera",
-      "Abriendo el techo de la casa y bajando el lecho con cuerdas",
-      "Por la ventana de la sala",
-      "Esperando afuera en la calle"
-    ],
-    "correctAnswer": 1,
-    "verse": "Marcos 2:4",
-    "explanation": "Descubrieron el techo de donde estaba Jesús, y haciendo una abertura, bajaron el lecho en que yacía el paralítico."
-  },
-  {
-    "id": "e160",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Parábolas de Jesús",
-    "question": "En la parábola de la oveja perdida, ¿cuántas ovejas dejó el pastor seguras en el redil para ir a buscar a la una que se había extraviado?",
-    "options": [
-      "9 ovejas",
-      "50 ovejas",
-      "99 ovejas",
-      "100 ovejas"
-    ],
-    "correctAnswer": 2,
-    "verse": "Lucas 15:4",
-    "explanation": "¿Qué hombre de vosotros, teniendo cien ovejas, si pierde una de ellas, no deja las noventa y nueve en el desierto, y va tras la que se perdió?"
-  },
-  {
-    "id": "e161",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Parábolas de Jesús",
-    "question": "¿Con qué semilla diminuta comparó Jesús el reino de los cielos, diciendo que siendo la más pequeña llega a ser un gran árbol?",
-    "options": [
-      "Semilla de trigo",
-      "Semilla de mostaza",
-      "Semilla de uva",
-      "Semilla de olivo"
-    ],
-    "correctAnswer": 1,
-    "verse": "Mateo 13:31-32",
-    "explanation": "El reino de los cielos es semejante al grano de mostaza... cuando ha crecido, es la mayor de las hortalizas, y se hace árbol."
-  },
-  {
-    "id": "e162",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Parábolas de Jesús",
-    "question": "En la parábola de los dos constructores, ¿sobre qué edificó su casa el hombre prudente para que resistiera las lluvias y vientos?",
-    "options": [
-      "Sobre la arena movediza",
-      "Sobre la roca firme",
-      "Sobre la hierba suave",
-      "En la orilla de la playa"
-    ],
-    "correctAnswer": 1,
-    "verse": "Mateo 7:24-25",
-    "explanation": "Cualquiera que me oye estas palabras, y las hace, le compararé a un hombre prudente, que edificó su casa sobre la roca."
-  },
-  {
-    "id": "e163",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "La Última Semana",
-    "question": "¿Qué hizo Jesús al entrar al Templo de Jerusalén cuando vio que habían hecho de la casa de oración una cueva de ladrones?",
-    "options": [
-      "Volcó las mesas de los cambistas y echó fuera a los que vendían",
-      "Se sentó a discutir en silencio",
-      "Construyó un nuevo muro",
-      "Pidió limosna"
-    ],
-    "correctAnswer": 0,
-    "verse": "Mateo 21:12-13",
-    "explanation": "Volcó las mesas de los cambistas... y les dijo: Escrito está: Mi casa, casa de oración será llamada; mas vosotros la habéis hecho cueva de ladrones."
-  },
-  {
-    "id": "e164",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "La Última Cena",
-    "question": "¿Qué acto de suprema humildad y servicio realizó Jesús con una toalla y un lebrillo antes de la cena pascual?",
-    "options": [
-      "Lavó los pies de sus discípulos",
-      "Peinó a sus discípulos",
-      "Les cocinó un pez",
-      "Les ungió la ropa con mirra"
-    ],
-    "correctAnswer": 0,
-    "verse": "Juan 13:4-5",
-    "explanation": "Puso agua en un lebrillo, y comenzó a lavar los pies de los discípulos, y a enjugarlos con la toalla con que estaba ceñido."
-  },
-  {
-    "id": "e165",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "El Calvario",
-    "question": "¿Qué gobernador romano se lavó las manos diciendo: \"Inocente soy yo de la sangre de este justo\", antes de entregar a Jesús?",
-    "options": [
-      "Herodes Antipas",
-      "Poncio Pilato",
-      "Félix",
-      "Festo"
-    ],
-    "correctAnswer": 1,
-    "verse": "Mateo 27:24",
-    "explanation": "Viendo Pilato que nada adelantaba... tomó agua y se lavó las manos delante del pueblo, diciendo: Inocente soy yo de la sangre de este justo."
-  },
-  {
-    "id": "e166",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "La Cruz",
-    "question": "¿Qué hombre de Cirene fue obligado por los soldados romanos a cargar la cruz de Jesús camino al Gólgota?",
-    "options": [
-      "Simón de Cirene",
-      "José de Arimatea",
-      "Nicodemo",
-      "Barrabás"
-    ],
-    "correctAnswer": 0,
-    "verse": "Mateo 27:32",
-    "explanation": "Al salir, hallaron a un hombre de Cirene que se llamaba Simón; a éste obligaron a que llevase la cruz."
-  },
-  {
-    "id": "e167",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "La Sepultura de Jesús",
-    "question": "¿Qué discípulo secreto y miembro noble del concilio pidió el cuerpo de Jesús a Pilato y lo puso en su propio sepulcro nuevo?",
-    "options": [
-      "José de Arimatea",
-      "Gamaliel",
-      "Zaqueo",
-      "Bernabé"
-    ],
-    "correctAnswer": 0,
-    "verse": "Mateo 27:57-60",
-    "explanation": "José de Arimatea pidió el cuerpo de Jesús... y lo puso en su sepulcro nuevo, que había labrado en la peña."
-  },
-  {
-    "id": "e168",
-    "level": "EASY",
-    "type": "FILL_VERSE",
-    "category": "Resurrección de Jesús",
-    "question": "Completa Mateo 28:6, las palabras del ángel en la tumba: \"No está aquí, pues ha _________, como dijo. Venid, ved el lugar donde fue puesto el Señor.\"",
-    "options": [
-      "huido",
-      "resucitado",
-      "viajado",
-      "dormido"
-    ],
-    "correctAnswer": 1,
-    "verse": "Mateo 28:6",
-    "explanation": "Mateo 28:6: \"No está aquí, pues ha resucitado, como dijo.\""
-  },
-  {
-    "id": "e169",
-    "level": "EASY",
-    "type": "FILL_VERSE",
-    "category": "La Gran Comisión",
-    "question": "Completa la promesa final de Jesús en Mateo 28:20: \"Y he aquí yo estoy con vosotros _________ los días, hasta el fin del mundo.\"",
-    "options": [
-      "algunos de",
-      "todos",
-      "los primeros",
-      "los mejores"
-    ],
-    "correctAnswer": 1,
-    "verse": "Mateo 28:20",
-    "explanation": "Mateo 28:20: \"...y he aquí yo estoy con vosotros todos los días, hasta el fin del mundo. Amén.\""
-  },
-  {
-    "id": "e170",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Hechos de los Apóstoles",
-    "question": "¿Quién fue el fiel creyente de Chipre apodado Bernabé, cuyo nombre significa \"Hijo de consolación\"?",
-    "options": [
-      "José Bernabé",
-      "Silas",
-      "Apolos",
-      "Timoteo"
-    ],
-    "correctAnswer": 0,
-    "verse": "Hechos 4:36",
-    "explanation": "José, a quien los apóstoles pusieron por sobrenombre Bernabé (que traducido es, Hijo de consolación)."
-  },
-  {
-    "id": "e171",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Hechos de los Apóstoles",
-    "question": "¿Qué carcelero preguntó con temor y temblor a medianoche: \"Señores, ¿qué debo hacer para ser salvo?\" tras un gran terremoto?",
-    "options": [
-      "El carcelero de Filipos",
-      "El centurión Cornelio",
-      "El gobernador Sergio Paulo",
-      "El centurión Julio"
-    ],
-    "correctAnswer": 0,
-    "verse": "Hechos 16:30-31",
-    "explanation": "Ellos dijeron: Cree en el Señor Jesucristo, y serás salvo, tú y tu casa."
-  },
-  {
-    "id": "e172",
-    "level": "EASY",
-    "type": "FILL_VERSE",
-    "category": "Epístolas de Pablo",
-    "question": "Completa Romanos 12:2: \"No os conforméis a este siglo, sino transformaos por medio de la renovación de vuestro _________\"",
-    "options": [
-      "cuerpo",
-      "entendimiento",
-      "vestido",
-      "dinero"
-    ],
-    "correctAnswer": 1,
-    "verse": "Romanos 12:2",
-    "explanation": "Romanos 12:2: \"...sino transformaos por medio de la renovación de vuestro entendimiento.\""
-  },
-  {
-    "id": "e173",
-    "level": "EASY",
-    "type": "FILL_VERSE",
-    "category": "Epístolas de Pablo",
-    "question": "Completa Efesios 2:8: \"Porque por gracia sois salvos por medio de la fe; y esto no de vosotros, pues es _________ de Dios\"",
-    "options": [
-      "mandato",
-      "don (regalo)",
-      "exigencia",
-      "préstamo"
-    ],
-    "correctAnswer": 1,
-    "verse": "Efesios 2:8",
-    "explanation": "Efesios 2:8: \"Porque por gracia sois salvos por medio de la fe; y esto no de vosotros, pues es don de Dios; no por obras, para que nadie se gloríe.\""
-  },
-  {
-    "id": "e174",
-    "level": "EASY",
-    "type": "FILL_VERSE",
-    "category": "Epístola a los Hebreos",
-    "question": "Completa Hebreos 11:1: \"Es, pues, la fe la certeza de lo que se espera, la convicción de lo que _________\"",
-    "options": [
-      "se compra",
-      "no se ve",
-      "se pierde",
-      "se acaba"
-    ],
-    "correctAnswer": 1,
-    "verse": "Hebreos 11:1",
-    "explanation": "Hebreos 11:1: \"Es, pues, la fe la certeza de lo que se espera, la convicción de lo que no se ve.\""
-  },
-  {
-    "id": "e175",
-    "level": "EASY",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Apocalipsis",
-    "question": "En Apocalipsis 21:4, ¿qué enjugará Dios de los ojos de los suyos en la Nueva Jerusalén?",
-    "options": [
-      "Toda lágrima, y ya no habrá muerte, ni llanto, ni clamor, ni dolor",
-      "El polvo de la tierra",
-      "El rocío del monte",
-      "El cansancio"
-    ],
-    "correctAnswer": 0,
-    "verse": "Apocalipsis 21:4",
-    "explanation": "Enjugará Dios toda lágrima de los ojos de ellos; y ya no habrá muerte, ni habrá más llanto, ni clamor, ni dolor."
-  },
-  {
-    "id": "m1",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Milagros de Jesús",
-    "question": "¿Cuál fue el primer milagro público de Jesús según el Evangelio de Juan?",
-    "options": [
-      "Multiplicar los panes",
-      "Caminar sobre el mar",
-      "Convertir el agua en vino en Caná",
-      "Sanar a diez leprosos"
-    ],
-    "correctAnswer": 2,
-    "verse": "Juan 2:1-11",
-    "explanation": "En las bodas de Caná de Galilea, Jesús manifestó por primera vez su gloria."
-  },
-  {
-    "id": "m2",
-    "level": "MEDIUM",
-    "type": "WHO_SAID_IT",
-    "category": "¿Quién lo dijo?",
-    "question": "¿Quién declaró con convicción: \"Yo y mi casa serviremos a Jehová\"?",
-    "options": [
-      "Moisés",
-      "Josué",
-      "Gedeón",
-      "Samuel"
-    ],
-    "correctAnswer": 1,
-    "verse": "Josué 24:15",
-    "explanation": "Josué lo proclamó al despedirse del pueblo de Israel reafirmando su lealtad a Dios."
-  },
-  {
-    "id": "m3",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "El Fruto del Espíritu",
-    "question": "¿Cuál de los siguientes NO es parte del fruto del Espíritu en Gálatas 5:22-23?",
-    "options": [
-      "Amor y Gozo",
-      "Paciencia y Benignidad",
-      "Orgullo y Fama",
-      "Paz y Mansedumbre"
-    ],
-    "correctAnswer": 2,
-    "verse": "Gálatas 5:22-23",
-    "explanation": "El fruto del Espíritu es amor, gozo, paz, paciencia, benignidad, bondad, fe, mansedumbre y templanza."
-  },
-  {
-    "id": "m4",
-    "level": "MEDIUM",
-    "type": "TRUE_FALSE",
-    "category": "Hechos de los Apóstoles",
-    "question": "¿Verdadero o Falso? Saulo de Tarso perseguía a los cristianos antes de convertirse en el apóstol Pablo.",
-    "options": [
-      "Verdadero",
-      "Falso"
-    ],
-    "correctAnswer": 0,
-    "verse": "Hechos 9:1-6",
-    "explanation": "Saulo respiraba amenazas y muerte contra los discípulos hasta que tuvo su encuentro con Cristo."
-  },
-  {
-    "id": "m5",
-    "level": "MEDIUM",
-    "type": "FILL_VERSE",
-    "category": "Versículos Clave",
-    "question": "Filipenses 4:13: \"Todo lo puedo en Cristo que me ____________\"",
-    "options": [
-      "fortalece",
-      "sustenta",
-      "guía",
-      "ilumina"
-    ],
-    "correctAnswer": 0,
-    "verse": "Filipenses 4:13",
-    "explanation": "\"Todo lo puedo en Cristo que me fortalece.\""
-  },
-  {
-    "id": "m6",
-    "level": "MEDIUM",
-    "type": "EMOJI_GUESS",
-    "category": "Adivina el Personaje",
-    "question": "¿Quién es este personaje? 👸 👑 📜 🇮🇱 🍽️ (\"Si perezco, que perezca\")",
-    "options": [
-      "Rut",
-      "Ester",
-      "Débora",
-      "María Magdalena"
-    ],
-    "correctAnswer": 1,
-    "verse": "Ester 4:16",
-    "explanation": "La reina Ester arriesgó su vida para salvar al pueblo judío del complot de Amán."
-  },
-  {
-    "id": "m7",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Profetas",
-    "question": "¿A qué profeta se le apareció Dios en un silbo apacible y delicado en el monte Horeb?",
-    "options": [
-      "Isaías",
-      "Jeremías",
-      "Elías",
-      "Ezequiel"
-    ],
-    "correctAnswer": 2,
-    "verse": "1 Reyes 19:12",
-    "explanation": "Dios no estaba en el fuego ni en el terremoto, sino en un silbo apacible."
-  },
-  {
-    "id": "m8",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Parábolas",
-    "question": "En la parábola del Hijo Pródigo, ¿qué animal mandó sacrificar el padre para celebrar el regreso?",
-    "options": [
-      "Un cordero sin mancha",
-      "El becerro gordo",
-      "Dos palominos",
-      "Un cabrito"
-    ],
-    "correctAnswer": 1,
-    "verse": "Lucas 15:23",
-    "explanation": "\"Traed el becerro gordo y matadlo, y comamos y hagamos fiesta.\""
-  },
-  {
-    "id": "m9",
-    "level": "MEDIUM",
-    "type": "WHO_SAID_IT",
-    "category": "¿Quién lo dijo?",
-    "question": "¿Quién clamó a Jesús en Jericó: \"¡Hijo de David, ten misericordia de mí!\" a pesar de que le mandaban callar?",
-    "options": [
-      "Zaqueo",
-      "El ciego Bartimeo",
-      "Nicodemo",
-      "Lázaro"
-    ],
-    "correctAnswer": 1,
-    "verse": "Marcos 10:47-48",
-    "explanation": "Bartimeo perseveró con fe viva y Jesús le devolvió la vista."
-  },
-  {
-    "id": "m10",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Pentecostés",
-    "question": "¿En qué fiesta judía descendió el Espíritu Santo sobre los discípulos reunidos unánimes?",
-    "options": [
-      "La Pascua",
-      "Pentecostés",
-      "Tabernáculos",
-      "Purim"
-    ],
-    "correctAnswer": 1,
-    "verse": "Hechos 2:1-4",
-    "explanation": "Cuando llegó el día de Pentecostés, fueron todos llenos del Espíritu Santo."
-  },
-  {
-    "id": "m11",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Jueces de Israel",
-    "question": "¿Qué juez de Israel redujo su ejército de 32,000 soldados a tan solo 300 valientes con trompetas y cántaros?",
-    "options": [
-      "Sansón",
-      "Gedeón",
-      "Jefté",
-      "Barac"
-    ],
-    "correctAnswer": 1,
-    "verse": "Jueces 7:7",
-    "explanation": "Dios le dijo a Gedeón: \"Con estos trescientos hombres que lamieron el agua os salvaré\"."
-  },
-  {
-    "id": "m12",
-    "level": "MEDIUM",
-    "type": "TRUE_FALSE",
-    "category": "Los Apóstoles",
-    "question": "¿Verdadero o Falso? Mateo, antes de seguir a Jesús, trabajaba como recaudador de impuestos.",
-    "options": [
-      "Verdadero",
-      "Falso"
-    ],
-    "correctAnswer": 0,
-    "verse": "Mateo 9:9",
-    "explanation": "Jesús vio a un hombre llamado Mateo sentado al banco de los tributos públicos y le dijo: Sígueme."
-  },
-  {
-    "id": "m13",
-    "level": "MEDIUM",
-    "type": "FILL_VERSE",
-    "category": "Sabiduría",
-    "question": "Proverbios 3:5: \"Fíate de Jehová de todo tu corazón, y no te apoyes en tu propia ___________\"",
-    "options": [
-      "prudencia",
-      "riqueza",
-      "fuerza",
-      "justicia"
-    ],
-    "correctAnswer": 0,
-    "verse": "Proverbios 3:5",
-    "explanation": "\"Fíate de Jehová de todo tu corazón, y no te apoyes en tu propia prudencia.\""
-  },
-  {
-    "id": "m14",
-    "level": "MEDIUM",
-    "type": "EMOJI_GUESS",
-    "category": "Adivina la Historia",
-    "question": "¿Qué historia es? 🌳 🧗‍♂️ 💰 👀 🏠 (\"Hoy ha venido la salvación a esta casa\")",
-    "options": [
-      "Zaqueo en el sicómoro",
-      "El joven rico",
-      "La viuda pobre",
-      "Lázaro y el rico"
-    ],
-    "correctAnswer": 0,
-    "verse": "Lucas 19:1-9",
-    "explanation": "Zaqueo, jefe de publicanos y de baja estatura, subió a un árbol sicómoro para ver a Jesús."
-  },
-  {
-    "id": "m15",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Antiguo Testamento",
-    "question": "¿Quién pidió a Dios \"un corazón entendido para juzgar y discernir entre lo bueno y lo malo\" en lugar de riquezas?",
-    "options": [
-      "David",
-      "Salomón",
-      "Josafat",
-      "Ezequías"
-    ],
-    "correctAnswer": 1,
-    "verse": "1 Reyes 3:9-12",
-    "explanation": "Salomón pidió sabiduría para gobernar al pueblo y Dios le otorgó sabiduría incomparable."
-  },
-  {
-    "id": "m16",
-    "level": "MEDIUM",
-    "type": "WHO_SAID_IT",
-    "category": "¿Quién lo dijo?",
-    "question": "¿Quién dijo a Jesús en una noche secreta: \"¿Cómo puede un hombre nacer siendo viejo?\"",
-    "options": [
-      "Nicodemo",
-      "José de Arimatea",
-      "Caifás",
-      "Gamaliel"
-    ],
-    "correctAnswer": 0,
-    "verse": "Juan 3:1-4",
-    "explanation": "Nicodemo, principal entre los judíos, vino a Jesús de noche para conversar sobre el nuevo nacimiento."
-  },
-  {
-    "id": "m17",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Parábolas",
-    "question": "¿Quién curó y cuidó al hombre herido en el camino de Jerusalén a Jericó?",
-    "options": [
-      "Un sacerdote",
-      "Un levita",
-      "Un buen samaritano",
-      "Un soldado romano"
-    ],
-    "correctAnswer": 2,
-    "verse": "Lucas 10:33-35",
-    "explanation": "El buen samaritano fue movido a misericordia, vendó sus heridas y lo llevó al mesón."
-  },
-  {
-    "id": "m18",
-    "level": "MEDIUM",
-    "type": "TRUE_FALSE",
-    "category": "La Iglesia Primitiva",
-    "question": "¿Verdadero o Falso? Bernabé vendió una heredad que tenía y trajo el precio para ponerlo a los pies de los apóstoles.",
-    "options": [
-      "Verdadero",
-      "Falso"
-    ],
-    "correctAnswer": 0,
-    "verse": "Hechos 4:36-37",
-    "explanation": "José, a quien los apóstoles llamaron Bernabé (Hijo de consolación), vendió una heredad y dio el dinero."
-  },
-  {
-    "id": "m19",
-    "level": "MEDIUM",
-    "type": "FILL_VERSE",
-    "category": "Efesios",
-    "question": "Efesios 2:8: \"Porque por gracia sois salvos por medio de la fe; y esto no de vosotros, pues es ________ de Dios\"",
-    "options": [
-      "premio",
-      "don",
-      "mandato",
-      "pacto"
-    ],
-    "correctAnswer": 1,
-    "verse": "Efesios 2:8",
-    "explanation": "\"...no por obras, para que nadie se gloríe.\""
-  },
-  {
-    "id": "m20",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Milagros de Jesús",
-    "question": "¿Cuántos días llevaba muerto Lázaro en el sepulcro cuando Jesús lo resucitó?",
-    "options": [
-      "1 día",
-      "2 días",
-      "3 días",
-      "4 días"
-    ],
-    "correctAnswer": 3,
-    "verse": "Juan 11:39",
-    "explanation": "Marta dijo: \"Señor, hiede ya, porque es de cuatro días\". Y Jesús dijo: \"¡Lázaro, ven fuera!\"."
-  },
-  {
-    "id": "m21",
-    "level": "MEDIUM",
-    "type": "EMOJI_GUESS",
-    "category": "Adivina la Historia",
-    "question": "¿Qué historia representan estos emojis? 🌾 👵 🤝 💍 🌾 (\"Dondequiera que tú fueres, iré yo\")",
-    "options": [
-      "Rut y Booz con Noemí",
-      "Sara y Agar",
-      "Raquel y Lea",
-      "Marta y María"
-    ],
-    "correctAnswer": 0,
-    "verse": "Rut 1:16",
-    "explanation": "Rut demostró lealtad a su suegra Noemí y terminó casándose con Booz en Belén."
-  },
-  {
-    "id": "m22",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Profetas",
-    "question": "¿Cómo fue llevado el profeta Elías al cielo sin ver muerte física?",
-    "options": [
-      "En una nube de gloria",
-      "En un torbellino en carro de fuego",
-      "En alas de águila",
-      "En un sueño santo"
-    ],
-    "correctAnswer": 1,
-    "verse": "2 Reyes 2:11",
-    "explanation": "Un carro de fuego con caballos de fuego apartó a los dos; y Elías subió al cielo en un torbellino."
-  },
-  {
-    "id": "m23",
-    "level": "MEDIUM",
-    "type": "WHO_SAID_IT",
-    "category": "¿Quién lo dijo?",
-    "question": "¿Quién dijo: \"¿Qué es la verdad?\" antes de lavarse las manos y entregar a Jesús para ser crucificado?",
-    "options": [
-      "Herodes Antipas",
-      "Poncio Pilato",
-      "Barrabás",
-      "Caifás"
-    ],
-    "correctAnswer": 1,
-    "verse": "Juan 18:38",
-    "explanation": "Pilato formuló esta famosa pregunta escéptica frente al propio Autor de la verdad."
-  },
-  {
-    "id": "m24",
-    "level": "MEDIUM",
-    "type": "TRUE_FALSE",
-    "category": "El Sermón del Monte",
-    "question": "¿Verdadero o Falso? En las Bienaventuranzas, Jesús dijo: \"Bienaventurados los pacificadores, porque ellos serán llamados hijos de Dios\".",
-    "options": [
-      "Verdadero",
-      "Falso"
-    ],
-    "correctAnswer": 0,
-    "verse": "Mateo 5:9",
-    "explanation": "Mateo 5:9 es una de las declaraciones centrales de Jesús en el Sermón del Monte."
-  },
-  {
-    "id": "m25",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Reyes de Israel",
-    "question": "¿Qué rey de Judá mandó reparar el Templo y al hallar el Libro de la Ley rasgó sus vestidos y promovió una gran reforma espiritual con solo 8 años al comenzar su reinado?",
-    "options": [
-      "Ezequías",
-      "Josías",
-      "Manasés",
-      "Roboam"
-    ],
-    "correctAnswer": 1,
-    "verse": "2 Reyes 22:1-11",
-    "explanation": "El joven rey Josías hizo lo recto ante los ojos de Dios y renovó el pacto del pueblo con las Escrituras."
-  },
-  {
-    "id": "m26",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Génesis",
-    "question": "¿Cuántos años tenía Abraham cuando nació su hijo Isaac?",
-    "options": [
-      "75 años",
-      "90 años",
-      "100 años",
-      "120 años"
-    ],
-    "correctAnswer": 2,
-    "verse": "Génesis 21:5",
-    "explanation": "Y era Abraham de cien años cuando nació Isaac su hijo."
-  },
-  {
-    "id": "m27",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Génesis",
-    "question": "¿Qué le sucedió a la esposa de Lot cuando desobedeció la orden divina y miró atrás hacia Sodoma?",
-    "options": [
-      "Se convirtió en una estatua de sal",
-      "Cayó en un pozo de brea",
-      "Fue arrebatada al desierto",
-      "Perdió la vista"
-    ],
-    "correctAnswer": 0,
-    "verse": "Génesis 19:26",
-    "explanation": "Entonces la mujer de Lot miró atrás, a espaldas de él, y se volvió estatua de sal."
-  },
-  {
-    "id": "m28",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Patriarcas",
-    "question": "¿Por cuántos años en total trabajó Jacob para su tío Labán para poder casarse con su amada Raquel?",
-    "options": [
-      "7 años",
-      "10 años",
-      "14 años (7 por Lea y 7 por Raquel)",
-      "21 años"
-    ],
-    "correctAnswer": 2,
-    "verse": "Génesis 29:18-30",
-    "explanation": "Jacob sirvió siete años por Raquel, pero Labán le dio a Lea; y luego sirvió otros siete años por Raquel."
-  },
-  {
-    "id": "m29",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Patriarcas",
-    "question": "¿En qué lugar luchó Jacob con el Ángel de Dios hasta el rayar del alba y su nombre fue cambiado a Israel?",
-    "options": [
-      "Betel",
-      "Peniel (o Penuel)",
-      "Hebrón",
-      "Beerseba"
-    ],
-    "correctAnswer": 1,
-    "verse": "Génesis 32:28-30",
-    "explanation": "Y llamó Jacob el nombre de aquel lugar, Peniel; porque dijo: Vi a Dios cara a cara, y fue librada mi alma."
-  },
-  {
-    "id": "m30",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "José en Egipto",
-    "question": "¿En el saco de qué hermano menor mandó José esconder su copa especial de plata para probarlos?",
-    "options": [
-      "Rubén",
-      "Simeón",
-      "Judá",
-      "Benjamín"
-    ],
-    "correctAnswer": 3,
-    "verse": "Génesis 44:1-2",
-    "explanation": "Puso su copa de plata en la boca del costal del menor, Benjamín."
-  },
-  {
-    "id": "m31",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Éxodo",
-    "question": "¿Qué nombre se reveló a sí mismo Dios ante Moisés en la zarza ardiendo al enviarlo a Faraón?",
-    "options": [
-      "EL ELYON",
-      "YO SOY EL QUE SOY (YHVH)",
-      "JEHOVÁ JIREH",
-      "EL SHADDAI"
-    ],
-    "correctAnswer": 1,
-    "verse": "Éxodo 3:14",
-    "explanation": "Y respondió Dios a Moisés: YO SOY EL QUE SOY. Y dijo: Así dirás a los hijos de Israel: YO SOY me envió a vosotros."
-  },
-  {
-    "id": "m32",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "La Pascua",
-    "question": "¿Con qué debían pintar los israelitas los dos postes y el dintel de sus casas para que el destructor no entrara en la noche de la Pascua?",
-    "options": [
-      "Con aceite consagrado",
-      "Con la sangre del cordero pascual",
-      "Con vino tinto",
-      "Con mirra y ceniza"
-    ],
-    "correctAnswer": 1,
-    "verse": "Éxodo 12:7; 13",
-    "explanation": "Y tomarán de la sangre, y la pondrán en los dos postes y en el dintel... y veré la sangre y pasaré de vosotros."
-  },
-  {
-    "id": "m33",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Éxodo",
-    "question": "¿Qué hermana de Moisés y Aarón entonó un cántico con pandero tras cruzar el Mar Rojo?",
-    "options": [
-      "Séfora",
-      "María (Miriam)",
-      "Débora",
-      "Elisabet"
-    ],
-    "correctAnswer": 1,
-    "verse": "Éxodo 15:20-21",
-    "explanation": "María la profetisa, hermana de Aarón, tomó un pandero en su mano... Cantad a Jehová, porque en extremo se ha engrandecido."
-  },
-  {
-    "id": "m34",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Leyes y Tabernáculo",
-    "question": "¿Qué tribu de las doce fue apartada por Dios para el servicio sagrado del sacerdocio y el tabernáculo?",
-    "options": [
-      "Tribu de Judá",
-      "Tribu de Leví",
-      "Tribu de Benjamín",
-      "Tribu de José"
-    ],
-    "correctAnswer": 1,
-    "verse": "Números 3:6-9",
-    "explanation": "Haz que se acerque la tribu de Leví... y desempeñen el ministerio del tabernáculo."
-  },
-  {
-    "id": "m35",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Números",
-    "question": "¿Qué vara reverdeció milagrosamente produciendo flores y almendras para confirmar la elección sacerdotal de Dios?",
-    "options": [
-      "La vara de Moisés",
-      "La vara de Aarón",
-      "La vara de Josué",
-      "La vara de Hur"
-    ],
-    "correctAnswer": 1,
-    "verse": "Números 17:8",
-    "explanation": "Y he aquí que la vara de Aarón de la casa de Leví había reverdecido, y echado flores, y arrojado renuevos, y producido almendras."
-  },
-  {
-    "id": "m36",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Números",
-    "question": "¿Qué ordenó Dios a Moisés levantar sobre una asta en el desierto para que quien fuera mordido por serpiente ardiente mirara y viviera?",
-    "options": [
-      "Un querubín de plata",
-      "Una serpiente de bronce",
-      "Un candelero de oro",
-      "Una paloma de piedra"
-    ],
-    "correctAnswer": 1,
-    "verse": "Números 21:8-9",
-    "explanation": "Moisés hizo una serpiente de bronce, y la puso sobre una asta; y cuando alguna serpiente mordía a alguno, miraba a la serpiente de bronce, y vivía."
-  },
-  {
-    "id": "m37",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Josué",
-    "question": "¿En qué batalla oró Josué a Dios y el sol y la luna se detuvieron casi un día entero?",
-    "options": [
-      "En la batalla de Jericó",
-      "En la batalla de Gabaón (Valle de Ajalón)",
-      "En la batalla de Hai",
-      "En la toma de Hebrón"
-    ],
-    "correctAnswer": 1,
-    "verse": "Josué 10:12-13",
-    "explanation": "Sol, detente en Gabaón; y tú, luna, en el valle de Ajalón. Y el sol se detuvo y la luna se paró."
-  },
-  {
-    "id": "m38",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Jueces",
-    "question": "¿Qué general cananeo murió atravesado por una estaca en su tienda a manos de la valiente Jael?",
-    "options": [
-      "Jabín",
-      "Sísara",
-      "Og",
-      "Sehón"
-    ],
-    "correctAnswer": 1,
-    "verse": "Jueces 4:17-21",
-    "explanation": "Jael tomó una estaca de la tienda y un mazo en su mano... y le metió la estaca por las sienes."
-  },
-  {
-    "id": "m39",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Jueces",
-    "question": "¿Qué acertijo propuso Sansón a los filisteos en su boda tras matar a un león con sus manos?",
-    "options": [
-      "\"Del devorador salió comida, y del fuerte salió dulzura\"",
-      "\"De la noche vino el fuego, y del fuego la espada\"",
-      "\"El que ríe al final come miel del panal\"",
-      "\"Fuerte es el cedro pero cae ante el hacha\""
-    ],
-    "correctAnswer": 0,
-    "verse": "Jueces 14:14",
-    "explanation": "Sansón halló miel en el cuerpo del león y propuso: \"Del devorador salió comida, y del fuerte salió dulzura.\""
-  },
-  {
-    "id": "m40",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "1 Samuel",
-    "question": "¿Qué le sucedió a la estatua del dios Dagón en Asdod cuando los filisteos colocaron el Arca del Pacto a su lado?",
-    "options": [
-      "Se quemó con fuego",
-      "Apareció caída rostro en tierra quebrada de cabeza y manos",
-      "Se convirtió en polvo",
-      "Comenzó a llorar"
-    ],
-    "correctAnswer": 1,
-    "verse": "1 Samuel 5:3-4",
-    "explanation": "Apareció Dagón postrado en tierra delante del arca de Jehová; y la cabeza de Dagón y las dos palmas de sus manos estaban cortadas sobre el umbral."
-  },
-  {
-    "id": "m41",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "1 Samuel",
-    "question": "¿A qué mujer sabia y sensata tomó David por esposa después de que su insensato esposo Nabal muriera?",
-    "options": [
-      "Abigail",
-      "Mical",
-      "Betsabé",
-      "Ahinoam"
-    ],
-    "correctAnswer": 0,
-    "verse": "1 Samuel 25:39-42",
-    "explanation": "Envió David a hablar a Abigail, para tomarla por su mujer; y ella fue y le siguió."
-  },
-  {
-    "id": "m42",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "2 Samuel",
-    "question": "¿Qué profeta confrontó al rey David por su pecado con Betsabé y la muerte de Urías contándole la parábola de la corderita?",
-    "options": [
-      "Samuel",
-      "Natán",
-      "Gad",
-      "Ahías"
-    ],
-    "correctAnswer": 1,
-    "verse": "2 Samuel 12:1-7",
-    "explanation": "Entonces dijo Natán a David: Tú eres aquel hombre. Así ha dicho Jehová, Dios de Israel..."
-  },
-  {
-    "id": "m43",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "2 Samuel",
-    "question": "¿Qué hijo de David se rebeló contra él y murió al quedar colgado por su frondosa cabellera en las ramas de una encina?",
-    "options": [
-      "Amnón",
-      "Adonías",
-      "Absalón",
-      "Salomón"
-    ],
-    "correctAnswer": 2,
-    "verse": "2 Samuel 18:9-14",
-    "explanation": "La cabeza de Absalón se trabó en la encina, y quedó suspendido entre el cielo y la tierra."
-  },
-  {
-    "id": "m44",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "1 Reyes",
-    "question": "¿Cómo demostró Salomón su sabiduría ante dos mujeres que disputaban por la maternidad de un bebé vivo?",
-    "options": [
-      "Pidió una espada para partir al niño por la mitad y ver la reacción de la verdadera madre",
-      "Las hizo jurar por el templo",
-      "Sorteó al niño con dados",
-      "Consultó a los sacerdotes"
-    ],
-    "correctAnswer": 0,
-    "verse": "1 Reyes 3:24-27",
-    "explanation": "La verdadera madre se conmovió y rogó que dieran al niño vivo a la otra; así Salomón supo quién era la madre real."
-  },
-  {
-    "id": "m45",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "División del Reino",
-    "question": "¿Quiénes fueron los dos primeros reyes tras la división de la monarquía en el Reino del Norte (Israel) y el Reino del Sur (Judá)?",
-    "options": [
-      "Saúl y David",
-      "Jeroboam (Israel) y Roboam (Judá)",
-      "Acab y Josafat",
-      "Ezequías y Manasés"
-    ],
-    "correctAnswer": 1,
-    "verse": "1 Reyes 12:16-20",
-    "explanation": "Roboam reinó sobre Judá en el sur, y Jeroboam reinó sobre las diez tribus del norte (Israel)."
-  },
-  {
-    "id": "m46",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "1 Reyes",
-    "question": "¿Quién fue la malvada reina de Israel, esposa del rey Acab, que promovió el culto a Baal y persiguió a los profetas de Dios?",
-    "options": [
-      "Atalía",
-      "Jezabel",
-      "Vasti",
-      "Herodías"
-    ],
-    "correctAnswer": 1,
-    "verse": "1 Reyes 16:31; 19:1-2",
-    "explanation": "Acab tomó por mujer a Jezabel hija de Et-baal rey de los sidonios, y fue y sirvió a Baal."
-  },
-  {
-    "id": "m47",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "2 Reyes",
-    "question": "¿Qué pidió el profeta Eliseo a Elías como herencia espiritual antes de que este fuera llevado al cielo?",
-    "options": [
-      "Su manto de oro",
-      "Una doble porción de su espíritu",
-      "Riquezas para la escuela de profetas",
-      "Larga vida de 100 años"
-    ],
-    "correctAnswer": 1,
-    "verse": "2 Reyes 2:9",
-    "explanation": "Y dijo Eliseo: Te ruego que una doble porción de tu espíritu sea sobre mí."
-  },
-  {
-    "id": "m48",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "2 Reyes",
-    "question": "¿Cuántos años de vida añadió Dios al piadoso rey Ezequías tras su ferviente oración entre lágrimas?",
-    "options": [
-      "5 años",
-      "10 años",
-      "15 años",
-      "20 años"
-    ],
-    "correctAnswer": 2,
-    "verse": "2 Reyes 20:5-6",
-    "explanation": "He aquí que yo sano; al tercer día subirás a la casa de Jehová. Y añadiré a tus días quince años."
-  },
-  {
-    "id": "m49",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "2 Reyes",
-    "question": "¿Qué rey de Babilonia sitió y destruyó el Templo de Jerusalén llevando cautivo al pueblo judío?",
-    "options": [
-      "Ciro el Grande",
-      "Nabucodonosor II",
-      "Darío el Medo",
-      "Belsasar"
-    ],
-    "correctAnswer": 1,
-    "verse": "2 Reyes 25:1-11",
-    "explanation": "Nabucodonosor rey de Babilonia quemó la casa de Jehová y la casa del rey y todos los palacios."
-  },
-  {
-    "id": "m50",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Nehemías",
-    "question": "¿En cuántos días récord lograron Nehemías y el pueblo reedificar los muros de Jerusalén a pesar de las amenazas?",
-    "options": [
-      "40 días",
-      "52 días",
-      "70 días",
-      "120 días"
-    ],
-    "correctAnswer": 1,
-    "verse": "Nehemías 6:15",
-    "explanation": "Fue terminado el muro el veinticinco del mes de Elul, en cincuenta y dos días."
-  },
-  {
-    "id": "m51",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Ester",
-    "question": "¿Quién era el primo mayor de Ester que descubrió la conspiración contra el rey Asuero y la aconsejó sabiamente?",
-    "options": [
-      "Mardoqueo",
-      "Amán",
-      "Nehemías",
-      "Esdras"
-    ],
-    "correctAnswer": 0,
-    "verse": "Ester 2:7",
-    "explanation": "Mardoqueo había criado a Hadasa, es decir, Ester, hija de su tío, porque era huérfana."
-  },
-  {
-    "id": "m52",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Ester",
-    "question": "¿En qué horca de cincuenta codos fue colgado el malvado Amán tras descubrirse su complot contra los judíos?",
-    "options": [
-      "En la horca que él mismo había preparado para Mardoqueo",
-      "En la puerta de la ciudad",
-      "En el muro del palacio",
-      "En un barco en el río"
-    ],
-    "correctAnswer": 0,
-    "verse": "Ester 7:9-10",
-    "explanation": "Así colgaron a Amán en la horca que él había hecho preparar para Mardoqueo."
-  },
-  {
-    "id": "m53",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Daniel",
-    "question": "¿Qué misteriosas palabras aparecieron escritas por una mano en la pared del palacio durante el banquete del rey Belsasar?",
-    "options": [
-      "KADOSH KADOSH ADONAI",
-      "MENE, MENE, TEKEL, UPARSIN",
-      "HOSANNA EN LAS ALTURAS",
-      "MARANATA VEN SEÑOR"
-    ],
-    "correctAnswer": 1,
-    "verse": "Daniel 5:25-28",
-    "explanation": "Mene: Contó Dios tu reino y le ha puesto fin. Tekel: Pesado has sido en balanza y fuiste hallado falto. Peres: Tu reino ha sido roto."
-  },
-  {
-    "id": "m54",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Profecías Mesiánicas",
-    "question": "¿Qué profeta del Antiguo Testamento profetizó con exactitud que el Mesías nacería en Belén de Judá?",
-    "options": [
-      "Isaías",
-      "Miqueas",
-      "Zacarías",
-      "Malaquías"
-    ],
-    "correctAnswer": 1,
-    "verse": "Miqueas 5:2",
-    "explanation": "Pero tú, Belén Efrata, pequeña para estar entre las familias de Judá, de ti me saldrá el que será Señor en Israel."
-  },
-  {
-    "id": "m55",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Profecías Mesiánicas",
-    "question": "¿En qué capítulo de Isaías se describe con asombrosa precisión el sufrimiento redentor del Siervo (\"Mas él herido fue por nuestras rebeliones...\")?",
-    "options": [
-      "Isaías 6",
-      "Isaías 40",
-      "Isaías 53",
-      "Isaías 61"
-    ],
-    "correctAnswer": 2,
-    "verse": "Isaías 53:5",
-    "explanation": "Mas él herido fue por nuestras rebeliones, molido por nuestros pecados; el castigo de nuestra paz fue sobre él."
-  },
-  {
-    "id": "m56",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Genealogía de Jesús",
-    "question": "¿A través de qué linaje real del Antiguo Testamento se profetizó que vendría el Mesías prometido?",
-    "options": [
-      "Del linaje del rey Saúl",
-      "Del linaje del rey David (la raíz de Isaí)",
-      "Del linaje de Leví",
-      "Del linaje de José"
-    ],
-    "correctAnswer": 1,
-    "verse": "Jeremías 23:5 / Romanos 1:3",
-    "explanation": "Levantaré a David renuevo justo, y reinará como Rey, el cual será dichoso."
-  },
-  {
-    "id": "m57",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Nacimiento de Jesús",
-    "question": "¿Qué profetisa viuda de 84 años servía de noche y de día con oraciones en el Templo y dio gracias al ver al niño Jesús?",
-    "options": [
-      "Ana",
-      "Débora",
-      "Huldá",
-      "Elisabet"
-    ],
-    "correctAnswer": 0,
-    "verse": "Lucas 2:36-38",
-    "explanation": "Estaba también allí Ana, profetisa, de la tribu de Aser... daba gracias a Dios y hablaba del niño a todos los que esperaban la redención."
-  },
-  {
-    "id": "m58",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Ministerio de Jesús",
-    "question": "¿Qué dos hermanos pescadores apodó Jesús \"Boanerges\", que significa \"Hijos del trueno\"?",
-    "options": [
-      "Pedro y Andrés",
-      "Jacobo (Santiago) y Juan",
-      "Felipe y Bartolomé",
-      "Simón y Judas"
-    ],
-    "correctAnswer": 1,
-    "verse": "Marcos 3:17",
-    "explanation": "A Jacobo hijo de Zebedeo, y a Juan hermano de Jacobo, a quienes apellidó Boanerges, esto es, Hijos del trueno."
-  },
-  {
-    "id": "m59",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Milagros de Jesús",
-    "question": "¿En qué estanque de cinco pórticos sanó Jesús a un hombre que llevaba 38 años enfermo en Jerusalén?",
-    "options": [
-      "Estanque de Siloé",
-      "Estanque de Betesda",
-      "Pozo de Sicar",
-      "Río Jordán"
-    ],
-    "correctAnswer": 1,
-    "verse": "Juan 5:2-9",
-    "explanation": "Y hay en Jerusalén... un estanque, que en hebreo se llama Betesda... y el hombre fue sanado, y tomó su lecho, y anduvo."
-  },
-  {
-    "id": "m60",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Milagros de Jesús",
-    "question": "¿Cómo obtuvo Pedro el dinero para pagar el impuesto del templo para él y para Jesús?",
-    "options": [
-      "Vendió su red de pesca",
-      "Sacó una moneda de cuatro dracmas (estatero) de la boca del primer pez que pescó",
-      "Pidió una ofrenda a Zaqueo",
-      "Trabajó como carpintero"
-    ],
-    "correctAnswer": 1,
-    "verse": "Mateo 17:27",
-    "explanation": "Ve al mar, y echa el anzuelo, y el primer pez que viniere, tómalo, y al abrirle la boca, hallarás un estatero."
-  },
-  {
-    "id": "m61",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "La Transfiguración",
-    "question": "¿Qué dos personajes gloriosos del Antiguo Testamento aparecieron conversando con Jesús en el Monte de la Transfiguración?",
-    "options": [
-      "Abraham y David",
-      "Moisés y Elías",
-      "Noé y Enoc",
-      "Samuel e Isaías"
-    ],
-    "correctAnswer": 1,
-    "verse": "Mateo 17:1-3",
-    "explanation": "Y se transfiguró delante de ellos... y he aquí les aparecieron Moisés y Elías, hablando con él."
-  },
-  {
-    "id": "m62",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Parábolas de Jesús",
-    "question": "En la parábola de las diez vírgenes, ¿por qué cinco de ellas fueron llamadas insensatas?",
-    "options": [
-      "Porque se quedaron dormidas",
-      "Porque no tomaron aceite extra en sus vasijas para sus lámparas",
-      "Porque perdieron sus vestidos de boda",
-      "Porque llegaron a la casa equivocada"
-    ],
-    "correctAnswer": 1,
-    "verse": "Mateo 25:1-4",
-    "explanation": "Las insensatas, tomando sus lámparas, no tomaron consigo aceite; mas las prudentes tomaron aceite en sus vasijas."
-  },
-  {
-    "id": "m63",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Parábolas de Jesús",
-    "question": "En la parábola de los talentos, ¿qué hizo el siervo que recibió un solo talento con el dinero de su señor?",
-    "options": [
-      "Lo invirtió en el mercado",
-      "Lo cavó en la tierra y escondió el dinero de su señor",
-      "Se lo dio a los pobres",
-      "Lo perdió en un viaje"
-    ],
-    "correctAnswer": 1,
-    "verse": "Mateo 25:18",
-    "explanation": "Pero el que había recibido uno fue y cavó en la tierra, y escondió el dinero de su señor."
-  },
-  {
-    "id": "m64",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Discursos de Jesús",
-    "question": "¿Qué mandamiento nuevo dio Jesús a sus discípulos durante la Última Cena?",
-    "options": [
-      "Que ayunaran tres días a la semana",
-      "Que se amen los unos a los otros, como yo os he amado",
-      "Que no hablaran con extranjeros",
-      "Que construyeran una iglesia en Jerusalén"
-    ],
-    "correctAnswer": 1,
-    "verse": "Juan 13:34",
-    "explanation": "Un mandamiento nuevo os doy: Que os améis unos a otros; como yo os he amado, que también os améis unos a otros."
-  },
-  {
-    "id": "m65",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Arresto de Jesús",
-    "question": "¿A qué siervo del sumo sacerdote le cortó Pedro la oreja derecha con su espada en Getsemaní, al cual Jesús sanó inmediatamente?",
-    "options": [
-      "Malco",
-      "Barrabás",
-      "Cornelio",
-      "Demetrio"
-    ],
-    "correctAnswer": 0,
-    "verse": "Juan 18:10 / Lucas 22:51",
-    "explanation": "Simón Pedro, que tenía una espada, la desenvainó, e hirió al siervo del sumo sacerdote, y le cortó la oreja derecha. Y el siervo se llamaba Malco."
-  },
-  {
-    "id": "m66",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "La Crucifixión",
-    "question": "¿Qué letrero mandó poner Poncio Pilato sobre la cruz de Jesús escrito en hebreo, griego y latín?",
-    "options": [
-      "JESÚS DE NAZARET, REY DE LOS JUDÍOS (INRI)",
-      "EL HOMBRE QUE REVOLUCIONÓ A JUDEA",
-      "CONDENADO POR BLASFEMIA",
-      "PROFETA DE GALILEA"
-    ],
-    "correctAnswer": 0,
-    "verse": "Juan 19:19-20",
-    "explanation": "Escribió también Pilato un título: JESÚS NAZARENO, REY DE LOS JUDÍOS. Y estaba escrito en hebreo, en griego y en latín."
-  },
-  {
-    "id": "m67",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "La Muerte de Jesús",
-    "question": "¿Qué ocurrió en el Templo de Jerusalén en el momento exacto en que Jesús expiró en la cruz?",
-    "options": [
-      "Las columnas de bronce cayeron",
-      "El velo del templo se rasgó en dos, de arriba abajo",
-      "El candelabro de oro se apagó",
-      "El fuego del altar se congeló"
-    ],
-    "correctAnswer": 1,
-    "verse": "Mateo 27:51",
-    "explanation": "Y he aquí, el velo del templo se rasgó en dos, de arriba abajo; y la tierra tembló, y las rocas se partieron."
-  },
-  {
-    "id": "m68",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Camino a Emaús",
-    "question": "¿En qué momento reconocieron los dos discípulos a Jesús resucitado en la aldea de Emaús?",
-    "options": [
-      "Al ver sus huellas en el camino",
-      "Al tomar el pan, bendecirlo, partirlo y dárselo",
-      "Al escuchar el canto del gallo",
-      "Al ver su sombra en la pared"
-    ],
-    "correctAnswer": 1,
-    "verse": "Lucas 24:30-31",
-    "explanation": "Aconteció que estando sentado con ellos a la mesa, tomó el pan y bendijo, lo partió, y les dio. Entonces les fueron abiertos los ojos, y le reconocieron."
-  },
-  {
-    "id": "m69",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Hechos de los Apóstoles",
-    "question": "¿Qué matrimonio de la iglesia primitiva murió fulminado por mentir al Espíritu Santo respecto al precio de una heredad vendida?",
-    "options": [
-      "Aquila y Priscila",
-      "Ananías y Safira",
-      "Filemón y Apia",
-      "Zacarías y Elisabet"
-    ],
-    "correctAnswer": 1,
-    "verse": "Hechos 5:1-10",
-    "explanation": "Pedro dijo: Ananías, ¿por qué llenó Satanás tu corazón para que mintieses al Espíritu Santo?... Y al oír estas palabras, cayó y expiró."
-  },
-  {
-    "id": "m70",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Hechos de los Apóstoles",
-    "question": "¿Quién era el centurión romano piadoso en Cesarea a cuya casa fue enviado Pedro para predicar por primera vez a los gentiles?",
-    "options": [
-      "Cornelio",
-      "Julio",
-      "Félix",
-      "Claudio Lisias"
-    ],
-    "correctAnswer": 0,
-    "verse": "Hechos 10:1-2",
-    "explanation": "Había en Cesarea un hombre llamado Cornelio, centurión de la compañía llamada la Italiana, piadoso y temeroso de Dios."
-  },
-  {
-    "id": "m71",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Viajes Misioneros",
-    "question": "¿En qué famosa ciudad griega predicó el apóstol Pablo en el Areópago sobre \"el Dios No Conocido\"?",
-    "options": [
-      "Corinto",
-      "Atenas",
-      "Éfeso",
-      "Tesalónica"
-    ],
-    "correctAnswer": 1,
-    "verse": "Hechos 17:22-23",
-    "explanation": "Pablo, puesto en pie en medio del Areópago, dijo: Varones atenienses... hallé también un altar en el cual estaba esta inscripción: AL DIOS NO CONOCIDO."
-  },
-  {
-    "id": "m72",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Viajes Misioneros",
-    "question": "¿A qué joven discípulo de Listra consideraba Pablo como su propio hijo espiritual y le escribió dos epístolas pastorales?",
-    "options": [
-      "Tito",
-      "Timoteo",
-      "Lucas",
-      "Filemón"
-    ],
-    "correctAnswer": 1,
-    "verse": "1 Timoteo 1:2",
-    "explanation": "A Timoteo, verdadero hijo en la fe: Gracia, misericordia y paz, de Dios nuestro Padre y de Cristo Jesús nuestro Señor."
-  },
-  {
-    "id": "m73",
-    "level": "MEDIUM",
-    "type": "FILL_VERSE",
-    "category": "Epístolas de Pablo",
-    "question": "Completa Romanos 8:38-39: \"Por lo cual estoy seguro de que ni la muerte, ni la vida... nos podrá separar del _________ de Dios, que es en Cristo Jesús\"",
-    "options": [
-      "templo",
-      "amor",
-      "juicio",
-      "castigo"
-    ],
-    "correctAnswer": 1,
-    "verse": "Romanos 8:38-39",
-    "explanation": "Romanos 8:39: \"...nos podrá separar del amor de Dios, que es en Cristo Jesús Señor nuestro.\""
-  },
-  {
-    "id": "m74",
-    "level": "MEDIUM",
-    "type": "FILL_VERSE",
-    "category": "Epístola a los Gálatas",
-    "question": "Completa Gálatas 2:20: \"Con Cristo estoy juntamente crucificado, y ya no vivo yo, mas vive _________ en mí\"",
-    "options": [
-      "la ley",
-      "Cristo",
-      "el profeta",
-      "mi alma"
-    ],
-    "correctAnswer": 1,
-    "verse": "Gálatas 2:20",
-    "explanation": "Gálatas 2:20: \"Con Cristo estoy juntamente crucificado, y ya no vivo yo, mas vive Cristo en mí.\""
-  },
-  {
-    "id": "m75",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Apocalipsis",
-    "question": "¿En qué solitaria isla griega estaba desterrado el apóstol Juan cuando recibió la revelación del libro de Apocalipsis?",
-    "options": [
-      "Isla de Creta",
-      "Isla de Patmos",
-      "Isla de Chipre",
-      "Isla de Malta"
-    ],
-    "correctAnswer": 1,
-    "verse": "Apocalipsis 1:9",
-    "explanation": "Yo Juan, vuestro hermano... estaba en la isla llamada Patmos, por causa de la palabra de Dios y el testimonio de Jesucristo."
-  },
-  {
-    "id": "m76",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Génesis",
-    "question": "¿Quién fue el hombre que caminó con Dios y desapareció porque le llevó Dios sin pasar por la muerte física?",
-    "options": [
-      "Matusalén",
-      "Enoc",
-      "Noé",
-      "Set"
-    ],
-    "correctAnswer": 1,
-    "verse": "Génesis 5:24",
-    "explanation": "Caminó, pues, Enoc con Dios, y desapareció, porque le llevó Dios."
-  },
-  {
-    "id": "m77",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Génesis",
-    "question": "Según la genealogía bíblica en Génesis, ¿quién fue el hombre más longevo que vivió 969 años?",
-    "options": [
-      "Adán",
-      "Noé",
-      "Matusalén",
-      "Jared"
-    ],
-    "correctAnswer": 2,
-    "verse": "Génesis 5:27",
-    "explanation": "Fueron, pues, todos los días de Matusalén novecientos sesenta y nueve años; y murió."
-  },
-  {
-    "id": "m78",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Patriarcas",
-    "question": "¿Quién era el rey de Salem y sacerdote del Dios Altísimo a quien Abraham dio los diezmos de todo?",
-    "options": [
-      "Abimelec",
-      "Melquisedec",
-      "Jetro",
-      "Balaam"
-    ],
-    "correctAnswer": 1,
-    "verse": "Génesis 14:18-20",
-    "explanation": "Melquisedec, rey de Salem y sacerdote del Dios Altísimo... le bendijo. Y le dio Abram los diezmos de todo."
-  },
-  {
-    "id": "m79",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Patriarcas",
-    "question": "¿Cómo se llamaba el criado fiel de Abraham que fue a Mesopotamia a buscar esposa para Isaac?",
-    "options": [
-      "Eliezer de Damasco",
-      "Giezi",
-      "Ziba",
-      "Urías"
-    ],
-    "correctAnswer": 0,
-    "verse": "Génesis 15:2; 24:2",
-    "explanation": "El criado más viejo de la casa de Abraham, Eliezer de Damasco, fue guiado por Dios para encontrar a Rebeca."
-  },
-  {
-    "id": "m80",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "José en Egipto",
-    "question": "¿Cómo se llamaban los dos hijos de José nacidos en Egipto antes de los años de hambre, adoptados por Jacob?",
-    "options": [
-      "Dan y Neftalí",
-      "Efraín y Manasés",
-      "Gad y Aser",
-      "Simeón y Leví"
-    ],
-    "correctAnswer": 1,
-    "verse": "Génesis 41:51-52",
-    "explanation": "Llamó José el nombre del primogénito Manasés... y el nombre del segundo lo llamó Efraín."
-  },
-  {
-    "id": "m81",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Éxodo",
-    "question": "¿Quién era el suegro de Moisés, sacerdote de Madián, que le aconsejó delegar jueces para no agotarse?",
-    "options": [
-      "Jetro (Reuel)",
-      "Labán",
-      "Balaam",
-      "Melquisedec"
-    ],
-    "correctAnswer": 0,
-    "verse": "Éxodo 18:1-24",
-    "explanation": "Jetro aconsejó a Moisés: Escoge tú de entre todo el pueblo varones de virtud... y juzguen al pueblo en todo tiempo."
-  },
-  {
-    "id": "m82",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Éxodo",
-    "question": "¿Qué dos hombres fueron llenos del Espíritu de Dios con habilidad artística para construir todo el Tabernáculo?",
-    "options": [
-      "Bezaleel y Aholiab",
-      "Aarón y Hur",
-      "Eleazar e Itamar",
-      "Josué y Caleb"
-    ],
-    "correctAnswer": 0,
-    "verse": "Éxodo 31:1-6",
-    "explanation": "He llamado por nombre a Bezaleel... y lo he llenado del Espíritu de Dios en sabiduría... y he puesto con él a Aholiab."
-  },
-  {
-    "id": "m83",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Levítico",
-    "question": "¿Qué hijos sacerdotes de Aarón murieron delante de Jehová por ofrecer \"fuego extraño\" en el santuario?",
-    "options": [
-      "Eleazar e Itamar",
-      "Nadab y Abiú",
-      "Ofni y Finees",
-      "Coré y Abiram"
-    ],
-    "correctAnswer": 1,
-    "verse": "Levítico 10:1-2",
-    "explanation": "Nadab y Abiú, hijos de Aarón... ofrecieron delante de Jehová fuego extraño... y salieron llamas y murieron."
-  },
-  {
-    "id": "m84",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Números",
-    "question": "¿Qué hombre lideró una gran rebelión contra la autoridad de Moisés y Aarón, y la tierra abrió su boca y se los tragó vivos?",
-    "options": [
-      "Balaac",
-      "Coré (con Datán y Abiram)",
-      "Og rey de Basán",
-      "Agag"
-    ],
-    "correctAnswer": 1,
-    "verse": "Números 16:31-33",
-    "explanation": "Abrió la tierra su boca, y los tragó a ellos, a sus casas, a todos los hombres de Coré, y a todos sus bienes."
-  },
-  {
-    "id": "m85",
-    "level": "MEDIUM",
-    "type": "FILL_VERSE",
-    "category": "Deuteronomio",
-    "question": "Completa la famosa oración del Shemá en Deuteronomio 6:4-5: \"Oye, Israel: Jehová nuestro Dios, Jehová uno es. Y amarás a Jehová tu Dios de todo tu _________\"",
-    "options": [
-      "dinero",
-      "corazón, y de toda tu alma, y con todas tus fuerzas",
-      "conocimiento",
-      "templo"
-    ],
-    "correctAnswer": 1,
-    "verse": "Deuteronomio 6:4-5",
-    "explanation": "Deuteronomio 6:5: \"Y amarás a Jehová tu Dios de todo tu corazón, y de toda tu alma, y con todas tus fuerzas.\""
-  },
-  {
-    "id": "m86",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Josué",
-    "question": "¿Qué hombre cometió anatema en la toma de Jericó escondiendo un manto babilónico, plata y oro, causando la derrota en Hai?",
-    "options": [
-      "Acán",
-      "Caleb",
-      "Zimri",
-      "Barac"
-    ],
-    "correctAnswer": 0,
-    "verse": "Josué 7:20-21",
-    "explanation": "Acán respondió a Josué: Verdaderamente yo he pecado... vi entre los despojos un manto babilónico muy bueno..."
-  },
-  {
-    "id": "m87",
-    "level": "MEDIUM",
-    "type": "FILL_VERSE",
-    "category": "Josué",
-    "question": "Completa la firme declaración de Josué al final de su vida en Josué 24:15: \"Pero yo y mi casa _________ a Jehová.\"",
-    "options": [
-      "dejaremos",
-      "serviremos",
-      "olvidaremos",
-      "juzgaremos"
-    ],
-    "correctAnswer": 1,
-    "verse": "Josué 24:15",
-    "explanation": "Josué 24:15: \"...escogeos hoy a quién sirváis... pero yo y mi casa serviremos a Jehová.\""
-  },
-  {
-    "id": "m88",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Jueces",
-    "question": "¿Quién fue el juez zurdo que liberó a Israel hiriendo en secreto al obeso rey Eglón de Moab con una espada de dos filos?",
-    "options": [
-      "Aod",
-      "Samgar",
-      "Otoniel",
-      "Jefté"
-    ],
-    "correctAnswer": 0,
-    "verse": "Jueces 3:15-21",
-    "explanation": "Aod hijo de Gera, benjamita, el cual era zurdo... metió su mano izquierda, tomó el puñal de su lado derecho, y se lo metió por el vientre."
-  },
-  {
-    "id": "m89",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Jueces",
-    "question": "¿Quién mató a seiscientos filisteos con una simple aguijada de bueyes, librando también a Israel?",
-    "options": [
-      "Samgar hijo de Anat",
-      "Barac",
-      "Gedeón",
-      "Abimélec"
-    ],
-    "correctAnswer": 0,
-    "verse": "Jueces 3:31",
-    "explanation": "Después de él fue Samgar hijo de Anat, el cual mató a seiscientos hombres de los filisteos con una aguijada de bueyes."
-  },
-  {
-    "id": "m90",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Jueces",
-    "question": "¿Qué voto apresurado hizo Jefté antes de ir a la batalla contra los amonitas que afectó a su única hija?",
-    "options": [
-      "Que no comería carne en 3 años",
-      "Que quien saliera a recibirle de su casa al volver en paz sería ofrecido a Jehová",
-      "Que construiría un templo de plata",
-      "Que se raparía la cabeza de por vida"
-    ],
-    "correctAnswer": 1,
-    "verse": "Jueces 11:30-34",
-    "explanation": "Cualquiera que saliere de las puertas de mi casa a recibirme... será de Jehová, y lo ofreceré en holocausto."
-  },
-  {
-    "id": "m91",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "1 Samuel",
-    "question": "¿Qué palabra exclamó la nuera del sacerdote Elí al morir en el parto tras ser capturada el Arca por los filisteos, que significa \"Traspasada es la gloria\"?",
-    "options": [
-      "Maranata",
-      "Icabod",
-      "Ebenezer",
-      "Aleluya"
-    ],
-    "correctAnswer": 1,
-    "verse": "1 Samuel 4:21-22",
-    "explanation": "Y llamó al niño Icabod, diciendo: ¡Traspasada es la gloria de Israel! por haber sido tomada el arca de Dios."
-  },
-  {
-    "id": "m92",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "1 Samuel",
-    "question": "¿Qué nombre le puso Samuel a la piedra que colocó entre Mizpa y Sen diciendo: \"Hasta aquí nos ayudó Jehová\"?",
-    "options": [
-      "Betel",
-      "Ebenezer",
-      "Moriah",
-      "Gal-ed"
-    ],
-    "correctAnswer": 1,
-    "verse": "1 Samuel 7:12",
-    "explanation": "Tomó luego Samuel una piedra y la puso entre Mizpa y Sen, y le puso por nombre Ebenezer, diciendo: Hasta aquí nos ayudó Jehová."
-  },
-  {
-    "id": "m93",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "1 Samuel",
-    "question": "¿Por qué rechazó Dios a Saúl como rey de Israel según las palabras de Samuel: \"Ciertamente el obedecer es mejor que los sacrificios\"?",
-    "options": [
-      "Porque perdió una batalla",
-      "Por perdonar al rey Agag y lo mejor del ganado de Amalec desobedeciendo la orden directa",
-      "Por edificar un muro sin permiso",
-      "Por no pagar tributos"
-    ],
-    "correctAnswer": 1,
-    "verse": "1 Samuel 15:22-23",
-    "explanation": "Samuel dijo: ¿Se complace Jehová tanto en los holocaustos como en que se obedezca a la palabra de Jehová? Ciertamente el obedecer es mejor que los sacrificios."
-  },
-  {
-    "id": "m94",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "2 Samuel",
-    "question": "¿Qué hombre murió al extender su mano para sostener el Arca del Pacto cuando los bueyes tropezaban camino a Jerusalén?",
-    "options": [
-      "Uza",
-      "Ahío",
-      "Obed-edom",
-      "Itai"
-    ],
-    "correctAnswer": 0,
-    "verse": "2 Samuel 6:6-7",
-    "explanation": "Uza extendió su mano al arca de Dios, y la sostuvo; porque los bueyes tropezaban. Y el furor de Jehová se encendió contra Uza, y lo hirió allí Dios."
-  },
-  {
-    "id": "m95",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "2 Samuel",
-    "question": "¿En casa de qué levita se quedó el Arca del Pacto durante tres meses, trayendo gran bendición a toda su casa?",
-    "options": [
-      "Obed-edom geteo",
-      "Asaf",
-      "Quenías",
-      "Barzilai"
-    ],
-    "correctAnswer": 0,
-    "verse": "2 Samuel 6:11",
-    "explanation": "Y estuvo el arca de Jehová en casa de Obed-edom geteo tres meses; y bendijo Jehová a Obed-edom y a toda su casa."
-  },
-  {
-    "id": "m96",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "1 Reyes",
-    "question": "¿Quién intentó autoproclamarse rey de Israel en la vejez de David antes de que Salomón fuera coronado?",
-    "options": [
-      "Adonías hijo de Haguit",
-      "Absalón",
-      "Joab",
-      "Simei"
-    ],
-    "correctAnswer": 0,
-    "verse": "1 Reyes 1:5",
-    "explanation": "Entonces Adonías hijo de Haguit se rebeló, diciendo: Yo reinaré. Y se hizo de carros y de gente de a caballo."
-  },
-  {
-    "id": "m97",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "1 Reyes",
-    "question": "¿De qué viña se encaprichó el rey Acab, la cual pertenecía a un hombre que se negó a vender la heredad de sus padres?",
-    "options": [
-      "La viña de Nabot de Jezreel",
-      "La viña de En-gadi",
-      "La viña de Sorec",
-      "La viña de Samaria"
-    ],
-    "correctAnswer": 0,
-    "verse": "1 Reyes 21:1-3",
-    "explanation": "Nabot respondió a Acab: Guárdeme Jehová de que yo te dé a ti la heredad de mis padres."
-  },
-  {
-    "id": "m98",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "1 Reyes",
-    "question": "¿En qué cueva del monte Horeb escuchó Elías a Dios, no en el viento fuerte, ni en el terremoto, ni en el fuego, sino en qué?",
-    "options": [
-      "En un trueno potente",
-      "En un silbo apacible y delicado",
-      "En el cantar de un ave",
-      "En una lluvia recia"
-    ],
-    "correctAnswer": 1,
-    "verse": "1 Reyes 19:11-12",
-    "explanation": "Y tras el fuego un silbo apacible y delicado. Y cuando lo oyó Elías, cubrió su rostro con su manto."
-  },
-  {
-    "id": "m99",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "2 Reyes",
-    "question": "¿Qué criado codicioso de Eliseo persiguió a Naamán para pedirle plata y vestidos a espaldas del profeta, y se le pegó la lepra?",
-    "options": [
-      "Giezi",
-      "Hazael",
-      "Ziba",
-      "Baraquías"
-    ],
-    "correctAnswer": 0,
-    "verse": "2 Reyes 5:20-27",
-    "explanation": "Giezi, criado de Eliseo... dijo: Correré yo tras él, y tomaré de él alguna cosa... Y salió de su presencia leproso, blanco como la nieve."
-  },
-  {
-    "id": "m100",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "2 Reyes",
-    "question": "¿Qué rey de Judá fue coronado a los 8 años de edad y lideró una gran reforma tras hallarse el Libro de la Ley en el Templo?",
-    "options": [
-      "Josías",
-      "Ezequías",
-      "Manasés",
-      "Joás"
-    ],
-    "correctAnswer": 0,
-    "verse": "2 Reyes 22:1-8",
-    "explanation": "De ocho años era Josías cuando comenzó a reinar... Hilcías el sumo sacerdote dijo al escriba Safán: He hallado el libro de la ley en la casa de Jehová."
-  },
-  {
-    "id": "m101",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Libro de Job",
-    "question": "¿Cómo se llamaban los tres amigos de Job que fueron a consolarle y terminaron acusándole falsamente de pecado oculto?",
-    "options": [
-      "Elifaz, Bildad y Zofar",
-      "Sadrac, Mesac y Abed-nego",
-      "Eliú, Jonadab y Baruc",
-      "Nadab, Abiú e Itamar"
-    ],
-    "correctAnswer": 0,
-    "verse": "Job 2:11",
-    "explanation": "Tres amigos de Job, Elifaz temanita, Bildad suhita, y Zofar naamatita... se pusieron de acuerdo para venir a condolerse de él y a consolarle."
-  },
-  {
-    "id": "m102",
-    "level": "MEDIUM",
-    "type": "FILL_VERSE",
-    "category": "Salmos",
-    "question": "Completa el Salmo 37:4: \"Deléitate asimismo en Jehová, y él te concederá las _________ de tu corazón.\"",
-    "options": [
-      "riquezas",
-      "peticiones",
-      "coronas",
-      "fantasías"
-    ],
-    "correctAnswer": 1,
-    "verse": "Salmos 37:4",
-    "explanation": "Salmos 37:4: \"Deléitate asimismo en Jehová, y él te concederá las peticiones de tu corazón.\""
-  },
-  {
-    "id": "m103",
-    "level": "MEDIUM",
-    "type": "FILL_VERSE",
-    "category": "Salmos",
-    "question": "Completa el Salmo 51:10, la oración de arrepentimiento de David: \"Crea en mí, oh Dios, un corazón limpio, y renueva un espíritu _________ dentro de mí.\"",
-    "options": [
-      "fuerte",
-      "recto",
-      "alegre",
-      "sabio"
-    ],
-    "correctAnswer": 1,
-    "verse": "Salmos 51:10",
-    "explanation": "Salmos 51:10: \"Crea en mí, oh Dios, un corazón limpio, y renueva un espíritu recto dentro de mí.\""
-  },
-  {
-    "id": "m104",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Salmos",
-    "question": "¿Cuál es el capítulo más largo de toda la Biblia, compuesto por 176 versículos dedicados a la Palabra de Dios?",
-    "options": [
-      "Salmo 23",
-      "Salmo 91",
-      "Salmo 119",
-      "Salmo 150"
-    ],
-    "correctAnswer": 2,
-    "verse": "Salmos 119",
-    "explanation": "El Salmo 119 es el más extenso de las Escrituras, organizado acrósticamente según el alfabeto hebreo."
-  },
-  {
-    "id": "m105",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Salmos",
-    "question": "¿Cuál es el capítulo más corto de toda la Biblia, que cuenta con tan solo 2 versículos?",
-    "options": [
-      "Salmo 117",
-      "Salmo 133",
-      "Salmo 150",
-      "Salmo 1"
-    ],
-    "correctAnswer": 0,
-    "verse": "Salmos 117:1-2",
-    "explanation": "El Salmo 117 tiene solo 2 versículos: \"Alabad a Jehová, naciones todas; pueblos todos, alabadle...\""
-  },
-  {
-    "id": "m106",
-    "level": "MEDIUM",
-    "type": "FILL_VERSE",
-    "category": "Proverbios",
-    "question": "Completa Proverbios 16:18: \"Antes del quebrantamiento es la soberbia, y antes de la caída la altivez de _________\"",
-    "options": [
-      "ojos",
-      "espíritu",
-      "manos",
-      "pensamiento"
-    ],
-    "correctAnswer": 1,
-    "verse": "Proverbios 16:18",
-    "explanation": "Proverbios 16:18: \"Antes del quebrantamiento es la soberbia, y antes de la caída la altivez de espíritu.\""
-  },
-  {
-    "id": "m107",
-    "level": "MEDIUM",
-    "type": "FILL_VERSE",
-    "category": "Proverbios",
-    "question": "Completa Proverbios 18:10: \"Torre fuerte es el nombre de Jehová; a él correrá el justo, y será _________\"",
-    "options": [
-      "derrotado",
-      "levantado (puesto en alto)",
-      "probado",
-      "avergonzado"
-    ],
-    "correctAnswer": 1,
-    "verse": "Proverbios 18:10",
-    "explanation": "Proverbios 18:10: \"Torre fuerte es el nombre de Jehová; a él correrá el justo, y será levantado.\""
-  },
-  {
-    "id": "m108",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Profeta Isaías",
-    "question": "En la visión de Isaías en el Templo, ¿con qué tocó el serafín los labios del profeta para quitar su culpa?",
-    "options": [
-      "Con aceite de la unción",
-      "Con un carbón encendido tomado del altar con tenazas",
-      "Con agua bendita",
-      "Con incienso aromático"
-    ],
-    "correctAnswer": 1,
-    "verse": "Isaías 6:6-7",
-    "explanation": "Voló hacia mí uno de los serafines, teniendo en su mano un carbón encendido... y tocando con él sobre mi boca, dijo: He aquí que esto tocó tus labios, y es quitada tu culpa."
-  },
-  {
-    "id": "m109",
-    "level": "MEDIUM",
-    "type": "FILL_VERSE",
-    "category": "Profeta Jeremías",
-    "question": "Completa Jeremías 29:11: \"Porque yo sé los pensamientos que tengo acerca de vosotros, dice Jehová, pensamientos de paz, y no de mal, para daros el fin que _________\"",
-    "options": [
-      "merecéis",
-      "esperáis",
-      "compráis",
-      "soñáis"
-    ],
-    "correctAnswer": 1,
-    "verse": "Jeremías 29:11",
-    "explanation": "Jeremías 29:11: \"...pensamientos de paz, y no de mal, para daros el fin que esperáis.\""
-  },
-  {
-    "id": "m110",
-    "level": "MEDIUM",
-    "type": "FILL_VERSE",
-    "category": "Profeta Jeremías",
-    "question": "Completa Jeremías 33:3: \"Clama a mí, y yo te responderé, y te enseñaré cosas grandes y ocultas que tú _________\"",
-    "options": [
-      "ya sabías",
-      "no conoces",
-      "olvidaste",
-      "escribiste"
-    ],
-    "correctAnswer": 1,
-    "verse": "Jeremías 33:3",
-    "explanation": "Jeremías 33:3: \"Clama a mí, y yo te responderé, y te enseñaré cosas grandes y ocultas que tú no conoces.\""
-  },
-  {
-    "id": "m111",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Profeta Ezequiel",
-    "question": "¿Qué le mandó Dios comer al profeta Ezequiel como símbolo de asimilar plenamente su mensaje, el cual supo dulce como miel?",
-    "options": [
-      "Un rollo de libro escrito por dentro y por fuera",
-      "Un pan cocido sobre fuego",
-      "Una fruta de la higuera",
-      "Un panal de abejas"
-    ],
-    "correctAnswer": 0,
-    "verse": "Ezequiel 3:1-3",
-    "explanation": "Hijo de hombre, come este rollo... y lo comí, y fue en mi boca dulce como miel."
-  },
-  {
-    "id": "m112",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Profeta Oseas",
-    "question": "¿A qué mujer infiel le mandó Dios tomar por esposa al profeta Oseas para ilustrar el amor redentor de Dios hacia un pueblo idólatra?",
-    "options": [
-      "Gomer hija de Diblaim",
-      "Débora",
-      "Séfora",
-      "Atalía"
-    ],
-    "correctAnswer": 0,
-    "verse": "Oseas 1:2-3",
-    "explanation": "Ve, tómate una mujer fornicaria e hijos de fornicación; porque la tierra fornica apartándose de Jehová. Fue, pues, y tomó a Gomer."
-  },
-  {
-    "id": "m113",
-    "level": "MEDIUM",
-    "type": "FILL_VERSE",
-    "category": "Profeta Habacuc",
-    "question": "Completa Habacuc 2:4 (citado tres veces en el Nuevo Testamento): \"He aquí que aquel cuya alma no es recta se enorgullece; mas el justo por su fe _________\"",
-    "options": [
-      "morirá",
-      "vivirá",
-      "callará",
-      "caerá"
-    ],
-    "correctAnswer": 1,
-    "verse": "Habacuc 2:4 / Romanos 1:17",
-    "explanation": "Habacuc 2:4: \"...mas el justo por su fe vivirá.\""
-  },
-  {
-    "id": "m114",
-    "level": "MEDIUM",
-    "type": "FILL_VERSE",
-    "category": "Profeta Zacarías",
-    "question": "Completa Zacarías 4:6: \"No con ejército, ni con fuerza, sino con mi _________, ha dicho Jehová de los ejércitos.\"",
-    "options": [
-      "espada",
-      "Espíritu",
-      "pueblo",
-      "oro"
-    ],
-    "correctAnswer": 1,
-    "verse": "Zacarías 4:6",
-    "explanation": "Zacarías 4:6: \"No con ejército, ni con fuerza, sino con mi Espíritu, ha dicho Jehová de los ejércitos.\""
-  },
-  {
-    "id": "m115",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Profeta Malaquías",
-    "question": "En Malaquías 3:10, ¿en qué desafía Dios a su pueblo diciendo: \"Probadme ahora en esto... si no os abriré las ventanas de los cielos\"?",
-    "options": [
-      "En traer todos los diezmos al alfolí para que haya alimento en su casa",
-      "En ayunar cuarenta días",
-      "En salir a conquistar naciones",
-      "En construir un nuevo altar"
-    ],
-    "correctAnswer": 0,
-    "verse": "Malaquías 3:10",
-    "explanation": "Traed todos los diezmos al alfolí y haya alimento en mi casa; y probadme ahora en esto, dice Jehová de los ejércitos."
-  },
-  {
-    "id": "m116",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Evangelios",
-    "question": "¿Quién era el anciano justo en el Templo que tomó a Jesús en sus brazos y dijo: \"Ahora, Señor, despides a tu siervo en paz... porque han visto mis ojos tu salvación\"?",
-    "options": [
-      "Simeón",
-      "Zacarías",
-      "Nicodemo",
-      "José de Arimatea"
-    ],
-    "correctAnswer": 0,
-    "verse": "Lucas 2:25-30",
-    "explanation": "Había en Jerusalén un hombre llamado Simeón... tomó al niño en sus brazos y bendijo a Dios."
-  },
-  {
-    "id": "m117",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Juan el Bautista",
-    "question": "¿Qué vestidura tosca usaba Juan el Bautista en el desierto y de qué se alimentaba?",
-    "options": [
-      "Vestido de pelo de camello con cinto de cuero, y comía langostas y miel silvestre",
-      "Túnica de lino fino y comía pan y vino",
-      "Manto de lana de oveja y comía pescado asado",
-      "Ropa de seda y frutas del huerto"
-    ],
-    "correctAnswer": 0,
-    "verse": "Mateo 3:4",
-    "explanation": "Tenía Juan su vestido de pelo de camello, y un cinto de cuero alrededor de sus lomos; y su comida era langostas y miel silvestre."
-  },
-  {
-    "id": "m118",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Evangelio de Juan",
-    "question": "¿Bajo qué árbol vio Jesús al discípulo Natanael antes de que Felipe le llamara, dejándolo asombrado?",
-    "options": [
-      "Bajo una higuera",
-      "Bajo un olivo",
-      "Bajo un cedro",
-      "Bajo una palmera"
-    ],
-    "correctAnswer": 0,
-    "verse": "Juan 1:48",
-    "explanation": "Jesús le respondió: Antes que Felipe te llamara, cuando estabas debajo de la higuera, te vi."
-  },
-  {
-    "id": "m119",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Milagros de Jesús",
-    "question": "¿Qué le dijo el centurión romano a Jesús demostrando una fe que Jesús no había hallado ni aun en Israel?",
-    "options": [
-      "Ven a mi casa y toca a mi siervo",
-      "Señor, no soy digno de que entres bajo mi techo; solamente di la palabra, y mi criado sanará",
-      "Te daré diez talentos si lo sanas",
-      "Escribe una oración en mi puerta"
-    ],
-    "correctAnswer": 1,
-    "verse": "Mateo 8:8-10",
-    "explanation": "Al oírlo Jesús, se maravilló, y dijo a los que le seguían: De cierto os digo, que ni aun en Israel he hallado tanta fe."
-  },
-  {
-    "id": "m120",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Milagros de Jesús",
-    "question": "¿Cómo se llamaba la legión de demonios que Jesús expulsó de un hombre en la región de los gadarenos hacia un hato de cerdos?",
-    "options": [
-      "Belcebú",
-      "Legión, porque somos muchos",
-      "Abadón",
-      "Mamón"
-    ],
-    "correctAnswer": 1,
-    "verse": "Marcos 5:9",
-    "explanation": "Y le preguntó: ¿Cómo te llamas? Y respondió diciendo: Legión me llamo; porque somos muchos."
-  },
-  {
-    "id": "m121",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Encuentros con Jesús",
-    "question": "¿Qué hermana de Lázaro se sentó a los pies de Jesús a escuchar su palabra, mientras su hermana Marta se afanaba con los quehaceres?",
-    "options": [
-      "María de Betania",
-      "Salomé",
-      "Juana",
-      "Susana"
-    ],
-    "correctAnswer": 0,
-    "verse": "Lucas 10:39-42",
-    "explanation": "María ha escogido la buena parte, la cual no le será quitada."
-  },
-  {
-    "id": "m122",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Encuentros con Jesús",
-    "question": "¿Con qué ungieron los pies de Jesús en Betania derramando un perfume de nardo puro de gran precio que llenó la casa de olor?",
-    "options": [
-      "María de Betania",
-      "Marta",
-      "La esposa de Pilato",
-      "Salomé"
-    ],
-    "correctAnswer": 0,
-    "verse": "Juan 12:3",
-    "explanation": "Entonces María tomó una libra de perfume de nardo puro, de mucho precio, y ungió los pies de Jesús, y los enjugó con sus cabellos."
-  },
-  {
-    "id": "m123",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Parábolas de Jesús",
-    "question": "En la parábola del fariseo y el publicano, ¿qué oración pronunció el publicano humillado en el templo que lo llevó justificado a su casa?",
-    "options": [
-      "\"Dios, te doy gracias porque no soy como los otros hombres\"",
-      "\"Dios, sé propicio a mí, pecador\"",
-      "\"Señor, he diezmado de toda mi cosecha\"",
-      "\"Líbrame del juicio de los romanos\""
-    ],
-    "correctAnswer": 1,
-    "verse": "Lucas 18:13-14",
-    "explanation": "El publicano... no quería ni aun alzar los ojos al cielo, sino que se golpeaba el pecho, diciendo: Dios, sé propicio a mí, pecador."
-  },
-  {
-    "id": "m124",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "La Pasión de Cristo",
-    "question": "¿A qué preso peligroso y sedicioso prefirió soltar la multitud en lugar de Jesús por incitación de los principales sacerdotes?",
-    "options": [
-      "Barrabás",
-      "Dimas",
-      "Gestas",
-      "Barjesús"
-    ],
-    "correctAnswer": 0,
-    "verse": "Mateo 27:20-21",
-    "explanation": "Los principales sacerdotes y los ancianos persuadieron a la multitud que pidiese a Barrabás, y que se matase a Jesús."
-  },
-  {
-    "id": "m125",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Las Palabras en la Cruz",
-    "question": "¿A qué discípulo amado encomendó Jesús el cuidado de su madre María desde la cruz diciendo: \"He aquí tu madre\"?",
-    "options": [
-      "A Pedro",
-      "A Juan",
-      "A Santiago",
-      "A Andrés"
-    ],
-    "correctAnswer": 1,
-    "verse": "Juan 19:26-27",
-    "explanation": "Cuando vio Jesús a su madre, y al discípulo a quien él amaba... dijo a la madre: Mujer, he ahí tu hijo. Después dijo al discípulo: He ahí tu madre."
-  },
-  {
-    "id": "m126",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "La Resurrección",
-    "question": "Junto al mar de Tiberias tras resucitar, ¿cuántas veces le preguntó Jesús a Pedro: \"Simón, hijo de Jonás, ¿me amas?\" restaurando su ministerio?",
-    "options": [
-      "1 vez",
-      "2 veces",
-      "3 veces",
-      "7 veces"
-    ],
-    "correctAnswer": 2,
-    "verse": "Juan 21:15-17",
-    "explanation": "Le dijo la tercera vez: Simón, hijo de Jonás, ¿me amas? Pedro se entristeció... y le dijo: Señor, tú lo sabes todo; tú sabes que te amo. Jesús le dijo: Apacienta mis ovejas."
-  },
-  {
-    "id": "m127",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Hechos de los Apóstoles",
-    "question": "¿A qué discípulo eligieron los apóstoles por suertes para ocupar el lugar de Judas Iscariote en el ministerio apostólico?",
-    "options": [
-      "Matías",
-      "Barsabás",
-      "Bernabé",
-      "Esteban"
-    ],
-    "correctAnswer": 0,
-    "verse": "Hechos 1:26",
-    "explanation": "Y les echaron suertes, y la suerte cayó sobre Matías; y fue contado con los once apóstoles."
-  },
-  {
-    "id": "m128",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Hechos de los Apóstoles",
-    "question": "¿Cuántas personas aproximadamente se convirtieron y fueron bautizadas tras el primer sermón de Pedro en el día de Pentecostés?",
-    "options": [
-      "Como 500 personas",
-      "Como 1,000 personas",
-      "Como 3,000 personas",
-      "Como 10,000 personas"
-    ],
-    "correctAnswer": 2,
-    "verse": "Hechos 2:41",
-    "explanation": "Así que, los que recibieron su palabra fueron bautizados; y se añadieron aquel día como tres mil personas."
-  },
-  {
-    "id": "m129",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Hechos de los Apóstoles",
-    "question": "¿Qué sabio fariseo y doctor de la ley aconsejó al concilio judío no perseguir a los apóstoles diciendo: \"Si este consejo es de los hombres, se desvanecerá; mas si es de Dios, no la podréis destruir\"?",
-    "options": [
-      "Gamaliel",
-      "Nicodemo",
-      "Caifás",
-      "Ananías"
-    ],
-    "correctAnswer": 0,
-    "verse": "Hechos 5:34-39",
-    "explanation": "Un fariseo llamado Gamaliel, doctor de la ley, venerado de todo el pueblo... dijo: No os pongáis en riesgo de ser hallados luchando contra Dios."
-  },
-  {
-    "id": "m130",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Hechos de los Apóstoles",
-    "question": "¿A qué funcionario etíope de la reina Candace bautizó el evangelista Felipe en el camino de Jerusalén a Gaza tras explicarle Isaías 53?",
-    "options": [
-      "Al eunuco etíope tesorero de la reina",
-      "Al capitán de la guardia",
-      "Al embajador de Egipto",
-      "A un comerciante de especias"
-    ],
-    "correctAnswer": 0,
-    "verse": "Hechos 8:27-38",
-    "explanation": "Un eunuco etíope, funcionario de Candace... dijo: Aquí hay agua; ¿qué impide que yo sea bautizado? Y descendieron ambos al agua, Felipe y el eunuco, y le bautizó."
-  },
-  {
-    "id": "m131",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Hechos de los Apóstoles",
-    "question": "¿Qué discípula piadosa de Jope, llena de buenas obras y limosnas que hacía túnicas, fue resucitada por Pedro?",
-    "options": [
-      "Tabita (Dorcas)",
-      "Lidia de Tiatira",
-      "Priscila",
-      "Rode"
-    ],
-    "correctAnswer": 0,
-    "verse": "Hechos 9:36-40",
-    "explanation": "Había entonces en Jope una discípula llamada Tabita, que traducido quiere decir, Dorcas... Pedro oró y volviéndose al cuerpo, dijo: Tabita, levántate."
-  },
-  {
-    "id": "m132",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Hechos de los Apóstoles",
-    "question": "¿En qué ciudad fue donde por primera vez se les llamó \"cristianos\" a los discípulos de Jesús?",
-    "options": [
-      "Jerusalén",
-      "Antioquía de Siria",
-      "Éfeso",
-      "Roma"
-    ],
-    "correctAnswer": 1,
-    "verse": "Hechos 11:26",
-    "explanation": "Y se congregaron allí todo un año con la iglesia... y a los discípulos se les llamó cristianos por primera vez en Antioquía."
-  },
-  {
-    "id": "m133",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Hechos de los Apóstoles",
-    "question": "¿Qué sirvienta fue a la puerta en casa de María cuando Pedro, liberado milagrosamente de la cárcel por un ángel, llamó, y de gozo no abrió?",
-    "options": [
-      "Rode",
-      "Salomé",
-      "Lidia",
-      "Evodia"
-    ],
-    "correctAnswer": 0,
-    "verse": "Hechos 12:13-14",
-    "explanation": "Cuando llamó Pedro a la puerta del patio, salió a escuchar una muchacha llamada Rode, la cual, cuando reconoció la voz de Pedro, de gozo no abrió la puerta."
-  },
-  {
-    "id": "m134",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Hechos de los Apóstoles",
-    "question": "¿Qué vendedora de púrpura de la ciudad de Tiatira creyó en Filipos y abrió su casa para hospedar a Pablo y a Silas?",
-    "options": [
-      "Lidia",
-      "Febe",
-      "Priscila",
-      "Sintique"
-    ],
-    "correctAnswer": 0,
-    "verse": "Hechos 16:14-15",
-    "explanation": "Una mujer llamada Lidia, vendedora de púrpura, de la ciudad de Tiatira, que adoraba a Dios, estaba oyendo; y el Señor abrió el corazón de ella."
-  },
-  {
-    "id": "m135",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Hechos de los Apóstoles",
-    "question": "¿En qué isla del Mediterráneo naufragó el barco que llevaba al apóstol Pablo prisionero rumbo a Roma, donde una víbora le mordió la mano sin causarle daño?",
-    "options": [
-      "Isla de Malta",
-      "Isla de Creta",
-      "Isla de Chipre",
-      "Isla de Sicilia"
-    ],
-    "correctAnswer": 0,
-    "verse": "Hechos 28:1-5",
-    "explanation": "Supimos que la isla se llamaba Malta... una víbora, huyendo del calor, se le prendió en la mano; pero él, sacudiendo la víbora en el fuego, ningún daño padeció."
-  },
-  {
-    "id": "m136",
-    "level": "MEDIUM",
-    "type": "FILL_VERSE",
-    "category": "Epístola a los Romanos",
-    "question": "Completa Romanos 1:16: \"Porque no me avergüenzo del evangelio, porque es poder de Dios para _________ a todo aquel que cree\"",
-    "options": [
-      "riqueza",
-      "salvación",
-      "fama",
-      "conocimiento"
-    ],
-    "correctAnswer": 1,
-    "verse": "Romanos 1:16",
-    "explanation": "Romanos 1:16: \"Porque no me avergüenzo del evangelio, porque es poder de Dios para salvación a todo aquel que cree; al judío primeramente, y también al griego.\""
-  },
-  {
-    "id": "m137",
-    "level": "MEDIUM",
-    "type": "FILL_VERSE",
-    "category": "Epístola a los Romanos",
-    "question": "Completa Romanos 3:23: \"Por cuanto todos pecaron, y están destituidos de la _________ de Dios\"",
-    "options": [
-      "tierra",
-      "gloria",
-      "ley",
-      "vida"
-    ],
-    "correctAnswer": 1,
-    "verse": "Romanos 3:23",
-    "explanation": "Romanos 3:23: \"Por cuanto todos pecaron, y están destituidos de la gloria de Dios.\""
-  },
-  {
-    "id": "m138",
-    "level": "MEDIUM",
-    "type": "FILL_VERSE",
-    "category": "Epístola a los Romanos",
-    "question": "Completa Romanos 6:23: \"Porque la paga del pecado es muerte, mas la dádiva de Dios es _________ en Cristo Jesús Señor nuestro.\"",
-    "options": [
-      "salud terrenal",
-      "vida eterna",
-      "paz momentánea",
-      "sabiduría humana"
-    ],
-    "correctAnswer": 1,
-    "verse": "Romanos 6:23",
-    "explanation": "Romanos 6:23: \"Porque la paga del pecado es muerte, mas la dádiva de Dios es vida eterna en Cristo Jesús Señor nuestro.\""
-  },
-  {
-    "id": "m139",
-    "level": "MEDIUM",
-    "type": "FILL_VERSE",
-    "category": "Epístola a los Romanos",
-    "question": "Completa Romanos 8:31: \"¿Qué, pues, diremos a esto? Si Dios es por nosotros, ¿_________?\"",
-    "options": [
-      "quién contra nosotros",
-      "quién nos salvará",
-      "quién será rico",
-      "adónde iremos"
-    ],
-    "correctAnswer": 0,
-    "verse": "Romanos 8:31",
-    "explanation": "Romanos 8:31: \"¿Qué, pues, diremos a esto? Si Dios es por nosotros, ¿quién contra nosotros?\""
-  },
-  {
-    "id": "m140",
-    "level": "MEDIUM",
-    "type": "FILL_VERSE",
-    "category": "Epístola a los Romanos",
-    "question": "Completa Romanos 10:9: \"Que si confesares con tu boca que Jesús es el Señor, y creyeres en tu corazón que Dios le levantó de los muertos, serás _________\"",
-    "options": [
-      "juzgado",
-      "salvo",
-      "exaltado",
-      "probado"
-    ],
-    "correctAnswer": 1,
-    "verse": "Romanos 10:9",
-    "explanation": "Romanos 10:9: \"...y creyeres en tu corazón que Dios le levantó de los muertos, serás salvo.\""
-  },
-  {
-    "id": "m141",
-    "level": "MEDIUM",
-    "type": "FILL_VERSE",
-    "category": "1 Corintios",
-    "question": "Completa 1 Corintios 10:13: \"No os ha sobrevenido ninguna tentación que no sea humana; pero fiel es Dios, que no os dejará ser tentados más de lo que podéis _________\"",
-    "options": [
-      "desear",
-      "resistir",
-      "comprar",
-      "soñar"
-    ],
-    "correctAnswer": 1,
-    "verse": "1 Corintios 10:13",
-    "explanation": "1 Corintios 10:13: \"...sino que dará también juntamente con la tentación la salida, para que podáis soportar.\""
-  },
-  {
-    "id": "m142",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "1 Corintios",
-    "question": "En 1 Corintios 12, ¿con qué ilustra Pablo la diversidad de dones y la unidad de los creyentes en la iglesia?",
-    "options": [
-      "Con un edificio de piedra",
-      "Con un cuerpo humano que tiene muchos miembros interdependientes",
-      "Con un barco y sus velas",
-      "Con un ejército y sus armas"
-    ],
-    "correctAnswer": 1,
-    "verse": "1 Corintios 12:12-27",
-    "explanation": "Porque así como el cuerpo es uno, y tiene muchos miembros... así también Cristo. Vosotros, pues, sois el cuerpo de Cristo, y miembros cada uno en particular."
-  },
-  {
-    "id": "m143",
-    "level": "MEDIUM",
-    "type": "FILL_VERSE",
-    "category": "2 Corintios",
-    "question": "Completa 2 Corintios 5:17: \"De modo que si alguno está en Cristo, nueva criatura es; las cosas viejas pasaron; he aquí todas son hechas _________\"",
-    "options": [
-      "iguales",
-      "nuevas",
-      "difíciles",
-      "eternas"
-    ],
-    "correctAnswer": 1,
-    "verse": "2 Corintios 5:17",
-    "explanation": "2 Corintios 5:17: \"...las cosas viejas pasaron; he aquí todas son hechas nuevas.\""
-  },
-  {
-    "id": "m144",
-    "level": "MEDIUM",
-    "type": "FILL_VERSE",
-    "category": "2 Corintios",
-    "question": "¿Qué le respondió el Señor a Pablo cuando le rogó tres veces que le quitara su \"aguijón en la carne\"? (2 Corintios 12:9)",
-    "options": [
-      "\"Espera diez años más\"",
-      "\"Bástate mi gracia; porque mi poder se perfecciona en la debilidad\"",
-      "\"No tienes suficiente fe\"",
-      "\"Ve y lávate en el estanque\""
-    ],
-    "correctAnswer": 1,
-    "verse": "2 Corintios 12:9",
-    "explanation": "Y me ha dicho: Bástate mi gracia; porque mi poder se perfecciona en la debilidad."
-  },
-  {
-    "id": "m145",
-    "level": "MEDIUM",
-    "type": "FILL_VERSE",
-    "category": "Epístola a los Gálatas",
-    "question": "Completa Gálatas 6:7: \"No os engañéis; Dios no puede ser burlado: pues todo lo que el hombre sembrare, eso también _________\"",
-    "options": [
-      "olvidará",
-      "segará (cosechará)",
-      "venderá",
-      "perderá"
-    ],
-    "correctAnswer": 1,
-    "verse": "Gálatas 6:7",
-    "explanation": "Gálatas 6:7: \"No os engañéis; Dios no puede ser burlado: pues todo lo que el hombre sembrare, eso también segará.\""
-  },
-  {
-    "id": "m146",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Epístola a los Efesios",
-    "question": "En Efesios 6:10-18, ¿qué pieza de la armadura espiritual de Dios sirve para apagar todos los dardos de fuego del maligno?",
-    "options": [
-      "El cinto de la verdad",
-      "El calzado de la paz",
-      "El escudo de la fe",
-      "El yelmo de la salvación"
-    ],
-    "correctAnswer": 2,
-    "verse": "Efesios 6:16",
-    "explanation": "Sobre todo, tomad el escudo de la fe, con que podáis apagar todos los dardos de fuego del maligno."
-  },
-  {
-    "id": "m147",
-    "level": "MEDIUM",
-    "type": "FILL_VERSE",
-    "category": "Epístola a los Filipenses",
-    "question": "Completa Filipenses 1:21: \"Porque para mí el vivir es Cristo, y el morir es _________\"",
-    "options": [
-      "tristeza",
-      "ganancia",
-      "fin",
-      "derrota"
-    ],
-    "correctAnswer": 1,
-    "verse": "Filipenses 1:21",
-    "explanation": "Filipenses 1:21: \"Porque para mí el vivir es Cristo, y el morir es ganancia.\""
-  },
-  {
-    "id": "m148",
-    "level": "MEDIUM",
-    "type": "FILL_VERSE",
-    "category": "Epístola a los Filipenses",
-    "question": "Completa Filipenses 2:10-11: \"Para que en el nombre de Jesús se doble toda rodilla... y toda lengua confiese que Jesucristo es el _________, para gloria de Dios Padre.\"",
-    "options": [
-      "profeta",
-      "Señor",
-      "maestro",
-      "juez"
-    ],
-    "correctAnswer": 1,
-    "verse": "Filipenses 2:10-11",
-    "explanation": "Filipenses 2:11: \"...y toda lengua confiese que Jesucristo es el Señor, para gloria de Dios Padre.\""
-  },
-  {
-    "id": "m149",
-    "level": "MEDIUM",
-    "type": "FILL_VERSE",
-    "category": "Epístola a los Colosenses",
-    "question": "Completa Colosenses 3:23: \"Y todo lo que hagáis, hacedlo de corazón, como para el _________ y no para los hombres\"",
-    "options": [
-      "jefe",
-      "Señor",
-      "mundo",
-      "dinero"
-    ],
-    "correctAnswer": 1,
-    "verse": "Colosenses 3:23",
-    "explanation": "Colosenses 3:23: \"Y todo lo que hagáis, hacedlo de corazón, como para el Señor y no para los hombres.\""
-  },
-  {
-    "id": "m150",
-    "level": "MEDIUM",
-    "type": "FILL_VERSE",
-    "category": "1 Tesalonicenses",
-    "question": "Completa 1 Tesalonicenses 5:16-18: \"Estad siempre gozosos. Orad sin _________. Dad gracias en todo.\"",
-    "options": [
-      "ruido",
-      "cesar",
-      "miedo",
-      "duda"
-    ],
-    "correctAnswer": 1,
-    "verse": "1 Tesalonicenses 5:17",
-    "explanation": "1 Tesalonicenses 5:17: \"Orad sin cesar.\""
-  },
-  {
-    "id": "m151",
-    "level": "MEDIUM",
-    "type": "FILL_VERSE",
-    "category": "1 Timoteo",
-    "question": "Completa 1 Timoteo 4:12: \"Ninguno tenga en poco tu juventud, sino sé _________ de los creyentes en palabra, conducta, amor, espíritu, fe y pureza.\"",
-    "options": [
-      "juez",
-      "ejemplo",
-      "maestro",
-      "líder"
-    ],
-    "correctAnswer": 1,
-    "verse": "1 Timoteo 4:12",
-    "explanation": "1 Timoteo 4:12: \"Ninguno tenga en poco tu juventud, sino sé ejemplo de los creyentes en palabra, conducta, amor, espíritu, fe y pureza.\""
-  },
-  {
-    "id": "m152",
-    "level": "MEDIUM",
-    "type": "FILL_VERSE",
-    "category": "1 Timoteo",
-    "question": "Completa 1 Timoteo 6:10: \"Porque raíz de todos los males es el _________ al dinero\"",
-    "options": [
-      "odio",
-      "amor",
-      "deseo",
-      "miedo"
-    ],
-    "correctAnswer": 1,
-    "verse": "1 Timoteo 6:10",
-    "explanation": "1 Timoteo 6:10: \"Porque raíz de todos los males es el amor al dinero, el cual codiciando algunos, se extraviaron de la fe.\""
-  },
-  {
-    "id": "m153",
-    "level": "MEDIUM",
-    "type": "FILL_VERSE",
-    "category": "2 Timoteo",
-    "question": "Completa 2 Timoteo 1:7: \"Porque no nos ha dado Dios espíritu de cobardía, sino de poder, de amor y de _________\"",
-    "options": [
-      "riqueza",
-      "dominio propio",
-      "fama",
-      "orgullo"
-    ],
-    "correctAnswer": 1,
-    "verse": "2 Timoteo 1:7",
-    "explanation": "2 Timoteo 1:7: \"Porque no nos ha dado Dios espíritu de cobardía, sino de poder, de amor y de dominio propio.\""
-  },
-  {
-    "id": "m154",
-    "level": "MEDIUM",
-    "type": "FILL_VERSE",
-    "category": "2 Timoteo",
-    "question": "Completa 2 Timoteo 3:16: \"Toda la Escritura es inspirada por Dios, y útil para enseñar, para redargüir, para corregir, para instruir en _________\"",
-    "options": [
-      "filosofía",
-      "justicia",
-      "ciencia",
-      "oratoria"
-    ],
-    "correctAnswer": 1,
-    "verse": "2 Timoteo 3:16",
-    "explanation": "2 Timoteo 3:16: \"Toda la Escritura es inspirada por Dios, y útil para enseñar, para redargüir, para corregir, para instruir en justicia.\""
-  },
-  {
-    "id": "m155",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Epístola a Filemón",
-    "question": "¿Por qué esclavo fugitivo intercedió Pablo ante su amo Filemón pidiendo que lo recibiera no ya como esclavo, sino como hermano amado?",
-    "options": [
-      "Onésimo",
-      "Tíquico",
-      "Epafrodito",
-      "Aristarco"
-    ],
-    "correctAnswer": 0,
-    "verse": "Filemón 1:10-16",
-    "explanation": "Te ruego por mi hijo Onésimo, a quien he engendrado en mis prisiones... para que le recibieses para siempre; no ya como esclavo, sino como hermano amado."
-  },
-  {
-    "id": "m156",
-    "level": "MEDIUM",
-    "type": "FILL_VERSE",
-    "category": "Epístola a los Hebreos",
-    "question": "Completa Hebreos 4:12: \"Porque la palabra de Dios es viva y eficaz, y más cortante que toda espada de dos _________\"",
-    "options": [
-      "puntas",
-      "filos",
-      "empuñaduras",
-      "metales"
-    ],
-    "correctAnswer": 1,
-    "verse": "Hebreos 4:12",
-    "explanation": "Hebreos 4:12: \"Porque la palabra de Dios es viva y eficaz, y más cortante que toda espada de dos filos; y penetra hasta partir el alma y el espíritu...\""
-  },
-  {
-    "id": "m157",
-    "level": "MEDIUM",
-    "type": "FILL_VERSE",
-    "category": "Epístola a los Hebreos",
-    "question": "Completa Hebreos 12:2: \"Puestos los ojos en Jesús, el autor y consumador de la _________\"",
-    "options": [
-      "paz",
-      "fe",
-      "ley",
-      "creación"
-    ],
-    "correctAnswer": 1,
-    "verse": "Hebreos 12:2",
-    "explanation": "Hebreos 12:2: \"Puestos los ojos en Jesús, el autor y consumador de la fe.\""
-  },
-  {
-    "id": "m158",
-    "level": "MEDIUM",
-    "type": "FILL_VERSE",
-    "category": "Epístola a los Hebreos",
-    "question": "Completa Hebreos 13:8: \"Jesucristo es el mismo ayer, y hoy, y por los _________\"",
-    "options": [
-      "días",
-      "siglos",
-      "años",
-      "hombres"
-    ],
-    "correctAnswer": 1,
-    "verse": "Hebreos 13:8",
-    "explanation": "Hebreos 13:8: \"Jesucristo es el mismo ayer, y hoy, y por los siglos.\""
-  },
-  {
-    "id": "m159",
-    "level": "MEDIUM",
-    "type": "FILL_VERSE",
-    "category": "Epístola de Santiago",
-    "question": "Completa Santiago 1:5: \"Y si alguno de vosotros tiene falta de sabiduría, pídala a Dios, el cual da a todos abundantemente y sin _________\"",
-    "options": [
-      "tardanza",
-      "reproche",
-      "condición",
-      "medida"
-    ],
-    "correctAnswer": 1,
-    "verse": "Santiago 1:5",
-    "explanation": "Santiago 1:5: \"...pídala a Dios, el cual da a todos abundantemente y sin reproche, y le será dada.\""
-  },
-  {
-    "id": "m160",
-    "level": "MEDIUM",
-    "type": "FILL_VERSE",
-    "category": "Epístola de Santiago",
-    "question": "Completa Santiago 2:26: \"Porque como el cuerpo sin espíritu está muerto, así también la fe sin obras está _________\"",
-    "options": [
-      "incompleta",
-      "muerta",
-      "dormida",
-      "oculta"
-    ],
-    "correctAnswer": 1,
-    "verse": "Santiago 2:26",
-    "explanation": "Santiago 2:26: \"Porque como el cuerpo sin espíritu está muerto, así también la fe sin obras está muerta.\""
-  },
-  {
-    "id": "m161",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Epístola de Santiago",
-    "question": "¿Con qué miembros pequeños compara Santiago a la lengua humana para ilustrar su inmenso poder para bien o para mal?",
-    "options": [
-      "Con el freno en la boca de los caballos y el pequeño timón de las grandes naves",
-      "Con una pequeña semilla y una rama",
-      "Con una chispa de fuego y una gota de agua",
-      "Con una cuerda y una aguja"
-    ],
-    "correctAnswer": 0,
-    "verse": "Santiago 3:3-5",
-    "explanation": "Ponemos freno en la boca de los caballos... mirad también las naves; gobernadas con un muy pequeño timón. Así también la lengua es un miembro pequeño, pero se jacta de grandes cosas."
-  },
-  {
-    "id": "m162",
-    "level": "MEDIUM",
-    "type": "FILL_VERSE",
-    "category": "1 Pedro",
-    "question": "Completa 1 Pedro 5:7: \"Echando toda vuestra ansiedad sobre él, porque él tiene _________ de vosotros.\"",
-    "options": [
-      "juicio",
-      "cuidado",
-      "noticia",
-      "lástima"
-    ],
-    "correctAnswer": 1,
-    "verse": "1 Pedro 5:7",
-    "explanation": "1 Pedro 5:7: \"Echando toda vuestra ansiedad sobre él, porque él tiene cuidado de vosotros.\""
-  },
-  {
-    "id": "m163",
-    "level": "MEDIUM",
-    "type": "FILL_VERSE",
-    "category": "1 Pedro",
-    "question": "Completa 1 Pedro 5:8: \"Sed sobrios, y velad; porque vuestro adversario el diablo, como león rugiente, anda alrededor buscando a quién _________\"",
-    "options": [
-      "engañar",
-      "devorar",
-      "asustar",
-      "juzgar"
-    ],
-    "correctAnswer": 1,
-    "verse": "1 Pedro 5:8",
-    "explanation": "1 Pedro 5:8: \"Sed sobrios, y velad; porque vuestro adversario el diablo, como león rugiente, anda alrededor buscando a quién devorar.\""
-  },
-  {
-    "id": "m164",
-    "level": "MEDIUM",
-    "type": "FILL_VERSE",
-    "category": "2 Pedro",
-    "question": "Completa 2 Pedro 3:8: \"Mas, oh amados, no ignoréis esto: que para con el Señor un día es como mil años, y mil años como _________\"",
-    "options": [
-      "un suspiro",
-      "un día",
-      "una hora",
-      "un segundo"
-    ],
-    "correctAnswer": 1,
-    "verse": "2 Pedro 3:8",
-    "explanation": "2 Pedro 3:8: \"...que para con el Señor un día es como mil años, y mil años como un día.\""
-  },
-  {
-    "id": "m165",
-    "level": "MEDIUM",
-    "type": "FILL_VERSE",
-    "category": "1 Juan",
-    "question": "Completa 1 Juan 1:9: \"Si confesamos nuestros pecados, él es fiel y justo para perdonar nuestros pecados, y limpiarnos de toda _________\"",
-    "options": [
-      "maldad",
-      "injusticia",
-      "duda",
-      "culpa"
-    ],
-    "correctAnswer": 0,
-    "verse": "1 Juan 1:9",
-    "explanation": "1 Juan 1:9: \"Si confesamos nuestros pecados, él es fiel y justo para perdonar nuestros pecados, y limpiarnos de toda maldad.\""
-  },
-  {
-    "id": "m166",
-    "level": "MEDIUM",
-    "type": "FILL_VERSE",
-    "category": "1 Juan",
-    "question": "Completa la solemne declaración teológica en 1 Juan 4:8: \"El que no ama, no ha conocido a Dios; porque Dios es _________\"",
-    "options": [
-      "espíritu",
-      "amor",
-      "luz",
-      "fuego"
-    ],
-    "correctAnswer": 1,
-    "verse": "1 Juan 4:8",
-    "explanation": "1 Juan 4:8: \"El que no ama, no ha conocido a Dios; porque Dios es amor.\""
-  },
-  {
-    "id": "m167",
-    "level": "MEDIUM",
-    "type": "FILL_VERSE",
-    "category": "1 Juan",
-    "question": "Completa 1 Juan 4:18: \"En el amor no hay temor, sino que el perfecto amor echa fuera el _________\"",
-    "options": [
-      "odio",
-      "temor",
-      "pecado",
-      "dolor"
-    ],
-    "correctAnswer": 1,
-    "verse": "1 Juan 4:18",
-    "explanation": "1 Juan 4:18: \"En el amor no hay temor, sino que el perfecto amor echa fuera el temor.\""
-  },
-  {
-    "id": "m168",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Apocalipsis",
-    "question": "¿A cuántas iglesias de Asia Menor van dirigidas las cartas proféticas en los capítulos 2 y 3 del libro de Apocalipsis?",
-    "options": [
-      "3 iglesias",
-      "7 iglesias (Éfeso, Esmirna, Pérgamo, Tiatira, Sardis, Filadelfia, Laodicea)",
-      "10 iglesias",
-      "12 iglesias"
-    ],
-    "correctAnswer": 1,
-    "verse": "Apocalipsis 1:11; 2-3",
-    "explanation": "Escribe en un libro lo que ves, y envíalo a las siete iglesias que están en Asia: a Éfeso, Esmirna, Pérgamo, Tiatira, Sardis, Filadelfia y Laodicea."
-  },
-  {
-    "id": "m169",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Apocalipsis",
-    "question": "¿A cuál de las siete iglesias de Apocalipsis censuró el Señor duramente diciendo: \"Por cuanto eres tibio, y no frío ni caliente, te vomitaré de mi boca\"?",
-    "options": [
-      "A la iglesia en Filadelfia",
-      "A la iglesia en Laodicea",
-      "A la iglesia en Éfeso",
-      "A la iglesia en Esmirna"
-    ],
-    "correctAnswer": 1,
-    "verse": "Apocalipsis 3:15-16",
-    "explanation": "Pero por cuanto eres tibio, y no frío ni caliente, te vomitaré de mi boca. Tú dices: Yo soy rico... y no sabes que eres un desventurado, miserable, pobre, ciego y desnudo."
-  },
-  {
-    "id": "m170",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Apocalipsis",
-    "question": "¿Quién es el único hallado digno en el cielo de tomar el libro y abrir sus siete sellos según Apocalipsis 5?",
-    "options": [
-      "El arcángel Miguel",
-      "El profeta Moisés",
-      "El León de la tribu de Judá, el Cordero que fue inmolado",
-      "El apóstol Pedro"
-    ],
-    "correctAnswer": 2,
-    "verse": "Apocalipsis 5:5-9",
-    "explanation": "He aquí que el León de la tribu de Judá, la raíz de David, ha vencido para abrir el libro y desatar sus siete sellos... Digno eres, porque fuiste inmolado."
-  },
-  {
-    "id": "m171",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Apocalipsis",
-    "question": "¿Cuántos son los jinetes simbólicos que salen cabalgando en los primeros cuatro sellos de Apocalipsis 6?",
-    "options": [
-      "2 jinetes",
-      "4 jinetes (caballo blanco, bermejo, negro y amarillo)",
-      "7 jinetes",
-      "12 jinetes"
-    ],
-    "correctAnswer": 1,
-    "verse": "Apocalipsis 6:1-8",
-    "explanation": "Los cuatro jinetes del Apocalipsis cabalgan sobre caballos blanco, bermejo (rojo), negro y amarillo (pálido)."
-  },
-  {
-    "id": "m172",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Apocalipsis",
-    "question": "En Apocalipsis 19, ¿qué nombre glorioso lleva escrito en su vestidura y en su muslo el Jinete del caballo blanco?",
-    "options": [
-      "ÁNGEL DE LUZ",
-      "REY DE REYES Y SEÑOR DE SEÑORES",
-      "PROFETA DE NAZARET",
-      "PRÍNCIPE DE PAZ"
-    ],
-    "correctAnswer": 1,
-    "verse": "Apocalipsis 19:16",
-    "explanation": "Y en su vestidura y en su muslo tiene escrito este nombre: REY DE REYES Y SEÑOR DE SEÑORES."
-  },
-  {
-    "id": "m173",
-    "level": "MEDIUM",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Apocalipsis",
-    "question": "¿De qué material precioso transparente como vidrio limpio son la plaza y las calles de la Nueva Jerusalén en Apocalipsis 21?",
-    "options": [
-      "De plata pura",
-      "De oro puro, transparente como vidrio límpido",
-      "De mármol blanco",
-      "De zafiro azul"
-    ],
-    "correctAnswer": 1,
-    "verse": "Apocalipsis 21:21",
-    "explanation": "Y la calle de la ciudad era de oro puro, transparente como vidrio."
-  },
-  {
-    "id": "m174",
-    "level": "MEDIUM",
-    "type": "FILL_VERSE",
-    "category": "Apocalipsis",
-    "question": "Completa la penúltima oración de toda la Biblia en Apocalipsis 22:20: \"El que da testimonio de estas cosas dice: Ciertamente vengo en breve. Amén; sí, ven, Señor _________\"",
-    "options": [
-      "Dios",
-      "Jesús",
-      "Espíritu",
-      "Creador"
-    ],
-    "correctAnswer": 1,
-    "verse": "Apocalipsis 22:20",
-    "explanation": "Apocalipsis 22:20: \"El que da testimonio de estas cosas dice: Ciertamente vengo en breve. Amén; sí, ven, Señor Jesús.\""
-  },
-  {
-    "id": "m175",
-    "level": "MEDIUM",
-    "type": "FILL_VERSE",
-    "category": "Cierre Bíblico",
-    "question": "Completa el último versículo de toda la Biblia (Apocalipsis 22:21): \"La gracia de nuestro Señor Jesucristo sea con todos vosotros. _________\"",
-    "options": [
-      "Paz",
-      "Amén",
-      "Aleluya",
-      "Gloria"
-    ],
-    "correctAnswer": 1,
-    "verse": "Apocalipsis 22:21",
-    "explanation": "Apocalipsis 22:21: \"La gracia de nuestro Señor Jesucristo sea con todos vosotros. Amén.\""
-  },
-  {
-    "id": "h1",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Cronología y Genealogías",
-    "question": "¿Quién fue el hombre más longevo según la Biblia y cuántos años vivió?",
-    "options": [
-      "Noé (950 años)",
-      "Matusalén (969 años)",
-      "Adán (930 años)",
-      "Jared (962 años)"
-    ],
-    "correctAnswer": 1,
-    "verse": "Génesis 5:27",
-    "explanation": "Matusalén vivió novecientos sesenta y nueve años; y murió."
-  },
-  {
-    "id": "h2",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Reyes y Sanidad",
-    "question": "¿A qué rey de Judá Dios le añadió 15 años de vida tras clamar y llorar ante Él con el profeta Isaías?",
-    "options": [
-      "Josías",
-      "Ezequías",
-      "Uzías",
-      "Asa"
-    ],
-    "correctAnswer": 1,
-    "verse": "2 Reyes 20:5-6 / Isaías 38:5",
-    "explanation": "Dios dijo a Ezequías: \"He oído tu oración, y visto tus lágrimas; he aquí añado a tus días quince años.\""
-  },
-  {
-    "id": "h3",
-    "level": "HARD",
-    "type": "TRUE_FALSE",
-    "category": "Epístolas Paulinas",
-    "question": "¿Verdadero o Falso? El libro de Filemón es una carta de Pablo intercediendo por un siervo fugitivo llamado Onésimo.",
-    "options": [
-      "Verdadero",
-      "Falso"
-    ],
-    "correctAnswer": 0,
-    "verse": "Filemón 1:10-16",
-    "explanation": "Pablo pide a Filemón que reciba a Onésimo no ya como esclavo, sino como hermano amado en Cristo."
-  },
-  {
-    "id": "h4",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Apocalipsis",
-    "question": "¿Cuál de las siguientes ciudades NO fue sede de una de las 7 iglesias de Asia en Apocalipsis 2 y 3?",
-    "options": [
-      "Éfeso y Esmirna",
-      "Pérgamo y Tiatira",
-      "Antioquía y Roma",
-      "Sardis, Filadelfia y Laodicea"
-    ],
-    "correctAnswer": 2,
-    "verse": "Apocalipsis 1:11",
-    "explanation": "Las 7 iglesias de Asia son Éfeso, Esmirna, Pérgamo, Tiatira, Sardis, Filadelfia y Laodicea."
-  },
-  {
-    "id": "h5",
-    "level": "HARD",
-    "type": "WHO_SAID_IT",
-    "category": "¿Quién lo dijo?",
-    "question": "¿Qué profeta en Hechos ató sus manos y pies con el cinto de Pablo anunciando que sería arrestado en Jerusalén?",
-    "options": [
-      "Bernabé",
-      "Ágabo",
-      "Silas",
-      "Apolos"
-    ],
-    "correctAnswer": 1,
-    "verse": "Hechos 21:10-11",
-    "explanation": "El profeta Ágabo profetizó con el cinto de Pablo lo que le esperaba en Jerusalén."
-  },
-  {
-    "id": "h6",
-    "level": "HARD",
-    "type": "FILL_VERSE",
-    "category": "Profecía y Justicia",
-    "question": "Miqueas 6:8: \"¿Y qué pide Jehová de ti: solamente hacer justicia, y amar misericordia, y ____________ ante tu Dios?\"",
-    "options": [
-      "humillarte para andar",
-      "ofrendar con alegría",
-      "orar en silencio",
-      "cantar salmos"
-    ],
-    "correctAnswer": 0,
-    "verse": "Miqueas 6:8",
-    "explanation": "\"...solamente hacer justicia, y amar misericordia, y humillarte para andar con tu Dios.\""
-  },
-  {
-    "id": "h7",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "El Tabernáculo",
-    "question": "¿De qué madera estaba construida el Arca del Pacto antes de ser recubierta de oro puro por dentro y por fuera?",
-    "options": [
-      "Madera de Cedro del Líbano",
-      "Madera de Acacia",
-      "Madera de Olivo",
-      "Madera de Roble"
-    ],
-    "correctAnswer": 1,
-    "verse": "Éxodo 25:10",
-    "explanation": "Harán un arca de madera de acacia (madera incorruptible del desierto)."
-  },
-  {
-    "id": "h8",
-    "level": "HARD",
-    "type": "EMOJI_GUESS",
-    "category": "Adivina la Historia",
-    "question": "¿Qué batalla representan estos emojis? 🏺 🎺 🪔 🍞 3️⃣0️⃣0️⃣ ⚔️",
-    "options": [
-      "La toma de Jericó",
-      "Gedeón contra los madianitas",
-      "Josafat en el desierto de Tecoa",
-      "Sansón en Leji"
-    ],
-    "correctAnswer": 1,
-    "verse": "Jueces 7:16-22",
-    "explanation": "Gedeón y sus 300 soldados tocaron las trompetas y quebraron los cántaros con teas ardiendo."
-  },
-  {
-    "id": "h9",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Evangelios",
-    "question": "¿Cuál de los cuatro evangelios comienza diciendo: \"En el principio era el Verbo, y el Verbo era con Dios, y el Verbo era Dios\"?",
-    "options": [
-      "Mateo",
-      "Marcos",
-      "Lucas",
-      "Juan"
-    ],
-    "correctAnswer": 3,
-    "verse": "Juan 1:1",
-    "explanation": "Juan presenta la deidad y preexistencia eterna de Jesucristo como el Logos divino."
-  },
-  {
-    "id": "h10",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Sabiduría",
-    "question": "¿Qué libro de la Biblia culmina con el famoso poema acróstico a la Mujer Virtuosa (capítulo 31)?",
-    "options": [
-      "Cantar de los Cantares",
-      "Proverbios",
-      "Eclesiastés",
-      "Rut"
-    ],
-    "correctAnswer": 1,
-    "verse": "Proverbios 31:10-31",
-    "explanation": "El poema describe a la mujer hacendosa y temerosa de Dios cuyo valor supera a las piedras preciosas."
-  },
-  {
-    "id": "h11",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Antiguo Testamento",
-    "question": "¿Quién fue el sumo sacerdote que cayó de su silla hacia atrás y murió desnucado al enterarse de que el Arca de Dios había sido capturada por los filisteos?",
-    "options": [
-      "Aarón",
-      "Elí",
-      "Finees",
-      "Sadoc"
-    ],
-    "correctAnswer": 1,
-    "verse": "1 Samuel 4:18",
-    "explanation": "Elí, con 98 años y de ojos oscurecidos, cayó de espaldas al escuchar la pérdida del Arca."
-  },
-  {
-    "id": "h12",
-    "level": "HARD",
-    "type": "TRUE_FALSE",
-    "category": "Curiosidades Bíblicas",
-    "question": "¿Verdadero o Falso? El versículo más corto en español de la Biblia es Juan 11:35: \"Jesús lloró\".",
-    "options": [
-      "Verdadero",
-      "Falso"
-    ],
-    "correctAnswer": 0,
-    "verse": "Juan 11:35",
-    "explanation": "Con solo dos palabras (\"Jesús lloró\"), es el versículo más corto del Nuevo Testamento."
-  },
-  {
-    "id": "h13",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Hechos de los Apóstoles",
-    "question": "¿En qué isla del Mediterráneo naufragó el barco en el que Pablo viajaba prisionero rumbo a Roma?",
-    "options": [
-      "Chipre",
-      "Creta",
-      "Malta",
-      "Patmos"
-    ],
-    "correctAnswer": 2,
-    "verse": "Hechos 28:1",
-    "explanation": "Estando ya a salvo, supieron que la isla se llamaba Malta."
-  },
-  {
-    "id": "h14",
-    "level": "HARD",
-    "type": "WHO_SAID_IT",
-    "category": "¿Quién lo dijo?",
-    "question": "¿Quién exclamó en el juicio ante el rey Agripa: \"¡Por poco me persuades a ser cristiano!\"?",
-    "options": [
-      "Festo",
-      "El rey Agripa",
-      "Félix",
-      "Claudio Lisias"
-    ],
-    "correctAnswer": 1,
-    "verse": "Hechos 26:28",
-    "explanation": "El rey Agripa dijo esto conmovido tras escuchar la apasionada defensa de Pablo."
-  },
-  {
-    "id": "h15",
-    "level": "HARD",
-    "type": "FILL_VERSE",
-    "category": "Hebreos",
-    "question": "Hebreos 11:1: \"Es, pues, la fe la certeza de lo que se espera, la convicción de lo que _________\"",
-    "options": [
-      "no se ve",
-      "está por venir",
-      "se anhela",
-      "se promete"
-    ],
-    "correctAnswer": 0,
-    "verse": "Hebreos 11:1",
-    "explanation": "\"Es, pues, la fe la certeza de lo que se espera, la convicción de lo que no se ve.\""
-  },
-  {
-    "id": "h16",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Personajes Obscuros",
-    "question": "¿Quién fue el sacerdote y rey de Salem a quien Abraham dio los diezmos de todo tras rescatar a Lot?",
-    "options": [
-      "Jetro",
-      "Melquisedec",
-      "Balaam",
-      "Abimelec"
-    ],
-    "correctAnswer": 1,
-    "verse": "Génesis 14:18-20 / Hebreos 7",
-    "explanation": "Melquisedec, rey de justicia y de paz, tipifica el sacerdocio eterno de Cristo."
-  },
-  {
-    "id": "h17",
-    "level": "HARD",
-    "type": "EMOJI_GUESS",
-    "category": "Adivina la Profecía",
-    "question": "¿Qué visión profética de Ezequiel representan estos emojis? 💀 🦴 🏜️ 💨 🧍‍♂️🧍‍♀️🧍‍♂️ (Un ejército viviente)",
-    "options": [
-      "Las cuatro bestias",
-      "El valle de los huesos secos",
-      "La rueda dentro de la rueda",
-      "El río del santuario"
-    ],
-    "correctAnswer": 1,
-    "verse": "Ezequiel 37:1-10",
-    "explanation": "Ezequiel profetizó al soplo del Espíritu y los huesos secos cobraron vida como un gran ejército."
-  },
-  {
-    "id": "h18",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Lenguas Bíblicas",
-    "question": "¿En qué dos idiomas principales fue escrito originalmente el Antiguo Testamento?",
-    "options": [
-      "Griego y Latín",
-      "Hebreo y Arameo",
-      "Hebreo y Griego",
-      "Arameo y Árabe"
-    ],
-    "correctAnswer": 1,
-    "verse": "Esdras / Daniel",
-    "explanation": "La gran mayoría fue escrita en hebreo, con porciones selectas en arameo (en Esdras y Daniel)."
-  },
-  {
-    "id": "h19",
-    "level": "HARD",
-    "type": "TRUE_FALSE",
-    "category": "Profetas Menores",
-    "question": "¿Verdadero o Falso? El profeta Oseas fue instruido por Dios a casarse con una mujer infiel llamada Gomer para ilustrar el amor redentor de Dios hacia Israel.",
-    "options": [
-      "Verdadero",
-      "Falso"
-    ],
-    "correctAnswer": 0,
-    "verse": "Oseas 1:2-3",
-    "explanation": "Oseas tomó por esposa a Gomer como una vívida lección del amor fiel e incondicional de Dios."
-  },
-  {
-    "id": "h20",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "El Sanedrín",
-    "question": "¿Qué sabio fariseo y doctor de la ley aconsejó al concilio no perseguir a los apóstoles diciendo: \"Si este consejo o esta obra es de los hombres, se desvanecerá; mas si es de Dios, no la podréis destruir\"?",
-    "options": [
-      "Nicodemo",
-      "Gamaliel",
-      "Anás",
-      "Tertulo"
-    ],
-    "correctAnswer": 1,
-    "verse": "Hechos 5:34-39",
-    "explanation": "Gamaliel dio este sabio consejo protegiendo providencialmente la vida de los apóstoles."
-  },
-  {
-    "id": "h21",
-    "level": "HARD",
-    "type": "FILL_VERSE",
-    "category": "Romanos",
-    "question": "Romanos 8:28: \"Y sabemos que a los que aman a Dios, todas las cosas les ayudan a bien, esto es, a los que conforme a su _________ son llamados.\"",
-    "options": [
-      "propósito",
-      "voluntad",
-      "gracia",
-      "sabiduría"
-    ],
-    "correctAnswer": 0,
-    "verse": "Romanos 8:28",
-    "explanation": "\"...a los que conforme a su propósito son llamados.\""
-  },
-  {
-    "id": "h22",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Guerra Espiritual",
-    "question": "En la Armadura de Dios descrita en Efesios 6:10-18, ¿cuál es la ÚNICA arma explícitamente ofensiva?",
-    "options": [
-      "El escudo de la fe",
-      "El yelmo de la salvación",
-      "La espada del Espíritu, que es la palabra de Dios",
-      "El calzado del evangelio"
-    ],
-    "correctAnswer": 2,
-    "verse": "Efesios 6:17",
-    "explanation": "La espada del Espíritu, la Palabra viva de Dios, es el arma con la que Jesús mismo venció al enemigo."
-  },
-  {
-    "id": "h23",
-    "level": "HARD",
-    "type": "WHO_SAID_IT",
-    "category": "¿Quién lo dijo?",
-    "question": "¿Quién fue el primer mártir cristiano que, al ser apedreado, oró diciendo: \"Señor, no les tomes en cuenta este pecado\"?",
-    "options": [
-      "Santiago",
-      "Esteban",
-      "Felipe",
-      "Policarpo"
-    ],
-    "correctAnswer": 1,
-    "verse": "Hechos 7:59-60",
-    "explanation": "Esteban murió lleno del Espíritu Santo viendo los cielos abiertos y a Jesús a la diestra de Dios."
-  },
-  {
-    "id": "h24",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Genealogía de Jesús",
-    "question": "¿Cuántas mujeres son mencionadas explícitamente en la genealogía de Jesús en el capítulo 1 del Evangelio de Mateo?",
-    "options": [
-      "2 mujeres",
-      "3 mujeres",
-      "5 mujeres (Tamar, Rahab, Rut, Betsabé/la de Urías, y María)",
-      "7 mujeres"
-    ],
-    "correctAnswer": 2,
-    "verse": "Mateo 1:1-16",
-    "explanation": "Mateo incluye de forma extraordinaria por la gracia a Tamar, Rahab, Rut, la mujer de Urías y María."
-  },
-  {
-    "id": "h25",
-    "level": "HARD",
-    "type": "EMOJI_GUESS",
-    "category": "Adivina la Revelación",
-    "question": "¿Qué pasaje de Apocalipsis es? 🚪 ✊ ❤️ 🍽️ (\"He aquí, yo estoy a la puerta y llamo...\")",
-    "options": [
-      "Apocalipsis 3:20 a Laodicea",
-      "Apocalipsis 22:20",
-      "Apocalipsis 1:8",
-      "Apocalipsis 21:1"
-    ],
-    "correctAnswer": 0,
-    "verse": "Apocalipsis 3:20",
-    "explanation": "\"He aquí, yo estoy a la puerta y llamo; si alguno oye mi voz y abre la puerta, entraré a él, y cenaré con él, y él conmigo.\""
-  },
-  {
-    "id": "h26",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Génesis",
-    "question": "¿Sobre qué montes específicos reposó el arca de Noé en el mes séptimo, a los diecisiete días del mes?",
-    "options": [
-      "Montes de Ararat",
-      "Monte Nebo",
-      "Monte Hermón",
-      "Monte Carmelo"
-    ],
-    "correctAnswer": 0,
-    "verse": "Génesis 8:4",
-    "explanation": "Y reposó el arca en el mes séptimo, a los diecisiete días del mes, sobre los montes de Ararat."
-  },
-  {
-    "id": "h27",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Génesis",
-    "question": "¿Quién fue el poderoso cazador delante de Jehová y fundador de Babel, Erec, Acad y Calne en tierra de Sinar?",
-    "options": [
-      "Nimrod hijo de Cus",
-      "Túbal-caín",
-      "Jubal",
-      "Mizraim"
-    ],
-    "correctAnswer": 0,
-    "verse": "Génesis 10:8-10",
-    "explanation": "Cus engendró a Nimrod, quien llegó a ser el primer poderoso en la tierra. Este fue vigoroso cazador delante de Jehová."
-  },
-  {
-    "id": "h28",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Patriarcas",
-    "question": "¿Por cuántas monedas de plata compró Abraham la cueva de Macpela a Efrón el heteo como sepultura para Sara?",
-    "options": [
-      "50 siclos de plata",
-      "100 siclos de plata",
-      "400 siclos de plata de buena ley entre mercaderes",
-      "1,000 siclos de plata"
-    ],
-    "correctAnswer": 2,
-    "verse": "Génesis 23:15-16",
-    "explanation": "Pesó Abraham a Efrón el dinero... cuatrocientos siclos de plata, de buena ley entre mercaderes."
-  },
-  {
-    "id": "h29",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Patriarcas",
-    "question": "¿Qué nombre egipcio le dio Faraón a José cuando lo nombró gobernador de todo Egipto y le dio por esposa a Asenat?",
-    "options": [
-      "Zafnat-panea",
-      "Potifera",
-      "Sesostris",
-      "Ramsés"
-    ],
-    "correctAnswer": 0,
-    "verse": "Génesis 41:45",
-    "explanation": "Y llamó Faraón el nombre de José, Zafnat-panea; y le dio por mujer a Asenat, hija de Potifera sacerdote de On."
-  },
-  {
-    "id": "h30",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Éxodo",
-    "question": "¿Cómo se llamaban las dos valientes parteras hebreas que temieron a Dios y no mataron a los niños varones como mandó el rey de Egipto?",
-    "options": [
-      "Sifra y Fúa",
-      "Miriam y Séfora",
-      "Elisabet y Ana",
-      "Bia y Cozbi"
-    ],
-    "correctAnswer": 0,
-    "verse": "Éxodo 1:15-17",
-    "explanation": "El rey de Egipto habló a las parteras de las hebreas, una de las cuales se llamaba Sifra, y otra Fúa; pero las parteras temieron a Dios."
-  },
-  {
-    "id": "h31",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Éxodo",
-    "question": "En la batalla de Refidim contra Amalec, ¿quiénes sostuvieron los brazos cansados de Moisés en lo alto del collado hasta la puesta del sol?",
-    "options": [
-      "Josué y Caleb",
-      "Aarón y Hur",
-      "Eleazar e Itamar",
-      "Gersón y Coat"
-    ],
-    "correctAnswer": 1,
-    "verse": "Éxodo 17:12",
-    "explanation": "Aarón y Hur sostenían sus manos, el uno de un lado y el otro de otro; así hubo en sus manos firmeza hasta que se puso el sol."
-  },
-  {
-    "id": "h32",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "El Tabernáculo",
-    "question": "¿De qué madera incorruptible ordenó Dios construir la mayor parte de los muebles sagrados del Tabernáculo (el Arca, la Mesa, el Altar)?",
-    "options": [
-      "Madera de cedro del Líbano",
-      "Madera de acacia (sitim)",
-      "Madera de olivo silvestre",
-      "Madera de ciprés"
-    ],
-    "correctAnswer": 1,
-    "verse": "Éxodo 25:10, 23; 27:1",
-    "explanation": "Harán también un arca de madera de acacia... y una mesa de madera de acacia... y un altar de madera de acacia."
-  },
-  {
-    "id": "h33",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "El Sumo Sacerdote",
-    "question": "¿Qué dos objetos sagrados colocados en el pectoral del juicio del Sumo Sacerdote se usaban para consultar la voluntad divina?",
-    "options": [
-      "El Urim y el Tumim",
-      "El Efod y la Mitra",
-      "El Incensario y la Redoma",
-      "Los Querubines y las Tablas"
-    ],
-    "correctAnswer": 0,
-    "verse": "Éxodo 28:30",
-    "explanation": "Y pondrás en el pectoral del juicio Urim y Tumim, para que estén sobre el corazón de Aarón cuando entre delante de Jehová."
-  },
-  {
-    "id": "h34",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Levítico",
-    "question": "En el gran Día de la Expiación (Yom Kipur), ¿hacia dónde era enviado el macho cabrío expiatorio sobre el cual se confesaban las iniquidades de Israel?",
-    "options": [
-      "Al monte Sinaí",
-      "Al desierto, para Azazel",
-      "Al río Jordán",
-      "Al altar de bronce para ser quemado"
-    ],
-    "correctAnswer": 1,
-    "verse": "Levítico 16:10, 21-22",
-    "explanation": "Aquel sobre el cual cayere la suerte por Azazel... lo enviará a Azazel al desierto, llevando sobre sí todas las iniquidades."
-  },
-  {
-    "id": "h35",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Levítico",
-    "question": "¿Cada cuántos años ordenaba la Ley de Moisés celebrar el Año del Jubileo, proclamando libertad en toda la tierra y regresando cada uno a su posesión?",
-    "options": [
-      "Cada 7 años",
-      "Cada 12 años",
-      "Cada 50 años",
-      "Cada 70 años"
-    ],
-    "correctAnswer": 2,
-    "verse": "Levítico 25:10-11",
-    "explanation": "Y santificaréis el año cincuenta, y pregonaréis libertad en la tierra a todos sus moradores; ese año os será de jubileo."
-  },
-  {
-    "id": "h36",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Números",
-    "question": "¿Por qué pecado específico en Cades Dios no permitió a Moisés y Aarón entrar a la Tierra Prometida?",
-    "options": [
-      "Por construir un altar falso",
-      "Por golpear la peña dos veces con enojo en lugar de hablarle como Dios mandó, no santificándolo ante el pueblo",
-      "Por quejarse del maná",
-      "Por no circuncidar a sus hijos"
-    ],
-    "correctAnswer": 1,
-    "verse": "Números 20:8-12",
-    "explanation": "Jehová dijo a Moisés y a Aarón: Por cuanto no creísteis en mí, para santificarme delante de los hijos de Israel, por tanto, no meteréis esta congregación en la tierra."
-  },
-  {
-    "id": "h37",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Deuteronomio",
-    "question": "¿En qué monte murió Moisés a la edad de 120 años tras contemplar toda la Tierra Prometida, siendo sepultado por el mismo Dios?",
-    "options": [
-      "Monte Carmelo",
-      "Monte Nebo (cumbre del Pisga)",
-      "Monte Gerizim",
-      "Monte Ebal"
-    ],
-    "correctAnswer": 1,
-    "verse": "Deuteronomio 34:1-6",
-    "explanation": "Subió Moisés de los campos de Moab al monte Nebo, a la cumbre del Pisga... Y murió allí Moisés siervo de Jehová, y lo enterró en el valle."
-  },
-  {
-    "id": "h38",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Josué",
-    "question": "¿Qué pueblo cananeo engañó a Josué presentándose con ropas viejas, pan enmohecido y odres rotos fingiendo venir de un país muy lejano?",
-    "options": [
-      "Los amorreos",
-      "Los gabaonitas",
-      "Los jebuseos",
-      "Los ferezeos"
-    ],
-    "correctAnswer": 1,
-    "verse": "Josué 9:3-15",
-    "explanation": "Los moradores de Gabaón fingieron ser embajadores... y los hombres de Israel tomaron de sus provisiones, y no consultaron a Jehová."
-  },
-  {
-    "id": "h39",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Josué",
-    "question": "¿Cuántos años tenía el valiente Caleb cuando pidió a Josué que le diera el monte Hebrón habitado por gigantes anaceos para conquistarlo?",
-    "options": [
-      "40 años",
-      "65 años",
-      "85 años",
-      "100 años"
-    ],
-    "correctAnswer": 2,
-    "verse": "Josué 14:10-12",
-    "explanation": "Hoy soy de edad de ochenta y cinco años. Todavía estoy tan fuerte como el día que Moisés me envió... Dame, pues, ahora este monte."
-  },
-  {
-    "id": "h40",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Jueces",
-    "question": "¿Qué palabra contraseña usaron los hombres de Galaad junto a los vados del Jordán para identificar y matar a 42,000 efraimitas que no podían pronunciarla bien?",
-    "options": [
-      "Maranata",
-      "Shibólet (decían Sibólet)",
-      "Ebenezer",
-      "Aleluya"
-    ],
-    "correctAnswer": 1,
-    "verse": "Jueces 12:5-6",
-    "explanation": "Le decían: Ahora pues di Shibólet; y él decía Sibólet; porque no podía pronunciarlo correctamente. Entonces le echaban mano, y le degollaban."
-  },
-  {
-    "id": "h41",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Jueces",
-    "question": "¿Cómo murió Abimelec, el tiránico hijo de Gedeón, mientras sitiaba la torre fuerte de Tebes?",
-    "options": [
-      "Una mujer arrojó un pedazo de rueda de molino sobre su cabeza y le quebró el cráneo",
-      "Una flecha perdida le atravesó el cuello",
-      "Murió ahogado en el río",
-      "Fue envenenado en un banquete"
-    ],
-    "correctAnswer": 0,
-    "verse": "Jueces 9:53-54",
-    "explanation": "Una mujer escamoteó un pedazo de una rueda de molino sobre la cabeza de Abimélec, y le rompió el cráneo."
-  },
-  {
-    "id": "h42",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "1 Samuel",
-    "question": "¿A qué sacerdote de Nob acudió David huyendo de Saúl, quien le dio los panes de la proposición y la espada de Goliat?",
-    "options": [
-      "Ahimelec hijo de Ahitob",
-      "Abiatar",
-      "Zadoc",
-      "Fineas"
-    ],
-    "correctAnswer": 0,
-    "verse": "1 Samuel 21:1-9",
-    "explanation": "Vino David a Nob, al sacerdote Ahimelec... y el sacerdote le dio el pan sagrado... y la espada de Goliat el filisteo."
-  },
-  {
-    "id": "h43",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "1 Samuel",
-    "question": "¿Qué edomita, jefe de los pastores de Saúl, delató a Ahimelec y asesinó por orden de Saúl a 85 sacerdotes de Nob que vestían efod de lino?",
-    "options": [
-      "Doeg el edomita",
-      "Cusi",
-      "Sisac",
-      "Simei"
-    ],
-    "correctAnswer": 0,
-    "verse": "1 Samuel 22:18-19",
-    "explanation": "Doeg el edomita se volvió y arremetió contra los sacerdotes, y mató en aquel día a ochenta y cinco varones que vestían efod de lino."
-  },
-  {
-    "id": "h44",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "1 Samuel",
-    "question": "En su desesperación antes de la batalla de Gilboa, ¿a qué médium o adivina consultó el rey Saúl en secreto disfrazándose?",
-    "options": [
-      "A la adivina de Endor",
-      "A la bruja de Samaria",
-      "A la sacerdotisa de Baal",
-      "A la pitonisa de Filipos"
-    ],
-    "correctAnswer": 0,
-    "verse": "1 Samuel 28:7-14",
-    "explanation": "Buscadme una mujer que tenga espíritu de adivinación... y sus criados le dijeron: He aquí hay una mujer en Endor que tiene espíritu de adivinación."
-  },
-  {
-    "id": "h45",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "2 Samuel",
-    "question": "¿Quién era el general del ejército de David que asesinó a traición a Abner y a Amasa, y ejecutó a Absalón con tres dardos en el corazón?",
-    "options": [
-      "Joab hijo de Sarvia",
-      "Abisai",
-      "Asael",
-      "Benaía"
-    ],
-    "correctAnswer": 0,
-    "verse": "2 Samuel 3:27; 18:14; 20:10",
-    "explanation": "Joab hijo de Sarvia era el comandante del ejército de David y mató a Abner, a Amasa y a Absalón."
-  },
-  {
-    "id": "h46",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "2 Samuel",
-    "question": "¿Qué consejero brillante de David se pasó al bando de Absalón, cuyo consejo era como si se consultase la palabra de Dios, y al ver frustrado su consejo se ahorcó?",
-    "options": [
-      "Ahitofel gilonita",
-      "Husai arquita",
-      "Jonadab",
-      "Siba"
-    ],
-    "correctAnswer": 0,
-    "verse": "2 Samuel 16:23; 17:23",
-    "explanation": "Ahitofel, viendo que no se había seguido su consejo... fue a su casa, y puso en orden su casa, y se ahorcó."
-  },
-  {
-    "id": "h47",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "2 Samuel",
-    "question": "¿En la era de qué jebuseo compró David el terreno y los bueyes para edificar un altar y detener la peste que azotaba a Israel?",
-    "options": [
-      "Arauna (Ornán) el jebuseo",
-      "Urias el heteo",
-      "Melquisedec",
-      "Simei"
-    ],
-    "correctAnswer": 0,
-    "verse": "2 Samuel 24:18-25",
-    "explanation": "David compró la era y los bueyes por cincuenta siclos de plata. Y edificó allí David un altar a Jehová, y cesó la plaga en Israel."
-  },
-  {
-    "id": "h48",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "1 Reyes",
-    "question": "¿Cómo se llamaban las dos imponentes columnas de bronce erigidas a la entrada del pórtico del Templo de Salomón?",
-    "options": [
-      "Jaquín y Boaz",
-      "Urim y Tumim",
-      "Misericordia y Verdad",
-      "Alpha y Omega"
-    ],
-    "correctAnswer": 0,
-    "verse": "1 Reyes 7:21",
-    "explanation": "Erigió la columna a la derecha, y llamó su nombre Jaquín; y erigió la columna a la izquierda, y llamó su nombre Boaz."
-  },
-  {
-    "id": "h49",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "1 Reyes",
-    "question": "¿En qué dos ciudades del norte colocó el rey Jeroboam dos becerros de oro diciendo: \"He aquí tus dioses, oh Israel, que te hicieron subir de Egipto\"?",
-    "options": [
-      "En Dan y en Betel",
-      "En Samaria y en Siquem",
-      "En Silo y en Jericó",
-      "En Hebrón y en Galaad"
-    ],
-    "correctAnswer": 0,
-    "verse": "1 Reyes 12:28-29",
-    "explanation": "Puso uno en Bet-el, y el otro en Dan. Y esto fue causa de pecado."
-  },
-  {
-    "id": "h50",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "1 Reyes",
-    "question": "¿Cuántos profetas fieles de Jehová escondió Abdías, mayordomo de Acab, de cincuenta en cincuenta en cuevas sustentándolos con pan y agua?",
-    "options": [
-      "50 profetas",
-      "100 profetas",
-      "7,000 profetas",
-      "400 profetas"
-    ],
-    "correctAnswer": 1,
-    "verse": "1 Reyes 18:4",
-    "explanation": "Cuando Jezabel destruía a los profetas de Jehová, Abdías tomó a cien profetas y los escondió de cincuenta en cincuenta en cuevas."
-  },
-  {
-    "id": "h51",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "2 Reyes",
-    "question": "¿Qué capitán valiente y comandante de carros fue ungido rey de Israel por un profeta y exterminó la casa de Acab y a Jezabel?",
-    "options": [
-      "Jehú hijo de Nimsi",
-      "Hazael",
-      "Peka",
-      "Oseas"
-    ],
-    "correctAnswer": 0,
-    "verse": "2 Reyes 9:1-7; 30-37",
-    "explanation": "Jehú fue ungido rey y cabalgó furiosamente a Jezreel donde murió Jezabel y fue destruida toda la casa de Acab."
-  },
-  {
-    "id": "h52",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "2 Reyes",
-    "question": "¿Qué princesa y tía piadosa escondió al pequeño príncipe Joás de un año en una cámara secreta del Templo salvándolo del exterminio de Atalía?",
-    "options": [
-      "Josaba (Joseba)",
-      "Huldá",
-      "Maaca",
-      "Ester"
-    ],
-    "correctAnswer": 0,
-    "verse": "2 Reyes 11:2-3",
-    "explanation": "Josaba hija del rey Joram... tomó a Joás hijo de Ocozías y lo hurtó de entre los hijos del rey... y estuvo con ella escondido en la casa de Jehová seis años."
-  },
-  {
-    "id": "h53",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "2 Reyes",
-    "question": "¿Qué profetisa de Jerusalén consultaron el rey Josías y el sumo sacerdote Hilcías tras encontrar el rollo de la Ley?",
-    "options": [
-      "Huldá mujer de Salum",
-      "Débora",
-      "Miriam",
-      "Noadías"
-    ],
-    "correctAnswer": 0,
-    "verse": "2 Reyes 22:14",
-    "explanation": "Fueron el sacerdote Hilcías... a la profetisa Huldá, mujer de Salum... la cual moraba en Jerusalén en la segunda parte de la ciudad, y hablaron con ella."
-  },
-  {
-    "id": "h54",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "2 Reyes",
-    "question": "¿A cuántos soldados asirios del ejército de Senaquerib mató el Ángel de Jehová en una sola noche mientras sitiaban Jerusalén en tiempos de Ezequías?",
-    "options": [
-      "10,000 soldados",
-      "50,000 soldados",
-      "185,000 soldados",
-      "300,000 soldados"
-    ],
-    "correctAnswer": 2,
-    "verse": "2 Reyes 19:35",
-    "explanation": "Aconteció que aquella misma noche salió el ángel de Jehová, y mató en el campamento de los asirios a ciento ochenta y cinco mil."
-  },
-  {
-    "id": "h55",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "2 Crónicas",
-    "question": "¿Qué rey de Judá fue herido de lepra en su frente por querer usurpar las funciones sacerdotales y quemar incienso en el Templo de Dios?",
-    "options": [
-      "Uzías (Azarías)",
-      "Acaz",
-      "Roboam",
-      "Asa"
-    ],
-    "correctAnswer": 0,
-    "verse": "2 Crónicas 26:16-19",
-    "explanation": "Uzías se enalteció... y entró en el templo para quemar incienso... y en su frente le brotó la lepra delante de los sacerdotes."
-  },
-  {
-    "id": "h56",
-    "level": "HARD",
-    "type": "FILL_VERSE",
-    "category": "2 Crónicas",
-    "question": "Completa 2 Crónicas 7:14: \"Si se humillare mi pueblo, sobre el cual mi nombre es invocado, y oraren, y buscaren mi rostro, y se convirtieren de sus malos caminos; entonces yo oiré desde los cielos, y perdonaré sus pecados, y _________ su tierra.\"",
-    "options": [
-      "destruiré",
-      "sanaré",
-      "venderé",
-      "abandonaré"
-    ],
-    "correctAnswer": 1,
-    "verse": "2 Crónicas 7:14",
-    "explanation": "2 Crónicas 7:14: \"...entonces yo oiré desde los cielos, y perdonaré sus pecados, y sanaré su tierra.\""
-  },
-  {
-    "id": "h57",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "2 Crónicas",
-    "question": "¿Cómo derrotó el rey Josafat a los ejércitos unidos de Moab y Amón en el desierto de Tecoa?",
-    "options": [
-      "Puso cantores que alabaran a Jehová en la hermosura de la santidad delante del ejército, y Dios puso emboscadas",
-      "Usó catapultas de bronce",
-      "Inundó el valle con el río",
-      "Pidió ayuda al faraón de Egipto"
-    ],
-    "correctAnswer": 0,
-    "verse": "2 Crónicas 20:21-22",
-    "explanation": "Puso a algunos que cantasen y alabasen a Jehová... Y cuando comenzaron a entonar cantos de alabanza, Jehová puso contra los enemigos emboscadas."
-  },
-  {
-    "id": "h58",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Esdras y Nehemías",
-    "question": "¿Qué rey persa promulgó el famoso decreto que permitió a los judíos regresar a Jerusalén y reconstruir la casa de Dios cumpliendo la profecía de Jeremías?",
-    "options": [
-      "Ciro el Grande",
-      "Darío Histaspes",
-      "Jerjes I (Asuero)",
-      "Artajerjes Longimano"
-    ],
-    "correctAnswer": 0,
-    "verse": "Esdras 1:1-3",
-    "explanation": "En el primer año de Ciro rey de Persia... despertó Jehová el espíritu de Ciro, el cual hizo pregonar por todo su reino... Jehová me ha mandado que le edifique casa en Jerusalén."
-  },
-  {
-    "id": "h59",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Nehemías",
-    "question": "¿Quiénes fueron los tres principales enemigos extranjeros que se opusieron tenazmente, burlaron y conspiraron contra Nehemías al reedificar los muros?",
-    "options": [
-      "Sanbalat el horonita, Tobías el amonita y Gesem el árabe",
-      "Hiram, Sisac y Ben-hadad",
-      "Amán, Zeres y Harbona",
-      "Faraón, Senaquerib y Belsasar"
-    ],
-    "correctAnswer": 0,
-    "verse": "Nehemías 2:19; 4:7",
-    "explanation": "Oyéndolo Sanbalat horonita, Tobías el siervo amonita, y Gesem el árabe, hicieron escarnio de nosotros y nos despreciaron."
-  },
-  {
-    "id": "h60",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Ester",
-    "question": "¿Cómo se llama la fiesta judía instituida para conmemorar la gran liberación de su pueblo del exterminio tramado por Amán?",
-    "options": [
-      "Janucá",
-      "Purim",
-      "Pesaj (Pascua)",
-      "Sucot"
-    ],
-    "correctAnswer": 1,
-    "verse": "Ester 9:26-28",
-    "explanation": "Por esto llamaron a estos días Purim, por el nombre de Pur... para que estos días fuesen recordados y celebrados en cada generación."
-  },
-  {
-    "id": "h61",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Daniel",
-    "question": "En la visión de la gran estatua de Nabucodonosor en Daniel 2, ¿qué representaban la cabeza de oro, el pecho de plata, el vientre de bronce y las piernas de hierro?",
-    "options": [
-      "Cuatro imperios mundiales sucesivos: Babilonia, Medo-Persia, Grecia y Roma",
-      "Cuatro estaciones del año agrícola",
-      "Cuatro virtudes del templo de Salomón",
-      "Cuatro dinastías de Egipto"
-    ],
-    "correctAnswer": 0,
-    "verse": "Daniel 2:31-40",
-    "explanation": "Tú eres aquella cabeza de oro (Babilonia). Y después de ti se levantará otro reino inferior al tuyo (Medo-Persia), y luego un tercer reino de bronce (Grecia), y el cuarto reino será fuerte como hierro (Roma)."
-  },
-  {
-    "id": "h62",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Daniel",
-    "question": "¿En qué profecía cronológica de Daniel se calculan las semanas desde la salida de la orden para restaurar a Jerusalén hasta el Mesías Príncipe?",
-    "options": [
-      "La profecía de las Setenta Semanas",
-      "La visión del carnero y el macho cabrío",
-      "El sueño del gran árbol cortado",
-      "La visión de las cuatro bestias"
-    ],
-    "correctAnswer": 0,
-    "verse": "Daniel 9:24-27",
-    "explanation": "Setenta semanas están determinadas sobre tu pueblo y sobre tu santa ciudad, para terminar la prevaricación... hasta el Mesías Príncipe."
-  },
-  {
-    "id": "h63",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Profeta Oseas",
-    "question": "¿Qué significaban los nombres proféticos de los tres hijos de Oseas: Jezreel, Lo-ruhama y Lo-ammi?",
-    "options": [
-      "\"Dios siembra\", \"No compadecida\" y \"No sois mi pueblo\"",
-      "\"Rey de gloria\", \"Paz eterna\" y \"Luz divina\"",
-      "\"Espada afilada\", \"Fuego del cielo\" y \"Viento del norte\"",
-      "\"Bendición\", \"Gozo\" y \"Alabanza\""
-    ],
-    "correctAnswer": 0,
-    "verse": "Oseas 1:4-9",
-    "explanation": "Lo-ruhama significa no compadecida; Lo-ammi significa vosotros no sois mi pueblo, y yo no seré vuestro Dios."
-  },
-  {
-    "id": "h64",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Profeta Jonás",
-    "question": "¿Qué planta dio Dios a Jonás para hacerle sombra y luego preparó un gusano que la hirió hasta secarse, enseñándole sobre la misericordia?",
-    "options": [
-      "Una calabacera",
-      "Una parra de uvas",
-      "Una higuera",
-      "Un sicómoro"
-    ],
-    "correctAnswer": 0,
-    "verse": "Jonás 4:6-7",
-    "explanation": "Preparó Dios una calabacera, la cual creció sobre Jonás para que hiciese sombra... pero preparó un gusano el cual hirió la calabacera, y se secó."
-  },
-  {
-    "id": "h65",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Profeta Zacarías",
-    "question": "¿Por qué suma exacta profetizó Zacarías que sería pesado el salario del buen pastor, cumpliéndose proféticamente en la traición de Judas?",
-    "options": [
-      "Diez monedas de oro",
-      "Treinta piezas de plata arrojadas al alfarero",
-      "Cien talentos de bronce",
-      "Cincuenta siclos del santuario"
-    ],
-    "correctAnswer": 1,
-    "verse": "Zacarías 11:12-13 / Mateo 26:15",
-    "explanation": "Y pesaron por mi salario treinta piezas de plata. Y me dijo Jehová: Échalo al tesoro; ¡hermoso precio con que me han apreciado!"
-  },
-  {
-    "id": "h66",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "El Periodo Intertestamentario",
-    "question": "¿Aproximadamente cuántos años de silencio profético transcurrieron entre el profeta Malaquías y la llegada de Juan el Bautista?",
-    "options": [
-      "100 años",
-      "250 años",
-      "Aproximadamente 400 años de silencio",
-      "700 años"
-    ],
-    "correctAnswer": 2,
-    "verse": "Historia Bíblica",
-    "explanation": "El periodo intertestamentario duró unos cuatro siglos, desde Malaquías hasta la anunciación a Zacarías en el Templo."
-  },
-  {
-    "id": "h67",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Los Evangelios",
-    "question": "¿Qué Evangelio canónico no incluye parábolas en sentido estricto pero contiene los profundos discursos \"Yo Soy\" de Jesús?",
-    "options": [
-      "Evangelio de Mateo",
-      "Evangelio de Marcos",
-      "Evangelio de Lucas",
-      "Evangelio de Juan"
-    ],
-    "correctAnswer": 3,
-    "verse": "Evangelio de Juan",
-    "explanation": "Juan no registra parábolas narrativas típicas (como el sembrador o el hijo pródigo), sino alegorías y las 7 declaraciones \"Yo Soy\"."
-  },
-  {
-    "id": "h68",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Evangelio de Mateo",
-    "question": "¿A qué rey idumeo engañaron los sabios magos de oriente al no regresar a informarle del paradero del niño Jesús, provocando la matanza de los niños en Belén?",
-    "options": [
-      "Herodes el Grande",
-      "Herodes Antipas",
-      "Herodes Agripa I",
-      "Herodes Arquelao"
-    ],
-    "correctAnswer": 0,
-    "verse": "Mateo 2:1-16",
-    "explanation": "Herodes el Grande, viéndose burlado por los magos, se enojó mucho y mandó matar a todos los niños en Belén menores de dos años."
-  },
-  {
-    "id": "h69",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Ministerio de Jesús",
-    "question": "¿Cómo se llamaba la mujer samaritana que habló con Jesús en Sicar? ¿Qué detalle reveló Jesús sobre su vida que confirmó su identidad profética?",
-    "options": [
-      "Que nunca se había casado",
-      "Que había tenido cinco maridos, y el que tenía actualmente no era su marido",
-      "Que era sacerdotisa de Baal",
-      "Que era hermana de Lázaro"
-    ],
-    "correctAnswer": 1,
-    "verse": "Juan 4:17-18",
-    "explanation": "Jesús le dijo: Cinco maridos has tenido, y el que ahora tienes no es tu marido; esto has dicho con verdad. La mujer dijo: Señor, me parece que tú eres profeta."
-  },
-  {
-    "id": "h70",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Milagros de Jesús",
-    "question": "Al alimentar a los 4,000 hombres (milagro distinto al de los 5,000), ¿cuántas canastas llenas de sobras recogieron los discípulos?",
-    "options": [
-      "3 canastas",
-      "7 canastas grandes (espurídes)",
-      "12 canastas",
-      "40 canastas"
-    ],
-    "correctAnswer": 1,
-    "verse": "Mateo 15:37-38",
-    "explanation": "Y comieron todos, y se saciaron; y recogieron lo que sobró de los pedazos, siete canastas llenas. Y eran los que comían cuatro mil hombres."
-  },
-  {
-    "id": "h71",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Parábolas de Jesús",
-    "question": "En la parábola del rico y Lázaro en Lucas 16, ¿cómo se llamaba el mendigo lleno de llagas que al morir fue llevado por los ángeles al seno de Abraham?",
-    "options": [
-      "Lázaro",
-      "Bartimeo",
-      "Dimas",
-      "Simón"
-    ],
-    "correctAnswer": 0,
-    "verse": "Lucas 16:19-22",
-    "explanation": "Había también un mendigo llamado Lázaro, que estaba echado a la puerta de aquél, lleno de llagas... al morir fue llevado al seno de Abraham."
-  },
-  {
-    "id": "h72",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Arresto y Juicio de Jesús",
-    "question": "¿A qué ex-sumo sacerdote y suegro de Caifás llevaron primero a Jesús atado la noche de su arresto?",
-    "options": [
-      "Anás",
-      "Gamaliel",
-      "Nicodemo",
-      "Tertulo"
-    ],
-    "correctAnswer": 0,
-    "verse": "Juan 18:13",
-    "explanation": "Le llevaron primeramente a Anás; porque era suegro de Caifás, que era sumo sacerdote aquel año."
-  },
-  {
-    "id": "h73",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "La Crucifixión",
-    "question": "¿A qué hora bíblica fue crucificado Jesús y durante qué horas hubo tinieblas sobre toda la tierra?",
-    "options": [
-      "Fue crucificado a la hora tercera (9 am), y hubo tinieblas desde la hora sexta hasta la novena (12 pm a 3 pm)",
-      "Fue crucificado a medianoche",
-      "Fue crucificado al amanecer",
-      "Hubo tinieblas durante tres días seguidos"
-    ],
-    "correctAnswer": 0,
-    "verse": "Marcos 15:25, 33",
-    "explanation": "Era la hora tercera cuando le crucificaron. Y cuando vino la hora sexta, hubo tinieblas sobre toda la tierra hasta la hora novena."
-  },
-  {
-    "id": "h74",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Palabras en la Cruz",
-    "question": "¿Qué significan las palabras arameas exclamadas por Jesús en la cruz: \"Elí, Elí, ¿lama sabactani?\" (citando el Salmo 22:1)?",
-    "options": [
-      "\"Dios mío, Dios mío, ¿por qué me has desamparado?\"",
-      "\"Padre, en tus manos encomiendo mi espíritu\"",
-      "\"Consumado es el pacto eterno\"",
-      "\"He aquí que vengo pronto\""
-    ],
-    "correctAnswer": 0,
-    "verse": "Mateo 27:46 / Salmos 22:1",
-    "explanation": "Cerca de la hora novena, Jesús clamó a gran voz, diciendo: Elí, Elí, ¿lama sabactani? Esto es: Dios mío, Dios mío, ¿por qué me has desamparado?"
-  },
-  {
-    "id": "h75",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "La Sepultura de Jesús",
-    "question": "¿Qué cantidad aproximada de mirra y áloes trajo Nicodemo para preparar el cuerpo de Jesús para la sepultura?",
-    "options": [
-      "Unas 5 libras",
-      "Unas 10 libras",
-      "Como cien libras compuestas de mirra y de áloes",
-      "Un barril entero"
-    ],
-    "correctAnswer": 2,
-    "verse": "Juan 19:39",
-    "explanation": "También Nicodemo, el que antes había visitado a Jesús de noche, vino trayendo un compuesto de mirra y de áloes, como cien libras."
-  },
-  {
-    "id": "h76",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "La Resurrección",
-    "question": "En la pesca milagrosa tras la resurrección en Juan 21, ¿cuántos grandes peces sacaron los discípulos a tierra sin que la red se rompiera?",
-    "options": [
-      "70 peces",
-      "120 peces",
-      "153 grandes peces",
-      "300 peces"
-    ],
-    "correctAnswer": 2,
-    "verse": "Juan 21:11",
-    "explanation": "Subió Simón Pedro, y sacó la red a tierra, llena de grandes peces, ciento cincuenta y tres; y aun siendo tantos, la red no se rompió."
-  },
-  {
-    "id": "h77",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Hechos de los Apóstoles",
-    "question": "¿Cuántos varones de buen testimonio, llenos del Espíritu Santo y de sabiduría, fueron elegidos como los primeros diáconos en Hechos 6?",
-    "options": [
-      "3 varones",
-      "7 varones (Esteban, Felipe, Prócoro, Nicanor, Timón, Parmenas y Nicolás)",
-      "10 varones",
-      "12 varones"
-    ],
-    "correctAnswer": 1,
-    "verse": "Hechos 6:3-5",
-    "explanation": "Buscad, pues, hermanos, de entre vosotros a siete varones... y eligieron a Esteban, varón lleno de fe y del Espíritu Santo, a Felipe, a Prócoro, a Nicanor, a Timón, a Parmenas, y a Nicolás."
-  },
-  {
-    "id": "h78",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Hechos de los Apóstoles",
-    "question": "¿Qué hechicero de Samaria intentó comprar con dinero el poder apostólico de impartir el Espíritu Santo por imposición de manos?",
-    "options": [
-      "Simón el mago",
-      "Elimas el encantador",
-      "Barjesús",
-      "Apolos"
-    ],
-    "correctAnswer": 0,
-    "verse": "Hechos 8:18-20",
-    "explanation": "Cuando vio Simón que por la imposición de las manos de los apóstoles se daba el Espíritu Santo, les ofreció dinero... Pedro le dijo: Tu dinero perezca contigo."
-  },
-  {
-    "id": "h79",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Hechos de los Apóstoles",
-    "question": "¿Quién era el discípulo de Damasco a quien el Señor envió en visión a la calle llamada Derecha para orar por Saulo de Tarso y restaurarle la vista?",
-    "options": [
-      "Ananías de Damasco",
-      "Bernabé",
-      "Agabo",
-      "Silas"
-    ],
-    "correctAnswer": 0,
-    "verse": "Hechos 9:10-17",
-    "explanation": "Había entonces en Damasco un discípulo llamado Ananías... fue y entró en la casa, y poniendo sobre él las manos, dijo: Hermano Saulo, el Señor Jesús me ha enviado."
-  },
-  {
-    "id": "h80",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Hechos de los Apóstoles",
-    "question": "¿Qué apóstol fue el primero de los doce en morir como mártir, ejecutado a espada por el rey Herodes Agripa I en Jerusalén?",
-    "options": [
-      "Jacobo (Santiago), hermano de Juan",
-      "Pedro",
-      "Andrés",
-      "Felipe"
-    ],
-    "correctAnswer": 0,
-    "verse": "Hechos 12:1-2",
-    "explanation": "En aquel mismo tiempo el rey Herodes echó mano a algunos de la iglesia para maltratarles. Y mató a espada a Jacobo, hermano de Juan."
-  },
-  {
-    "id": "h81",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Hechos de los Apóstoles",
-    "question": "¿Cómo murió el rey Herodes Agripa I en Cesarea tras no dar la gloria a Dios cuando el pueblo gritaba: \"Voz de Dios, y no de hombre\"?",
-    "options": [
-      "Cayó de su carroza",
-      "Al momento un ángel del Señor le hirió, y expiró comido de gusanos",
-      "Fue envenenado por sus guardias",
-      "Murió en batalla contra los sirios"
-    ],
-    "correctAnswer": 1,
-    "verse": "Hechos 12:21-23",
-    "explanation": "Al momento un ángel del Señor le hirió, por cuanto no dio la gloria a Dios; y expiró comido de gusanos."
-  },
-  {
-    "id": "h82",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Hechos de los Apóstoles",
-    "question": "En Pafos de Chipre, ¿qué mago y falso profeta judío resistió a Pablo y Bernabé y quedó ciego temporalmente por reprensión de Pablo?",
-    "options": [
-      "Elimas (Barjesús)",
-      "Simón el mago",
-      "Demetrio el platero",
-      "Alejandro el calderero"
-    ],
-    "correctAnswer": 0,
-    "verse": "Hechos 13:6-11",
-    "explanation": "Les resistía Elimas, el mago (pues así se traduce su nombre)... Ahora, pues, he aquí la mano del Señor está contra ti, y serás ciego, y no verás el sol por algún tiempo."
-  },
-  {
-    "id": "h83",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Hechos de los Apóstoles",
-    "question": "En el Concilio de Jerusalén en Hechos 15 sobre la circuncisión de los gentiles, ¿qué apóstol y hermano del Señor presidió y emitió la resolución final?",
-    "options": [
-      "Jacobo (Santiago)",
-      "Pedro",
-      "Pablo",
-      "Juan"
-    ],
-    "correctAnswer": 0,
-    "verse": "Hechos 15:13-19",
-    "explanation": "Jacobo respondió diciendo: Varones hermanos, oídme... Por lo cual yo juzgo que no se inquiete a los gentiles que se convierten a Dios."
-  },
-  {
-    "id": "h84",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Hechos de los Apóstoles",
-    "question": "¿Por qué causa se produjo una fuerte contienda y separación entre Pablo y Bernabé al iniciar su segundo viaje misionero?",
-    "options": [
-      "Por diferencias doctrinales sobre el sábado",
-      "Porque Bernabé quería llevar consigo a Juan Marcos, quien los había abandonado en Panfilia",
-      "Por una disputa sobre el dinero de las ofrendas",
-      "Por decidir quién lideraba el equipo"
-    ],
-    "correctAnswer": 1,
-    "verse": "Hechos 15:37-40",
-    "explanation": "Bernabé quería que llevasen consigo a Juan, el que tenía por sobrenombre Marcos; pero a Pablo no le parecía bien llevar consigo al que se había apartado de ellos."
-  },
-  {
-    "id": "h85",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Hechos de los Apóstoles",
-    "question": "¿Qué pueblo de Macedonia fue elogiado en Hechos 17:11 porque \"escudriñaban cada día las Escrituras para ver si estas cosas eran así\"?",
-    "options": [
-      "Los de Berea",
-      "Los de Tesalónica",
-      "Los de Filipos",
-      "Los de Atenas"
-    ],
-    "correctAnswer": 0,
-    "verse": "Hechos 17:11",
-    "explanation": "Y éstos eran más nobles que los que estaban en Tesalónica, pues recibieron la palabra con toda solicitud, escudriñando cada día las Escrituras para ver si estas cosas eran así."
-  },
-  {
-    "id": "h86",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Hechos de los Apóstoles",
-    "question": "¿Qué elocuente judío alejandrino, poderoso en las Escrituras, predicaba con fervor pero solo conocía el bautismo de Juan hasta que Priscila y Aquila le explicaron con más exactitud el camino de Dios?",
-    "options": [
-      "Apolos",
-      "Tíquico",
-      "Epafrodito",
-      "Trófimo"
-    ],
-    "correctAnswer": 0,
-    "verse": "Hechos 18:24-26",
-    "explanation": "Llegó entonces a Éfeso un judío llamado Apolos, natural de Alejandría, varón elocuente, poderoso en las Escrituras... le oyeron Priscila y Aquila, le tomaron aparte y le expusieron más exactamente el camino de Dios."
-  },
-  {
-    "id": "h87",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Hechos de los Apóstoles",
-    "question": "¿Quiénes eran los siete hijos de un sumo sacerdote judío en Éfeso que intentaron expulsar espíritus malos diciendo: \"Os conjuro por Jesús, el que predica Pablo\", y el endemoniado los atacó dejándolos desnudos y heridos?",
-    "options": [
-      "Los siete hijos de Esceva",
-      "Los hijos de Anás",
-      "Los hijos de Caifás",
-      "Los hijos de Gamaliel"
-    ],
-    "correctAnswer": 0,
-    "verse": "Hechos 19:14-16",
-    "explanation": "Había siete hijos de un tal Esceva, judío, jefe de los sacerdotes... el espíritu malo respondió: A Jesús conozco, y sé quién es Pablo; pero vosotros, ¿quiénes sois?"
-  },
-  {
-    "id": "h88",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Hechos de los Apóstoles",
-    "question": "¿Qué joven de Troas se quedó dormido en una ventana mientras Pablo prolongaba su discurso hasta la medianoche, cayó desde un tercer piso y fue resucitado por Pablo?",
-    "options": [
-      "Eutico",
-      "Tíquico",
-      "Artemas",
-      "Erasto"
-    ],
-    "correctAnswer": 0,
-    "verse": "Hechos 20:9-10",
-    "explanation": "Un joven llamado Eutico, que estaba sentado en la ventana... rendido del sueño, cayó del tercer piso abajo, y fue levantado muerto. Pablo descendió y se echó sobre él... y dijo: Su alma está en él."
-  },
-  {
-    "id": "h89",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Hechos de los Apóstoles",
-    "question": "¿Qué profeta de Judea ató sus propias manos y pies con el cinto de Pablo en Cesarea profetizando que los judíos en Jerusalén atarían así a su dueño?",
-    "options": [
-      "Agabo",
-      "Silas",
-      "Judas Barsabás",
-      "Bernabé"
-    ],
-    "correctAnswer": 0,
-    "verse": "Hechos 21:10-11",
-    "explanation": "Descendió de Judea un profeta llamado Agabo... tomando el cinto de Pablo, se ató los pies y las manos, y dijo: Esto dice el Espíritu Santo: Así atarán los judíos en Jerusalén al varón de quien es este cinto."
-  },
-  {
-    "id": "h90",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Hechos de los Apóstoles",
-    "question": "¿Ante qué rey judío exclamó el apóstol Pablo su elocuente defensa en Cesarea, a lo que el rey respondió: \"Por poco me persuades a ser cristiano\"?",
-    "options": [
-      "Herodes Agripa II",
-      "Herodes Antipas",
-      "César Nerón",
-      "El procurador Félix"
-    ],
-    "correctAnswer": 0,
-    "verse": "Hechos 26:27-28",
-    "explanation": "¿Crees, oh rey Agripa, a los profetas? Yo sé que crees. Entonces Agripa dijo a Pablo: Por poco me persuades a ser cristiano."
-  },
-  {
-    "id": "h91",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Epístola a los Romanos",
-    "question": "¿Quién fue la fiel diaconisa de la iglesia en Cencrea a quien Pablo encomienda con honor en Romanos 16:1-2?",
-    "options": [
-      "Febe",
-      "Priscila",
-      "Junia",
-      "Trifena"
-    ],
-    "correctAnswer": 0,
-    "verse": "Romanos 16:1-2",
-    "explanation": "Os recomiendo además nuestra hermana Febe, la cual es diaconisa de la iglesia en Cencrea... porque ella ha ayudado a muchos, y a mí mismo."
-  },
-  {
-    "id": "h92",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Epístola a los Romanos",
-    "question": "¿Quién fue el amanuense o secretario personal que transcribió la Epístola a los Romanos y envía su propio saludo en Romanos 16:22?",
-    "options": [
-      "Tercio",
-      "Lucas",
-      "Silvano",
-      "Sóstenes"
-    ],
-    "correctAnswer": 0,
-    "verse": "Romanos 16:22",
-    "explanation": "Yo Tercio, que escribí la epístola, os saludo en el Señor."
-  },
-  {
-    "id": "h93",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "1 Corintios",
-    "question": "En 1 Corintios 15, ¿cuál es profetizado como \"el postrer enemigo que será destruido\" por Cristo?",
-    "options": [
-      "El diablo",
-      "El anticristo",
-      "La muerte",
-      "El pecado"
-    ],
-    "correctAnswer": 2,
-    "verse": "1 Corintios 15:26",
-    "explanation": "Y el postrer enemigo que será destruido es la muerte."
-  },
-  {
-    "id": "h94",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "1 Corintios",
-    "question": "En 1 Corintios 15:6, ¿a más de cuántos hermanos a la vez se apareció Jesús resucitado, la mayoría de los cuales aún vivían cuando Pablo escribió?",
-    "options": [
-      "Más de 100 hermanos",
-      "Más de 500 hermanos a la vez",
-      "Más de 1,000 hermanos",
-      "A los setenta discípulos"
-    ],
-    "correctAnswer": 1,
-    "verse": "1 Corintios 15:6",
-    "explanation": "Después apareció a más de quinientos hermanos a la vez, de los cuales muchos viven aún, y otros ya duermen."
-  },
-  {
-    "id": "h95",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "2 Corintios",
-    "question": "En 2 Corintios 12:2, ¿a qué cielo declara Pablo haber sido arrebatado en una visión celestial catorce años antes?",
-    "options": [
-      "Al primer cielo (la atmósfera)",
-      "Al segundo cielo (las estrellas)",
-      "Al tercer cielo (el Paraíso)",
-      "Al séptimo cielo"
-    ],
-    "correctAnswer": 2,
-    "verse": "2 Corintios 12:2-4",
-    "explanation": "Conozco a un hombre en Cristo... que fue arrebatado hasta el tercer cielo... y oyó palabras inefables que no le es dado al hombre expresar."
-  },
-  {
-    "id": "h96",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Epístola a los Gálatas",
-    "question": "En Gálatas 4:21-31, ¿qué representan alegóricamente las dos mujeres Agar y Sara en la teología de Pablo?",
-    "options": [
-      "Los dos templos de Jerusalén",
-      "Los dos pactos: Agar representa el pacto del monte Sinaí que engendra para esclavitud, y Sara la Jerusalén de arriba que es libre",
-      "El Antiguo y el Nuevo Mundo",
-      "Israel y Roma"
-    ],
-    "correctAnswer": 1,
-    "verse": "Gálatas 4:24-26",
-    "explanation": "Estas mujeres son los dos pactos; el uno proviene del monte Sinaí, el cual da hijos para esclavitud; éste es Agar... Mas la Jerusalén de arriba, la cual es madre de todos nosotros, es libre."
-  },
-  {
-    "id": "h97",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Epístola a los Efesios",
-    "question": "En Efesios 4:11, ¿cuáles son los cinco dones ministeriales que Cristo constituyó para perfeccionar a los santos para la obra del ministerio?",
-    "options": [
-      "Reyes, sacerdotes, jueces, profetas y levitas",
-      "Apóstoles, profetas, evangelistas, pastores y maestros",
-      "Diáconos, ancianos, obispos, músicos y servidores",
-      "Mártires, doctores, sanadores, administradores y sabios"
-    ],
-    "correctAnswer": 1,
-    "verse": "Efesios 4:11-12",
-    "explanation": "Y él mismo constituyó a unos, apóstoles; a otros, profetas; a otros, evangelistas; a otros, pastores y maestros, a fin de perfeccionar a los santos."
-  },
-  {
-    "id": "h98",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Epístola a los Filipenses",
-    "question": "¿Qué colaborador de Pablo en Filipos enfermó gravemente a punto de morir por causa de la obra de Cristo, a quien Dios tuvo misericordia?",
-    "options": [
-      "Epafrodito",
-      "Onesíforo",
-      "Erasto",
-      "Tíquico"
-    ],
-    "correctAnswer": 0,
-    "verse": "Filipenses 2:25-30",
-    "explanation": "Tuve por necesario enviaros a Epafrodito, mi hermano y colaborador... pues estuvo enfermo, a punto de morir; pero Dios tuvo misericordia de él."
-  },
-  {
-    "id": "h99",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Epístola a los Colosenses",
-    "question": "En Colosenses 1:15-18, ¿qué títulos teológicos supremos se le dan a Cristo en relación a la creación y a la iglesia?",
-    "options": [
-      "Ángel supremo y profeta mayor",
-      "La imagen del Dios invisible, el primogénito de toda creación y la cabeza del cuerpo que es la iglesia",
-      "El sumo sacerdote del orden levítico",
-      "El gobernador de las naciones"
-    ],
-    "correctAnswer": 1,
-    "verse": "Colosenses 1:15, 18",
-    "explanation": "Él es la imagen del Dios invisible, el primogénito de toda creación... y él es la cabeza del cuerpo que es la iglesia."
-  },
-  {
-    "id": "h100",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "2 Tesalonicenses",
-    "question": "En 2 Tesalonicenses 2:3-4, ¿cómo describe Pablo al personaje siniestro que se manifestará antes del Día del Señor sentándose en el templo de Dios como Dios?",
-    "options": [
-      "El hombre de pecado, el hijo de perdición",
-      "El falso profeta de Babilonia",
-      "El león del abismo",
-      "El rey del norte"
-    ],
-    "correctAnswer": 0,
-    "verse": "2 Tesalonicenses 2:3-4",
-    "explanation": "No vendrá sin que antes venga la apostasía, y se manifieste el hombre de pecado, el hijo de perdición, el cual se opone y se levanta contra todo lo que se llama Dios."
-  },
-  {
-    "id": "h101",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "2 Timoteo",
-    "question": "En 2 Timoteo 4:10, ¿quién fue el colaborador que desamparó a Pablo en su prisión romana \"amando este mundo\" y se fue a Tesalónica?",
-    "options": [
-      "Demas",
-      "Crescente",
-      "Tito",
-      "Alejandro"
-    ],
-    "correctAnswer": 0,
-    "verse": "2 Timoteo 4:10",
-    "explanation": "Porque Demas me ha desamparado, amando este mundo, y se ha ido a Tesalónica."
-  },
-  {
-    "id": "h102",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "2 Timoteo",
-    "question": "¿Quiénes eran la abuela y la madre creyentes de Timoteo que le transmitieron desde la niñez una fe no fingida y las Sagradas Escrituras?",
-    "options": [
-      "Loida (abuela) y Eunice (madre)",
-      "Sara y Rebeca",
-      "Salomé y María",
-      "Elisabet y Ana"
-    ],
-    "correctAnswer": 0,
-    "verse": "2 Timoteo 1:5; 3:15",
-    "explanation": "Trayendo a la memoria la fe no fingida que hay en ti, la cual habitó primero en tu abuela Loida, y en tu madre Eunice."
-  },
-  {
-    "id": "h103",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Epístola a Tito",
-    "question": "¿En qué isla del Mediterráneo dejó Pablo a Tito como delegado apostólico para que corrigiese lo deficiente y estableciese ancianos en cada ciudad?",
-    "options": [
-      "Isla de Creta",
-      "Isla de Chipre",
-      "Isla de Malta",
-      "Isla de Sicilia"
-    ],
-    "correctAnswer": 0,
-    "verse": "Tito 1:5",
-    "explanation": "Por esta causa te dejé en Creta, para que corrigieses lo deficiente, y establecieses ancianos así como yo te mandé."
-  },
-  {
-    "id": "h104",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Epístola a los Hebreos",
-    "question": "En Hebreos 7, ¿según el orden de qué enigmático rey y sacerdote del Génesis es Cristo declarado Sumo Sacerdote para siempre, superior al sacerdocio levítico?",
-    "options": [
-      "Según el orden de Aarón",
-      "Según el orden de Melquisedec",
-      "Según el orden de David",
-      "Según el orden de Enoc"
-    ],
-    "correctAnswer": 1,
-    "verse": "Hebreos 7:1-17",
-    "explanation": "Tú eres sacerdote para siempre, según el orden de Melquisedec; sin padre, sin madre, sin genealogía; que ni tiene principio de días, ni fin de vida."
-  },
-  {
-    "id": "h105",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Epístola a los Hebreos",
-    "question": "¿Qué tres elementos sagrados estaban guardados dentro del Arca del Pacto según Hebreos 9:4?",
-    "options": [
-      "Una urna de oro con el maná, la vara de Aarón que floreció, y las tablas del pacto",
-      "La espada de Goliat, el aceite santo y la mitra",
-      "El candelero, el incensario y la mesa",
-      "El manto de Moisés, las piedras del Jordán y la vara"
-    ],
-    "correctAnswer": 0,
-    "verse": "Hebreos 9:4",
-    "explanation": "El arca del pacto cubierta de oro... en la que estaba una urna de oro que contenía el maná, la vara de Aarón que floreció, y las tablas del pacto."
-  },
-  {
-    "id": "h106",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Epístola de Santiago",
-    "question": "¿A quiénes llama Santiago en su epístola \"amigos de Dios\" y benchmark de la justificación por las obras nacidas de la fe verdadera?",
-    "options": [
-      "A Abraham y a Rahab la ramera",
-      "A Moisés y a Aarón",
-      "A David y a Salomón",
-      "A Pedro y a Pablo"
-    ],
-    "correctAnswer": 0,
-    "verse": "Santiago 2:21-25",
-    "explanation": "¿No fue justificado por las obras Abraham nuestro padre...? Asimismo también Rahab la ramera, ¿no fue justificada por obras cuando recibió a los mensajeros?"
-  },
-  {
-    "id": "h107",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "1 Pedro",
-    "question": "En 1 Pedro 2:9, ¿cuáles son los cuatro títulos gloriosos dados a la comunidad de creyentes en Cristo?",
-    "options": [
-      "Linaje escogido, real sacerdocio, nación santa, pueblo adquirido por Dios",
-      "Profetas mayores, jueces supremos, reyes de la tierra, guardianes de la ley",
-      "Hijos de Leví, soldados de Roma, apóstoles de Sion, justos de Israel",
-      "Pastores, maestros, diáconos y obispos"
-    ],
-    "correctAnswer": 0,
-    "verse": "1 Pedro 2:9",
-    "explanation": "Mas vosotros sois linaje escogido, real sacerdocio, nación santa, pueblo adquirido por Dios, para que anunciéis las virtudes de aquel que os llamó."
-  },
-  {
-    "id": "h108",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "1 Pedro",
-    "question": "En 1 Pedro 3:19-20, ¿a quiénes predicó Cristo en espíritu tras su padecimiento por los pecados?",
-    "options": [
-      "A los ángeles del cielo",
-      "A los espíritus encarcelados, los que en otro tiempo desobedecieron en los días de Noé",
-      "A los reyes de Babilonia",
-      "A los sacerdotes del templo"
-    ],
-    "correctAnswer": 1,
-    "verse": "1 Pedro 3:19-20",
-    "explanation": "En el cual también fue y predicó a los espíritus encarcelados, los que en otro tiempo desobedecieron, cuando una vez esperaba la paciencia de Dios en los días de Noé."
-  },
-  {
-    "id": "h109",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "2 Pedro y Judas",
-    "question": "¿Qué arcángel contendía con el diablo disputando sobre el cuerpo de Moisés sin atreverse a proferir juicio de maldición sino diciendo: \"El Señor te reprenda\"?",
-    "options": [
-      "El arcángel Gabriel",
-      "El arcángel Miguel",
-      "El ángel Rafael",
-      "El ángel Uriel"
-    ],
-    "correctAnswer": 1,
-    "verse": "Judas 1:9",
-    "explanation": "Pero cuando el arcángel Miguel contendía con el diablo, disputando con él por el cuerpo de Moisés, no se atrevió a proferir juicio de maldición, sino que dijo: El Señor te reprenda."
-  },
-  {
-    "id": "h110",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Epístola de Judas",
-    "question": "¿Qué profecía del patriarca antediluviano Enoc, séptimo desde Adán, cita textualmente el libro de Judas sobre la venida del Señor con sus santas decenas de millares?",
-    "options": [
-      "Enoc 1:9 citado en Judas 1:14-15",
-      "Génesis 5:24",
-      "Salmos 110",
-      "Isaías 66"
-    ],
-    "correctAnswer": 0,
-    "verse": "Judas 1:14-15",
-    "explanation": "De éstos también profetizó Enoc, séptimo desde Adán, diciendo: He aquí, vino el Señor con sus santas decenas de millares, para hacer juicio contra todos."
-  },
-  {
-    "id": "h111",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Apocalipsis",
-    "question": "¿Qué nombre tiene el ángel del abismo en Apocalipsis 9:11, tanto en hebreo como en griego?",
-    "options": [
-      "Abadón en hebreo, y en griego Apolión (el Destructor)",
-      "Lucifer y Belcebú",
-      "Mamón y Moloc",
-      "Behemot y Leviatán"
-    ],
-    "correctAnswer": 0,
-    "verse": "Apocalipsis 9:11",
-    "explanation": "Y tienen por rey sobre ellos al ángel del abismo, cuyo nombre en hebreo es Abadón, y en griego, Apolión."
-  },
-  {
-    "id": "h112",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Apocalipsis",
-    "question": "¿Cuántos son los sellados de todas las doce tribus de los hijos de Israel mencionados en Apocalipsis 7 (12,000 de cada tribu)?",
-    "options": [
-      "12,000 sellados",
-      "70,000 sellados",
-      "144,000 sellados",
-      "1,000,000 de sellados"
-    ],
-    "correctAnswer": 2,
-    "verse": "Apocalipsis 7:4",
-    "explanation": "Y oí el número de los sellados: ciento cuarenta y cuatro mil sellados de todas las tribus de los hijos de Israel."
-  },
-  {
-    "id": "h113",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Apocalipsis",
-    "question": "¿Qué tribu de los 12 hijos de Jacob no es mencionada en la lista de los 144,000 sellados de Apocalipsis 7, figurando en su lugar Manasés?",
-    "options": [
-      "La tribu de Dan",
-      "La tribu de Judá",
-      "La tribu de Rubén",
-      "La tribu de Leví"
-    ],
-    "correctAnswer": 0,
-    "verse": "Apocalipsis 7:5-8",
-    "explanation": "La tribu de Dan no aparece en la enumeración de Apocalipsis 7, asociándose históricamente con el inicio de la idolatría tribal."
-  },
-  {
-    "id": "h114",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Apocalipsis",
-    "question": "¿Por cuántos días profetizan los Dos Testigos de Apocalipsis 11 vestidos de cilicio antes de ser atacados por la bestia?",
-    "options": [
-      "40 días",
-      "70 días",
-      "1,260 días (42 meses / 3 años y medio)",
-      "2,300 días"
-    ],
-    "correctAnswer": 2,
-    "verse": "Apocalipsis 11:3",
-    "explanation": "Y daré a mis dos testigos que profeticen por mil doscientos sesenta días, vestidos de cilicio."
-  },
-  {
-    "id": "h115",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Apocalipsis",
-    "question": "En Apocalipsis 12, ¿quién lidera a los santos ángeles en la batalla en el cielo contra el gran dragón y sus ángeles, arrojándolos a la tierra?",
-    "options": [
-      "Miguel y sus ángeles",
-      "Gabriel y sus serafines",
-      "Los 24 ancianos",
-      "Los 4 seres vivientes"
-    ],
-    "correctAnswer": 0,
-    "verse": "Apocalipsis 12:7-9",
-    "explanation": "Después hubo una gran batalla en el cielo: Miguel y sus ángeles luchaban contra el dragón; y luchaban el dragón y sus ángeles; pero no prevalecieron."
-  },
-  {
-    "id": "h116",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Apocalipsis",
-    "question": "¿Cuál es el número de la Bestia dado en Apocalipsis 13:18, calificado como \"número de hombre\"?",
-    "options": [
-      "777",
-      "666",
-      "616",
-      "999"
-    ],
-    "correctAnswer": 1,
-    "verse": "Apocalipsis 13:18",
-    "explanation": "Aquí hay sabiduría. El que tiene entendimiento, cuente el número de la bestia, pues es número de hombre. Y su número es seiscientos sesenta y seis."
-  },
-  {
-    "id": "h117",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Apocalipsis",
-    "question": "¿Cómo se llama el lugar profético en hebreo donde los reyes de la tierra se reunirán para la batalla del gran día del Dios Todopoderoso?",
-    "options": [
-      "Armagedón (Har-Meguido)",
-      "Valle de Hinom (Gehena)",
-      "Valle de Josafat",
-      "Monte de los Olivos"
-    ],
-    "correctAnswer": 0,
-    "verse": "Apocalipsis 16:16",
-    "explanation": "Y los reunió en el lugar que en hebreo se llama Armagedón."
-  },
-  {
-    "id": "h118",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Apocalipsis",
-    "question": "¿Por cuántos años proféticos será atado Satanás en el abismo durante el Milenio según Apocalipsis 20?",
-    "options": [
-      "100 años",
-      "500 años",
-      "1,000 años",
-      "7,000 años"
-    ],
-    "correctAnswer": 2,
-    "verse": "Apocalipsis 20:1-3",
-    "explanation": "Prendió al dragón, la serpiente antigua, que es el diablo y Satanás, y lo ató por mil años; y lo arrojó al abismo."
-  },
-  {
-    "id": "h119",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Apocalipsis",
-    "question": "¿Cuántas puertas tiene la muralla de la Nueva Jerusalén celestial, cada una hecha de una sola perla inmensa?",
-    "options": [
-      "4 puertas",
-      "7 puertas",
-      "12 puertas con los nombres de las doce tribus de Israel",
-      "24 puertas"
-    ],
-    "correctAnswer": 2,
-    "verse": "Apocalipsis 21:12, 21",
-    "explanation": "Tenía un muro grande y alto con doce puertas... y nombres inscritos, que son los de las doce tribus de los hijos de Israel. Las doce puertas eran doce perlas."
-  },
-  {
-    "id": "h120",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Apocalipsis",
-    "question": "¿Qué árbol da doce frutos, dando cada mes su fruto, cuyas hojas son para la sanidad de las naciones en Apocalipsis 22?",
-    "options": [
-      "El Árbol de la Vida",
-      "El Olivo celestial",
-      "La Palmera de la paz",
-      "La Vid verdadera"
-    ],
-    "correctAnswer": 0,
-    "verse": "Apocalipsis 22:2",
-    "explanation": "A uno y otro lado del río, estaba el árbol de la vida, que produce doce frutos, dando cada mes su fruto; y las hojas del árbol eran para la sanidad de las naciones."
-  },
-  {
-    "id": "h121",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Idiomas Bíblicos",
-    "question": "¿En qué tres idiomas originales fue escrita la Biblia canónica?",
-    "options": [
-      "Latín, griego y árabe",
-      "Hebreo, arameo y griego koiné",
-      "Hebreo, siríaco y latín",
-      "Arameo, copto y griego"
-    ],
-    "correctAnswer": 1,
-    "verse": "Manuscritos Bíblicos",
-    "explanation": "El Antiguo Testamento fue escrito mayormente en hebreo (con porciones en arameo en Daniel y Esdras), y el Nuevo Testamento en griego koiné."
-  },
-  {
-    "id": "h122",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Canon Bíblico",
-    "question": "¿Cuántos libros componen en total el canon bíblico protestante (Antiguo Testamento y Nuevo Testamento)?",
-    "options": [
-      "60 libros",
-      "66 libros (39 AT y 27 NT)",
-      "73 libros",
-      "77 libros"
-    ],
-    "correctAnswer": 1,
-    "verse": "Canon de las Escrituras",
-    "explanation": "La Biblia evangélica/protestante consta de 66 libros inspirados: 39 en el Antiguo Testamento y 27 en el Nuevo Testamento."
-  },
-  {
-    "id": "h123",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Pentateuco",
-    "question": "¿Cuál es el nombre hebreo tradicional del libro de Génesis, tomado de su primera palabra en el texto masorético?",
-    "options": [
-      "Bereshit (\"En el principio\")",
-      "Shemot (\"Nombres\")",
-      "Vayikrá (\"Y llamó\")",
-      "Bamidbar (\"En el desierto\")"
-    ],
-    "correctAnswer": 0,
-    "verse": "Génesis 1:1",
-    "explanation": "En hebreo, los cinco libros de la Torá llevan por título su primera palabra: Génesis se llama Bereshit (\"En el principio\")."
-  },
-  {
-    "id": "h124",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Teología Bíblica",
-    "question": "¿Qué doctrina cardinal de la Reforma protestante, extraída de Romanos 1:17 y Gálatas 3:11, afirma que somos justificados únicamente por la fe en los méritos de Cristo?",
-    "options": [
-      "Sola Scriptura",
-      "Sola Fide (Justificación solo por la fe)",
-      "Soli Deo Gloria",
-      "Sola Gratia"
-    ],
-    "correctAnswer": 1,
-    "verse": "Romanos 1:17 / Gálatas 3:11",
-    "explanation": "Sola Fide (solo por la fe) enseña conforme a Romanos que el pecador es justificado gratuitamente por la fe en la justicia de Cristo, sin las obras de la ley."
-  },
-  {
-    "id": "h125",
-    "level": "HARD",
-    "type": "FILL_VERSE",
-    "category": "Pacto Divino",
-    "question": "Completa Hebreos 9:22 sobre el principio bíblico de redención: \"Y según la ley, casi todo es purificado con sangre; y sin derramamiento de sangre no hay _________\"",
-    "options": [
-      "templo",
-      "remisión (perdón)",
-      "bendición",
-      "riqueza"
-    ],
-    "correctAnswer": 1,
-    "verse": "Hebreos 9:22",
-    "explanation": "Hebreos 9:22: \"Y según la ley, casi todo es purificado, sí, con sangre; y sin derramamiento de sangre no se hace remisión.\""
-  },
-  {
-    "id": "h126",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Génesis",
-    "question": "¿Qué dos ríos de los cuatro que regaban el huerto del Edén aún existen con sus nombres geográficos conocidos hoy?",
-    "options": [
-      "Pisón y Gihón",
-      "Eufrates (Perat) e Hidekel (Tigris)",
-      "Nilo y Jordán",
-      "Tíber y Danubio"
-    ],
-    "correctAnswer": 1,
-    "verse": "Génesis 2:14",
-    "explanation": "El nombre del tercer río es Hidekel (el Tigris)... y el cuarto río es el Eufrates."
-  },
-  {
-    "id": "h127",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Génesis",
-    "question": "¿Quién fue el primer polígamo mencionado en la Biblia que compuso un poema jactándose de matar a un joven por su herida?",
-    "options": [
-      "Lamec descendiente de Caín",
-      "Nimrod",
-      "Irad",
-      "Tubal-caín"
-    ],
-    "correctAnswer": 0,
-    "verse": "Génesis 4:19, 23",
-    "explanation": "Y Lamec tomó para sí dos mujeres; el nombre de la una fue Ada, y el nombre de la otra, Zila... A un hombre maté por mi herida."
-  },
-  {
-    "id": "h128",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Génesis",
-    "question": "¿Cuántos soldados entrenados nacidos en su propia casa armó Abraham para rescatar a su sobrino Lot de los cuatro reyes de la coalición mesopotámica?",
-    "options": [
-      "100 criados",
-      "318 criados entrenados",
-      "500 hombres",
-      "1,000 guerreros"
-    ],
-    "correctAnswer": 1,
-    "verse": "Génesis 14:14",
-    "explanation": "Oyó Abram que su pariente estaba prisionero, y armó a sus criados, los nacidos en su casa, trescientos dieciocho, y los siguió hasta Dan."
-  },
-  {
-    "id": "h129",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Génesis",
-    "question": "¿Cómo se llamaba el primogénito de Abraham nacido de la sierva egipcia Agar cuando Abraham tenía 86 años?",
-    "options": [
-      "Ismael",
-      "Isaac",
-      "Madián",
-      "Zimram"
-    ],
-    "correctAnswer": 0,
-    "verse": "Génesis 16:15-16",
-    "explanation": "Y dio a luz Agar a Abram un hijo, y llamó Abram el nombre del hijo que le dio Agar, Ismael. Era Abram de ochenta y seis años."
-  },
-  {
-    "id": "h130",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Génesis",
-    "question": "¿En qué valle o monte puso Dios a prueba a Abraham pidiéndole en holocausto a su único hijo Isaac?",
-    "options": [
-      "Tierra de Moriah",
-      "Monte de los Olivos",
-      "Valle de Mamre",
-      "Monte Sinaí"
-    ],
-    "correctAnswer": 0,
-    "verse": "Génesis 22:2",
-    "explanation": "Toma ahora tu hijo, tu único, Isaac, a quien amas, y vete a tierra de Moriah, y ofrécelo allí en holocausto."
-  },
-  {
-    "id": "h131",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Patriarcas",
-    "question": "¿Qué hija única de Jacob y Lea fue violada por Siquem hijo de Hamor, desatando la violenta venganza de Simeón y Leví?",
-    "options": [
-      "Dina",
-      "Tamar",
-      "Séfora",
-      "Asenat"
-    ],
-    "correctAnswer": 0,
-    "verse": "Génesis 34:1-2",
-    "explanation": "Salió Dina la hija de Lea, la cual ésta había dado a luz a Jacob, a ver a las hijas del país; y la vio Siquem hijo de Hamor."
-  },
-  {
-    "id": "h132",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Génesis",
-    "question": "¿A qué suegro engañó Tamar vistiéndose con un velo en Enaim para preservar la descendencia de Judá, dando a luz a los gemelos Fares y Zara?",
-    "options": [
-      "A Judá",
-      "A Jacob",
-      "A Rubén",
-      "A Potifar"
-    ],
-    "correctAnswer": 0,
-    "verse": "Génesis 38:13-26",
-    "explanation": "Tamar se quitó los vestidos de su viudez y se cubrió con un velo... y dio a luz a Fares y a Zara de Judá."
-  },
-  {
-    "id": "h133",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Éxodo",
-    "question": "¿Cómo se llamaban los padres de Moisés, Aarón y Miriam, ambos pertenecientes a la tribu de Leví?",
-    "options": [
-      "Amram y Jocabed",
-      "Elcana y Ana",
-      "Zacarías y Elisabet",
-      "Mahlón y Rut"
-    ],
-    "correctAnswer": 0,
-    "verse": "Éxodo 6:20",
-    "explanation": "Y Amram tomó por mujer a Jocabed su tía, la cual dio a luz a Aarón y a Moisés."
-  },
-  {
-    "id": "h134",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Éxodo",
-    "question": "¿Cómo se llamaba la esposa madianita de Moisés, hija del sacerdote Jetro (Reuel)?",
-    "options": [
-      "Séfora",
-      "Cozbi",
-      "Asenat",
-      "Hagar"
-    ],
-    "correctAnswer": 0,
-    "verse": "Éxodo 2:21",
-    "explanation": "Y Moisés convino en morar con aquel varón; y él dio su hija Séfora por mujer a Moisés."
-  },
-  {
-    "id": "h135",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Las Plagas de Egipto",
-    "question": "¿Hasta qué plaga pudieron imitar los hechiceros y magos de Egipto con sus encantamientos antes de admitir: \"Dedo de Dios es éste\"?",
-    "options": [
-      "Hasta la plaga de los piojos (la tercera plaga)",
-      "Hasta la primera plaga del agua en sangre",
-      "Hasta la plaga de las ranas",
-      "Hasta la plaga de langostas"
-    ],
-    "correctAnswer": 0,
-    "verse": "Éxodo 8:18-19",
-    "explanation": "Los hechiceros hicieron así también... para sacar piojos; mas no pudieron... Entonces los hechiceros dijeron a Faraón: Dedo de Dios es éste."
-  },
-  {
-    "id": "h136",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Éxodo",
-    "question": "¿En qué lugar amargo no pudieron beber agua los israelitas en el desierto de Shur hasta que Moisés echó un árbol que Dios le mostró?",
-    "options": [
-      "Mara",
-      "Elim",
-      "Refidim",
-      "Cades-barnea"
-    ],
-    "correctAnswer": 0,
-    "verse": "Éxodo 15:23-25",
-    "explanation": "Llegaron a Mara, y no pudieron beber las aguas de Mara, porque eran amargas... Moisés clamó a Jehová, y Jehová le mostró un árbol; y lo echó en las aguas, y las aguas se endulzaron."
-  },
-  {
-    "id": "h137",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Tabernáculo",
-    "question": "¿De cuántos brazos y copas en forma de flor de almendro estaba labrado el candelero sagrado (Menorá) de oro puro en el Lugar Santo?",
-    "options": [
-      "De 3 brazos",
-      "De 7 brazos con sus lámparas de aceite puro de olivo",
-      "De 10 brazos",
-      "De 12 brazos"
-    ],
-    "correctAnswer": 1,
-    "verse": "Éxodo 25:31-37",
-    "explanation": "Harás además un candelero de oro puro... saldrán seis brazos de sus lados... siete lámparas las cuales encenderán para que alumbren hacia adelante."
-  },
-  {
-    "id": "h138",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Levítico",
-    "question": "En Levítico 11, ¿cuál es la doble regla anatómica para que un mamífero terrestre fuera considerado animal limpio para comer?",
-    "options": [
-      "Que tenga pezuña hendida y que rumie",
-      "Que tenga garras afiladas y coma pasto",
-      "Que nade en ríos y tenga lana",
-      "Que no tenga colmillos"
-    ],
-    "correctAnswer": 0,
-    "verse": "Levítico 11:3",
-    "explanation": "De entre los animales, todo el que tiene pezuña hendida y que es de pezuñas partidas, y que rumia, éste comeréis."
-  },
-  {
-    "id": "h139",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Números",
-    "question": "¿Qué enorme racimo de uvas cortaron los espías en el valle de Escol que debieron transportarlo colgado de un palo entre dos hombres?",
-    "options": [
-      "El racimo de Escol",
-      "El racimo de Jericó",
-      "Las uvas de Hebrón",
-      "La vid de Sodoma"
-    ],
-    "correctAnswer": 0,
-    "verse": "Números 13:23",
-    "explanation": "Llegaron hasta el arroyo de Escol, y cortaron de allí un sarmiento con un racimo de uvas, el cual trajeron dos en un palo."
-  },
-  {
-    "id": "h140",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Números",
-    "question": "¿Qué sacerdote y nieto de Aarón traspasó con una lanza a Zimri y a la madianita Cozbi deteniendo con celo santo la mortandad de 24,000 personas en Sitim?",
-    "options": [
-      "Finees hijo de Eleazar",
-      "Itamar",
-      "Nadab",
-      "Abiatar"
-    ],
-    "correctAnswer": 0,
-    "verse": "Números 25:7-11",
-    "explanation": "Finees hijo de Eleazar... tomó una lanza en su mano... y los traspasó a ambos. Y cesó la mortandad de los hijos de Israel."
-  },
-  {
-    "id": "h141",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Deuteronomio",
-    "question": "¿Sobre qué dos montes gemelos ordenó Moisés pronunciar las bendiciones y las maldiciones solemnes al entrar en Canaán?",
-    "options": [
-      "Monte Gerizim (bendiciones) y Monte Ebal (maldiciones)",
-      "Monte Sinaí y Monte Horeb",
-      "Monte Carmelo y Monte Hermón",
-      "Monte Nebo y Monte Tabor"
-    ],
-    "correctAnswer": 0,
-    "verse": "Deuteronomio 11:29; 27:11-13",
-    "explanation": "Pondrás la bendición sobre el monte Gerizim, y la maldición sobre el monte Ebal."
-  },
-  {
-    "id": "h142",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Josué",
-    "question": "¿En qué valle lapidaron a Acán y a su familia tras confesar el robo del anatema de Jericó, llamándose desde entonces \"Valle de la turbación\"?",
-    "options": [
-      "Valle de Acor",
-      "Valle de Hinom",
-      "Valle de Escol",
-      "Valle de Cedrón"
-    ],
-    "correctAnswer": 0,
-    "verse": "Josué 7:24-26",
-    "explanation": "Tomaron a Acán... y los llevaron al valle de Acor. Y todo Israel los apedreó... Por esto fue llamado aquel lugar Valle de Acor, hasta hoy."
-  },
-  {
-    "id": "h143",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Josué",
-    "question": "¿Cuántas ciudades de refugio fueron establecidas en Israel para que el homicida involuntario huyera del vengador de la sangre?",
-    "options": [
-      "3 ciudades",
-      "6 ciudades (3 al este del Jordán y 3 en Canaán)",
-      "12 ciudades",
-      "48 ciudades"
-    ],
-    "correctAnswer": 1,
-    "verse": "Josué 20:7-8",
-    "explanation": "Señalaron seis ciudades de refugio: Cedes, Siquem, Hebrón, y al otro lado del Jordán: Beser, Ramot y Golán."
-  },
-  {
-    "id": "h144",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Jueces",
-    "question": "¿Qué rey cananeo de Jerusalén había mutilado los pulgares de manos y pies de 70 reyes antes de sufrir el mismo castigo a manos de Judá?",
-    "options": [
-      "Adonibezec",
-      "Agag",
-      "Sisac",
-      "Jabin"
-    ],
-    "correctAnswer": 0,
-    "verse": "Jueces 1:5-7",
-    "explanation": "Dijo Adonibezec: Setenta reyes, cortados los pulgares de sus manos y de sus pies, recogían las migajas debajo de mi mesa; como yo hice, así me ha pagado Dios."
-  },
-  {
-    "id": "h145",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Jueces",
-    "question": "¿Qué profetisa y jueza compuso con Barac un célebre cántico triunfal en Jueces 5 celebrando la derrota de Sísara?",
-    "options": [
-      "Débora",
-      "Miriam",
-      "Huldá",
-      "Ana"
-    ],
-    "correctAnswer": 0,
-    "verse": "Jueces 5:1",
-    "explanation": "Aquel día cantó Débora con Barac hijo de Abinoam, diciendo: Por haberse puesto al frente los caudillos en Israel... alabad a Jehová."
-  },
-  {
-    "id": "h146",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Jueces",
-    "question": "¿Cómo se llamaba el padre de Sansón, perteneciente a la tribu de Dan y natural de Zora, a quien se le apareció el Ángel de Jehová?",
-    "options": [
-      "Manoa",
-      "Elcana",
-      "Quis",
-      "Jesse"
-    ],
-    "correctAnswer": 0,
-    "verse": "Jueces 13:2",
-    "explanation": "Había un hombre de Zora, de la tribu de Dan, el cual se llamaba Manoa; y su mujer era estéril."
-  },
-  {
-    "id": "h147",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "1 Samuel",
-    "question": "¿Cómo murieron trágicamente en el mismo día los dos hijos corruptos del sacerdote Elí en la batalla de Afec contra los filisteos?",
-    "options": [
-      "Ofni y Finees murieron y el Arca de Dios fue tomada",
-      "Nadab y Abiú murieron por fuego extraño",
-      "Amnón y Absalón se mataron",
-      "Jonatán y Mefiboset murieron en la cueva"
-    ],
-    "correctAnswer": 0,
-    "verse": "1 Samuel 4:11",
-    "explanation": "Y el arca de Dios fue tomada, y muertos los dos hijos de Elí, Ofni y Finees."
-  },
-  {
-    "id": "h148",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "1 Samuel",
-    "question": "¿Qué hija menor de Saúl amaba a David y fue dada por esposa tras pagar David una dote de doscientos prepucios de filisteos?",
-    "options": [
-      "Mical",
-      "Merab",
-      "Abigail",
-      "Ahinoam"
-    ],
-    "correctAnswer": 0,
-    "verse": "1 Samuel 18:20, 27",
-    "explanation": "Mical la otra hija de Saúl amaba a David... y dio David doscientos prepucios de filisteos, y Saúl le dio a su hija Mical por mujer."
-  },
-  {
-    "id": "h149",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "1 Samuel",
-    "question": "¿Qué sacerdote hijo de Ahimelec escapó de la masacre de Nob llevándose consigo el efod sacerdotal hasta unirse con David en el desierto?",
-    "options": [
-      "Abiatar",
-      "Zadoc",
-      "Heli",
-      "Eliezer"
-    ],
-    "correctAnswer": 0,
-    "verse": "1 Samuel 22:20; 23:6",
-    "explanation": "Uno de los hijos de Ahimelec... llamado Abiatar, escapó, y huyó tras David llevando consigo el efod en su mano."
-  },
-  {
-    "id": "h150",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "2 Samuel",
-    "question": "¿Quién era el gigante filisteo con seis dedos en cada mano y seis dedos en cada pie (veinticuatro en total) abatido por Jonatán sobrino de David en Gat?",
-    "options": [
-      "Un descendiente de los gigantes (Rafa) abatido en Gat",
-      "Goliat de Gat",
-      "Isbi-benob",
-      "Saf"
-    ],
-    "correctAnswer": 0,
-    "verse": "2 Samuel 21:20-21",
-    "explanation": "Hubo otra guerra en Gat, donde había un hombre de gran estatura, el cual tenía doce dedos en las manos, y otros doce en los pies, veinticuatro por todos."
-  },
-  {
-    "id": "h151",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "2 Samuel",
-    "question": "¿Quiénes eran los \"Tres Valientes\" principales del ejército de David que rompieron el campamento filisteo para traerle agua del pozo de Belén?",
-    "options": [
-      "Joseb-basebet (Adino), Eleazar hijo de Dodo, y Sama hijo de Age",
-      "Joab, Abisai y Asael",
-      "Benaía, Urías e Itai",
-      "Sadrac, Mesac y Abed-nego"
-    ],
-    "correctAnswer": 0,
-    "verse": "2 Samuel 23:8-16",
-    "explanation": "Estos son los nombres de los valientes que tuvo David: Joseb-basebet el tacmonita... Eleazar hijo de Dodo... y Sama hijo de Age ararita."
-  },
-  {
-    "id": "h152",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "1 Reyes",
-    "question": "¿Qué profeta rasgó su capa nueva en doce pedazos y dio diez a Jeroboam profetizando la división del reino de Salomón?",
-    "options": [
-      "Ahías silonita",
-      "Semayas",
-      "Natán",
-      "Iddo"
-    ],
-    "correctAnswer": 0,
-    "verse": "1 Reyes 11:29-31",
-    "explanation": "El profeta Ahías silonita... tomó la capa nueva que tenía sobre sí, y la rompió en doce pedazos; y dijo a Jeroboam: Toma para ti diez pedazos."
-  },
-  {
-    "id": "h153",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "1 Reyes",
-    "question": "¿Cómo murió el rey Acab en la batalla de Ramot de Galaad a pesar de haberse disfrazado para no ser reconocido?",
-    "options": [
-      "Un soldado disparó su arco al azar e hirió a Acab entre las junturas de la armadura",
-      "Joab lo atravesó con tres lanzas",
-      "Fue degollado por Jehú",
-      "Cayó de su carro al precipicio"
-    ],
-    "correctAnswer": 0,
-    "verse": "1 Reyes 22:34-35",
-    "explanation": "Y un hombre disparó su arco a la ventura e hirió al rey de Israel por entre las junturas de la armadura... y a la tarde murió."
-  },
-  {
-    "id": "h154",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "2 Reyes",
-    "question": "¿Qué siervo sirio fue advertido por Eliseo de las crueldades que cometería contra Israel, y ahogó al rey Ben-hadad con un paño mojado para reinar en su lugar?",
-    "options": [
-      "Hazael",
-      "Naamán",
-      "Sisac",
-      "Tiglath-pileser"
-    ],
-    "correctAnswer": 0,
-    "verse": "2 Reyes 8:12-15",
-    "explanation": "Eliseo lloró diciendo: Porque sé el mal que harás a los hijos de Israel... Al día siguiente tomó Hazael un paño y lo metió en agua, y lo puso sobre el rostro del rey, y murió."
-  },
-  {
-    "id": "h155",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "2 Reyes",
-    "question": "¿Qué milagro ocurrió cuando unos hombres arrojaron apresuradamente un cadáver en el sepulcro donde reposaban los huesos del difunto profeta Eliseo?",
-    "options": [
-      "Tan pronto como el muerto tocó los huesos de Eliseo, revivió y se puso en pie",
-      "El sepulcro se iluminó con fuego",
-      "Aparecieron dos ángeles armados",
-      "La tierra se abrió y tragó la tumba"
-    ],
-    "correctAnswer": 0,
-    "verse": "2 Reyes 13:20-21",
-    "explanation": "Y tan pronto como tocó el muerto los huesos de Eliseo, revivió, y se levantó sobre sus pies."
-  },
-  {
-    "id": "h156",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "2 Reyes",
-    "question": "¿En qué año cayó el Reino del Norte (Israel/Samaria) bajo el Imperio Asirio de Salmanasar y Sargón II, dispersando a las diez tribus?",
-    "options": [
-      "En el año 722 a.C.",
-      "En el año 586 a.C.",
-      "En el año 605 a.C.",
-      "En el año 70 d.C."
-    ],
-    "correctAnswer": 0,
-    "verse": "2 Reyes 17:6",
-    "explanation": "En el año 722 a.C. Samaria fue tomada por los asirios y el pueblo de Israel fue llevado cautivo a Asiria."
-  },
-  {
-    "id": "h157",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "2 Reyes",
-    "question": "¿En qué año culminó el asedio y destrucción total de Jerusalén y del Templo de Salomón por las tropas babilónicas de Nabucodonosor?",
-    "options": [
-      "En el año 586 a.C.",
-      "En el año 722 a.C.",
-      "En el año 457 a.C.",
-      "En el año 333 a.C."
-    ],
-    "correctAnswer": 0,
-    "verse": "2 Reyes 25:8-10",
-    "explanation": "En el año 586 a.C. Nabuzaradán capitán de la guardia quemó el Templo, el palacio real y derribó las murallas de Jerusalén."
-  },
-  {
-    "id": "h158",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "2 Crónicas",
-    "question": "¿Quién fue el sumo sacerdote que lideró el derrocamiento de la usurpadora Atalía y coronó rey a Joás de siete años en el patio del Templo?",
-    "options": [
-      "Joiada el sacerdote",
-      "Hilcías",
-      "Zadoc",
-      "Urías"
-    ],
-    "correctAnswer": 0,
-    "verse": "2 Crónicas 23:1-15",
-    "explanation": "El sacerdote Joiada sacó al hijo del rey, y le puso la corona... y aplaudieron y dijeron: ¡Viva el rey! Y mataron a Atalía a espada."
-  },
-  {
-    "id": "h159",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Nehemías",
-    "question": "¿Qué oficio de gran confianza y cercanía desempeñaba Nehemías en el palacio real de Susa antes de viajar a Jerusalén?",
-    "options": [
-      "Copero del rey Artajerjes",
-      "Comandante de la guardia persa",
-      "Escriba de impuestos",
-      "Arquitecto imperial"
-    ],
-    "correctAnswer": 0,
-    "verse": "Nehemías 1:11; 2:1",
-    "explanation": "Porque yo servía de copero al rey. Y en el mes de Nisán, en el año veinte del rey Artajerjes, estando ya el vino delante de él, tomé el vino y lo di al rey."
-  },
-  {
-    "id": "h160",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Job",
-    "question": "¿Quién fue el cuarto y más joven personaje que esperó en silencio hasta que los tres amigos callaron para hablar con pasión de la soberanía de Dios ante Job?",
-    "options": [
-      "Eliú hijo de Baraquel buzita",
-      "Elifaz",
-      "Bildad",
-      "Zofar"
-    ],
-    "correctAnswer": 0,
-    "verse": "Job 32:2-4",
-    "explanation": "Se encendió en ira Eliú hijo de Baraquel buzita, de la familia de Ram... porque Job se justificaba a sí mismo más bien que a Dios."
-  },
-  {
-    "id": "h161",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Salmos Mesiánicos",
-    "question": "¿Qué Salmo profético inicia con las palabras que Jesús clamó en la cruz y detalla: \"Horadaron mis manos y mis pies; contar puedo todos mis huesos; repartieron entre sí mis vestidos\"?",
-    "options": [
-      "Salmo 22",
-      "Salmo 2",
-      "Salmo 16",
-      "Salmo 110"
-    ],
-    "correctAnswer": 0,
-    "verse": "Salmos 22:1, 16-18",
-    "explanation": "El Salmo 22 de David es la profecía más detallada del sufrimiento físico y espiritual de la crucifixión de Cristo mil años antes de ocurrir."
-  },
-  {
-    "id": "h162",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Salmos",
-    "question": "¿Qué salmo es el cántico de Moisés, considerado el salmo más antiguo del Salterio, que inicia: \"Señor, tú nos has sido refugio de generación en generación\"?",
-    "options": [
-      "Salmo 90",
-      "Salmo 80",
-      "Salmo 100",
-      "Salmo 103"
-    ],
-    "correctAnswer": 0,
-    "verse": "Salmos 90:1",
-    "explanation": "Oración de Moisés, varón de Dios: \"Señor, tú nos has sido refugio de generación en generación. Antes que naciesen los montes... tú eres Dios.\""
-  },
-  {
-    "id": "h163",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Proverbios",
-    "question": "¿En qué capítulo de Proverbios se encuentra el célebre poema acróstico que alaba las virtudes, laboriosidad y sabiduría de la \"Mujer Virtuosa\"?",
-    "options": [
-      "Proverbios 31 (versículos 10 al 31)",
-      "Proverbios 1",
-      "Proverbios 8",
-      "Proverbios 15"
-    ],
-    "correctAnswer": 0,
-    "verse": "Proverbios 31:10-31",
-    "explanation": "Mujer virtuosa, ¿quién la hallará? Porque su estima sobrepasa largamente a la de las piedras preciosas."
-  },
-  {
-    "id": "h164",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Profeta Jeremías",
-    "question": "¿Cómo se llamaba el fiel secretario y amanuense de Jeremías que escribió el rollo de profecías que el rey Joacim cortó con un cortaplumas y quemó en el fuego?",
-    "options": [
-      "Baruc hijo de Nerías",
-      "Gedubías",
-      "Hilcías",
-      "Safán"
-    ],
-    "correctAnswer": 0,
-    "verse": "Jeremías 36:4, 23",
-    "explanation": "Llamó Jeremías a Baruc hijo de Nerías, y escribió Baruc de boca de Jeremías todas las palabras de Jehová en un rollo de libro."
-  },
-  {
-    "id": "h165",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Profeta Jeremías",
-    "question": "¿Qué eunuco etíope de la casa del rey rescató a Jeremías sacándolo con sogas y trapos viejos de la profunda cisterna de fango de Malquías?",
-    "options": [
-      "Ebed-melec el etíope",
-      "Candace",
-      "Potifar",
-      "Tirhaka"
-    ],
-    "correctAnswer": 0,
-    "verse": "Jeremías 38:7-13",
-    "explanation": "Oyó Ebed-melec, eunuco que era etíope... y tomó trapos viejos y sogas, y sacaron a Jeremías de la cisterna."
-  },
-  {
-    "id": "h166",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Profeta Daniel",
-    "question": "¿Cuáles eran los nombres hebreos originales de los tres amigos de Daniel, llamados por los babilonios Sadrac, Mesac y Abed-nego?",
-    "options": [
-      "Ananías, Misael y Azarías",
-      "Simeón, Leví y Judá",
-      "Eliezer, Gersón y Coat",
-      "Nadab, Abiú e Itamar"
-    ],
-    "correctAnswer": 0,
-    "verse": "Daniel 1:6-7",
-    "explanation": "A Ananías puso Sadrac; a Misael, Mesac; y a Azarías, Abed-nego. El nombre babilonio de Daniel fue Beltsasar."
-  },
-  {
-    "id": "h167",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Profeta Ezequiel",
-    "question": "Junto a qué río de Babilonia estaba el profeta Ezequiel cuando se abrieron los cielos y vio las visiones de Dios y los cuatro seres vivientes?",
-    "options": [
-      "Río Quebar",
-      "Río Eufrates",
-      "Río Tigris (Hidekel)",
-      "Río Nilo"
-    ],
-    "correctAnswer": 0,
-    "verse": "Ezequiel 1:1",
-    "explanation": "Aconteció en el año treinta, en el mes cuarto, a los cinco días del mes, que estando yo en medio de los cautivos junto al río Quebar, los cielos se abrieron, y vi visiones de Dios."
-  },
-  {
-    "id": "h168",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Los Doce Apóstoles",
-    "question": "¿Qué dos apóstoles de los doce llevaban el sobrenombre de \"Zelote\" o \"Cananista\", y \"Tadeo\" (también llamado Lebeo)?",
-    "options": [
-      "Simón el Zelote y Judas Tadeo (hijo de Alfeo)",
-      "Pedro y Juan",
-      "Tomás y Mateo",
-      "Bartolomé y Felipe"
-    ],
-    "correctAnswer": 0,
-    "verse": "Mateo 10:3-4 / Lucas 6:15-16",
-    "explanation": "Simón llamado Zelote, y Judas hermano de Jacobo (Tadeo)."
-  },
-  {
-    "id": "h169",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "La Última Cena",
-    "question": "¿Qué salmos litúrgicos (conocidos como el Gran Hallel, Salmos 113 al 118) cantaron Jesús y sus discípulos al terminar la Última Cena antes de salir al Monte de los Olivos?",
-    "options": [
-      "El Hallel pascual (Salmos 113 a 118)",
-      "El Salmo 23 y el Salmo 91",
-      "Los cánticos de David en Hebrón",
-      "El cántico de Moisés"
-    ],
-    "correctAnswer": 0,
-    "verse": "Mateo 26:30 / Marcos 14:26",
-    "explanation": "Y cuando hubieron cantado el himno (el Hallel pascual), salieron al monte de los Olivos."
-  },
-  {
-    "id": "h170",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Hechos de los Apóstoles",
-    "question": "¿Qué platero de Éfeso provocó un gran alboroto en el teatro de la ciudad gritando: \"¡Grande es Diana de los efesios!\", porque el evangelio arruinaba su negocio de ídolos de plata?",
-    "options": [
-      "Demetrio el platero",
-      "Alejandro el calderero",
-      "Tertulo",
-      "Gaius"
-    ],
-    "correctAnswer": 0,
-    "verse": "Hechos 19:24-28",
-    "explanation": "Un platero llamado Demetrio, que hacía de plata templecillos de Diana... llenos de ira gritaron diciendo: ¡Grande es Diana de los efesios!"
-  },
-  {
-    "id": "h171",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Hechos de los Apóstoles",
-    "question": "¿Qué orador y abogado contrataron los líderes judíos para acusar formalmente al apóstol Pablo ante el gobernador Félix en Cesarea?",
-    "options": [
-      "Tertulo",
-      "Gamaliel",
-      "Claudio Lisias",
-      "Porcio Festo"
-    ],
-    "correctAnswer": 0,
-    "verse": "Hechos 24:1-2",
-    "explanation": "Descendió el sumo sacerdote Ananías con algunos de los ancianos y un cierto orador llamado Tértulo, y comparecieron ante el gobernador contra Pablo."
-  },
-  {
-    "id": "h172",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "1 Timoteo",
-    "question": "En 1 Timoteo 3, ¿cuáles son los dos oficios eclesiásticos oficiales cuyos estrictos requisitos de carácter y santidad expone Pablo detalladamente?",
-    "options": [
-      "Obispos (ancianos/pastores) y diáconos",
-      "Papas y cardenales",
-      "Levitas y cantores",
-      "Apóstoles y profetas"
-    ],
-    "correctAnswer": 0,
-    "verse": "1 Timoteo 3:1-13",
-    "explanation": "Pablo describe los requisitos morales y espirituales para los obispos (versículos 1-7) y para los diáconos (versículos 8-13)."
-  },
-  {
-    "id": "h173",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Epístola de Judas",
-    "question": "En la epístola de Judas versículo 11, ¿cuáles son los tres errores y rebeliones del Antiguo Testamento con que se compara a los apóstatas?",
-    "options": [
-      "El camino de Caín, el error de Balaam por lucro, y la contradicción de Coré",
-      "La torre de Babel, el becerro de oro y Sodoma",
-      "La esposa de Lot, Faraón y Acab",
-      "Saúl, Absalón y Jezabel"
-    ],
-    "correctAnswer": 0,
-    "verse": "Judas 1:11",
-    "explanation": "¡Ay de ellos! porque han seguido el camino de Caín, y se lanzaron por lucro en el error de Balaam, y perecieron en la contradicción de Coré."
-  },
-  {
-    "id": "h174",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Apocalipsis",
-    "question": "¿Qué misteriosa mujer sentada sobre una bestia escarlata lleva en su frente escrito: \"BABILONIA LA GRANDE, LA MADRE DE LAS RAMERAS Y DE LAS ABOMINACIONES DE LA TIERRA\"?",
-    "options": [
-      "La Gran Ramera embriagada de la sangre de los santos (Apocalipsis 17)",
-      "Jezabel de Tiatira",
-      "La reina Atalía",
-      "La estatua de Nabucodonosor"
-    ],
-    "correctAnswer": 0,
-    "verse": "Apocalipsis 17:1-6",
-    "explanation": "Y en su frente un nombre escrito, un misterio: BABILONIA LA GRANDE, LA MADRE DE LAS RAMERAS... vi a la mujer ebria de la sangre de los santos."
-  },
-  {
-    "id": "h175",
-    "level": "HARD",
-    "type": "MULTIPLE_CHOICE",
-    "category": "Apocalipsis",
-    "question": "¿Cuáles son los doce cimientos de piedras preciosas que adornan el muro de la Nueva Jerusalén celestial según Apocalipsis 21:19-20?",
-    "options": [
-      "Jaspe, zafiro, ágata, esmeralda, ónice, cornalina, crisólito, berilo, topacio, crisopraso, jacinto y amatista",
-      "Oro, plata, cobre, hierro, estaño, plomo y bronce",
-      "Rubíes, diamantes y perlas únicamente",
-      "Doce piedras del Jordán"
-    ],
-    "correctAnswer": 0,
-    "verse": "Apocalipsis 21:19-20",
-    "explanation": "Los doce cimientos del muro de la ciudad estaban adornados con toda piedra preciosa: jaspe, zafiro, ágata, esmeralda, ónice, cornalina, crisólito, berilo, topacio, crisopraso, jacinto y amatista."
-  }
+  {"id":"e1","level":"EASY","type":"MULTIPLE_CHOICE","category":"Historias Bíblicas","question":"¿Cuántos días y cuántas noches llovió durante el diluvio en el arca de Noé?","options":["7 días y 7 noches","100 días y 100 noches","12 días y 12 noches","40 días y 40 noches"],"correctAnswer":3,"verse":"Génesis 7:12","explanation":"Y hubo lluvia sobre la tierra cuarenta días y cuarenta noches."},
+  {"id":"e2","level":"EASY","type":"MULTIPLE_CHOICE","category":"Antiguo Testamento","question":"¿Con qué arma venció el joven David al gigante Goliat?","options":["Un arco y flecha","Una honda y una piedra","Una espada de bronce","Una lanza con punta de hierro"],"correctAnswer":1,"verse":"1 Samuel 17:50","explanation":"Así venció David al filisteo con honda y piedra; e hirió al filisteo y lo mató."},
+  {"id":"e3","level":"EASY","type":"MULTIPLE_CHOICE","category":"Nuevo Testamento","question":"¿En qué ciudad nació Jesús?","options":["Jerusalén","Capernaúm","Belén","Nazaret"],"correctAnswer":2,"verse":"Miqueas 5:2 / Lucas 2:4-7","explanation":"Jesús nació en Belén de Judea, cumpliendo la profecía de Miqueas."},
+  {"id":"e4","level":"EASY","type":"TRUE_FALSE","category":"Personajes","question":"¿Verdadero o Falso? Jonás intentó huir a Tarsis para no ir a predicar a Nínive.","options":["Verdadero","Falso"],"correctAnswer":0,"verse":"Jonás 1:3","explanation":"Jonás se levantó para huir de la presencia de Dios hacia Tarsis."},
+  {"id":"e5","level":"EASY","type":"FILL_VERSE","category":"Versículos Memorables","question":"Completa el versículo: \"El Señor es mi pastor, nada me _________\"","options":["faltará","sobrará","asustará","apartará"],"correctAnswer":0,"verse":"Salmos 23:1","explanation":"Salmos 23:1: \"Jehová es mi pastor; nada me faltará.\""},
+  {"id":"e6","level":"EASY","type":"MULTIPLE_CHOICE","category":"Los Discípulos","question":"¿Cuántos discípulos / apóstoles principales eligió Jesús?","options":["14","12","10","7"],"correctAnswer":1,"verse":"Mateo 10:1-4","explanation":"Jesús llamó a sus doce discípulos y les dio autoridad espiritual."},
+  {"id":"e7","level":"EASY","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién dijo: \"¿Acaso soy yo el que cuida a mi hermano?\"","options":["Caín","Abel","Jacob","Esaú"],"correctAnswer":0,"verse":"Génesis 4:9","explanation":"Caín respondió esto a Dios cuando le preguntó por su hermano Abel."},
+  {"id":"e8","level":"EASY","type":"MULTIPLE_CHOICE","category":"El Éxodo","question":"¿Qué mar abrió Dios a través de Moisés para que el pueblo cruzara en seco?","options":["El Mar Mediterráneo","El Mar de Galilea","El Mar Rojo","El Mar Muerto"],"correctAnswer":2,"verse":"Éxodo 14:21","explanation":"Moisés extendió su mano sobre el mar e hizo Dios que el mar se abriera."},
+  {"id":"e9","level":"EASY","type":"MULTIPLE_CHOICE","category":"La Creación","question":"¿En qué día de la creación descansó Dios de toda la obra que había hecho?","options":["En el octavo día","En el quinto día","En el sexto día","En el séptimo día"],"correctAnswer":3,"verse":"Génesis 2:2","explanation":"Y acabó Dios en el día séptimo la obra que hizo; y reposó el día séptimo."},
+  {"id":"e10","level":"EASY","type":"MULTIPLE_CHOICE","category":"Personajes Bíblicos","question":"¿Quién construyó el gran arca por orden de Dios para salvar a su familia?","options":["Noé","Abraham","Moisés","Isaac"],"correctAnswer":0,"verse":"Génesis 6:14","explanation":"Noé construyó el arca de madera de gofer tal como Dios le mandó."},
+  {"id":"e11","level":"EASY","type":"TRUE_FALSE","category":"Milagros de Jesús","question":"¿Verdadero o Falso? Jesús caminó sobre el agua hacia la barca de sus discípulos.","options":["Verdadero","Falso"],"correctAnswer":0,"verse":"Mateo 14:25","explanation":"Mas a la cuarta vigilia de la noche, Jesús vino a ellos andando sobre el mar."},
+  {"id":"e12","level":"EASY","type":"MULTIPLE_CHOICE","category":"Jesús","question":"¿Quién bautizó a Jesús en el río Jordán?","options":["Santiago el Mayor","Simón Pedro","Eliseo el profeta","Juan el Bautista"],"correctAnswer":3,"verse":"Mateo 3:13-17","explanation":"Jesús vino de Galilea a Juan al Jordán, para ser bautizado por él."},
+  {"id":"e13","level":"EASY","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién dijo: \"Heme aquí, envíame a mí\" al escuchar la voz del Señor?","options":["Samuel","Isaías","Jonás","Jeremías"],"correctAnswer":1,"verse":"Isaías 6:8","explanation":"Isaías respondió con prontitud al llamamiento santo de Dios."},
+  {"id":"e14","level":"EASY","type":"TRUE_FALSE","category":"Curiosidades Bíblicas","question":"¿Verdadero o Falso? El libro de los Salmos es el libro con más capítulos en la Biblia.","options":["Verdadero","Falso"],"correctAnswer":0,"verse":"Salmos","explanation":"El libro de Salmos tiene 150 capítulos, siendo el más extenso de toda la Biblia."},
+  {"id":"e15","level":"EASY","type":"MULTIPLE_CHOICE","category":"Personajes","question":"¿Quién fue tragado por un gran pez luego de desobedecer a Dios?","options":["Pablo","Elías","Jonás","Pedro"],"correctAnswer":2,"verse":"Jonás 1:17","explanation":"Pero Jehová tenía preparado un gran pez que tragase a Jonás."},
+  {"id":"e16","level":"EASY","type":"MULTIPLE_CHOICE","category":"La Biblia","question":"¿Cuál es el primer libro de la Biblia?","options":["Éxodo","Génesis","Salmos","Mateo"],"correctAnswer":1,"verse":"Génesis 1:1","explanation":"Génesis significa \"principio u origen\" y es el primer libro de las Escrituras."},
+  {"id":"e17","level":"EASY","type":"TRUE_FALSE","category":"La Resurrección","question":"¿Verdadero o Falso? Al tercer día de morir en la cruz, Jesús resucitó de entre los muertos.","options":["Verdadero","Falso"],"correctAnswer":0,"verse":"Lucas 24:6-7","explanation":"¡No está aquí, sino que ha resucitado, tal como lo había prometido!"},
+  {"id":"e18","level":"EASY","type":"MULTIPLE_CHOICE","category":"Personajes","question":"¿Quién tenía una túnica de muchos colores que le regaló su padre Jacob?","options":["Judá","Benjamín","Rubén","José"],"correctAnswer":3,"verse":"Génesis 37:3","explanation":"Israel amaba a José más que a todos sus hijos y le hizo una túnica de diversos colores."},
+  {"id":"e19","level":"EASY","type":"MULTIPLE_CHOICE","category":"La Creación","question":"¿Qué creó Dios en el primer día de la creación según Génesis?","options":["Las aves del cielo","El sol y la luna","La luz","Los animales terrestres"],"correctAnswer":2,"verse":"Génesis 1:3-5","explanation":"Dios dijo: \"Sea la luz\", y fue la luz en el primer día."},
+  {"id":"e20","level":"EASY","type":"MULTIPLE_CHOICE","category":"Historias Bíblicas","question":"¿Qué señal puso Dios en el cielo como pacto de que no volvería a destruir la tierra con un diluvio?","options":["Un arcoíris","Una estrella brillante","Una columna de fuego","Un eclipse"],"correctAnswer":0,"verse":"Génesis 9:13","explanation":"Mi arco he puesto en las nubes, el cual será por señal del pacto entre mí y la tierra."},
+  {"id":"e21","level":"EASY","type":"MULTIPLE_CHOICE","category":"Patriarcas","question":"¿Cómo se llamaba la esposa de Abraham y madre de Isaac?","options":["Raquel","Rebeca","Sara","Lea"],"correctAnswer":2,"verse":"Génesis 17:15-19","explanation":"Dios prometió que Sara daría a luz un hijo llamado Isaac."},
+  {"id":"e22","level":"EASY","type":"MULTIPLE_CHOICE","category":"Patriarcas","question":"¿Qué regalo especial le dio Jacob a su hijo amado José que causó envidia en sus hermanos?","options":["Un báculo de cedro real","Una túnica de colores","Un anillo de oro puro","Un par de sandalias finas"],"correctAnswer":1,"verse":"Génesis 37:3","explanation":"Y le hizo una túnica de diversos colores."},
+  {"id":"e23","level":"EASY","type":"MULTIPLE_CHOICE","category":"José en Egipto","question":"¿A qué país fue llevado José después de ser vendido por sus hermanos?","options":["Asiria","Babilonia","Persia","Egipto"],"correctAnswer":3,"verse":"Génesis 37:36","explanation":"Los madianitas lo vendieron en Egipto a Potifar."},
+  {"id":"e24","level":"EASY","type":"MULTIPLE_CHOICE","category":"Moisés y el Éxodo","question":"¿Dónde encontró la hija de Faraón al bebé Moisés cuando su madre lo puso en el río?","options":["En una cesta de juncos","Bajo una palmera alta","En una barca de pesca","En una cueva del río"],"correctAnswer":0,"verse":"Éxodo 2:3-5","explanation":"Puso al niño en una arquilla de juncos a la orilla del río Nilo."},
+  {"id":"e25","level":"EASY","type":"MULTIPLE_CHOICE","category":"Moisés y el Éxodo","question":"¿Qué fenómeno vio Moisés en el monte Horeb donde el arbusto ardía y no se consumía?","options":["Un relámpago eterno","Una lluvia de estrellas","La zarza ardiendo","Un pozo de agua viva"],"correctAnswer":2,"verse":"Éxodo 3:2","explanation":"Y se le apareció el Ángel de Jehová en una llama de fuego en medio de una zarza."},
+  {"id":"e26","level":"EASY","type":"MULTIPLE_CHOICE","category":"Las Plagas","question":"¿En qué se convirtió el agua del río Nilo en la primera plaga de Egipto?","options":["En sangre","En aceite","En arena","En vino"],"correctAnswer":0,"verse":"Éxodo 7:20","explanation":"Todas las aguas que había en el río se convirtieron en sangre."},
+  {"id":"e27","level":"EASY","type":"MULTIPLE_CHOICE","category":"El Desierto","question":"¿Cómo se llamaba el pan que caía del cielo al amanecer para alimentar a los israelitas en el desierto?","options":["Trigo","Matzá","Ázimo","Maná"],"correctAnswer":3,"verse":"Éxodo 16:31","explanation":"La casa de Israel lo llamó Maná; y era como semilla de culantro, blanco, y su sabor como hojuelas con miel."},
+  {"id":"e28","level":"EASY","type":"MULTIPLE_CHOICE","category":"Los Diez Mandamientos","question":"¿En qué monte entregó Dios a Moisés las dos tablas de la Ley con los Diez Mandamientos?","options":["Monte de los Olivos","Monte Sinaí","Monte Hermón","Monte Carmelo"],"correctAnswer":1,"verse":"Éxodo 19:20; 31:18","explanation":"Descendió Jehová sobre el monte Sinaí y dio a Moisés las tablas de la ley."},
+  {"id":"e29","level":"EASY","type":"FILL_VERSE","category":"Los Diez Mandamientos","question":"Completa el mandamiento: \"Honra a tu padre y a tu madre, para que tus días se _________ en la tierra.\"","options":["acorten","llenen de oro","dupliquen","alarguen"],"correctAnswer":3,"verse":"Éxodo 20:12","explanation":"Éxodo 20:12: \"...para que tus días se alarguen en la tierra que Jehová tu Dios te da.\""},
+  {"id":"e30","level":"EASY","type":"MULTIPLE_CHOICE","category":"Tierra Prometida","question":"¿Alrededor de los muros de qué ciudad marchó el pueblo de Israel durante 7 días hasta que los muros cayeron?","options":["Hebrón","Jerusalén","Jericó","Betel"],"correctAnswer":2,"verse":"Josué 6:20","explanation":"El pueblo gritó y tocaron las trompetas, y el muro de Jericó cayó a plomo."},
+  {"id":"e31","level":"EASY","type":"MULTIPLE_CHOICE","category":"Jueces","question":"¿Quién fue el juez famoso por su fuerza sobrenatural cuyo secreto estaba en su consagración y su cabello?","options":["Sansón","Barac","Gedeón","Jefté"],"correctAnswer":0,"verse":"Jueces 16:17","explanation":"Sansón confesó: \"Navaja nunca ha pasado sobre mi cabeza, porque soy nazareo para Dios.\""},
+  {"id":"e32","level":"EASY","type":"MULTIPLE_CHOICE","category":"Rut","question":"¿Quién era la suegra amada de Rut a quien acompañó de regreso a Belén?","options":["Ana","Noemí","Sara","Elisabet"],"correctAnswer":1,"verse":"Rut 1:16","explanation":"Rut dijo a Noemí: \"Tu pueblo será mi pueblo, y tu Dios mi Dios.\""},
+  {"id":"e33","level":"EASY","type":"MULTIPLE_CHOICE","category":"Profetas","question":"¿Qué niño escuchó la voz de Dios en la noche pensando que era el sacerdote Elí quien lo llamaba?","options":["Samuel","Salomón","Daniel","David"],"correctAnswer":0,"verse":"1 Samuel 3:4-10","explanation":"Jehová llamó a Samuel; y él respondió: \"Heme aquí... Habla, porque tu siervo oye.\""},
+  {"id":"e34","level":"EASY","type":"MULTIPLE_CHOICE","category":"Reyes de Israel","question":"¿Quién fue el primer rey de Israel, ungido por el profeta Samuel?","options":["David","Roboam","Saúl","Salomón"],"correctAnswer":2,"verse":"1 Samuel 10:1","explanation":"Tomando entonces Samuel una redoma de aceite, la derramó sobre la cabeza de Saúl y lo ungió rey."},
+  {"id":"e35","level":"EASY","type":"MULTIPLE_CHOICE","category":"Rey David","question":"¿Qué oficio realizaba David en el campo antes de ser ungido rey?","options":["Carpintero","Pastor de ovejas","Herrero","Pescador"],"correctAnswer":1,"verse":"1 Samuel 16:11","explanation":"David apacentaba las ovejas de su padre Isaí en Belén."},
+  {"id":"e36","level":"EASY","type":"MULTIPLE_CHOICE","category":"Rey Salomón","question":"¿Qué le pidió el rey Salomón a Dios en oración cuando comenzó a gobernar?","options":["Victoria sobre sus enemigos","Riquezas y gran tesoro","Larga vida y mucha salud","Sabiduría y entendimiento"],"correctAnswer":3,"verse":"1 Reyes 3:9","explanation":"Salomón pidió: \"Da, pues, a tu siervo corazón con entendimiento para juzgar a tu pueblo.\""},
+  {"id":"e37","level":"EASY","type":"MULTIPLE_CHOICE","category":"Rey Salomón","question":"¿Qué gran edificación mandó construir el rey Salomón para adorar a Dios?","options":["La Torre de Siloé","El Templo de Jerusalén","El Arca del Pacto","El Muro de Sión"],"correctAnswer":1,"verse":"1 Reyes 6:1","explanation":"Salomón comenzó a edificar la casa de Jehová en el cuarto año de su reinado."},
+  {"id":"e38","level":"EASY","type":"MULTIPLE_CHOICE","category":"Profeta Elías","question":"¿Qué aves enviaba Dios para alimentar al profeta Elías junto al arroyo de Querit?","options":["Gorriones","Palomas","Águilas","Cuervos"],"correctAnswer":3,"verse":"1 Reyes 17:6","explanation":"Y los cuervos le traían pan y carne por la mañana y por la tarde."},
+  {"id":"e39","level":"EASY","type":"MULTIPLE_CHOICE","category":"Reina Ester","question":"¿Qué valiente reina judía arriesgó su vida entrando ante el rey Asuero para salvar a su pueblo?","options":["Rut","Vasti","Ester","Jezabel"],"correctAnswer":2,"verse":"Ester 4:16","explanation":"Ester dijo: \"Y si perezco, que perezca\", intercediendo por los judíos."},
+  {"id":"e40","level":"EASY","type":"MULTIPLE_CHOICE","category":"Daniel","question":"¿En qué lugar fue arrojado el profeta Daniel por negarse a dejar de orar a Dios tres veces al día?","options":["En el foso de los leones","En una cisterna de lodo","En un horno de fuego","En el mar abierto"],"correctAnswer":0,"verse":"Daniel 6:16-22","explanation":"Dios envió su ángel, el cual cerró la boca de los leones para que no le hicieran daño."},
+  {"id":"e41","level":"EASY","type":"MULTIPLE_CHOICE","category":"Amigos de Daniel","question":"¿Cuántos jóvenes hebreos fueron arrojados al horno de fuego ardiendo por no adorar la estatua de oro?","options":["2 jóvenes","5 jóvenes","3 jóvenes","7 jóvenes"],"correctAnswer":2,"verse":"Daniel 3:19-25","explanation":"Sadrac, Mesac y Abed-nego salieron ilesos, y el rey vio a un cuarto varón semejante al Hijo de Dios."},
+  {"id":"e42","level":"EASY","type":"MULTIPLE_CHOICE","category":"Profeta Jonás","question":"¿Cuántos días y noches estuvo el profeta Jonás dentro del vientre del gran pez?","options":["40 días y 40 noches","1 día y 1 noche","7 días y 7 noches","3 días y 3 noches"],"correctAnswer":3,"verse":"Jonás 1:17","explanation":"Y estuvo Jonás en el vientre del pez tres días y tres noches."},
+  {"id":"e43","level":"EASY","type":"MULTIPLE_CHOICE","category":"Nacimiento de Jesús","question":"¿Qué ángel se le apareció a la virgen María para anunciarle que daría a luz al Salvador?","options":["El ángel Uriel","El ángel Gabriel","El ángel Rafael","El ángel Miguel"],"correctAnswer":1,"verse":"Lucas 1:26-31","explanation":"El ángel Gabriel fue enviado por Dios a una virgen llamada María."},
+  {"id":"e44","level":"EASY","type":"MULTIPLE_CHOICE","category":"Nacimiento de Jesús","question":"¿Dónde fue acostado el niño Jesús al nacer porque no había lugar para ellos en el mesón?","options":["En un pesebre","En un canasto de mimbre","En una cuna de marfil","En un trono real"],"correctAnswer":0,"verse":"Lucas 2:7","explanation":"Y lo envolvió en pañales, y lo acostó en un pesebre."},
+  {"id":"e45","level":"EASY","type":"MULTIPLE_CHOICE","category":"Los Magos de Oriente","question":"¿Qué tres regalos presentaron los sabios magos de oriente al niño Jesús?","options":["Plata, bronce y trigo","Perlas, seda y miel","Vino, pan y aceite","Oro, incienso y mirra"],"correctAnswer":3,"verse":"Mateo 2:11","explanation":"Abrieron sus tesoros y le ofrecieron presentes: oro, incienso y mirra."},
+  {"id":"e46","level":"EASY","type":"MULTIPLE_CHOICE","category":"Bautismo de Jesús","question":"¿En forma de qué descendió el Espíritu Santo sobre Jesús en su bautismo?","options":["En forma de paloma","En forma de cordero","En forma de llama de fuego","En forma de águila"],"correctAnswer":0,"verse":"Mateo 3:16","explanation":"Vio al Espíritu de Dios que descendía como paloma, y venía sobre él."},
+  {"id":"e47","level":"EASY","type":"MULTIPLE_CHOICE","category":"Tentación en el Desierto","question":"¿Cuántos días ayunó Jesús en el desierto antes de ser tentado por el diablo?","options":["7 días","40 días","12 días","70 días"],"correctAnswer":1,"verse":"Mateo 4:2","explanation":"Y después de haber ayunado cuarenta días y cuarenta noches, tuvo hambre."},
+  {"id":"e48","level":"EASY","type":"MULTIPLE_CHOICE","category":"Milagros de Jesús","question":"¿Con cuántos panes y peces alimentó Jesús milagrosamente a más de cinco mil personas?","options":["7 panes y 3 peces","2 panes y 2 peces","5 panes y 2 peces","10 panes y 5 peces"],"correctAnswer":2,"verse":"Juan 6:9","explanation":"Aquí está un muchacho, que tiene cinco panes de cebada y dos pececillos."},
+  {"id":"e49","level":"EASY","type":"MULTIPLE_CHOICE","category":"Milagros de Jesús","question":"¿A qué amigo amado resucitó Jesús en Betania después de estar cuatro días en el sepulcro?","options":["Lázaro","Zaqueo","Jairo","Bartimeo"],"correctAnswer":0,"verse":"Juan 11:43-44","explanation":"Clamó a gran voz: ¡Lázaro, ven fuera! Y el que había muerto salió atadas las manos."},
+  {"id":"e50","level":"EASY","type":"MULTIPLE_CHOICE","category":"Encuentros con Jesús","question":"¿Quién era el recaudador de impuestos de baja estatura que subió a un árbol sicómoro para ver pasar a Jesús?","options":["Cornelio","Zaqueo","Barrabás","Mateo"],"correctAnswer":1,"verse":"Lucas 19:1-6","explanation":"Zaqueo corrió y subió a un árbol sicómoro para ver a Jesús."},
+  {"id":"e51","level":"EASY","type":"MULTIPLE_CHOICE","category":"Parábolas de Jesús","question":"En la parábola del Sembrador, ¿cuál de las semillas dio fruto al ciento, al sesenta y al treinta por uno?","options":["La que cayó entre espinos","La que cayó en pedregales","La que cayó en buena tierra","La que cayó junto al camino"],"correctAnswer":2,"verse":"Mateo 13:8","explanation":"Pero parte cayó en buena tierra, y dio fruto, cuál a ciento, cuál a sesenta, y cuál a treinta por uno."},
+  {"id":"e52","level":"EASY","type":"MULTIPLE_CHOICE","category":"Parábolas de Jesús","question":"¿Quién se detuvo a curar y vendar las heridas del hombre asaltado en el camino a Jericó?","options":["Un levita","Un soldado romano","Un sacerdote","Un buen samaritano"],"correctAnswer":3,"verse":"Lucas 10:33-34","explanation":"Un samaritano, que iba de camino, vino cerca de él, y viéndole, fue movido a misericordia."},
+  {"id":"e53","level":"EASY","type":"MULTIPLE_CHOICE","category":"Parábolas de Jesús","question":"En la parábola del hijo pródigo, ¿qué hizo el padre cuando vio volver a su hijo arrepentido desde lejos?","options":["Lo envió a trabajar al campo","Le pidió cuentas de su dinero","Corrió a abrazarlo y lo besó","Cerró las puertas de su casa"],"correctAnswer":2,"verse":"Lucas 15:20","explanation":"Y cuando aún estaba lejos, lo vio su padre, y fue movido a misericordia, y corrió, y se echó sobre su cuello, y le besó."},
+  {"id":"e54","level":"EASY","type":"MULTIPLE_CHOICE","category":"La Última Cena","question":"¿Qué elementos usó Jesús en la Última Cena para instituir la Santa Cena en memoria suya?","options":["Pan y fruto de la vid","Hierbas amargas y sal","Carne asada y leche","Miel silvestre y agua"],"correctAnswer":0,"verse":"Lucas 22:19-20","explanation":"Tomó el pan y dio gracias... y de igual manera la copa, diciendo: Esta copa es el nuevo pacto en mi sangre."},
+  {"id":"e55","level":"EASY","type":"MULTIPLE_CHOICE","category":"La Pasión de Cristo","question":"¿En qué huerto oró Jesús intensamente con sudor como grandes gotas de sangre antes de ser entregado?","options":["Jardín de Salomón","Huerto de Getsemaní","Huerto del Edén","Monte de la Transfiguración"],"correctAnswer":1,"verse":"Lucas 22:39-44","explanation":"Fue al monte de los Olivos / Getsemaní y estando en agonía, oraba más intensamente."},
+  {"id":"e56","level":"EASY","type":"MULTIPLE_CHOICE","category":"Los Discípulos","question":"¿Por cuántas monedas entregó Judas Iscariote al Señor Jesús?","options":["10 monedas de plata","20 monedas de plata","50 monedas de plata","30 monedas de plata"],"correctAnswer":3,"verse":"Mateo 26:15","explanation":"Y ellos le asignaron treinta piezas de plata."},
+  {"id":"e57","level":"EASY","type":"MULTIPLE_CHOICE","category":"Los Discípulos","question":"¿Cuántas veces negó el apóstol Pedro a Jesús antes de que el gallo cantara?","options":["3 veces","1 vez","2 veces","7 veces"],"correctAnswer":0,"verse":"Mateo 26:75","explanation":"Pedro se acordó de las palabras de Jesús: \"Antes que cante el gallo, me negarás tres veces.\""},
+  {"id":"e58","level":"EASY","type":"MULTIPLE_CHOICE","category":"Resurrección de Jesús","question":"¿Al cuántos días resucitó Jesús de entre los muertos?","options":["Al primer día","Al tercer día","Al séptimo día","Al segundo día"],"correctAnswer":1,"verse":"1 Corintios 15:4","explanation":"Y que fue sepultado, y que resucitó al tercer día, conforme a las Escrituras."},
+  {"id":"e59","level":"EASY","type":"FILL_VERSE","category":"La Gran Comisión","question":"Completa Mateo 28:19: \"Por tanto, id, y haced discípulos a todas las naciones, bautizándolos en el nombre del Padre, y del Hijo, y del _________\"","options":["ángel Gabriel","apóstol Pedro","profeta Elías","Espíritu Santo"],"correctAnswer":3,"verse":"Mateo 28:19","explanation":"\"...en el nombre del Padre, y del Hijo, y del Espíritu Santo.\""},
+  {"id":"e60","level":"EASY","type":"MULTIPLE_CHOICE","category":"Hechos de los Apóstoles","question":"¿Qué gran fiesta celebraban cuando el Espíritu Santo descendió con un viento recio y lenguas de fuego?","options":["La fiesta de los Tabernáculos","La Pascua","Pentecostés","El día de Expiación"],"correctAnswer":2,"verse":"Hechos 2:1-4","explanation":"Cuando llegó el día de Pentecostés, estaban todos unánimes juntos y fueron llenos del Espíritu Santo."},
+  {"id":"e61","level":"EASY","type":"MULTIPLE_CHOICE","category":"Apóstol Pablo","question":"¿En qué camino una luz del cielo resplandeció alrededor de Saulo de Tarso y escuchó la voz de Jesús?","options":["Camino a Jericó","Camino a Damasco","Camino a Roma","Camino a Emaús"],"correctAnswer":1,"verse":"Hechos 9:3-4","explanation":"Y yendo por el camino, aconteció que al llegar cerca de Damasco, repentinamente le rodeó una luz del cielo."},
+  {"id":"e62","level":"EASY","type":"FILL_VERSE","category":"Amor y Caridad","question":"Completa 1 Corintios 13:13: \"Y ahora permanecen la fe, la _________ y el amor, estos tres; pero el mayor de ellos es el amor.\"","options":["paciencia","fortaleza","esperanza","sabiduría"],"correctAnswer":2,"verse":"1 Corintios 13:13","explanation":"1 Corintios 13:13: \"...pero el mayor de ellos es el amor.\""},
+  {"id":"e63","level":"EASY","type":"TRUE_FALSE","category":"Apocalipsis","question":"¿Verdadero o Falso? En el libro de Apocalipsis, Jesús se llama a sí mismo \"el Alfa y la Omega, el principio y el fin\".","options":["Verdadero","Falso"],"correctAnswer":0,"verse":"Apocalipsis 1:8 / 22:13","explanation":"\"Yo soy el Alfa y la Omega, principio y fin, dice el Señor, el que es y que era y que ha de venir.\""},
+  {"id":"e64","level":"EASY","type":"MULTIPLE_CHOICE","category":"Génesis","question":"¿Cómo se llamaban los primeros dos hijos nacidos de Adán y Eva?","options":["Caín y Abel","Jacob y Esaú","David y Salomón","Efraín y Manasés"],"correctAnswer":0,"verse":"Génesis 4:1-2","explanation":"Eva dio a luz a Caín y después dio a luz a su hermano Abel."},
+  {"id":"e65","level":"EASY","type":"MULTIPLE_CHOICE","category":"Génesis","question":"¿Qué animal envió Noé en primer lugar fuera del arca para ver si las aguas habían bajado?","options":["Un águila","Una paloma","Un gorrión","Un cuervo"],"correctAnswer":3,"verse":"Génesis 8:7","explanation":"Y envió a un cuervo, el cual salió, y estuvo yendo y volviendo hasta que las aguas se secaron."},
+  {"id":"e66","level":"EASY","type":"MULTIPLE_CHOICE","category":"Génesis","question":"¿Qué trajo la paloma en su pico al regresar al arca de Noé?","options":["Una flor de almendro","Una uva fresca","Una hoja verde de olivo","Una espiga de trigo"],"correctAnswer":2,"verse":"Génesis 8:11","explanation":"Y la paloma volvió a él a la hora de la tarde; y he aquí que traía una hoja de olivo en el pico."},
+  {"id":"e67","level":"EASY","type":"MULTIPLE_CHOICE","category":"Génesis","question":"¿Qué gran torre intentaron construir los hombres para llegar al cielo antes de que Dios confundiera su lenguaje?","options":["La Torre de Siloé","La Torre de Babel","La Gran Pirámide","La Torre de David"],"correctAnswer":1,"verse":"Génesis 11:4-9","explanation":"Por esto fue llamado el nombre de ella Babel, porque allí confundió Jehová el lenguaje de toda la tierra."},
+  {"id":"e68","level":"EASY","type":"MULTIPLE_CHOICE","category":"Patriarcas","question":"¿De qué ciudad idólatra llamó Dios a Abraham para ir a la tierra que le mostraría?","options":["Ur de los caldeos","Nínive de Asiria","Tiro de Fenicia","Damasco de Siria"],"correctAnswer":0,"verse":"Génesis 11:31; 12:1","explanation":"Salieron con ellos de Ur de los caldeos para ir a la tierra de Canaán."},
+  {"id":"e69","level":"EASY","type":"MULTIPLE_CHOICE","category":"Patriarcas","question":"¿Por qué plato de comida vendió Esaú su primogenitura a su hermano Jacob?","options":["Una torta de miel pura","Un pan recién horneado","Un cordero bien asado","Un guisado de lentejas"],"correctAnswer":3,"verse":"Génesis 25:34","explanation":"Entonces Jacob dio a Esaú pan y del guisado de las lentejas; y él comió y bebió."},
+  {"id":"e70","level":"EASY","type":"MULTIPLE_CHOICE","category":"Patriarcas","question":"¿Qué vio Jacob en su famoso sueño en Betel mientras dormía con una piedra por cabecera?","options":["Un carro dorado con llamas","Un árbol inmenso con frutos","Una escalera hasta el cielo","Un río cristalino fluyendo"],"correctAnswer":2,"verse":"Génesis 28:12","explanation":"Y soñó: y he aquí una escalera que estaba apoyada en tierra, y su extremo tocaba en el cielo."},
+  {"id":"e71","level":"EASY","type":"MULTIPLE_CHOICE","category":"José en Egipto","question":"¿Qué significado tenían las 7 vacas gordas y las 7 vacas flacas en el sueño de Faraón interpretado por José?","options":["7 meses de sol y 7 de lluvia","7 años fértiles y 7 de hambre","7 guerras y 7 victorias","7 reyes y 7 dinastías"],"correctAnswer":1,"verse":"Génesis 41:29-30","explanation":"He aquí vienen siete años de gran abundancia... y tras ellos seguirán siete años de hambre."},
+  {"id":"e72","level":"EASY","type":"MULTIPLE_CHOICE","category":"Éxodo","question":"¿Quién era el hermano mayor de Moisés que fue nombrado el primer Sumo Sacerdote de Israel?","options":["Aarón","Caleb","Josué","Hur"],"correctAnswer":0,"verse":"Éxodo 28:1","explanation":"Haz llegar delante de ti a Aarón tu hermano... para que sean mis sacerdotes."},
+  {"id":"e73","level":"EASY","type":"MULTIPLE_CHOICE","category":"Éxodo","question":"¿Cómo guiaba Dios al pueblo de Israel en el desierto durante el día y durante la noche?","options":["Estrellas fugaces en el cielo","Ángeles visibles cada tarde","Trompetas audibles al alba","Columna de nube y de fuego"],"correctAnswer":3,"verse":"Éxodo 13:21","explanation":"Jehová iba delante de ellos de día en una columna de nube... y de noche en una columna de fuego."},
+  {"id":"e74","level":"EASY","type":"MULTIPLE_CHOICE","category":"Éxodo","question":"¿Qué animal construyó el pueblo de Israel en oro para adorarlo mientras Moisés estaba en el monte Sinaí?","options":["Un águila de bronce","Una serpiente alada","Un becerro de oro","Un león de oro"],"correctAnswer":2,"verse":"Éxodo 32:4","explanation":"Y él los tomó de las manos de ellos, y le dio forma con buril, e hizo de ello un becerro de fundición."},
+  {"id":"e75","level":"EASY","type":"MULTIPLE_CHOICE","category":"Números","question":"¿Qué animal habló con voz humana al profeta Balaam cuando vio al Ángel de Jehová con la espada desenvainada?","options":["Una oveja","Su asna","Un camello","Un perro pastor"],"correctAnswer":1,"verse":"Números 22:28","explanation":"Entonces Jehová abrió la boca al asna, la cual dijo a Balaam: ¿Qué te he hecho, que me has azotado estas tres veces?"},
+  {"id":"e76","level":"EASY","type":"MULTIPLE_CHOICE","category":"Josué","question":"¿Quién fue el sucesor de Moisés que lideró al pueblo de Israel para cruzar el Jordán y conquistar la Tierra Prometida?","options":["Caleb","Gedeón","Sansón","Josué"],"correctAnswer":3,"verse":"Josué 1:1-2","explanation":"Jehová habló a Josué hijo de Nun: \"Mi siervo Moisés ha muerto; ahora, pues, levántate y pasa este Jordán.\""},
+  {"id":"e77","level":"EASY","type":"MULTIPLE_CHOICE","category":"Josué","question":"¿Qué mujer de Jericó escondió a los espías de Israel y puso un cordón de grana en su ventana para salvar a su familia?","options":["Rahab","Jael","Dalila","Débora"],"correctAnswer":0,"verse":"Josué 2:18; 6:25","explanation":"Rahab ató el cordón de grana a la ventana y ella y su familia fueron salvadas."},
+  {"id":"e78","level":"EASY","type":"MULTIPLE_CHOICE","category":"Jueces","question":"¿Con cuántos hombres escogidos venció Gedeón al inmenso ejército de los madianitas usando cántaros, teas y trompetas?","options":["10,000 hombres","300 hombres","1,000 hombres","30,000 hombres"],"correctAnswer":1,"verse":"Jueces 7:7","explanation":"Jehová dijo a Gedeón: Con estos trescientos hombres que lamieron el agua os salvaré."},
+  {"id":"e79","level":"EASY","type":"MULTIPLE_CHOICE","category":"Jueces","question":"¿Qué mujer engañó a Sansón hasta descubrir de dónde procedía su gran fuerza?","options":["Jezabel","Atalía","Mical","Dalila"],"correctAnswer":3,"verse":"Jueces 16:4-19","explanation":"Dalila rogó a Sansón hasta que él le abrió todo su corazón y reveló el voto de su cabello."},
+  {"id":"e80","level":"EASY","type":"MULTIPLE_CHOICE","category":"1 Samuel","question":"¿Cómo se llamaba la piadosa madre de Samuel que oró llorando en el tabernáculo de Silo pidiendo un hijo?","options":["Ana","Elisabet","Marta","Penina"],"correctAnswer":0,"verse":"1 Samuel 1:10-20","explanation":"Ana oró con amargura de alma y Dios se acordó de ella y dio a luz a Samuel."},
+  {"id":"e81","level":"EASY","type":"MULTIPLE_CHOICE","category":"1 Samuel","question":"¿Qué instrumento musical tocaba el joven David para calmar al rey Saúl cuando lo atormentaba un espíritu malo?","options":["El pandero","La flauta","El arpa","La trompeta"],"correctAnswer":2,"verse":"1 Samuel 16:23","explanation":"David tomaba el arpa y tocaba con su mano; y Saúl tenía alivio y estaba mejor."},
+  {"id":"e82","level":"EASY","type":"MULTIPLE_CHOICE","category":"1 Samuel","question":"¿Quién fue el hijo del rey Saúl y el mejor amigo entrañable de David?","options":["Jonatán","Adonías","Amnón","Absalón"],"correctAnswer":0,"verse":"1 Samuel 18:1","explanation":"El alma de Jonatán quedó ligada con la de David, y lo amó Jonatán como a sí mismo."},
+  {"id":"e83","level":"EASY","type":"MULTIPLE_CHOICE","category":"2 Samuel","question":"¿Qué ciudad conquistó el rey David y la convirtió en la capital de su reino, llamada \"la ciudad de David\"?","options":["Samaria","Jericó","Hebrón","Jerusalén"],"correctAnswer":3,"verse":"2 Samuel 5:7-9","explanation":"David tomó la fortaleza de Sion, la cual es la ciudad de David."},
+  {"id":"e84","level":"EASY","type":"MULTIPLE_CHOICE","category":"1 Reyes","question":"¿Qué reina extranjera viajó desde los confines de la tierra para comprobar la fama y sabiduría de Salomón?","options":["La reina de Tiro","La reina de Egipto","La reina de Saba","La reina de Babilonia"],"correctAnswer":2,"verse":"1 Reyes 10:1-2","explanation":"Oyendo la reina de Sabá la fama que Salomón había alcanzado... vino a probarle con preguntas difíciles."},
+  {"id":"e85","level":"EASY","type":"MULTIPLE_CHOICE","category":"1 Reyes","question":"En el monte Carmelo, ¿contra los profetas de qué dios falso compitió el profeta Elías?","options":["Asera","Baal","Dagón","Moloc"],"correctAnswer":1,"verse":"1 Reyes 18:21-22","explanation":"Elías desafió a los 450 profetas de Baal; y el Dios que respondió con fuego del cielo fue Jehová."},
+  {"id":"e86","level":"EASY","type":"MULTIPLE_CHOICE","category":"2 Reyes","question":"¿Qué general sirio fue sanado de lepra al lavarse siete veces en las aguas del río Jordán siguiendo el consejo de Eliseo?","options":["Hazael","Ben-hadad","Naamán","Senaquerib"],"correctAnswer":2,"verse":"2 Reyes 5:14","explanation":"Naamán descendió y se zambulló siete veces en el Jordán... y su carne se volvió como la de un niño."},
+  {"id":"e87","level":"EASY","type":"FILL_VERSE","category":"Salmos","question":"Completa el Salmo 119:105: \"Lámpara es a mis pies tu palabra, y _________ a mi camino.\"","options":["antorcha","lumbrera","estrella","guía"],"correctAnswer":1,"verse":"Salmos 119:105","explanation":"Salmos 119:105: \"Lámpara es a mis pies tu palabra, y lumbrera a mi camino.\""},
+  {"id":"e88","level":"EASY","type":"FILL_VERSE","category":"Salmos","question":"Completa el Salmo 46:1: \"Dios es nuestro amparo y fortaleza, nuestro pronto auxilio en las _________\"","options":["noches","alegrías","batallas","tribulaciones"],"correctAnswer":3,"verse":"Salmos 46:1","explanation":"Salmos 46:1: \"Dios es nuestro amparo y fortaleza, nuestro pronto auxilio en las tribulaciones.\""},
+  {"id":"e89","level":"EASY","type":"FILL_VERSE","category":"Proverbios","question":"Completa Proverbios 1:7: \"El principio de la sabiduría es el _________ de Jehová\"","options":["temor","amor","poder","nombre"],"correctAnswer":0,"verse":"Proverbios 1:7","explanation":"Proverbios 1:7: \"El principio de la sabiduría es el temor de Jehová; los insensatos desprecian la sabiduría y la enseñanza.\""},
+  {"id":"e90","level":"EASY","type":"FILL_VERSE","category":"Proverbios","question":"Completa Proverbios 3:5: \"Fíate de Jehová de todo tu corazón, y no te apoyes en tu propia _________\"","options":["riqueza","voluntad","fuerza","prudencia"],"correctAnswer":3,"verse":"Proverbios 3:5","explanation":"Proverbios 3:5: \"Fíate de Jehová de todo tu corazón, y no te apoyes en tu propia prudencia.\""},
+  {"id":"e91","level":"EASY","type":"FILL_VERSE","category":"Isaías","question":"Completa Isaías 40:31: \"Pero los que esperan a Jehová tendrán nuevas fuerzas; levantarán alas como las _________\"","options":["golondrinas","águilas","garzas","palomas"],"correctAnswer":1,"verse":"Isaías 40:31","explanation":"Isaías 40:31: \"...levantarán alas como las águilas; correrán, y no se cansarán; caminarán, y no se fatigarán.\""},
+  {"id":"e92","level":"EASY","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿Cuántos evangelios componen el inicio del Nuevo Testamento en la Biblia?","options":["12 evangelios","7 evangelios","4 evangelios","3 evangelios"],"correctAnswer":2,"verse":"Nuevo Testamento","explanation":"Los cuatro evangelios canónicos son Mateo, Marcos, Lucas y Juan."},
+  {"id":"e93","level":"EASY","type":"MULTIPLE_CHOICE","category":"Jesús en el Templo","question":"¿A qué edad se quedó el niño Jesús en el Templo de Jerusalén dialogando con los doctores de la ley?","options":["A los 12 años","A los 30 años","A los 7 años","A los 15 años"],"correctAnswer":0,"verse":"Lucas 2:42-46","explanation":"Cuando tuvo doce años, subieron a Jerusalén conforme a la costumbre de la fiesta."},
+  {"id":"e94","level":"EASY","type":"MULTIPLE_CHOICE","category":"Ministerio de Jesús","question":"¿En qué lugar enseñó Jesús las Bienaventuranzas (\"Bienaventurados los pobres en espíritu...\")?","options":["En el pozo de Jacob","En el atrio del Templo","En el huerto de Getsemaní","En un monte de Galilea"],"correctAnswer":3,"verse":"Mateo 5:1-12","explanation":"Viendo la multitud, subió al monte; y sentándose... abrió su boca y les enseñaba diciendo: Bienaventurados..."},
+  {"id":"e95","level":"EASY","type":"FILL_VERSE","category":"La Oración del Padre Nuestro","question":"Completa la oración que Jesús enseñó: \"Padre nuestro que estás en los cielos, santificado sea tu _________\"","options":["templo","nombre","reino","trono"],"correctAnswer":1,"verse":"Mateo 6:9","explanation":"Mateo 6:9: \"Padre nuestro que estás en los cielos, santificado sea tu nombre.\""},
+  {"id":"e96","level":"EASY","type":"MULTIPLE_CHOICE","category":"Milagros de Jesús","question":"¿Qué discípulo intentó caminar sobre las aguas hacia Jesús pero comenzó a hundirse por dudar?","options":["Tomás","Juan","Pedro","Andrés"],"correctAnswer":2,"verse":"Mateo 14:28-31","explanation":"Pedro descendió de la barca y anduvo sobre las aguas para ir a Jesús. Pero al ver el viento fuerte, tuvo miedo y comenzó a hundirse."},
+  {"id":"e97","level":"EASY","type":"MULTIPLE_CHOICE","category":"Milagros de Jesús","question":"¿Qué hizo Jesús cuando se desató una gran tempestad en el mar mientras dormía en la barca?","options":["Reprendió al viento y al mar","Saltó de la barca al mar","Mandó remar hacia la orilla","Pidió ayuda a otros barcos"],"correctAnswer":0,"verse":"Marcos 4:39","explanation":"Y levantándose, reprendió al viento, y dijo al mar: Calla, enmudece. Y cesó el viento, y se hizo grande bonanza."},
+  {"id":"e98","level":"EASY","type":"MULTIPLE_CHOICE","category":"Milagros de Jesús","question":"¿Cómo sanó una mujer que padecía de flujo de sangre desde hacía 12 años?","options":["Tomando medicina herbal","Tocando con fe el borde del manto de Jesús","Lavándose en el estanque de Siloé","Ofreciendo dos monedas de plata"],"correctAnswer":1,"verse":"Marcos 5:27-29","explanation":"Vino por detrás entre la multitud, y tocó su manto... y enseguida la fuente de su sangre se secó."},
+  {"id":"e99","level":"EASY","type":"MULTIPLE_CHOICE","category":"Milagros de Jesús","question":"¿A qué niña de 12 años, hija de un principal de la sinagoga, resucitó Jesús diciendo: \"Talita cumi\"?","options":["A la hija de Marta","A la hermana de Lázaro","A la hija de Jairo","A la hija de la viuda de Naín"],"correctAnswer":2,"verse":"Marcos 5:22; 41-42","explanation":"Tomando la mano de la niña, le dijo: Talita cumi; que traducido es: Niña, a ti te digo, levántate."},
+  {"id":"e100","level":"EASY","type":"MULTIPLE_CHOICE","category":"Encuentros con Jesús","question":"¿Junto a qué pozo le pidió Jesús agua a una mujer samaritana y le ofreció \"agua viva\"?","options":["Pozo de Jacob en Sicar","Pozo de Beerseba","Pozo de Abraham","Pozo de Betsaida"],"correctAnswer":0,"verse":"Juan 4:5-14","explanation":"Vino una mujer de Samaria a sacar agua; y Jesús le dijo: Dame de beber... el que bebiere del agua que yo le daré, no tendrá sed jamás."},
+  {"id":"e101","level":"EASY","type":"MULTIPLE_CHOICE","category":"Encuentros con Jesús","question":"¿Qué maestro fariseo fue a hablar con Jesús de noche y escuchó que debía \"nacer de nuevo\"?","options":["Anás","Gamaliel","Caifás","Nicodemo"],"correctAnswer":3,"verse":"Juan 3:1-3","explanation":"Había un hombre de los fariseos que se llamaba Nicodemo... Jesús le dijo: De cierto te digo, que el que no naciere de nuevo, no puede ver el reino de Dios."},
+  {"id":"e102","level":"EASY","type":"FILL_VERSE","category":"El Versículo de Oro","question":"Completa Juan 3:16: \"Porque de tal manera amó Dios al mundo, que ha dado a su Hijo unigénito, para que todo aquel que en él cree, no se pierda, mas tenga _________\"","options":["paz momentánea","fama y honra","vida eterna","riquezas terrenales"],"correctAnswer":2,"verse":"Juan 3:16","explanation":"Juan 3:16: \"...para que todo aquel que en él cree, no se pierda, mas tenga vida eterna.\""},
+  {"id":"e103","level":"EASY","type":"FILL_VERSE","category":"Jesús el Buen Pastor","question":"Completa Juan 10:11: \"Yo soy el buen pastor; el buen pastor su _________ da por las ovejas.\"","options":["oro","vida","casa","vara"],"correctAnswer":1,"verse":"Juan 10:11","explanation":"Juan 10:11: \"Yo soy el buen pastor; el buen pastor su vida da por las ovejas.\""},
+  {"id":"e104","level":"EASY","type":"FILL_VERSE","category":"Jesús el Camino","question":"Completa Juan 14:6: \"Jesús le dijo: Yo soy el camino, y la verdad, y la vida; nadie viene al Padre, sino por _________\"","options":["mí","los profetas","las buenas obras","la ley de Moisés"],"correctAnswer":0,"verse":"Juan 14:6","explanation":"Juan 14:6: \"Jesús le dijo: Yo soy el camino, y la verdad, y la vida; nadie viene al Padre, sino por mí.\""},
+  {"id":"e105","level":"EASY","type":"MULTIPLE_CHOICE","category":"Entrada Triunfal","question":"¿Sobre qué animal montó Jesús al entrar humildemente a Jerusalén mientras la gente aclamaba \"¡Hosanna!\"?","options":["Un camello de gala","Un caballo blanco de guerra","Un carruaje de bronce","Un pollino de asna"],"correctAnswer":3,"verse":"Mateo 21:5-9","explanation":"He aquí, tu Rey viene a ti, manso, y sentado sobre una asna, sobre un pollino hijo de animal de carga."},
+  {"id":"e106","level":"EASY","type":"MULTIPLE_CHOICE","category":"El Calvario","question":"¿Qué le pusieron los soldados romanos a Jesús sobre la cabeza como burla a su realeza?","options":["Una corona de espinas","Un velo de luto","Una corona de oro","Un gorro de púrpura"],"correctAnswer":0,"verse":"Mateo 27:29","explanation":"Pusieron sobre su cabeza una corona tejida de espinas, y una caña en su mano derecha."},
+  {"id":"e107","level":"EASY","type":"MULTIPLE_CHOICE","category":"La Cruz","question":"¿A quién perdonó Jesús en la cruz cuando le dijo: \"De cierto te digo que hoy estarás conmigo en el paraíso\"?","options":["Al centurión romano","A José de Arimatea","Al ladrón arrepentido","A Poncio Pilato"],"correctAnswer":2,"verse":"Lucas 23:42-43","explanation":"El malhechor arrepentido le dijo: Acuérdate de mí cuando vengas en tu reino. Y Jesús le dio la promesa de salvación."},
+  {"id":"e108","level":"EASY","type":"MULTIPLE_CHOICE","category":"La Tumba Vacía","question":"¿Quién fue la primera mujer que fue de madrugada al sepulcro y vio que la piedra había sido quitada?","options":["Marta de Betania","María Magdalena","Salomé","Elisabet"],"correctAnswer":1,"verse":"Juan 20:1","explanation":"El primer día de la semana, María Magdalena fue de mañana, siendo aún oscuro, al sepulcro; y vio quitada la piedra."},
+  {"id":"e109","level":"EASY","type":"MULTIPLE_CHOICE","category":"Apariciones de Jesús","question":"¿Qué apóstol dijo: \"Si no viere en sus manos la señal de los clavos... no creeré\", hasta que vio a Jesús resucitado?","options":["Judas Tadeo","Felipe","Bartolomé","Tomás"],"correctAnswer":3,"verse":"Juan 20:25-28","explanation":"Tomás respondió y le dijo: ¡Señor mío, y Dios mío! Jesús le dijo: Porque me has visto, Tomás, creíste; bienaventurados los que no vieron, y creyeron."},
+  {"id":"e110","level":"EASY","type":"MULTIPLE_CHOICE","category":"La Ascensión","question":"¿Hacia dónde ascendió Jesús a la vista de sus discípulos mientras una nube le ocultó de sus ojos?","options":["Hacia el cielo","Hacia el desierto","Hacia las profundidades del mar","Hacia el templo"],"correctAnswer":0,"verse":"Hechos 1:9-11","explanation":"Fue alzado, y le recibió una nube que le ocultó de sus ojos. Y dos varones con vestiduras blancas dijeron: Este mismo Jesús... vendrá otra vez."},
+  {"id":"e111","level":"EASY","type":"MULTIPLE_CHOICE","category":"Hechos de los Apóstoles","question":"En la puerta de la Hermosa del templo, ¿en el nombre de quién levantaron Pedro y Juan a un hombre cojo de nacimiento?","options":["En el nombre de Moisés","En el nombre de Jesús","En el nombre de David","En el nombre de Elías"],"correctAnswer":1,"verse":"Hechos 3:6","explanation":"Pedro dijo: No tengo plata ni oro, pero lo que tengo te doy; en el nombre de Jesucristo de Nazaret, levántate y anda."},
+  {"id":"e112","level":"EASY","type":"FILL_VERSE","category":"Fruto del Espíritu","question":"Completa Gálatas 5:22: \"Mas el fruto del Espíritu es amor, gozo, paz, paciencia, benignidad, bondad, _________\"","options":["riqueza","fama","fe","orgullo"],"correctAnswer":2,"verse":"Gálatas 5:22-23","explanation":"Gálatas 5:22: \"Mas el fruto del Espíritu es amor, gozo, paz, paciencia, benignidad, bondad, fe, mansedumbre, templanza.\""},
+  {"id":"e113","level":"EASY","type":"FILL_VERSE","category":"Victoria en Cristo","question":"Completa Filipenses 4:13: \"Todo lo puedo en Cristo que me _________\"","options":["observa","juzga","exige","fortalece"],"correctAnswer":3,"verse":"Filipenses 4:13","explanation":"Filipenses 4:13: \"Todo lo puedo en Cristo que me fortalece.\""},
+  {"id":"e114","level":"EASY","type":"MULTIPLE_CHOICE","category":"Génesis","question":"¿De qué material formó Dios al primer hombre, Adán?","options":["De una roca del Edén","Del polvo de la tierra","De oro refinado","De madera de cedro"],"correctAnswer":1,"verse":"Génesis 2:7","explanation":"Entonces Jehová Dios formó al hombre del polvo de la tierra, y sopló en su nariz aliento de vida."},
+  {"id":"e115","level":"EASY","type":"MULTIPLE_CHOICE","category":"Génesis","question":"¿De qué parte de Adán creó Dios a la primera mujer, Eva?","options":["De su mano derecha","De un cabello suyo","De una de sus costillas","Del barro del río"],"correctAnswer":2,"verse":"Génesis 2:21-22","explanation":"De la costilla que Jehová Dios tomó del hombre, hizo una mujer, y la trajo al hombre."},
+  {"id":"e116","level":"EASY","type":"MULTIPLE_CHOICE","category":"Génesis","question":"¿Cuántas personas en total se salvaron en el arca de Noé?","options":["8 personas","70 personas","12 personas","4 personas"],"correctAnswer":0,"verse":"1 Pedro 3:20 / Génesis 7:13","explanation":"En los días de Noé... pocas personas, es decir, ocho, fueron salvadas por agua."},
+  {"id":"e117","level":"EASY","type":"MULTIPLE_CHOICE","category":"Patriarcas","question":"¿Qué animal proveyó Dios para que Abraham sacrificara en el monte Moriah en lugar de su hijo Isaac?","options":["Una pareja de tórtolas","Un becerro de un año","Un buey blanco sin mancha","Un carnero en un zarzal"],"correctAnswer":3,"verse":"Génesis 22:13","explanation":"Alzando Abraham sus ojos, miró, y he aquí a sus espaldas un carnero trabado en un zarzal por sus cuernos."},
+  {"id":"e118","level":"EASY","type":"MULTIPLE_CHOICE","category":"Patriarcas","question":"¿Cuántos hijos varones tuvo Jacob, que dieron origen a las 12 tribus de Israel?","options":["7 hijos","12 hijos","10 hijos","14 hijos"],"correctAnswer":1,"verse":"Génesis 35:22","explanation":"Los hijos de Jacob fueron doce, cabezas de las doce tribus de Israel."},
+  {"id":"e119","level":"EASY","type":"MULTIPLE_CHOICE","category":"Patriarcas","question":"¿Cuál era el hijo menor de Jacob, nacido de su amada esposa Raquel?","options":["Rubén","Dan","Benjamín","Judá"],"correctAnswer":2,"verse":"Génesis 35:18","explanation":"Raquel dio a luz a Benjamín, el hijo menor de Jacob."},
+  {"id":"e120","level":"EASY","type":"MULTIPLE_CHOICE","category":"Éxodo","question":"¿Qué le mandó Dios hacer a Moisés con su vara frente a la roca en Horeb para que saliera agua para el pueblo?","options":["Echar agua sobre ella","Enterrar la vara","Quemar la roca","Golpear la roca"],"correctAnswer":3,"verse":"Éxodo 17:6","explanation":"Golpearás la peña, y saldrán de ella aguas, y beberá el pueblo."},
+  {"id":"e121","level":"EASY","type":"MULTIPLE_CHOICE","category":"El Tabernáculo","question":"¿Qué objeto sagrado con querubines de oro en su cubierta guardaba las tablas de la Ley en el Lugar Santísimo?","options":["El Arca del Pacto","La Mesa de los Panes","El Candelabro de Oro","El Altar del Incienso"],"correctAnswer":0,"verse":"Éxodo 25:10-22","explanation":"Pondrás el propiciatorio encima del arca, y en el arca pondrás el testimonio que yo te daré."},
+  {"id":"e122","level":"EASY","type":"MULTIPLE_CHOICE","category":"Los Espías","question":"De los 12 espías que Moisés envió a explorar Canaán, ¿cuáles dos trajeron un informe de fe animando al pueblo a confiar en Dios?","options":["Nadab y Abiú","Josué y Caleb","Core y Datán","Aarón y Hur"],"correctAnswer":1,"verse":"Números 14:6-9","explanation":"Josué hijo de Nun y Caleb hijo de Jefone dijeron: \"Si Jehová se agradare de nosotros, él nos llevará a esta tierra.\""},
+  {"id":"e123","level":"EASY","type":"MULTIPLE_CHOICE","category":"Jueces","question":"¿Quién fue la única mujer que fue jueza y profetisa en Israel, que se sentaba bajo una palmera a juzgar al pueblo?","options":["Ester","Ana","Rut","Débora"],"correctAnswer":3,"verse":"Jueces 4:4-5","explanation":"Gobernaba en aquel tiempo a Israel una mujer, Débora, profetisa... y se sentaba bajo la palmera de Débora."},
+  {"id":"e124","level":"EASY","type":"MULTIPLE_CHOICE","category":"Jueces","question":"¿Qué señal pidió Gedeón a Dios usando un vellón de lana en la era para confirmar su llamado?","options":["Fuego descendiendo sobre la lana","Lluvia intensa sobre toda la era","Rocío en el vellón y suelo seco","El vellón teñido de color púrpura"],"correctAnswer":2,"verse":"Jueces 6:36-40","explanation":"Gedeón pidió la señal del rocío sobre el vellón de lana para confirmar que Dios salvaría a Israel."},
+  {"id":"e125","level":"EASY","type":"MULTIPLE_CHOICE","category":"Rut","question":"¿Quién fue el pariente redentor rico en Belén que se casó con Rut la moabita?","options":["Booz","Mahlón","Quilión","Elimelec"],"correctAnswer":0,"verse":"Rut 4:9-13","explanation":"Booz tomó a Rut y ella fue su mujer, y dio a luz a Obed, abuelo del rey David."},
+  {"id":"e126","level":"EASY","type":"MULTIPLE_CHOICE","category":"Rey David","question":"¿Cuántas piedras tomó David del arroyo para enfrentar a Goliat?","options":["1 piedra","5 piedras","7 piedras","3 piedras"],"correctAnswer":1,"verse":"1 Samuel 17:40","explanation":"Tomó su cayado en su mano, y escogió cinco piedras lisas del arroyo, y las puso en el saco pastoril."},
+  {"id":"e127","level":"EASY","type":"MULTIPLE_CHOICE","category":"Rey David","question":"¿Cómo demostró David que no quería hacerle daño al rey Saúl cuando lo encontró durmiendo en una cueva en En-gadi?","options":["Le cortó la orilla del manto","Despertó a sus guardias","Le quitó su corona de oro","Le dejó una lanza en el suelo"],"correctAnswer":0,"verse":"1 Samuel 24:4","explanation":"Se levantó David, y calladamente cortó la orilla del manto de Saúl, perdonándole la vida."},
+  {"id":"e128","level":"EASY","type":"MULTIPLE_CHOICE","category":"2 Samuel","question":"¿A qué hijo lisiado de su amigo Jonatán acogió David en su mesa real de por vida?","options":["Quilión","Amnón","Mefiboset","Is-boset"],"correctAnswer":2,"verse":"2 Samuel 9:6-7","explanation":"David dijo a Mefiboset: No tengas temor, porque yo a la verdad haré contigo misericordia... y tú comerás siempre a mi mesa."},
+  {"id":"e129","level":"EASY","type":"MULTIPLE_CHOICE","category":"Profeta Eliseo","question":"¿Qué herramienta metálica flotó milagrosamente en el río Jordán cuando Eliseo arrojó un leño al agua?","options":["Una espada de bronce","Un yelmo de combate","Una punta de lanza","La cabeza de un hacha"],"correctAnswer":3,"verse":"2 Reyes 6:5-7","explanation":"Cortó un palo, y lo echó allí; e hizo flotar el hierro del hacha."},
+  {"id":"e130","level":"EASY","type":"TRUE_FALSE","category":"Libro de Job","question":"¿Verdadero o Falso? A pesar de perder sus riquezas, sus hijos y su salud, Job no pecó ni atribuyó a Dios despropósito alguno.","options":["Verdadero","Falso"],"correctAnswer":0,"verse":"Job 1:21-22","explanation":"\"Jehová dio, y Jehová quitó; sea el nombre de Jehová bendito. En todo esto no pecó Job, ni atribuyó a Dios despropósito alguno.\""},
+  {"id":"e131","level":"EASY","type":"FILL_VERSE","category":"Salmos","question":"Completa el Salmo 100:3: \"Reconoced que Jehová es Dios; él nos hizo, y no nosotros a nosotros mismos; pueblo suyo somos, y _________ de su prado.\"","options":["ovejas","leones","flores","guerreros"],"correctAnswer":0,"verse":"Salmos 100:3","explanation":"Salmos 100:3: \"...pueblo suyo somos, y ovejas de su prado.\""},
+  {"id":"e132","level":"EASY","type":"FILL_VERSE","category":"Salmos","question":"Completa el Salmo 91:1: \"El que habita al abrigo del Altísimo morará bajo la _________ del Omnipotente.\"","options":["mano","espada","luz","sombra"],"correctAnswer":3,"verse":"Salmos 91:1","explanation":"Salmos 91:1: \"El que habita al abrigo del Altísimo morará bajo la sombra del Omnipotente.\""},
+  {"id":"e133","level":"EASY","type":"MULTIPLE_CHOICE","category":"Proverbios","question":"Según Proverbios 6:6, ¿a qué pequeño insecto laborioso se le manda ir al perezoso para aprender sabiduría?","options":["A la araña","A la hormiga","A la mariposa","A la abeja"],"correctAnswer":1,"verse":"Proverbios 6:6","explanation":"Ve a la hormiga, oh perezoso, mira sus caminos, y sé sabio."},
+  {"id":"e134","level":"EASY","type":"FILL_VERSE","category":"Proverbios","question":"Completa Proverbios 15:1: \"La blanda respuesta quita la ira; mas la palabra áspera hace subir el _________\"","options":["miedo","llanto","furor","orgullo"],"correctAnswer":2,"verse":"Proverbios 15:1","explanation":"Proverbios 15:1: \"La blanda respuesta quita la ira; mas la palabra áspera hace subir el furor.\""},
+  {"id":"e135","level":"EASY","type":"FILL_VERSE","category":"Eclesiastés","question":"Completa Eclesiastés 3:1: \"Todo tiene su tiempo, y todo lo que se quiere debajo del cielo tiene su _________\"","options":["fin","hora","precio","límite"],"correctAnswer":1,"verse":"Eclesiastés 3:1","explanation":"Eclesiastés 3:1: \"Todo tiene su tiempo, y todo lo que se quiere debajo del cielo tiene su hora.\""},
+  {"id":"e136","level":"EASY","type":"MULTIPLE_CHOICE","category":"Profetas","question":"¿Qué profeta es conocido como \"el profeta llorón\" por su profundo dolor por el pecado y destrucción de Jerusalén?","options":["Ezequiel","Miqueas","Jeremías","Isaías"],"correctAnswer":2,"verse":"Jeremías 9:1 / Lamentaciones","explanation":"Jeremías lamentó con lágrimas la rebelión de su pueblo y escribió el libro de Lamentaciones."},
+  {"id":"e137","level":"EASY","type":"MULTIPLE_CHOICE","category":"Profeta Ezequiel","question":"¿Qué vio cobrar vida el profeta Ezequiel en un gran valle cuando sopló el Espíritu de Dios?","options":["Un ejército de huesos secos","Una ciudad de piedras rotas","Un jardín de olivos secos","Un rebaño de ovejas muertas"],"correctAnswer":0,"verse":"Ezequiel 37:1-10","explanation":"Y profetizó... y entró espíritu en ellos, y vivieron, y estuvieron sobre sus pies, un ejército grande en extremo."},
+  {"id":"e138","level":"EASY","type":"MULTIPLE_CHOICE","category":"Profeta Daniel","question":"¿Qué dieta sencilla pidieron Daniel y sus tres amigos en Babilonia para no contaminarse con la comida del rey?","options":["Uvas y pan ácimo","Miel y aceite","Cordero y leche","Legumbres y agua"],"correctAnswer":3,"verse":"Daniel 1:12-15","explanation":"Pruébanos por diez días dando legumbres a comer y agua a beber; y sus rostros se veían mejores que los demás."},
+  {"id":"e139","level":"EASY","type":"MULTIPLE_CHOICE","category":"Profeta Jonás","question":"¿A qué gran ciudad enemiga envió Dios al profeta Jonás a predicar el mensaje de arrepentimiento?","options":["Babilonia","Tiro","Nínive","Roma"],"correctAnswer":2,"verse":"Jonás 1:2; 3:2-5","explanation":"Levántate y ve a Nínive, aquella gran ciudad, y proclama en ella el mensaje que yo te diré."},
+  {"id":"e140","level":"EASY","type":"MULTIPLE_CHOICE","category":"Evangelio de Mateo","question":"¿Qué profesión tenía Mateo (Leví) antes de dejarlo todo y seguir a Jesús?","options":["Pescador de redes","Cobrador de impuestos","Carpintero de Nazaret","Médico de la región"],"correctAnswer":1,"verse":"Mateo 9:9","explanation":"Vio Jesús a un hombre llamado Mateo, que estaba sentado al banco de los tributos públicos, y le dijo: Sígueme."},
+  {"id":"e141","level":"EASY","type":"MULTIPLE_CHOICE","category":"Evangelio de Lucas","question":"¿Qué profesión tenía Lucas, el autor del tercer Evangelio y del libro de Hechos de los Apóstoles?","options":["Pescador","Centurión","Escriba fariseo","Médico amado"],"correctAnswer":3,"verse":"Colosenses 4:14","explanation":"Pablo lo describe en Colosenses 4:14: \"Os saluda Lucas el médico amado.\""},
+  {"id":"e142","level":"EASY","type":"MULTIPLE_CHOICE","category":"Nacimiento de Jesús","question":"¿A quiénes se les aparecieron los ángeles en el campo en la noche cantando: \"¡Gloria a Dios en las alturas y en la tierra paz!\"?","options":["A los pastores que velaban sus rebaños","A los reyes del palacio","A los pescadores en el lago","A los sacerdotes en el templo"],"correctAnswer":0,"verse":"Lucas 2:8-14","explanation":"Había pastores en la misma región velando sus rebaños y se les presentó un ángel del Señor con buenas nuevas de gran gozo."},
+  {"id":"e143","level":"EASY","type":"FILL_VERSE","category":"Ministerio de Jesús","question":"Completa Mateo 5:14: \"Vosotros sois la _________ del mundo; una ciudad asentada sobre un monte no se puede esconder.\"","options":["fuerza","voz","sal","luz"],"correctAnswer":3,"verse":"Mateo 5:14","explanation":"Mateo 5:14: \"Vosotros sois la luz del mundo; una ciudad asentada sobre un monte no se puede esconder.\""},
+  {"id":"e144","level":"EASY","type":"FILL_VERSE","category":"Ministerio de Jesús","question":"Completa Mateo 5:13: \"Vosotros sois la _________ de la tierra; pero si pierde su sabor, ¿con qué será salada?\"","options":["agua","semilla","sal","luz"],"correctAnswer":2,"verse":"Mateo 5:13","explanation":"Mateo 5:13: \"Vosotros sois la sal de la tierra.\""},
+  {"id":"e145","level":"EASY","type":"MULTIPLE_CHOICE","category":"Milagros de Jesús","question":"¿Qué mendigo ciego clamaba junto al camino de Jericó: \"¡Jesús, Hijo de David, ten misericordia de mí!\" hasta recibir la vista?","options":["Simón","Bartimeo","Zaqueo","Lázaro"],"correctAnswer":1,"verse":"Marcos 10:46-52","explanation":"Bartimeo el ciego... comenzó a dar voces y a decir: ¡Jesús, Hijo de David, ten misericordia de mí! Y recobró la vista."},
+  {"id":"e146","level":"EASY","type":"MULTIPLE_CHOICE","category":"Milagros de Jesús","question":"¿A cuántos hombres leprosos limpió Jesús de los cuales solo uno (un samaritano) regresó a darle gracias?","options":["10 leprosos","3 leprosos","12 leprosos","7 leprosos"],"correctAnswer":0,"verse":"Lucas 17:12-17","explanation":"Jesús dijo: ¿No son diez los que fueron limpiados? Y los nueve, ¿dónde están? ¿No hubo quien volviese a dar gloria a Dios sino este extranjero?"},
+  {"id":"e147","level":"EASY","type":"MULTIPLE_CHOICE","category":"Milagros de Jesús","question":"¿Cómo bajaron cuatro amigos a un hombre paralítico hasta los pies de Jesús en Capernaúm?","options":["Por la puerta trasera","Abriendo el techo con cuerdas","Esperando al terminar el sermón","Por la ventana del patio"],"correctAnswer":1,"verse":"Marcos 2:4","explanation":"Descubrieron el techo de donde estaba Jesús, y haciendo una abertura, bajaron el lecho en que yacía el paralítico."},
+  {"id":"e148","level":"EASY","type":"MULTIPLE_CHOICE","category":"Parábolas de Jesús","question":"En la parábola de la oveja perdida, ¿cuántas ovejas dejó el pastor seguras en el redil para ir a buscar a la una que se había extraviado?","options":["100 ovejas","50 ovejas","99 ovejas","9 ovejas"],"correctAnswer":2,"verse":"Lucas 15:4","explanation":"¿Qué hombre de vosotros, teniendo cien ovejas, si pierde una de ellas, no deja las noventa y nueve en el desierto, y va tras la que se perdió?"},
+  {"id":"e149","level":"EASY","type":"MULTIPLE_CHOICE","category":"Parábolas de Jesús","question":"¿Con qué semilla diminuta comparó Jesús el reino de los cielos, diciendo que siendo la más pequeña llega a ser un gran árbol?","options":["Semilla de uva","Semilla de olivo","Semilla de trigo","Semilla de mostaza"],"correctAnswer":3,"verse":"Mateo 13:31-32","explanation":"El reino de los cielos es semejante al grano de mostaza... cuando ha crecido, es la mayor de las hortalizas, y se hace árbol."},
+  {"id":"e150","level":"EASY","type":"MULTIPLE_CHOICE","category":"Parábolas de Jesús","question":"En la parábola de los dos constructores, ¿sobre qué edificó su casa el hombre prudente para que resistiera las lluvias y vientos?","options":["Sobre la roca firme","En la orilla de la playa","Sobre la arena movediza","Sobre la hierba suave"],"correctAnswer":0,"verse":"Mateo 7:24-25","explanation":"Cualquiera que me oye estas palabras, y las hace, le compararé a un hombre prudente, que edificó su casa sobre la roca."},
+  {"id":"e151","level":"EASY","type":"MULTIPLE_CHOICE","category":"La Última Semana","question":"¿Qué hizo Jesús al entrar al Templo de Jerusalén cuando vio que habían hecho de la casa de oración una cueva de ladrones?","options":["Mandó cerrar las puertas del atrio","Volcó las mesas de los mercaderes","Se sentó a debatir con los escribas","Pidió una ofrenda a los fariseos"],"correctAnswer":1,"verse":"Mateo 21:12-13","explanation":"Volcó las mesas de los cambistas... y les dijo: Escrito está: Mi casa, casa de oración será llamada; mas vosotros la habéis hecho cueva de ladrones."},
+  {"id":"e152","level":"EASY","type":"MULTIPLE_CHOICE","category":"La Última Cena","question":"¿Qué acto de suprema humildad y servicio realizó Jesús con una toalla y un lebrillo antes de la cena pascual?","options":["Lavó los pies de sus discípulos","Peinó a sus discípulos","Les ungió la ropa con mirra","Les cocinó un pez"],"correctAnswer":0,"verse":"Juan 13:4-5","explanation":"Puso agua en un lebrillo, y comenzó a lavar los pies de los discípulos, y a enjugarlos con la toalla con que estaba ceñido."},
+  {"id":"e153","level":"EASY","type":"MULTIPLE_CHOICE","category":"El Calvario","question":"¿Qué gobernador romano se lavó las manos diciendo: \"Inocente soy yo de la sangre de este justo\", antes de entregar a Jesús?","options":["Félix","Herodes Antipas","Poncio Pilato","Festo"],"correctAnswer":2,"verse":"Mateo 27:24","explanation":"Viendo Pilato que nada adelantaba... tomó agua y se lavó las manos delante del pueblo, diciendo: Inocente soy yo de la sangre de este justo."},
+  {"id":"e154","level":"EASY","type":"MULTIPLE_CHOICE","category":"La Cruz","question":"¿Qué hombre que venía del campo fue obligado por los soldados romanos a cargar la cruz de Jesús?","options":["José de Arimatea","Saulo de Tarso","Lázaro de Betania","Simón de Cirene"],"correctAnswer":3,"verse":"Mateo 27:32","explanation":"Al salir, hallaron a un hombre de Cirene que se llamaba Simón; a éste obligaron a que llevase la cruz."},
+  {"id":"e155","level":"EASY","type":"MULTIPLE_CHOICE","category":"La Sepultura de Jesús","question":"¿Qué discípulo secreto y miembro noble del concilio pidió el cuerpo de Jesús a Pilato y lo puso en su propio sepulcro nuevo?","options":["Nicodemo el maestro","José de Arimatea","Simón de Cirene","Gamaliel el fariseo"],"correctAnswer":1,"verse":"Mateo 27:57-60","explanation":"José de Arimatea pidió el cuerpo de Jesús... y lo puso en su sepulcro nuevo, que había labrado en la peña."},
+  {"id":"e156","level":"EASY","type":"FILL_VERSE","category":"Resurrección de Jesús","question":"Completa Mateo 28:6, las palabras del ángel en la tumba: \"No está aquí, pues ha _________, como dijo. Venid, ved el lugar donde fue puesto el Señor.\"","options":["viajado","dormido","huido","resucitado"],"correctAnswer":3,"verse":"Mateo 28:6","explanation":"Mateo 28:6: \"No está aquí, pues ha resucitado, como dijo.\""},
+  {"id":"e157","level":"EASY","type":"FILL_VERSE","category":"La Gran Comisión","question":"Completa la promesa final de Jesús en Mateo 28:20: \"Y he aquí yo estoy con vosotros _________ los días, hasta el fin del mundo.\"","options":["algunos de","los mejores","todos","los primeros"],"correctAnswer":2,"verse":"Mateo 28:20","explanation":"Mateo 28:20: \"...y he aquí yo estoy con vosotros todos los días, hasta el fin del mundo. Amén.\""},
+  {"id":"e158","level":"EASY","type":"MULTIPLE_CHOICE","category":"Hechos de los Apóstoles","question":"¿Cómo se llamaba originalmente el creyente de Chipre al que los apóstoles apodaron Bernabé (\"Hijo de consolación\")?","options":["José","Timoteo","Apolos","Silas"],"correctAnswer":0,"verse":"Hechos 4:36","explanation":"José, a quien los apóstoles pusieron por sobrenombre Bernabé (que traducido es, Hijo de consolación)."},
+  {"id":"e159","level":"EASY","type":"MULTIPLE_CHOICE","category":"Hechos de los Apóstoles","question":"¿Quién preguntó con temor a Pablo y Silas tras un terremoto a medianoche: \"Señores, ¿qué debo hacer para ser salvo?\"?","options":["El centurión Julio","El carcelero de Filipos","El centurión Cornelio","El gobernador Sergio Paulo"],"correctAnswer":1,"verse":"Hechos 16:30-31","explanation":"Ellos dijeron: Cree en el Señor Jesucristo, y serás salvo, tú y tu casa."},
+  {"id":"e160","level":"EASY","type":"FILL_VERSE","category":"Epístolas de Pablo","question":"Completa Romanos 12:2: \"No os conforméis a este siglo, sino transformaos por medio de la renovación de vuestro _________\"","options":["vestido","cuerpo","entendimiento","dinero"],"correctAnswer":2,"verse":"Romanos 12:2","explanation":"Romanos 12:2: \"...sino transformaos por medio de la renovación de vuestro entendimiento.\""},
+  {"id":"e161","level":"EASY","type":"FILL_VERSE","category":"Epístolas de Pablo","question":"Completa Efesios 2:8: \"Porque por gracia sois salvos por medio de la fe; y esto no de vosotros, pues es _________ de Dios\"","options":["mandato","premio","préstamo","don"],"correctAnswer":3,"verse":"Efesios 2:8","explanation":"Efesios 2:8: \"Porque por gracia sois salvos por medio de la fe; y esto no de vosotros, pues es don de Dios; no por obras, para que nadie se gloríe.\""},
+  {"id":"e162","level":"EASY","type":"FILL_VERSE","category":"Epístola a los Hebreos","question":"Completa Hebreos 11:1: \"Es, pues, la fe la certeza de lo que se espera, la convicción de lo que _________\"","options":["no se ve","se acaba","se pierde","se compra"],"correctAnswer":0,"verse":"Hebreos 11:1","explanation":"Hebreos 11:1: \"Es, pues, la fe la certeza de lo que se espera, la convicción de lo que no se ve.\""},
+  {"id":"e163","level":"EASY","type":"MULTIPLE_CHOICE","category":"Apocalipsis","question":"En Apocalipsis 21:4, ¿qué enjugará Dios de los ojos de los suyos en la Nueva Jerusalén?","options":["Todo el polvo","Todas las lágrimas","Todo el cansancio","Toda la fatiga"],"correctAnswer":1,"verse":"Apocalipsis 21:4","explanation":"Enjugará Dios toda lágrima de los ojos de ellos; y ya no habrá muerte, ni habrá más llanto, ni clamor, ni dolor."},
+  {"id":"e164","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje bíblico representan estos emojis? 🪨 🪵 🐑 👑 🎸","options":["Josué","Salomón","David","Saúl"],"correctAnswer":2,"verse":"1 Samuel 17:49","explanation":"David fue pastor de ovejas, tocaba el arpa, venció a Goliat con una piedra y fue rey."},
+  {"id":"e165","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje bíblico representan estos emojis? 🧺 🌊 👑 🔥 📜","options":["Aarón","Samuel","Josué","Moisés"],"correctAnswer":3,"verse":"Éxodo 2-20","explanation":"Moisés fue puesto en una canasta en el río, vio la zarza ardiente y recibió las tablas de la Ley."},
+  {"id":"e166","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje bíblico representan estos emojis? ⛵ 🌧️ 🕊️ 🌿 🌈","options":["Noé","Lot","Abraham","Enoc"],"correctAnswer":0,"verse":"Génesis 6-9","explanation":"Noé construyó el arca, envió la paloma que trajo una hoja de olivo y vio el arcoíris."},
+  {"id":"e167","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje bíblico representan estos emojis? 🚢 ⛈️ 🐋 🙏 🏙️","options":["Elías","Jonás","Pedro","Pablo"],"correctAnswer":1,"verse":"Jonás 1-3","explanation":"Jonás huyó en barco, enfrentó una tormenta, fue tragado por un gran pez y predicó en Nínive."},
+  {"id":"e168","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje bíblico representan estos emojis? 💪 🦁 🍯 💇‍♂️ 🏛️","options":["Gedeón","Goliat","Sansón","David"],"correctAnswer":2,"verse":"Jueces 14-16","explanation":"Sansón venció a un león, sacó miel de él, perdió su cabello y derribó las columnas del templo."},
+  {"id":"e169","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje bíblico representan estos emojis? 🧥 🎨 🌾 ⛓️ 👑","options":["José","Jacob","Judá","Benjamín"],"correctAnswer":0,"verse":"Génesis 37-41","explanation":"José recibió una túnica de colores, tuvo sueños de gavillas, fue preso y gobernó Egipto."},
+  {"id":"e170","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje bíblico representan estos emojis? ⭐ 🌌 👴 🔪 🐏","options":["Jacob","Noé","Isaac","Abraham"],"correctAnswer":3,"verse":"Génesis 15 y 22","explanation":"Dios prometió a Abraham descendencia como las estrellas y proveyó un carnero en el monte Moriah."},
+  {"id":"e171","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje bíblico representan estos emojis? 🦁 🕳️ 🙏 😇 👑","options":["Jeremías","Nehemías","Daniel","Ezequiel"],"correctAnswer":2,"verse":"Daniel 6:16-22","explanation":"Daniel oraba fielmente a Dios y un ángel cerró la boca de los leones en el foso."},
+  {"id":"e172","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje bíblico representan estos emojis? 👑 ⚖️ 👶 ⚔️ 🏛️","options":["Ezequías","David","Josías","Salomón"],"correctAnswer":3,"verse":"1 Reyes 3 y 6","explanation":"Salomón mostró gran sabiduría al juzgar el caso del bebé y edificó el Templo de Jerusalén."},
+  {"id":"e173","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje bíblico representan estos emojis? 👸 👑 📜 🍽️ 🇮🇱","options":["Débora","Ester","Sara","Rut"],"correctAnswer":1,"verse":"Ester 4-7","explanation":"La reina Ester preparó banquetes ante el rey y salvó al pueblo judío del decreto de muerte."},
+  {"id":"e174","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje bíblico representan estos emojis? 🐦 🍞 🔥 ☁️ 🐎","options":["Elías","Isaías","Eliseo","Samuel"],"correctAnswer":0,"verse":"1 Reyes 17; 2 Reyes 2","explanation":"Elías fue alimentado por cuervos, oró por fuego del cielo y subió en un carro de fuego."},
+  {"id":"e175","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje bíblico representan estos emojis? 🎣 ⛵ 🌊 🐓 🔑","options":["Mateo","Andrés","Juan","Pedro"],"correctAnswer":3,"verse":"Mateo 14 y 26","explanation":"Pedro era pescador, caminó sobre el agua, negó a Jesús antes del gallo y recibió las llaves del reino."},
+  {"id":"e176","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje bíblico representan estos emojis? 🌳 🧗 💰 👀 🏠","options":["Zaqueo","Lázaro","Nicodemo","Bartimeo"],"correctAnswer":0,"verse":"Lucas 19:1-9","explanation":"Zaqueo era cobrador de impuestos y se subió a un árbol sicómoro para ver a Jesús."},
+  {"id":"e177","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje bíblico representan estos emojis? 🐴 ⚡ 😵 ✉️ ⛓️","options":["Esteban","Pablo","Bernabé","Felipe"],"correctAnswer":1,"verse":"Hechos 9","explanation":"Pablo tuvo su encuentro con una luz del cielo camino a Damasco, escribió cartas y sufrió prisiones."},
+  {"id":"e178","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje bíblico representan estos emojis? 🦗 🍯 🐪 🌊 🕊️","options":["Simón Pedro","Elías el tisbita","Juan el Bautista","Andrés el apóstol"],"correctAnswer":2,"verse":"Mateo 3:4-16","explanation":"Juan el Bautista vestía pelo de camello, comía langostas y miel silvestre y bautizó en el Jordán."},
+  {"id":"e179","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje bíblico representan estos emojis? 💰 💋 🌳 🪙 3️⃣0️⃣","options":["Tomás el Dídimo","Simón el Zelote","Simón Pedro","Judas Iscariote"],"correctAnswer":3,"verse":"Mateo 26:15, 49","explanation":"Judas Iscariote entregó a Jesús con un beso a cambio de treinta monedas de plata."},
+  {"id":"e180","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje bíblico representan estos emojis? 🌾 👵 🤝 💍 🍞","options":["Ester","Rut","Rebeca","Raquel"],"correctAnswer":1,"verse":"Rut 1-4","explanation":"Rut acompañó fielmente a su suegra Noemí, espigó en el campo y se casó con Booz."},
+  {"id":"e181","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje bíblico representan estos emojis? 🛏️ 👂 🕯️ 🛢️ 👑","options":["Samuel","Timoteo","David","Josías"],"correctAnswer":0,"verse":"1 Samuel 3 y 16","explanation":"El niño Samuel oyó la voz de Dios de noche en el templo y luego ungió reyes con aceite."},
+  {"id":"e182","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje bíblico representan estos emojis? ⚔️ 🛡️ 📏 🪨 💥","options":["Saúl","Sansón","Goliat","Absalón"],"correctAnswer":2,"verse":"1 Samuel 17:4-49","explanation":"Goliat era el gigante armado de los filisteos que cayó derrotado por una piedra."},
+  {"id":"e183","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje bíblico representan estos emojis? 🪜 😴 😇 🪨 🤼","options":["Isaac","Esaú","José","Jacob"],"correctAnswer":3,"verse":"Génesis 28 y 32","explanation":"Jacob soñó con una escalera al cielo sobre una piedra y luego luchó con el Ángel."},
+  {"id":"e184","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje bíblico representan estos emojis? 🍲 🏹 🧔 🔴 👑","options":["Nimrod","Esaú","Jacob","Ismael"],"correctAnswer":1,"verse":"Génesis 25:25-34","explanation":"Esaú era velludo y cazador, y vendió su primogenitura por un guisado rojo de lentejas."},
+  {"id":"e185","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personajes bíblicos representan estos emojis? 🍏 🐍 🌿 😢 🚪","options":["Adán y Eva","Abraham y Sara","Isaac y Rebeca","Noé y su esposa"],"correctAnswer":0,"verse":"Génesis 3","explanation":"Adán y Eva cedieron ante la serpiente en el Edén y fueron expulsados del huerto."},
+  {"id":"e186","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué hermanos bíblicos representan estos emojis? 🌾 🐑 😡 🪨 🩸","options":["Isaac e Ismael","Jacob y Esaú","Caín y Abel","José y Judá"],"correctAnswer":2,"verse":"Génesis 4:1-8","explanation":"Caín trajo fruto de la tierra, Abel de sus ovejas, y la envidia llevó al primer homicidio."},
+  {"id":"e187","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué mujer bíblica representan estos emojis? 👼 🤰 🐴 🌟 👶","options":["Elisabet","Ana","Marta","María"],"correctAnswer":3,"verse":"Lucas 1-2","explanation":"El ángel Gabriel anunció a María el nacimiento de Jesús, quien nació en Belén bajo la estrella."},
+  {"id":"e188","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje bíblico representan estos emojis? 🪚 🔨 😴 👼 🇪🇬","options":["Simón de Cirene","José de Arimatea","José el carpintero","Zacarías"],"correctAnswer":2,"verse":"Mateo 1-2","explanation":"José el carpintero recibió avisos de un ángel en sueños y llevó al niño Jesús a Egipto."},
+  {"id":"e189","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje bíblico representan estos emojis? 🪦 4️⃣ 🗣️ 🚶‍♂️ 🩹","options":["Lázaro","Esteban","Bartimeo","Jairo"],"correctAnswer":0,"verse":"Juan 11:39-44","explanation":"Lázaro llevaba cuatro días en el sepulcro y salió envuelto en vendas cuando Jesús lo llamó."},
+  {"id":"e190","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué apóstol representan estos emojis? 🤏 🖐️ ❓ 🩸 🙏","options":["Felipe","Tomás","Natanael","Andrés"],"correctAnswer":1,"verse":"Juan 20:24-28","explanation":"Tomás dudó hasta ver y tocar las marcas de las manos y el costado de Jesús resucitado."},
+  {"id":"e191","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué evangelista representan estos emojis? 💵 📊 ✍️ 📖 👣","options":["Marcos","Zaqueo","Lucas","Mateo"],"correctAnswer":3,"verse":"Mateo 9:9","explanation":"Mateo dejó su mesa de recaudación de impuestos para seguir a Jesús y escribir un Evangelio."},
+  {"id":"e192","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué líder de Israel representan estos emojis? 🎺 🚶 7️⃣ 🧱 💥","options":["Josué","Caleb","Gedeón","Moisés"],"correctAnswer":0,"verse":"Josué 6","explanation":"Josué lideró al pueblo marchando siete días con trompetas hasta que cayeron los muros de Jericó."},
+  {"id":"e193","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje bíblico representan estos emojis? 🐑 🔥 🤒 🗣️ 🌈","options":["Jeremías","David","Job","Elías"],"correctAnswer":2,"verse":"Job 1-42","explanation":"Job perdió sus bienes y salud, atravesó grandes pruebas sin maldecir a Dios y fue restaurado."},
+  {"id":"e194","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué libro de la Biblia representan estos emojis? 🌍 💡 🌳 🍎 ⛵","options":["Salmos","Génesis","Éxodo","Apocalipsis"],"correctAnswer":1,"verse":"Génesis 1-9","explanation":"Génesis narra la creación de la luz y la tierra, el huerto del Edén y el arca de Noé."},
+  {"id":"e195","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué libro de la Biblia representan estos emojis? 🐸 🩸 🌊 🍞 📜","options":["Levítico","Números","Josué","Éxodo"],"correctAnswer":3,"verse":"Éxodo 7-20","explanation":"Éxodo relata las plagas de Egipto, el cruce del Mar Rojo, el maná y los Diez Mandamientos."},
+  {"id":"e196","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué libro de la Biblia representan estos emojis? 🎵 🎸 🙌 🐑 🙏","options":["Proverbios","Cantares","Salmos","Eclesiastés"],"correctAnswer":2,"verse":"Salmos 1-150","explanation":"Salmos es el gran himnario de alabanzas, música y oraciones del pueblo de Dios."},
+  {"id":"e197","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué libro de la Biblia representan estos emojis? 🧠 🦉 👑 ⚖️ 💬","options":["Proverbios","Job","Salmos","Eclesiastés"],"correctAnswer":0,"verse":"Proverbios 1:1-7","explanation":"Proverbios reúne dichos de sabiduría práctica escritos principalmente por el rey Salomón."},
+  {"id":"e198","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué libro de la Biblia representan estos emojis? 🚢 ⛈️ 🐋 🌱 🏙️","options":["Joel","Jonás","Nahúm","Amós"],"correctAnswer":1,"verse":"Jonás 1-4","explanation":"El libro de Jonás cuenta la tormenta, el gran pez, la calabacera y la predicación a Nínive."},
+  {"id":"e199","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué libro de la Biblia representan estos emojis? 🦁 🔥 🗿 ✋ 📜","options":["Ezequiel","Isaías","Daniel","Jeremías"],"correctAnswer":2,"verse":"Daniel 2-6","explanation":"Daniel narra la estatua de Nabucodonosor, el horno de fuego, la mano en la pared y los leones."},
+  {"id":"e200","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué libro de la Biblia representan estos emojis? 👑 👸 🍽️ 💍 🇮🇱","options":["Cantares","Rut","Nehemías","Ester"],"correctAnswer":3,"verse":"Ester 1-10","explanation":"El libro de Ester relata la historia de la reina judía que salvó a su pueblo en Persia."},
+  {"id":"e201","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué libro de la Biblia representan estos emojis? 🔥 🕊️ 🌍 🚢 ⛪","options":["Hebreos","Hechos","Romanos","Gálatas"],"correctAnswer":1,"verse":"Hechos 1-28","explanation":"Hechos relata Pentecostés, el nacimiento de la iglesia y los viajes misioneros en barco."},
+  {"id":"e202","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué libro de la Biblia representan estos emojis? 🐉 🎺 🐴 👑 💎","options":["Apocalipsis","Zacarías","Ezequiel","Daniel"],"correctAnswer":0,"verse":"Apocalipsis 1-22","explanation":"Apocalipsis muestra visiones de los cuatro jinetes, siete trompetas, el dragón y la Nueva Jerusalén."},
+  {"id":"e203","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué libro de la Biblia representan estos emojis? 🌾 👵 💍 👶 🍞","options":["1 Samuel","Ester","Rut","Jueces"],"correctAnswer":2,"verse":"Rut 1-4","explanation":"Rut cuenta la lealtad hacia Noemí, la cosecha de cebada y el matrimonio con Booz."},
+  {"id":"e204","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué libro de la Biblia representan estos emojis? ❤️ 💕 🌹 👰 🤵","options":["Ester","Cantares","Rut","Proverbios"],"correctAnswer":1,"verse":"Cantares 1-8","explanation":"El Cantar de los Cantares es un poema lírico que celebra el amor entre el amado y su amada."},
+  {"id":"e205","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué libro de la Biblia representan estos emojis? 🧱 🛠️ 🗡️ 🏙️ 🙏","options":["Hageo","Esdras","Josué","Nehemías"],"correctAnswer":3,"verse":"Nehemías 1-6","explanation":"Nehemías narra la reconstrucción de los muros de Jerusalén con herramientas en una mano y armas en la otra."},
+  {"id":"e206","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué libro de la Biblia representan estos emojis? 🔢 🏕️ 🐍 🍇 🏜️","options":["Números","Levítico","Éxodo","Deuteronomio"],"correctAnswer":0,"verse":"Números 1-21","explanation":"Números contiene los censos de Israel, los 40 años en el desierto, los espías y la serpiente de bronce."},
+  {"id":"e207","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué libro de la Biblia representan estos emojis? 🎺 🧱 ☀️ 🗺️ ⚔️","options":["Éxodo","Jueces","1 Samuel","Josué"],"correctAnswer":3,"verse":"Josué 1-24","explanation":"Josué relata la caída de Jericó, el día que el sol se detuvo y el reparto de Canaán."},
+  {"id":"e208","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué libro de la Biblia representan estos emojis? 🌴 🏺 💪 🦁 ⚖️","options":["1 Samuel","1 Reyes","Jueces","Josué"],"correctAnswer":2,"verse":"Jueces 1-21","explanation":"Jueces narra las hazañas de Débora bajo la palmera, Gedeón con los cántaros y Sansón con el león."},
+  {"id":"e209","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Historia","question":"¿Qué historia bíblica representan estos emojis? 🏗️ 🧱 🗼 🗣️ 😕","options":["La Torre de Babel","Los Muros de Jericó","El Arca de Noé","El Templo de Salomón"],"correctAnswer":0,"verse":"Génesis 11:1-9","explanation":"En la Torre de Babel los hombres quisieron llegar al cielo y Dios confundió sus lenguas."},
+  {"id":"e210","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Historia","question":"¿Qué historia bíblica representan estos emojis? 🌟 👶 🐑 🎁 🐪","options":["La Transfiguración","El Nacimiento de Jesús","La Última Cena","La Entrada Triunfal"],"correctAnswer":1,"verse":"Mateo 2 / Lucas 2","explanation":"Los pastores, la estrella y los magos con regalos celebran el nacimiento de Jesús en Belén."},
+  {"id":"e211","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Milagro","question":"¿Qué milagro de Jesús representan estos emojis? 💒 🏺 💧 ➡️ 🍷","options":["La Pesca Milagrosa","El Pozo de Jacob","La Última Cena","Las Bodas de Caná"],"correctAnswer":3,"verse":"Juan 2:1-11","explanation":"En las bodas de Caná de Galilea, Jesús convirtió el agua de seis tinajas en vino excelente."},
+  {"id":"e212","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Milagro","question":"¿Qué milagro de Jesús representan estos emojis? ⛵ ⛈️ 😴 🗣️ 🌊","options":["Sanar al endemoniado","Calmar la tempestad","La pesca milagrosa","Caminar sobre el agua"],"correctAnswer":1,"verse":"Marcos 4:35-41","explanation":"Jesús dormía en la barca, se levantó, reprendió el viento y el mar y vino gran calma."},
+  {"id":"e213","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Milagro","question":"¿Qué milagro de Jesús representan estos emojis? 🌙 ⛵ 🚶‍♂️ 🌊 🤝","options":["Jesús camina sobre el mar","El cruce del Mar Rojo","El bautismo en el Jordán","La pesca en Galilea"],"correctAnswer":0,"verse":"Mateo 14:25-31","explanation":"De madrugada Jesús caminó sobre las aguas y sostuvo a Pedro cuando comenzó a hundirse."},
+  {"id":"e214","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Parábola","question":"¿Qué parábola de Jesús representan estos emojis? 💰 ✈️ 🐖 😢 🏠","options":["El Buen Samaritano","Los Talentos","El Hijo Pródigo","La Oveja Perdida"],"correctAnswer":2,"verse":"Lucas 15:11-32","explanation":"El hijo menor malgastó su herencia, cuidó cerdos, volvió arrepentido y su padre hizo fiesta."},
+  {"id":"e215","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Parábola","question":"¿Qué parábola de Jesús representan estos emojis? 🐑 9️⃣9️⃣ 🔍 ⛰️ 🎉","options":["El Sembrador","La Oveja Perdida","La Moneda Perdida","El Buen Pastor"],"correctAnswer":1,"verse":"Lucas 15:4-7","explanation":"El pastor deja las noventa y nueve ovejas para buscar la perdida y se regocija al hallarla."},
+  {"id":"e216","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Parábola","question":"¿Qué parábola de Jesús representan estos emojis? 🤕 🛣️ 🩹 🐴 🏨","options":["El Hijo Pródigo","El Siervo Malvado","El Joven Rico","El Buen Samaritano"],"correctAnswer":3,"verse":"Lucas 10:30-37","explanation":"Un samaritano vendó al herido en el camino a Jericó, lo subió a su cabalgadura y pagó el mesón."},
+  {"id":"e217","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Parábola","question":"¿Qué parábola de Jesús representan estos emojis? 👨‍🌾 🌱 🪨 🌵 🌾","options":["La Higuera Estéril","El Trigo y la Cizaña","El Sembrador","La Red de Pesca"],"correctAnswer":2,"verse":"Mateo 13:3-9","explanation":"La semilla cayó junto al camino, en pedregales, entre espinos y en buena tierra que dio fruto."},
+  {"id":"e218","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Historia","question":"¿Qué escena bíblica representan estos emojis? 🍞 🍷 🧼 🦶 1️⃣2️⃣","options":["La Última Cena","El Día de Pentecostés","Las Bodas de Caná","El Camino a Emaús"],"correctAnswer":0,"verse":"Juan 13 / Lucas 22","explanation":"En la Última Cena Jesús lavó los pies de los doce y partió el pan y la copa con ellos."},
+  {"id":"e219","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Historia","question":"¿Qué escena bíblica representan estos emojis? 🐴 🌴 🧥 🙌 🏙️","options":["La Huida a Egipto","El Bautismo de Jesús","La Ascensión","La Entrada Triunfal"],"correctAnswer":3,"verse":"Mateo 21:7-9","explanation":"Jesús entró a Jerusalén montado en un pollino mientras la multitud tendía mantos y palmas."},
+  {"id":"e220","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Historia","question":"¿Qué escena bíblica representan estos emojis? 🪨 🌅 👼 🕳️ 🙌","options":["La Transfiguración","La Creación del Mundo","La Resurrección de Jesús","El Sepultamiento de Lázaro"],"correctAnswer":2,"verse":"Mateo 28:1-6","explanation":"Al amanecer la piedra del sepulcro estaba removida y el ángel anunció que Jesús había resucitado."},
+  {"id":"e221","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Historia","question":"¿Qué escena bíblica representan estos emojis? 🏠 💨 🔥 🗣️ 🌍","options":["La Zarza Ardiente","El Día de Pentecostés","La Torre de Babel","El Monte Sinaí"],"correctAnswer":1,"verse":"Hechos 2:1-4","explanation":"Un viento recio y lenguas de fuego descendieron en Pentecostés y hablaron en otras lenguas."},
+  {"id":"e222","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Historia","question":"¿Qué escena bíblica representan estos emojis? 3️⃣ 🔥 🏛️ 4️⃣ 😇","options":["El Horno de Fuego","El Foso de los Leones","Sodoma y Gomorra","El Monte Carmelo"],"correctAnswer":0,"verse":"Daniel 3:19-25","explanation":"Tres jóvenes hebreos fueron echados al horno de fuego y apareció un cuarto varón junto a ellos."},
+  {"id":"e223","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Milagro","question":"¿Qué milagro representan estos emojis? 🏠 🪜 🛏️ 🪢 🚶‍♂️","options":["Resurrección de la hija de Jairo","Paralítico bajado por el techo","Sanidad de Bartimeo","Sanidad en Betesda"],"correctAnswer":1,"verse":"Marcos 2:3-12","explanation":"Cuatro amigos abrieron el techo y bajaron en camilla al paralítico para que Jesús lo sanara."},
+  {"id":"e224","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Historia","question":"¿Qué historia bíblica representan estos emojis? 🏜️ 🌅 ❄️ 🍞 🧺","options":["Los Cuervos de Elías","Los Panes y los Peces","Las Bodas de Caná","El Maná en el Desierto"],"correctAnswer":3,"verse":"Éxodo 16:14-15","explanation":"Cada mañana caía rocío en el desierto y dejaba el maná que el pueblo recogía en cestas."},
+  {"id":"e225","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Historia","question":"¿Qué historia bíblica representan estos emojis? 🐮 ✨ 💍 🔥 😡","options":["El Becerro de Oro","La Estatua de Daniel","El Templo de Salomón","El Arca del Pacto"],"correctAnswer":0,"verse":"Éxodo 32:1-19","explanation":"El pueblo fundió sus joyas para hacer un becerro de oro y Moisés quebró las tablas indignado."},
+  {"id":"e226","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Parábola","question":"¿Qué parábola representan estos emojis? 🏠 🪨 🌧️ 🏠 🏖️","options":["El Rico Insensato","La Torre Sin Terminar","La Casa sobre la Roca","La Casa Dividida"],"correctAnswer":2,"verse":"Mateo 7:24-27","explanation":"Jesús comparó al que oye y hace su palabra con quien edifica sobre la roca y no sobre la arena."},
+  {"id":"e227","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Parábola","question":"¿Qué parábola representan estos emojis? 🪙 🧹 🕯️ 🏠 🎉","options":["La Moneda Perdida","La Perla de Gran Precio","El Tesoro Escondido","Los Talentos"],"correctAnswer":0,"verse":"Lucas 15:8-10","explanation":"Una mujer enciende la lámpara y barre toda la casa hasta hallar la dracma perdida y celebrarlo."},
+  {"id":"e228","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Parábola","question":"¿Qué parábola representan estos emojis? 🌱 🔬 ➡️ 🌳 🐦","options":["El Sembrador","La Vid Verdadera","La Higuera Estéril","El Grano de Mostaza"],"correctAnswer":3,"verse":"Mateo 13:31-32","explanation":"El grano de mostaza es la más pequeña de las semillas, pero crece hasta ser árbol donde anidan aves."},
+  {"id":"e229","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Objeto","question":"¿Qué objeto bíblico representan estos emojis? 📦 ✨ 👼 👼 📜","options":["La Mesa de los Panes","El Candelabro de Oro","El Arca del Pacto","El Altar del Incienso"],"correctAnswer":2,"verse":"Éxodo 25:10-22","explanation":"El Arca del Pacto estaba cubierta de oro con dos querubines sobre el propiciatorio y guardaba la Ley."},
+  {"id":"e230","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Objeto","question":"¿Qué símbolo bíblico representan estos emojis? 🛡️ ⚔️ 🪖 👟 🥋","options":["Las Vestiduras de Aarón","La Armadura de Dios","El Ajuar de Salomón","El Escudo de Goliat"],"correctAnswer":1,"verse":"Efesios 6:11-17","explanation":"Pablo describe la armadura espiritual: cinturón, coraza, calzado, escudo, yelmo y espada."},
+  {"id":"e231","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Historia","question":"¿Qué episodio bíblico representan estos emojis? 🌊 🦯 🚶‍♂️ 🐎 💥","options":["La Tempestad en Galilea","El Diluvio Universal","El Cruce del Jordán","El Cruce del Mar Rojo"],"correctAnswer":3,"verse":"Éxodo 14:21-28","explanation":"Moisés extendió su vara, Israel cruzó el Mar Rojo en seco y las aguas cubrieron al ejército egipcio."},
+  {"id":"e232","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Historia","question":"¿Qué historia bíblica representan estos emojis? 🏜️ 🪨 💧 🦯 🥤","options":["Agua de la Roca","La Zarza Ardiente","El Arroyo de Querit","El Pozo de Jacob"],"correctAnswer":0,"verse":"Éxodo 17:6","explanation":"Moisés golpeó la peña con la vara en el desierto y brotó agua para todo el pueblo sediento."},
+  {"id":"e233","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Milagro","question":"¿Qué milagro de Jesús representan estos emojis? ⛵ 🕸️ 🚫 🐟 ➡️ 🛶","options":["Los Cinco Panes","La Pesca Milagrosa","El Tributo en el Pez","Caminar sobre el mar"],"correctAnswer":1,"verse":"Lucas 5:4-7","explanation":"Tras no pescar nada toda la noche, echaron la red a la palabra de Jesús y llenaron dos barcas."},
+  {"id":"e234","level":"EASY","type":"EMOJI_GUESS","category":"Emojis: Milagro","question":"¿Qué milagro de Jesús representan estos emojis? 🍞 🐟 🧺 5️⃣0️⃣0️⃣0️⃣ 🙌","options":["El Maná en el Desierto","La Pesca Milagrosa","Multiplicación de Panes","Las Bodas de Caná"],"correctAnswer":2,"verse":"Juan 6:9-13","explanation":"Con cinco panes de cebada y dos pececillos Jesús alimentó a más de cinco mil personas y sobraron doce cestas."},
+  {"id":"e235","level":"EASY","type":"MULTIPLE_CHOICE","category":"Creación","question":"¿Qué formó Dios en el cuarto día de la creación?","options":["Sol, luna y estrellas","Peces, aves y reptiles","Ganado, fieras y hombre","Árboles, hierbas y frutos"],"correctAnswer":0,"verse":"Génesis 1:14-19","explanation":"En el cuarto día Dios hizo las dos grandes lumbreras y también las estrellas."},
+  {"id":"e236","level":"EASY","type":"MULTIPLE_CHOICE","category":"Creación","question":"¿En qué día de la creación hizo Dios al ser humano?","options":["Quinto día","Sexto día","Séptimo día","Cuarto día"],"correctAnswer":1,"verse":"Génesis 1:26-31","explanation":"En el sexto día Dios creó a los animales terrestres y luego al hombre a su imagen."},
+  {"id":"e237","level":"EASY","type":"MULTIPLE_CHOICE","category":"Génesis","question":"¿Cómo se llamaba el tercer hijo mencionado de Adán y Eva después de Abel?","options":["Enoc","Lamec","Noé","Set"],"correctAnswer":3,"verse":"Génesis 4:25","explanation":"Eva dio a luz a Set, diciendo que Dios le había sustituido otro hijo en lugar de Abel."},
+  {"id":"e238","level":"EASY","type":"MULTIPLE_CHOICE","category":"Génesis","question":"¿Cuántos hijos varones de Noé entraron con él en el arca?","options":["Siete hijos","Cuatro hijos","Tres hijos","Dos hijos"],"correctAnswer":2,"verse":"Génesis 7:13","explanation":"Entraron en el arca Noé y sus tres hijos: Sem, Cam y Jafet, junto con sus esposas."},
+  {"id":"e239","level":"EASY","type":"MULTIPLE_CHOICE","category":"Génesis","question":"¿Qué ave soltó Noé primero desde el arca antes de enviar la paloma?","options":["Un cuervo","Una golondrina","Un águila","Un gorrión"],"correctAnswer":0,"verse":"Génesis 8:7","explanation":"Noé envió primero un cuervo, que estuvo yendo y volviendo hasta que se secaron las aguas."},
+  {"id":"e240","level":"EASY","type":"MULTIPLE_CHOICE","category":"Patriarcas","question":"¿Cómo se llamaba el sobrino de Abraham que escogió vivir cerca de Sodoma?","options":["Ismael","Isaac","Labán","Lot"],"correctAnswer":3,"verse":"Génesis 13:11-12","explanation":"Lot escogió toda la llanura del Jordán y fue poniendo sus tiendas hasta Sodoma."},
+  {"id":"e241","level":"EASY","type":"MULTIPLE_CHOICE","category":"Patriarcas","question":"¿Cómo se llamaban los hijos gemelos que tuvieron Isaac y Rebeca?","options":["Efraín y Manasés","Esaú y Jacob","José y Benjamín","Caín y Abel"],"correctAnswer":1,"verse":"Génesis 25:24-26","explanation":"Rebeca dio a luz gemelos: primero salió Esaú y después Jacob asiéndole del calcañar."},
+  {"id":"e242","level":"EASY","type":"MULTIPLE_CHOICE","category":"Patriarcas","question":"¿Cuántos hijos varones tuvo el patriarca Jacob en total?","options":["Catorce hijos","Diez hijos","Doce hijos","Siete hijos"],"correctAnswer":2,"verse":"Génesis 35:22","explanation":"Los doce hijos de Jacob dieron origen a las doce tribus del pueblo de Israel."},
+  {"id":"e243","level":"EASY","type":"MULTIPLE_CHOICE","category":"Patriarcas","question":"¿Por cuántas piezas de plata vendieron los hermanos de José a los mercaderes?","options":["Cincuenta piezas","Diez piezas","Treinta piezas","Veinte piezas"],"correctAnswer":3,"verse":"Génesis 37:28","explanation":"Por sugerencia de Judá, vendieron a José a los ismaelitas por veinte piezas de plata."},
+  {"id":"e244","level":"EASY","type":"MULTIPLE_CHOICE","category":"Patriarcas","question":"¿Quién era el amo egipcio que compró a José cuando llegó a Egipto?","options":["Potifar","Abimelec","Faraón","Nabucodonosor"],"correctAnswer":0,"verse":"Génesis 39:1","explanation":"Potifar, oficial de Faraón y capitán de la guardia, compró a José y lo puso a cargo de su casa."},
+  {"id":"e245","level":"EASY","type":"MULTIPLE_CHOICE","category":"Éxodo","question":"¿Cuántas plagas envió Dios sobre Egipto antes de que Faraón dejara salir a Israel?","options":["Siete plagas","Catorce plagas","Diez plagas","Doce plagas"],"correctAnswer":2,"verse":"Éxodo 7-12","explanation":"Dios envió diez plagas sobre Egipto, culminando con la muerte de los primogénitos."},
+  {"id":"e246","level":"EASY","type":"MULTIPLE_CHOICE","category":"Éxodo","question":"¿Cuál fue la primera plaga que Dios envió sobre Egipto?","options":["Las langostas","El agua en sangre","Las ranas","Las tinieblas"],"correctAnswer":1,"verse":"Éxodo 7:20","explanation":"Aarón golpeó con su vara las aguas del río Nilo y toda el agua se convirtió en sangre."},
+  {"id":"e247","level":"EASY","type":"MULTIPLE_CHOICE","category":"Éxodo","question":"¿Cómo se llamaba el hermano mayor de Moisés que habló por él ante Faraón?","options":["Aarón","Hur","Caleb","Josué"],"correctAnswer":0,"verse":"Éxodo 4:14","explanation":"Dios designó a Aarón el levita como portavoz de Moisés y posteriormente primer sumo sacerdote."},
+  {"id":"e248","level":"EASY","type":"MULTIPLE_CHOICE","category":"Éxodo","question":"¿Qué animal se convirtió la vara de Moisés cuando la arrojó al suelo en el monte Horeb?","options":["Una paloma","Un águila","Un león","Una serpiente"],"correctAnswer":3,"verse":"Éxodo 4:3","explanation":"Como primera señal de respaldo divino, la vara de Moisés se volvió serpiente y luego vara otra vez."},
+  {"id":"e249","level":"EASY","type":"MULTIPLE_CHOICE","category":"Éxodo","question":"¿Cuántos años vagó el pueblo de Israel por el desierto antes de entrar a Canaán?","options":["70 años","40 años","20 años","12 años"],"correctAnswer":1,"verse":"Números 14:33","explanation":"Por su incredulidad tras el reporte de los espías, Israel peregrinó cuarenta años en el desierto."},
+  {"id":"e250","level":"EASY","type":"MULTIPLE_CHOICE","category":"Éxodo","question":"¿Qué fiesta israelita recordaba la noche en que el ángel pasó por alto las casas marcadas con sangre?","options":["Los Tabernáculos","Purim","La Pascua","Pentecostés"],"correctAnswer":2,"verse":"Éxodo 12:27","explanation":"La Pascua conmemora la liberación de Egipto cuando Dios libró a los primogénitos de Israel."},
+  {"id":"e251","level":"EASY","type":"MULTIPLE_CHOICE","category":"Éxodo","question":"¿Cuál es el primero de los Diez Mandamientos?","options":["No dirás falso testimonio","No hurtarás","Honra a tu padre","No tendrás dioses ajenos"],"correctAnswer":3,"verse":"Éxodo 20:3","explanation":"El primer mandamiento ordena lealtad exclusiva: \"No tendrás dioses ajenos delante de mí\"."},
+  {"id":"e252","level":"EASY","type":"MULTIPLE_CHOICE","category":"Éxodo","question":"¿Qué mandamiento es llamado el primero con promesa de larga vida?","options":["Honrar a padre y madre","No tomar su nombre en vano","No codiciar bienes","Guardar el sábado"],"correctAnswer":0,"verse":"Éxodo 20:12 / Efesios 6:2","explanation":"Honrar al padre y a la madre lleva la promesa de que te vaya bien y seas de larga vida."},
+  {"id":"e253","level":"EASY","type":"MULTIPLE_CHOICE","category":"Antiguo Testamento","question":"¿Cuántos espías envió Moisés a reconocer la tierra de Canaán?","options":["Cuarenta espías","Doce espías","Dos espías","Siete espías"],"correctAnswer":1,"verse":"Números 13:2-16","explanation":"Moisés envió doce príncipes, uno de cada tribu, para explorar la tierra prometida."},
+  {"id":"e254","level":"EASY","type":"MULTIPLE_CHOICE","category":"Antiguo Testamento","question":"¿Qué dos espías confiaron en Dios y animaron al pueblo a conquistar Canaán?","options":["Moisés y Aarón","Gedeón y Barac","Josué y Caleb","David y Jonatán"],"correctAnswer":2,"verse":"Números 14:6-9","explanation":"Solo Josué y Caleb creyeron que Dios les entregaría la tierra a pesar de los gigantes."},
+  {"id":"e255","level":"EASY","type":"MULTIPLE_CHOICE","category":"Antiguo Testamento","question":"¿Qué río cruzaron en seco los israelitas bajo el liderazgo de Josué para entrar a Canaán?","options":["El río Tigris","El río Jordán","El río Éufrates","El río Nilo"],"correctAnswer":1,"verse":"Josué 3:14-17","explanation":"Cuando los sacerdotes que llevaban el Arca pisaron el Jordán, las aguas se detuvieron."},
+  {"id":"e256","level":"EASY","type":"MULTIPLE_CHOICE","category":"Antiguo Testamento","question":"¿Cuántas vueltas dieron los israelitas alrededor de Jericó en el séptimo día?","options":["Doce vueltas","Una vuelta","Siete vueltas","Tres vueltas"],"correctAnswer":2,"verse":"Josué 6:15","explanation":"Durante seis días dieron una vuelta diaria, pero el séptimo día rodearon la ciudad siete veces."},
+  {"id":"e257","level":"EASY","type":"MULTIPLE_CHOICE","category":"Jueces","question":"¿Con qué arma inusual venció Sansón a mil filisteos en Lehi?","options":["Una quijada de asno","Un bastón de roble","Una honda de cuero","Una lanza de bronce"],"correctAnswer":0,"verse":"Jueces 15:15","explanation":"Sansón halló una quijada de asno fresca y con ella hirió a mil hombres filisteos."},
+  {"id":"e258","level":"EASY","type":"MULTIPLE_CHOICE","category":"Antiguo Testamento","question":"¿Cómo se llamaba el hombre bondadoso con quien se casó Rut en Belén?","options":["Isaí","Elimelec","Obed","Booz"],"correctAnswer":3,"verse":"Rut 4:13","explanation":"Booz redimió la heredad de Noemí, se casó con Rut y llegó a ser bisabuelo del rey David."},
+  {"id":"e259","level":"EASY","type":"MULTIPLE_CHOICE","category":"Reyes","question":"¿De qué ciudad era originaria la familia del rey David?","options":["Belén","Nazaret","Samaria","Jericó"],"correctAnswer":0,"verse":"1 Samuel 16:1","explanation":"Dios envió a Samuel a casa de Isaí de Belén para ungir al menor de sus hijos como rey."},
+  {"id":"e260","level":"EASY","type":"MULTIPLE_CHOICE","category":"Reyes","question":"¿De qué pueblo enemigo era el gigante Goliat que desafió al ejército de Israel?","options":["Babilonios","Filisteos","Egipcios","Asirios"],"correctAnswer":1,"verse":"1 Samuel 17:4","explanation":"Goliat de Gat era el paladín de los filisteos y atemorizó a Israel durante cuarenta días."},
+  {"id":"e261","level":"EASY","type":"MULTIPLE_CHOICE","category":"Reyes","question":"¿Qué reina vino desde tierras lejanas para probar la sabiduría de Salomón?","options":["La reina Ester","La reina Vasti","La reina de Sabá","La reina Jezabel"],"correctAnswer":2,"verse":"1 Reyes 10:1","explanation":"La reina de Sabá visitó a Salomón con especias, oro y piedras preciosas y quedó asombrada."},
+  {"id":"e262","level":"EASY","type":"MULTIPLE_CHOICE","category":"Profetas","question":"¿Quién fue el profeta sucesor de Elías que pidió una doble porción de su espíritu?","options":["Isaías","Samuel","Jeremías","Eliseo"],"correctAnswer":3,"verse":"2 Reyes 2:9-15","explanation":"Eliseo recogió el manto de Elías y continuó su ministerio realizando numerosos milagros."},
+  {"id":"e263","level":"EASY","type":"MULTIPLE_CHOICE","category":"Profetas","question":"¿A qué rey de Persia sirvió Nehemías como copero antes de volver a Jerusalén?","options":["Ciro","Artajerjes","Asuero","Darío"],"correctAnswer":1,"verse":"Nehemías 2:1","explanation":"Nehemías era copero del rey Artajerjes y obtuvo su permiso para reedificar los muros de Jerusalén."},
+  {"id":"e264","level":"EASY","type":"MULTIPLE_CHOICE","category":"Profetas","question":"¿Cómo se llamaba el primo de Ester que la crió como a su propia hija?","options":["Mardoqueo","Esdras","Daniel","Amán"],"correctAnswer":0,"verse":"Ester 2:7","explanation":"Mardoqueo cuidó a Ester cuando quedó huérfana y luego fue honrado por salvar la vida del rey."},
+  {"id":"e265","level":"EASY","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿En qué pueblo de Galilea creció Jesús durante su niñez y juventud?","options":["Betania","Belén","Jericó","Nazaret"],"correctAnswer":3,"verse":"Lucas 2:39-40","explanation":"Después de volver de Egipto, José y María se establecieron en Nazaret de Galilea."},
+  {"id":"e266","level":"EASY","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿A qué país huyeron José y María con el niño Jesús para protegerlo del rey Herodes?","options":["Siria","Grecia","Egipto","Persia"],"correctAnswer":2,"verse":"Mateo 2:13-14","explanation":"Un ángel avisó en sueños a José que tomara al niño y a su madre y huyera a Egipto."},
+  {"id":"e267","level":"EASY","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿Qué oficio desempeñaba José, el esposo de María, y aprendió Jesús en Nazaret?","options":["Pastor","Alfarero","Pescador","Carpintero"],"correctAnswer":3,"verse":"Mateo 13:55 / Marcos 6:3","explanation":"A Jesús lo conocían en su tierra como el carpintero, el hijo del carpintero."},
+  {"id":"e268","level":"EASY","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿Cuántos años tenía Jesús cuando sus padres lo hallaron hablando con los doctores en el Templo?","options":["Ocho años","Doce años","Quince años","Veinte años"],"correctAnswer":1,"verse":"Lucas 2:42-46","explanation":"A los doce años Jesús subió a Jerusalén para la Pascua y asombró a los maestros con su entendimiento."},
+  {"id":"e269","level":"EASY","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿Qué descendió como paloma sobre Jesús cuando salió del agua tras ser bautizado?","options":["Una corona dorada","Una llama de fuego","El Espíritu de Dios","Un ángel de luz"],"correctAnswer":2,"verse":"Mateo 3:16","explanation":"Al bautizarse Jesús, los cielos se abrieron y vio al Espíritu de Dios descender como paloma."},
+  {"id":"e270","level":"EASY","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿Cuántos apóstoles escogió Jesús para que estuvieran con él y predicaran?","options":["Doce apóstoles","Setenta apóstoles","Diez apóstoles","Siete apóstoles"],"correctAnswer":0,"verse":"Marcos 3:14","explanation":"Jesús designó a doce discípulos, a los cuales también llamó apóstoles."},
+  {"id":"e271","level":"EASY","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿Qué oficio tenían Pedro, Andrés, Jacobo y Juan antes de seguir a Jesús?","options":["Recaudadores","Pescadores","Carpinteros","Soldados"],"correctAnswer":1,"verse":"Mateo 4:18-22","explanation":"Los cuatro trabajaban como pescadores en el mar de Galilea y Jesús prometió hacerlos pescadores de hombres."},
+  {"id":"e272","level":"EASY","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿Qué oración modelo enseñó Jesús a sus discípulos cuando le pidieron aprender a orar?","options":["El Padre Nuestro","El Shemá de Israel","El Cántico de María","El Salmo 23"],"correctAnswer":0,"verse":"Mateo 6:9-13","explanation":"Jesús enseñó el Padre Nuestro como modelo de adoración, dependencia y perdón en la oración."},
+  {"id":"e273","level":"EASY","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿En qué huerto oró Jesús con profunda angustia la noche en que fue arrestado?","options":["Huerto del Edén","Monte Carmelo","Valle de Siloé","Huerto de Getsemaní"],"correctAnswer":3,"verse":"Mateo 26:36","explanation":"En Getsemaní, al pie del Monte de los Olivos, Jesús oró diciendo: \"No sea como yo quiero, sino como tú\"."},
+  {"id":"e274","level":"EASY","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿Qué preso eligió la multitud que fuera soltado por Pilato en lugar de Jesús?","options":["Dimas","Herodes","Barrabás","Simón"],"correctAnswer":2,"verse":"Mateo 27:20-21","explanation":"Persuadida por los líderes, la multitud pidió que soltaran a Barrabás y crucificaran a Jesús."},
+  {"id":"e275","level":"EASY","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿Qué mujer fue la primera en ver a Jesús resucitado junto al sepulcro según Juan 20?","options":["María Magdalena","Salomé de Galilea","Marta de Betania","Juana de Chuza"],"correctAnswer":0,"verse":"Juan 20:14-16","explanation":"Jesús llamó por su nombre a María Magdalena y ella lo reconoció exclamando \"¡Raboni!\"."},
+  {"id":"e276","level":"EASY","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿Qué apóstol dijo que no creería en la resurrección hasta ver las marcas de los clavos?","options":["Felipe","Andrés","Tomás","Mateo"],"correctAnswer":2,"verse":"Juan 20:24-25","explanation":"Tomás no estaba la primera vez, pero ocho días después confesó ante Jesús: \"¡Señor mío, y Dios mío!\"."},
+  {"id":"e277","level":"EASY","type":"MULTIPLE_CHOICE","category":"Hechos","question":"¿Cuál era el nombre judío del apóstol Pablo antes de usar su nombre romano?","options":["Silas","Simón","Simeón","Saulo"],"correctAnswer":3,"verse":"Hechos 13:9","explanation":"Saulo, natural de Tarso, también es llamado Pablo a partir de su ministerio entre los gentiles."},
+  {"id":"e278","level":"EASY","type":"MULTIPLE_CHOICE","category":"Hechos","question":"¿Hacia qué ciudad iba Saulo para perseguir cristianos cuando Jesús se le apareció en una luz?","options":["Corinto","Damasco","Éfeso","Antioquía"],"correctAnswer":1,"verse":"Hechos 9:3-5","explanation":"Cerca de Damasco lo rodeó un resplandor del cielo y oyó la voz del Señor Jesús."},
+  {"id":"e279","level":"EASY","type":"MULTIPLE_CHOICE","category":"Hechos","question":"¿Quién fue el primer mártir cristiano, muerto a pedradas mientras oraba por sus agresores?","options":["Bernabé","Jacobo","Felipe","Esteban"],"correctAnswer":3,"verse":"Hechos 7:58-60","explanation":"Esteban, lleno de gracia y poder, vio a Jesús a la diestra de Dios y perdonó a quienes lo apedreaban."},
+  {"id":"e280","level":"EASY","type":"MULTIPLE_CHOICE","category":"Datos Bíblicos","question":"¿Cuál es el último libro de toda la Biblia?","options":["Judas","Apocalipsis","Malaquías","Hebreos"],"correctAnswer":1,"verse":"Apocalipsis 22:21","explanation":"Apocalipsis cierra el Nuevo Testamento revelando la victoria final de Cristo y la Nueva Jerusalén."},
+  {"id":"e281","level":"EASY","type":"MULTIPLE_CHOICE","category":"Datos Bíblicos","question":"¿Cuál es el primer libro del Nuevo Testamento?","options":["Marcos","Hechos","Mateo","Génesis"],"correctAnswer":2,"verse":"Mateo 1:1","explanation":"El Evangelio según San Mateo abre el Nuevo Testamento presentando la genealogía de Jesucristo."},
+  {"id":"e282","level":"EASY","type":"MULTIPLE_CHOICE","category":"Datos Bíblicos","question":"¿Cuántos libros tiene el Nuevo Testamento?","options":["27 libros","39 libros","21 libros","66 libros"],"correctAnswer":0,"verse":"Canon del Nuevo Testamento","explanation":"El Nuevo Testamento cuenta con 27 libros y el Antiguo Testamento con 39, sumando 66 en total."},
+  {"id":"e283","level":"EASY","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién dijo a su suegra: \"Tu pueblo será mi pueblo, y tu Dios mi Dios\"?","options":["Rebeca","Raquel","Rut","Ester"],"correctAnswer":2,"verse":"Rut 1:16","explanation":"Rut expresó su lealtad inquebrantable a Noemí al decidir acompañarla a Belén."},
+  {"id":"e284","level":"EASY","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién respondió siendo niño: \"Habla, porque tu siervo oye\"?","options":["Samuel","Josías","David","Timoteo"],"correctAnswer":0,"verse":"1 Samuel 3:10","explanation":"Siguiendo el consejo del sacerdote Elí, el niño Samuel respondió así al llamado de Jehová."},
+  {"id":"e285","level":"EASY","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién dijo a Goliat: \"Tú vienes a mí con espada y lanza... mas yo vengo a ti en el nombre de Jehová\"?","options":["Saúl","Jonatán","Sansón","David"],"correctAnswer":3,"verse":"1 Samuel 17:45","explanation":"David declaró su plena confianza en Dios antes de vencer al gigante filisteo."},
+  {"id":"e286","level":"EASY","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién exclamó ante Dios en su visión: \"Heme aquí, envíame a mí\"?","options":["Jeremías","Isaías","Ezequiel","Jonás"],"correctAnswer":1,"verse":"Isaías 6:8","explanation":"Después de ser purificado en el templo, Isaías se ofreció voluntariamente como mensajero de Dios."},
+  {"id":"e287","level":"EASY","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién declaró al ver a Jesús: \"He aquí el Cordero de Dios, que quita el pecado del mundo\"?","options":["Juan el Bautista","Nicodemo el fariseo","Zacarías el sacerdote","Simón Pedro"],"correctAnswer":0,"verse":"Juan 1:29","explanation":"Juan el Bautista presentó públicamente a Jesús junto al río Jordán con estas palabras."},
+  {"id":"e288","level":"EASY","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién le confesó a Jesús: \"Tú eres el Cristo, el Hijo del Dios viviente\"?","options":["Mateo","Pedro","Judas","Tomás"],"correctAnswer":1,"verse":"Mateo 16:16","explanation":"En Cesarea de Filipo, Simón Pedro hizo esta gran confesión revelada por el Padre."},
+  {"id":"e289","level":"EASY","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién respondió al ángel Gabriel: \"He aquí la sierva del Señor; hágase conmigo conforme a tu palabra\"?","options":["Ana","Marta","María","Elisabet"],"correctAnswer":2,"verse":"Lucas 1:38","explanation":"María aceptó con humildad y obediencia el llamado de ser la madre del Salvador."},
+  {"id":"e290","level":"EASY","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién exclamó al perderlo todo: \"Jehová dio, y Jehová quitó; sea el nombre de Jehová bendito\"?","options":["Noé","David","Abraham","Job"],"correctAnswer":3,"verse":"Job 1:21","explanation":"Aun en medio de un dolor indescriptible, Job adoró a Dios con reverencia."},
+  {"id":"e291","level":"EASY","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién preguntó a Dios tras matar a su hermano: \"¿Soy yo acaso guarda de mi hermano?\"?","options":["Esaú","Absalón","Caín","Saúl"],"correctAnswer":2,"verse":"Génesis 4:9","explanation":"Caín respondió con dureza cuando Dios le preguntó dónde estaba su hermano Abel."},
+  {"id":"e292","level":"EASY","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién dijo al rey Faraón: \"Jehová el Dios de Israel dice así: Deja ir a mi pueblo\"?","options":["Moisés","José","Daniel","Josué"],"correctAnswer":0,"verse":"Éxodo 5:1","explanation":"Moisés y Aarón llevaron repetidamente el mandato de Dios ante Faraón en Egipto."},
+  {"id":"e293","level":"EASY","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién dijo a Jesús desde la cruz vecina: \"Acuérdate de mí cuando vengas en tu reino\"?","options":["Barrabás","Simón de Cirene","El centurión romano","El ladrón arrepentido"],"correctAnswer":3,"verse":"Lucas 23:42","explanation":"Uno de los malhechores crucificados reconoció a Jesús y recibió la promesa del paraíso."},
+  {"id":"e294","level":"EASY","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién dijo al pie de la cruz: \"Verdaderamente éste era Hijo de Dios\"?","options":["Poncio Pilato","El centurión romano","Caifás el sacerdote","Herodes Antipas"],"correctAnswer":1,"verse":"Mateo 27:54","explanation":"Al ver el terremoto y cómo murió Jesús, el centurión y sus soldados quedaron maravillados."},
+  {"id":"e295","level":"EASY","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién dijo al cojo en la puerta del templo: \"No tengo plata ni oro, pero lo que tengo te doy\"?","options":["Felipe","Esteban","Pablo","Pedro"],"correctAnswer":3,"verse":"Hechos 3:6","explanation":"Pedro levantó al hombre cojo de nacimiento en el nombre de Jesucristo de Nazaret."},
+  {"id":"e296","level":"EASY","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién dijo a sus hermanos en Egipto: \"Vosotros pensasteis mal contra mí, mas Dios lo encaminó a bien\"?","options":["José","Judá","Benjamín","Jacob"],"correctAnswer":0,"verse":"Génesis 50:20","explanation":"José perdonó a sus hermanos reconociendo que Dios usó su prueba para salvar muchas vidas."},
+  {"id":"e297","level":"EASY","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién exclamó al ver a Jesús resucitado: \"¡Señor mío, y Dios mío!\"?","options":["Felipe","Tomás","Bartolomé","Andrés"],"correctAnswer":1,"verse":"Juan 20:28","explanation":"Al presentarse Jesús ante él, las dudas de Tomás se transformaron en adoración."},
+  {"id":"e298","level":"EASY","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién escribió: \"Jehová es mi pastor; nada me faltará\"?","options":["Moisés","Salomón","David","Isaías"],"correctAnswer":2,"verse":"Salmos 23:1","explanation":"El rey David, antiguo pastor de ovejas, compuso el salmo más conocido de toda la Biblia."},
+  {"id":"e299","level":"EASY","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién dijo a su pueblo antes de entrar ante el rey persa: \"Y si perezco, que perezca\"?","options":["Ester","Débora","Rut","Miriam"],"correctAnswer":0,"verse":"Ester 4:16","explanation":"Ester pidió tres días de ayuno y arriesgó su vida para interceder por su pueblo."},
+  {"id":"e300","level":"EASY","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién respondió a sus hermanos cuando dudó seguir a Jesús: \"¿De Nazaret puede salir algo de bueno?\"?","options":["Andrés","Mateo","Tomás","Natanael"],"correctAnswer":3,"verse":"Juan 1:46","explanation":"Natanael hizo esa pregunta a Felipe, quien simplemente le invitó: \"Ven y ve\"."},
+  {"id":"e301","level":"EASY","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién exclamó siendo anciano al cargar al niño Jesús: \"Ahora, Señor, despides a tu siervo en paz\"?","options":["Nicodemo","Simeón","José","Zacarías"],"correctAnswer":1,"verse":"Lucas 2:29","explanation":"El Espíritu había revelado a Simeón que no moriría antes de ver al Ungido del Señor."},
+  {"id":"e302","level":"EASY","type":"FILL_VERSE","category":"Versículos Clave","question":"Completa Génesis 1:1: \"En el principio creó Dios los cielos y la _________\"","options":["noche","luz","tierra","vida"],"correctAnswer":2,"verse":"Génesis 1:1","explanation":"Es el primer versículo de la Escritura, afirmando a Dios como Creador absoluto."},
+  {"id":"e303","level":"EASY","type":"FILL_VERSE","category":"Versículos Clave","question":"Completa Salmos 23:4: \"Aunque ande en valle de sombra de muerte, no temeré mal alguno, porque tú estarás _________\"","options":["arriba","cerca","atento","conmigo"],"correctAnswer":3,"verse":"Salmos 23:4","explanation":"La presencia del Buen Pastor disipa el temor aun en los momentos más oscuros."},
+  {"id":"e304","level":"EASY","type":"FILL_VERSE","category":"Versículos Clave","question":"Completa Salmos 150:6: \"Todo lo que respira _________ a JAH. Aleluya.\"","options":["alabe","busque","sirva","ame"],"correctAnswer":0,"verse":"Salmos 150:6","explanation":"El libro de los Salmos culmina llamando a toda la creación a alabar al Señor."},
+  {"id":"e305","level":"EASY","type":"FILL_VERSE","category":"Versículos Clave","question":"Completa Mateo 6:33: \"Mas buscad primeramente el _________ de Dios y su justicia, y todas estas cosas os serán añadidas.\"","options":["rostro","reino","templo","camino"],"correctAnswer":1,"verse":"Mateo 6:33","explanation":"Poner el reino de Dios primero libera el corazón del afán diario."},
+  {"id":"e306","level":"EASY","type":"FILL_VERSE","category":"Versículos Clave","question":"Completa Mateo 11:28: \"Venid a mí todos los que estáis trabajados y cargados, y yo os haré _________\"","options":["cantar","vencer","descansar","brillar"],"correctAnswer":2,"verse":"Mateo 11:28","explanation":"Jesús invita a los cansados a encontrar verdadero descanso en Él."},
+  {"id":"e307","level":"EASY","type":"FILL_VERSE","category":"Versículos Clave","question":"Completa Juan 8:32: \"Y conoceréis la verdad, y la verdad os hará _________\"","options":["libres","justos","sabios","fuertes"],"correctAnswer":0,"verse":"Juan 8:32","explanation":"Permanecer en la palabra de Jesús trae libertad espiritual genuina."},
+  {"id":"e308","level":"EASY","type":"FILL_VERSE","category":"Versículos Clave","question":"Completa 1 Juan 4:19: \"Nosotros le amamos a él, porque él nos _________ primero.\"","options":["salvó","llamó","amó","creó"],"correctAnswer":2,"verse":"1 Juan 4:19","explanation":"Nuestro amor hacia Dios es siempre respuesta a su iniciativa de amor hacia nosotros."},
+  {"id":"e309","level":"EASY","type":"FILL_VERSE","category":"Versículos Clave","question":"Completa Josué 1:9: \"Mira que te mando que te esfuerces y seas _________; no temas ni desmayes\"","options":["prudente","sabio","humilde","valiente"],"correctAnswer":3,"verse":"Josué 1:9","explanation":"Dios animó a Josué a ser valiente asegurándole que estaría con él dondequiera que fuera."},
+  {"id":"e310","level":"EASY","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? El rey David fue el primer rey que gobernó sobre Israel.","options":["Verdadero","Falso"],"correctAnswer":1,"verse":"1 Samuel 10:1","explanation":"Falso. El primer rey de Israel fue Saúl; David fue el segundo rey."},
+  {"id":"e311","level":"EASY","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? Moisés guió al pueblo de Israel cruzando el río Jordán para conquistar Jericó.","options":["Verdadero","Falso"],"correctAnswer":1,"verse":"Josué 1:1-2","explanation":"Falso. Moisés murió antes de entrar a Canaán; fue Josué quien lideró el cruce del Jordán y la toma de Jericó."},
+  {"id":"e312","level":"EASY","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? El apóstol Pablo fue uno de los doce discípulos originales que caminaron con Jesús en Galilea.","options":["Verdadero","Falso"],"correctAnswer":1,"verse":"Hechos 9:1-6","explanation":"Falso. Pablo se convirtió después de la resurrección y ascensión de Jesús, camino a Damasco."},
+  {"id":"e313","level":"EASY","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? Sansón perdió su extraordinaria fuerza cuando le cortaron el cabello.","options":["Verdadero","Falso"],"correctAnswer":0,"verse":"Jueces 16:17-19","explanation":"Verdadero. Al quebrantarse su voto nazareo cuando le raparon la cabeza, la fuerza se apartó de él."},
+  {"id":"e314","level":"EASY","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? El profeta Jonás pasó siete días y siete noches dentro del gran pez.","options":["Verdadero","Falso"],"correctAnswer":1,"verse":"Jonás 1:17","explanation":"Falso. La Biblia indica exactamente tres días y tres noches en el vientre del gran pez."},
+  {"id":"e315","level":"EASY","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? Abraham estaba dispuesto a ofrecer a su hijo Isaac antes de que Dios proveyera un carnero.","options":["Verdadero","Falso"],"correctAnswer":0,"verse":"Génesis 22:10-13","explanation":"Verdadero. El ángel de Jehová detuvo a Abraham y Dios proveyó un carnero trabado en un zarzal."},
+  {"id":"e316","level":"EASY","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? Jesús nació en la ciudad de Nazaret y creció en Belén.","options":["Verdadero","Falso"],"correctAnswer":1,"verse":"Mateo 2:1, 23","explanation":"Falso. Fue exactamente al revés: Jesús nació en Belén de Judea y creció en Nazaret de Galilea."},
+  {"id":"e317","level":"EASY","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? El Evangelio de Marcos está ubicado en el Antiguo Testamento.","options":["Verdadero","Falso"],"correctAnswer":1,"verse":"Marcos 1:1","explanation":"Falso. Marcos es el segundo de los cuatro Evangelios del Nuevo Testamento."},
+  {"id":"e318","level":"EASY","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? El rey Salomón pidió a Dios sabiduría para gobernar en lugar de riquezas.","options":["Verdadero","Falso"],"correctAnswer":0,"verse":"1 Reyes 3:9-12","explanation":"Verdadero. A Dios le agradó su petición y le dio sabiduría incomparable, además de riquezas y gloria."},
+  {"id":"e319","level":"EASY","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? La esposa de Noé se convirtió en estatua de sal por mirar atrás.","options":["Verdadero","Falso"],"correctAnswer":1,"verse":"Génesis 19:26","explanation":"Falso. Fue la esposa de Lot quien miró hacia atrás al huir de Sodoma y se volvió estatua de sal."},
+  {"id":"e320","level":"EASY","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? Caín era pastor de ovejas y Abel era labrador de la tierra.","options":["Verdadero","Falso"],"correctAnswer":1,"verse":"Génesis 4:2","explanation":"Falso. Abel era pastor de ovejas y Caín era labrador de la tierra."},
+  {"id":"e321","level":"EASY","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? Daniel fue echado al foso de los leones por continuar orando a Dios tres veces al día.","options":["Verdadero","Falso"],"correctAnswer":0,"verse":"Daniel 6:10-16","explanation":"Verdadero. Daniel mantuvo su costumbre fiel de orar pese al decreto del rey Darío y Dios lo libró."},
+  {"id":"e322","level":"EASY","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? Judas Iscariote entregó a Jesús por cien monedas de oro.","options":["Verdadero","Falso"],"correctAnswer":1,"verse":"Mateo 26:15","explanation":"Falso. Los principales sacerdotes le asignaron treinta piezas de plata."},
+  {"id":"e323","level":"EASY","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? En el huerto del Edén, Dios permitió a Adán y Eva comer de todos los árboles excepto uno.","options":["Verdadero","Falso"],"correctAnswer":0,"verse":"Génesis 2:16-17","explanation":"Verdadero. Solo se les prohibió comer del árbol de la ciencia del bien y del mal."},
+  {"id":"e324","level":"EASY","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? El libro de Apocalipsis fue escrito por el apóstol Pedro.","options":["Verdadero","Falso"],"correctAnswer":1,"verse":"Apocalipsis 1:1, 9","explanation":"Falso. Fue escrito por el apóstol Juan mientras estaba exiliado en la isla de Patmos."},
+  {"id":"e325","level":"EASY","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? Jesús alimentó a más de cinco mil hombres con cinco panes y dos peces.","options":["Verdadero","Falso"],"correctAnswer":0,"verse":"Mateo 14:17-21","explanation":"Verdadero. Comieron todos y se saciaron, y aún recogieron doce cestas llenas de sobras."},
+  {"id":"e326","level":"EASY","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? El gigante Goliat fue derrotado por el rey Saúl con su espada real.","options":["Verdadero","Falso"],"correctAnswer":1,"verse":"1 Samuel 17:49-50","explanation":"Falso. Fue el joven pastor David quien derribó a Goliat con su honda y una piedra."},
+  {"id":"e327","level":"EASY","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? La Biblia completa consta de 66 libros repartidos en dos Testamentos.","options":["Verdadero","Falso"],"correctAnswer":0,"verse":"Canon Bíblico","explanation":"Verdadero. Tiene 39 libros en el Antiguo Testamento y 27 libros en el Nuevo Testamento."},
+  {"id":"e328","level":"EASY","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? José fue vendido como esclavo a Babilonia por sus hermanos.","options":["Verdadero","Falso"],"correctAnswer":1,"verse":"Génesis 37:28, 36","explanation":"Falso. José fue llevado y vendido en Egipto, donde Dios lo elevó a gobernador."},
+  {"id":"e329","level":"EASY","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? Zaqueo prometió devolver cuadruplicado a cualquiera que hubiera defraudado.","options":["Verdadero","Falso"],"correctAnswer":0,"verse":"Lucas 19:8","explanation":"Verdadero. Zaqueo demostró arrepentimiento sincero dando la mitad de sus bienes a los pobres y restituyendo el cuádruple."},
+  {"id":"e330","level":"EASY","type":"MULTIPLE_CHOICE","category":"Creación","question":"¿Qué formó Dios en el segundo día de la creación separando las aguas?","options":["La luz del día","La expansión o cielo","Las aves del campo","Los árboles frutales"],"correctAnswer":1,"verse":"Génesis 1:6-8","explanation":"Dios hizo la expansión en medio de las aguas y llamó a la expansión Cielos en el segundo día."},
+  {"id":"e331","level":"EASY","type":"MULTIPLE_CHOICE","category":"Creación","question":"¿Qué creó Dios en el quinto día de la creación?","options":["Sol, luna y estrellas","Hierbas y árboles","Peces y aves","Ganado y bestias"],"correctAnswer":2,"verse":"Génesis 1:20-23","explanation":"En el quinto día Dios llenó los mares de peces y grandes monstruos marinos, y los cielos de aves."},
+  {"id":"e332","level":"EASY","type":"MULTIPLE_CHOICE","category":"Génesis","question":"¿Qué le dio Dios a Adán la tarea de ponerle a cada animal del campo y ave del cielo?","options":["Un corral","Una señal","Una ofrenda","Un nombre"],"correctAnswer":3,"verse":"Génesis 2:19-20","explanation":"Jehová trajo los animales a Adán para ver cómo los había de llamar, y así fue su nombre."},
+  {"id":"e333","level":"EASY","type":"MULTIPLE_CHOICE","category":"Génesis","question":"¿De qué parte del cuerpo de Adán formó Dios a la mujer Eva?","options":["De una costilla","Del polvo seco","De un pie","De una mano"],"correctAnswer":0,"verse":"Génesis 2:21-22","explanation":"Dios hizo caer sueño profundo sobre Adán, tomó una de sus costillas y de ella formó a la mujer."},
+  {"id":"e334","level":"EASY","type":"MULTIPLE_CHOICE","category":"Génesis","question":"¿Con qué árbol y hojas se cosieron delantales Adán y Eva al notar que estaban desnudos?","options":["Hojas de palma","Hojas de higuera","Hojas de olivo","Hojas de cedro"],"correctAnswer":1,"verse":"Génesis 3:7","explanation":"Cosieron hojas de higuera para cubrirse, pero luego Dios les hizo túnicas de pieles."},
+  {"id":"e335","level":"EASY","type":"MULTIPLE_CHOICE","category":"Patriarcas","question":"¿Cómo se llamaba la esposa amada de Jacob por la cual trabajó catorce años?","options":["Lea","Sara","Raquel","Rebeca"],"correctAnswer":2,"verse":"Génesis 29:18-28","explanation":"Jacob amaba a Raquel, pero Labán le dio primero a Lea y Jacob sirvió otros siete años por Raquel."},
+  {"id":"e336","level":"EASY","type":"MULTIPLE_CHOICE","category":"Patriarcas","question":"¿Qué soñó el joven José que hacían las gavillas de sus hermanos alrededor de la suya?","options":["Que se inclinaban","Que desaparecían","Que volaban alto","Que se quemaban"],"correctAnswer":0,"verse":"Génesis 37:7","explanation":"José soñó que su gavilla se levantaba derecha y las de sus hermanos se inclinaban ante ella."},
+  {"id":"e337","level":"EASY","type":"MULTIPLE_CHOICE","category":"Éxodo","question":"¿Cuántos días y noches estuvo Moisés en el monte Sinaí recibiendo la Ley?","options":["Doce días","Cuarenta días","Treinta días","Siete días"],"correctAnswer":1,"verse":"Éxodo 24:18","explanation":"Moisés subió a la nube en el monte Sinaí y permaneció allí cuarenta días y cuarenta noches."},
+  {"id":"e338","level":"EASY","type":"MULTIPLE_CHOICE","category":"Éxodo","question":"¿Qué animal pequeño cubrió Egipto en la segunda plaga, entrando hasta en los hornos y camas?","options":["Langostas","Piojos","Moscas","Ranas"],"correctAnswer":3,"verse":"Éxodo 8:2-6","explanation":"La segunda plaga hizo subir ranas del río que cubrieron la tierra y las casas de Egipto."},
+  {"id":"e339","level":"EASY","type":"MULTIPLE_CHOICE","category":"Antiguo Testamento","question":"¿Qué animal pequeño menciona Proverbios 6 como ejemplo de trabajo diligente para el perezoso?","options":["La hormiga","La paloma","La abeja","La oveja"],"correctAnswer":0,"verse":"Proverbios 6:6-8","explanation":"Salomón aconseja mirar a la hormiga, que sin capataz prepara su comida en el verano."},
+  {"id":"e340","level":"EASY","type":"MULTIPLE_CHOICE","category":"Reyes","question":"¿Cuántos hermanos varones mayores tenía el joven David en la casa de su padre Isaí?","options":["Diez hermanos","Cinco hermanos","Siete hermanos","Doce hermanos"],"correctAnswer":2,"verse":"1 Samuel 16:10-11","explanation":"Isaí hizo pasar a siete de sus hijos delante de Samuel antes de mandar llamar al menor, David."},
+  {"id":"e341","level":"EASY","type":"MULTIPLE_CHOICE","category":"Reyes","question":"¿Qué dos animales salvajes dijo David haber vencido defendiendo el rebaño de su padre?","options":["Un jabalí y un zorro","Un lobo y una serpiente","Un tigre y un águila","Un león y un oso"],"correctAnswer":3,"verse":"1 Samuel 17:34-36","explanation":"David contó a Saúl que Dios lo había librado de las garras del león y del oso, y lo libraría de Goliat."},
+  {"id":"e342","level":"EASY","type":"MULTIPLE_CHOICE","category":"Profetas","question":"¿Qué libro de la Biblia relata cómo Dios restauró al doble todo lo que un hombre justo había perdido?","options":["Rut","Job","Ester","Eclesiastés"],"correctAnswer":1,"verse":"Job 42:10","explanation":"Cuando Job oró por sus amigos, Jehová quitó su aflicción y aumentó al doble todas sus posesiones."},
+  {"id":"e343","level":"EASY","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿Qué animales estaban cuidando en el campo los primeros hombres en oír el anuncio angelical del nacimiento de Jesús?","options":["Bueyes","Camellos","Ovejas","Caballos"],"correctAnswer":2,"verse":"Lucas 2:8-11","explanation":"Pastores velaban las vigilias de la noche sobre su rebaño cerca de Belén cuando apareció el ángel."},
+  {"id":"e344","level":"EASY","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿Qué señal en el cielo guió a los magos de oriente hasta el lugar donde estaba el niño Jesús?","options":["Una nube luminosa","Una estrella","Una columna de fuego","Un arcoíris"],"correctAnswer":1,"verse":"Mateo 2:9","explanation":"La estrella que habían visto en el oriente iba delante de ellos hasta detenerse sobre donde estaba el niño."},
+  {"id":"e345","level":"EASY","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿Qué hizo Jesús con los pies de sus discípulos durante la Última Cena como ejemplo de humildad?","options":["Se los lavó","Los ungió con miel","Los cubrió con lino","Les puso sandalias"],"correctAnswer":0,"verse":"Juan 13:4-5","explanation":"Jesús se ciñó una toalla, echó agua en un lebrillo y lavó los pies de sus discípulos para enseñarles a servir."},
+  {"id":"e346","level":"EASY","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿Con qué señal traicionó Judas Iscariote a Jesús en el huerto de Getsemaní?","options":["Con una antorcha","Con un silbido","Con un abrazo largo","Con un beso"],"correctAnswer":3,"verse":"Mateo 26:48-49","explanation":"Judas dio la señal a los soldados diciendo: \"Al que yo besare, ése es; prendedle\"."},
+  {"id":"e347","level":"EASY","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿Qué ave cantó justo después de que Pedro negó conocer a Jesús por tercera vez?","options":["Una paloma","Un gorrión","Un gallo","Un cuervo"],"correctAnswer":2,"verse":"Mateo 26:74-75","explanation":"Enseguida cantó el gallo, y Pedro recordó las palabras de Jesús y salió fuera a llorar amargamente."},
+  {"id":"e348","level":"EASY","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿Qué bebida agria acercaron en una esponja a los labios de Jesús en la cruz cuando dijo \"Tengo sed\"?","options":["Vinagre","Leche tibia","Aceite puro","Agua de pozo"],"correctAnswer":0,"verse":"Juan 19:28-29","explanation":"Empaparon una esponja en una vasija llena de vinagre, la pusieron en un hisopo y se la acercaron a la boca."},
+  {"id":"e349","level":"EASY","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿Cuántos días se apareció Jesús resucitado a sus discípulos antes de ascender al cielo?","options":["Cincuenta días","Cuarenta días","Siete días","Doce días"],"correctAnswer":1,"verse":"Hechos 1:3","explanation":"Durante cuarenta días se presentó vivo con muchas pruebas indubitables hablándoles del reino de Dios."},
+  {"id":"e350","level":"EASY","type":"MULTIPLE_CHOICE","category":"Datos Bíblicos","question":"¿En cuántos libros se divide la primera gran parte de la Biblia, desde Génesis hasta Malaquías?","options":["45 libros","27 libros","50 libros","39 libros"],"correctAnswer":3,"verse":"Canon del AT","explanation":"El Antiguo Testamento reúne 39 libros históricos, poéticos y proféticos desde Génesis hasta Malaquías."},
+  {"id":"e351","level":"EASY","type":"MULTIPLE_CHOICE","category":"Datos Bíblicos","question":"¿Qué grupo de cinco libros abre el Antiguo Testamento y es llamado el Pentateuco?","options":["Los Libros Históricos","Los Profetas Mayores","Los Libros de la Ley","Los Libros Poéticos"],"correctAnswer":2,"verse":"Génesis a Deuteronomio","explanation":"El Pentateuco (Torá o Ley) comprende Génesis, Éxodo, Levítico, Números y Deuteronomio."},
+  {"id":"e352","level":"EASY","type":"FILL_VERSE","category":"Versículos Clave","question":"Completa Salmos 27:1: \"Jehová es mi luz y mi salvación; ¿de quién _________?\"","options":["huiré","temeré","dudaré","esperaré"],"correctAnswer":1,"verse":"Salmos 27:1","explanation":"David declara confianza total en Dios como luz, salvación y fortaleza de su vida."},
+  {"id":"e353","level":"EASY","type":"FILL_VERSE","category":"Versículos Clave","question":"Completa Proverbios 17:17: \"En todo tiempo ama el _________, y es como un hermano en tiempo de angustia.\"","options":["vecino","maestro","viajero","amigo"],"correctAnswer":3,"verse":"Proverbios 17:17","explanation":"La amistad verdadera permanece firme tanto en la alegría como en los momentos difíciles."},
+  {"id":"e354","level":"EASY","type":"FILL_VERSE","category":"Versículos Clave","question":"Completa Juan 11:25: \"Yo soy la resurrección y la _________; el que cree en mí, aunque esté muerto, vivirá.\"","options":["vida","verdad","luz","puerta"],"correctAnswer":0,"verse":"Juan 11:25","explanation":"Jesús dijo estas palabras a Marta antes de resucitar a Lázaro en Betania."},
+  {"id":"m1","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Milagros de Jesús","question":"¿Cuál fue el primer milagro público de Jesús según el Evangelio de Juan?","options":["Sanar a diez leprosos","Caminar sobre el mar","Multiplicar cinco panes","Convertir agua en vino"],"correctAnswer":3,"verse":"Juan 2:1-11","explanation":"En las bodas de Caná de Galilea, Jesús manifestó por primera vez su gloria."},
+  {"id":"m2","level":"MEDIUM","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién declaró con convicción: \"Yo y mi casa serviremos a Jehová\"?","options":["Gedeón","Moisés","Josué","Samuel"],"correctAnswer":2,"verse":"Josué 24:15","explanation":"Josué lo proclamó al despedirse del pueblo de Israel reafirmando su lealtad a Dios."},
+  {"id":"m3","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"El Fruto del Espíritu","question":"¿Cuál de los siguientes NO es parte del fruto del Espíritu en Gálatas 5:22-23?","options":["Orgullo y Fama","Amor y Gozo","Paciencia y Benignidad","Paz y Mansedumbre"],"correctAnswer":0,"verse":"Gálatas 5:22-23","explanation":"El fruto del Espíritu es amor, gozo, paz, paciencia, benignidad, bondad, fe, mansedumbre y templanza."},
+  {"id":"m4","level":"MEDIUM","type":"TRUE_FALSE","category":"Hechos de los Apóstoles","question":"¿Verdadero o Falso? Saulo de Tarso perseguía a los cristianos antes de convertirse en el apóstol Pablo.","options":["Verdadero","Falso"],"correctAnswer":0,"verse":"Hechos 9:1-6","explanation":"Saulo respiraba amenazas y muerte contra los discípulos hasta que tuvo su encuentro con Cristo."},
+  {"id":"m5","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Profetas","question":"¿A qué profeta se le apareció Dios en un silbo apacible y delicado en el monte Horeb?","options":["Jeremías","Elías","Isaías","Ezequiel"],"correctAnswer":1,"verse":"1 Reyes 19:12","explanation":"Dios no estaba en el fuego ni en el terremoto, sino en un silbo apacible."},
+  {"id":"m6","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Parábolas","question":"En la parábola del Hijo Pródigo, ¿qué animal mandó sacrificar el padre para celebrar el regreso?","options":["Dos palominos","Un cordero sin mancha","Un cabrito","El becerro gordo"],"correctAnswer":3,"verse":"Lucas 15:23","explanation":"\"Traed el becerro gordo y matadlo, y comamos y hagamos fiesta.\""},
+  {"id":"m7","level":"MEDIUM","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién clamó a Jesús en Jericó: \"¡Hijo de David, ten misericordia de mí!\" a pesar de que le mandaban callar?","options":["El ciego Bartimeo","Lázaro de Betania","Zaqueo el publicano","Nicodemo el fariseo"],"correctAnswer":0,"verse":"Marcos 10:47-48","explanation":"Bartimeo perseveró con fe viva y Jesús le devolvió la vista."},
+  {"id":"m8","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Jueces de Israel","question":"¿Qué juez de Israel redujo su ejército de 32,000 soldados a tan solo 300 valientes con trompetas y cántaros?","options":["Barac","Gedeón","Sansón","Jefté"],"correctAnswer":1,"verse":"Jueces 7:7","explanation":"Dios le dijo a Gedeón: \"Con estos trescientos hombres que lamieron el agua os salvaré\"."},
+  {"id":"m9","level":"MEDIUM","type":"TRUE_FALSE","category":"Los Apóstoles","question":"¿Verdadero o Falso? Mateo, antes de seguir a Jesús, trabajaba como recaudador de impuestos.","options":["Verdadero","Falso"],"correctAnswer":0,"verse":"Mateo 9:9","explanation":"Jesús vio a un hombre llamado Mateo sentado al banco de los tributos públicos y le dijo: Sígueme."},
+  {"id":"m10","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Antiguo Testamento","question":"¿Quién pidió a Dios \"un corazón entendido para juzgar y discernir entre lo bueno y lo malo\" en lugar de riquezas?","options":["Ezequías","Josafat","Salomón","David"],"correctAnswer":2,"verse":"1 Reyes 3:9-12","explanation":"Salomón pidió sabiduría para gobernar al pueblo y Dios le otorgó sabiduría incomparable."},
+  {"id":"m11","level":"MEDIUM","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién dijo a Jesús en una noche secreta: \"¿Cómo puede un hombre nacer siendo viejo?\"","options":["Nicodemo","José de Arimatea","Gamaliel","Caifás"],"correctAnswer":0,"verse":"Juan 3:1-4","explanation":"Nicodemo, principal entre los judíos, vino a Jesús de noche para conversar sobre el nuevo nacimiento."},
+  {"id":"m12","level":"MEDIUM","type":"TRUE_FALSE","category":"La Iglesia Primitiva","question":"¿Verdadero o Falso? Bernabé vendió una heredad que tenía y trajo el precio para ponerlo a los pies de los apóstoles.","options":["Verdadero","Falso"],"correctAnswer":0,"verse":"Hechos 4:36-37","explanation":"José, a quien los apóstoles llamaron Bernabé (Hijo de consolación), vendió una heredad y dio el dinero."},
+  {"id":"m13","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Milagros de Jesús","question":"¿Cuántos días llevaba muerto Lázaro en el sepulcro cuando Jesús lo resucitó?","options":["1 día","3 días","2 días","4 días"],"correctAnswer":3,"verse":"Juan 11:39","explanation":"Marta dijo: \"Señor, hiede ya, porque es de cuatro días\". Y Jesús dijo: \"¡Lázaro, ven fuera!\"."},
+  {"id":"m14","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Profetas","question":"¿Cómo fue llevado el profeta Elías al cielo sin ver muerte física?","options":["En una nube resplandeciente","En un carro de fuego al cielo","Sobre alas de grandes águilas","En una barca de oro brillante"],"correctAnswer":1,"verse":"2 Reyes 2:11","explanation":"Un carro de fuego con caballos de fuego apartó a los dos; y Elías subió al cielo en un torbellino."},
+  {"id":"m15","level":"MEDIUM","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién dijo: \"¿Qué es la verdad?\" antes de lavarse las manos y entregar a Jesús para ser crucificado?","options":["Barrabás","Caifás","Poncio Pilato","Herodes Antipas"],"correctAnswer":2,"verse":"Juan 18:38","explanation":"Pilato formuló esta famosa pregunta escéptica frente al propio Autor de la verdad."},
+  {"id":"m16","level":"MEDIUM","type":"TRUE_FALSE","category":"El Sermón del Monte","question":"¿Verdadero o Falso? En las Bienaventuranzas, Jesús dijo: \"Bienaventurados los pacificadores, porque ellos serán llamados hijos de Dios\".","options":["Verdadero","Falso"],"correctAnswer":0,"verse":"Mateo 5:9","explanation":"Mateo 5:9 es una de las declaraciones centrales de Jesús en el Sermón del Monte."},
+  {"id":"m17","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Reyes de Israel","question":"¿Qué rey de Judá mandó reparar el Templo y al hallar el Libro de la Ley rasgó sus vestidos y promovió una gran reforma espiritual con solo 8 años al comenzar su reinado?","options":["Manasés","Ezequías","Roboam","Josías"],"correctAnswer":3,"verse":"2 Reyes 22:1-11","explanation":"El joven rey Josías hizo lo recto ante los ojos de Dios y renovó el pacto del pueblo con las Escrituras."},
+  {"id":"m18","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Génesis","question":"¿Cuántos años tenía Abraham cuando nació su hijo Isaac?","options":["120 años","75 años","100 años","90 años"],"correctAnswer":2,"verse":"Génesis 21:5","explanation":"Y era Abraham de cien años cuando nació Isaac su hijo."},
+  {"id":"m19","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Génesis","question":"¿Qué le sucedió a la esposa de Lot cuando desobedeció la orden divina y miró atrás hacia Sodoma?","options":["Quedó ciega al instante","Se volvió estatua de sal","Cayó en un pozo de brea","Se perdió en el desierto"],"correctAnswer":1,"verse":"Génesis 19:26","explanation":"Entonces la mujer de Lot miró atrás, a espaldas de él, y se volvió estatua de sal."},
+  {"id":"m20","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Patriarcas","question":"¿Por cuántos años en total trabajó Jacob para su tío Labán para poder casarse con su amada Raquel?","options":["14 años","10 años","7 años","21 años"],"correctAnswer":0,"verse":"Génesis 29:18-30","explanation":"Jacob sirvió siete años por Raquel, pero Labán le dio a Lea; y luego sirvió otros siete años por Raquel."},
+  {"id":"m21","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Patriarcas","question":"¿En qué lugar luchó Jacob con el Ángel de Dios hasta el rayar del alba y su nombre fue cambiado a Israel?","options":["Beerseba","Betel","Peniel","Hebrón"],"correctAnswer":2,"verse":"Génesis 32:28-30","explanation":"Y llamó Jacob el nombre de aquel lugar, Peniel; porque dijo: Vi a Dios cara a cara, y fue librada mi alma."},
+  {"id":"m22","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"José en Egipto","question":"¿En el saco de qué hermano menor mandó José esconder su copa especial de plata para probarlos?","options":["Judá","Benjamín","Rubén","Simeón"],"correctAnswer":1,"verse":"Génesis 44:1-2","explanation":"Puso su copa de plata en la boca del costal del menor, Benjamín."},
+  {"id":"m23","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Éxodo","question":"¿Qué nombre se reveló a sí mismo Dios ante Moisés en la zarza ardiendo al enviarlo a Faraón?","options":["JEHOVÁ JIREH","EL SHADDAI","EL ELYON","YO SOY EL QUE SOY"],"correctAnswer":3,"verse":"Éxodo 3:14","explanation":"Y respondió Dios a Moisés: YO SOY EL QUE SOY. Y dijo: Así dirás a los hijos de Israel: YO SOY me envió a vosotros."},
+  {"id":"m24","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"La Pascua","question":"¿Con qué debían pintar los israelitas los dos postes y el dintel de sus casas para que el destructor no entrara en la noche de la Pascua?","options":["Con sangre del cordero","Con vino de la pascua","Con agua del río Nilo","Con aceite de la unción"],"correctAnswer":0,"verse":"Éxodo 12:7; 13","explanation":"Y tomarán de la sangre, y la pondrán en los dos postes y en el dintel... y veré la sangre y pasaré de vosotros."},
+  {"id":"m25","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Éxodo","question":"¿Qué hermana de Moisés y Aarón entonó un cántico con pandero tras cruzar el Mar Rojo?","options":["Débora","Elisabet","María","Séfora"],"correctAnswer":2,"verse":"Éxodo 15:20-21","explanation":"María la profetisa, hermana de Aarón, tomó un pandero en su mano... Cantad a Jehová, porque en extremo se ha engrandecido."},
+  {"id":"m26","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Leyes y Tabernáculo","question":"¿Qué tribu de las doce fue apartada por Dios para el servicio sagrado del sacerdocio y el tabernáculo?","options":["Tribu de José","Tribu de Leví","Tribu de Judá","Tribu de Benjamín"],"correctAnswer":1,"verse":"Números 3:6-9","explanation":"Haz que se acerque la tribu de Leví... y desempeñen el ministerio del tabernáculo."},
+  {"id":"m27","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Números","question":"¿Qué vara reverdeció milagrosamente produciendo flores y almendras para confirmar la elección sacerdotal de Dios?","options":["La vara de Hur","La vara de Moisés","La vara de Josué","La vara de Aarón"],"correctAnswer":3,"verse":"Números 17:8","explanation":"Y he aquí que la vara de Aarón de la casa de Leví había reverdecido, y echado flores, y arrojado renuevos, y producido almendras."},
+  {"id":"m28","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Números","question":"¿Qué objeto ordenó Dios a Moisés levantar sobre un asta en el desierto para sanar a los israelitas mordidos?","options":["Una serpiente de bronce","Un querubín de plata","Una paloma de piedra","Un candelero de oro"],"correctAnswer":0,"verse":"Números 21:8-9","explanation":"Moisés hizo una serpiente de bronce, y la puso sobre una asta; y cuando alguna serpiente mordía a alguno, miraba a la serpiente de bronce, y vivía."},
+  {"id":"m29","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Josué","question":"¿En qué batalla oró Josué a Dios y el sol y la luna se detuvieron casi un día entero?","options":["En la toma de Hebrón","En la batalla de Hai","En la batalla de Jericó","En la batalla de Gabaón"],"correctAnswer":3,"verse":"Josué 10:12-13","explanation":"Sol, detente en Gabaón; y tú, luna, en el valle de Ajalón. Y el sol se detuvo y la luna se paró."},
+  {"id":"m30","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Jueces","question":"¿Qué general cananeo murió atravesado por una estaca en su tienda a manos de la valiente Jael?","options":["Sísara","Og","Sehón","Jabín"],"correctAnswer":0,"verse":"Jueces 4:17-21","explanation":"Jael tomó una estaca de la tienda y un mazo en su mano... y le metió la estaca por las sienes."},
+  {"id":"m31","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Jueces","question":"¿Qué acertijo propuso Sansón a los filisteos en su boda tras matar a un león con sus manos?","options":["\"El león venció al oso y la abeja venció al rey\"","\"Del devorador salió comida y del fuerte dulzura\"","\"Del fuego brotó agua y de la roca salió miel\"","\"Quien vence al gigante hereda la corona de oro\""],"correctAnswer":1,"verse":"Jueces 14:14","explanation":"Sansón halló miel en el cuerpo del león y propuso: \"Del devorador salió comida, y del fuerte salió dulzura.\""},
+  {"id":"m32","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"1 Samuel","question":"¿Qué le sucedió a la estatua del dios Dagón en Asdod cuando los filisteos colocaron el Arca del Pacto a su lado?","options":["Se hundió debajo del suelo","Se convirtió en ceniza y polvo","Cayó rota de cabeza y manos","Se incendió con fuego del cielo"],"correctAnswer":2,"verse":"1 Samuel 5:3-4","explanation":"Apareció Dagón postrado en tierra delante del arca de Jehová; y la cabeza de Dagón y las dos palmas de sus manos estaban cortadas sobre el umbral."},
+  {"id":"m33","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"1 Samuel","question":"¿A qué mujer sabia y sensata tomó David por esposa después de que su insensato esposo Nabal muriera?","options":["Abigail","Ahinoam","Betsabé","Mical"],"correctAnswer":0,"verse":"1 Samuel 25:39-42","explanation":"Envió David a hablar a Abigail, para tomarla por su mujer; y ella fue y le siguió."},
+  {"id":"m34","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"2 Samuel","question":"¿Qué profeta confrontó al rey David por su pecado con Betsabé y la muerte de Urías contándole la parábola de la corderita?","options":["Samuel","Gad","Natán","Ahías"],"correctAnswer":2,"verse":"2 Samuel 12:1-7","explanation":"Entonces dijo Natán a David: Tú eres aquel hombre. Así ha dicho Jehová, Dios de Israel..."},
+  {"id":"m35","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"2 Samuel","question":"¿Qué hijo de David se rebeló contra él y murió al quedar colgado por su frondosa cabellera en las ramas de una encina?","options":["Adonías","Absalón","Salomón","Amnón"],"correctAnswer":1,"verse":"2 Samuel 18:9-14","explanation":"La cabeza de Absalón se trabó en la encina, y quedó suspendido entre el cielo y la tierra."},
+  {"id":"m36","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"1 Reyes","question":"¿Cómo demostró Salomón su sabiduría ante dos mujeres que disputaban por la maternidad de un bebé vivo?","options":["Las hizo jurar en el templo","Consultó a los sacerdotes","Sorteó al niño con varas","Pidió partir al niño en dos"],"correctAnswer":3,"verse":"1 Reyes 3:24-27","explanation":"La verdadera madre se conmovió y rogó que dieran al niño vivo a la otra; así Salomón supo quién era la madre real."},
+  {"id":"m37","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"División del Reino","question":"¿Quiénes fueron los dos primeros reyes cuando se dividió el reino unido tras la muerte de Salomón?","options":["Acab y Josafat","Jeroboam y Roboam","Saúl y David","Ezequías y Manasés"],"correctAnswer":1,"verse":"1 Reyes 12:16-20","explanation":"Roboam reinó sobre Judá en el sur, y Jeroboam reinó sobre las diez tribus del norte (Israel)."},
+  {"id":"m38","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"1 Reyes","question":"¿Quién fue la malvada reina de Israel, esposa del rey Acab, que promovió el culto a Baal y persiguió a los profetas de Dios?","options":["Atalía","Vasti","Herodías","Jezabel"],"correctAnswer":3,"verse":"1 Reyes 16:31; 19:1-2","explanation":"Acab tomó por mujer a Jezabel hija de Et-baal rey de los sidonios, y fue y sirvió a Baal."},
+  {"id":"m39","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"2 Reyes","question":"¿Qué pidió el profeta Eliseo a Elías como herencia espiritual antes de que este fuera llevado al cielo?","options":["Una doble porción de su espíritu","Su manto de oro","Larga vida de 100 años","Riquezas para la escuela de profetas"],"correctAnswer":0,"verse":"2 Reyes 2:9","explanation":"Y dijo Eliseo: Te ruego que una doble porción de tu espíritu sea sobre mí."},
+  {"id":"m40","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"2 Reyes","question":"¿Cuántos años de vida añadió Dios al piadoso rey Ezequías tras su ferviente oración entre lágrimas?","options":["20 años","10 años","15 años","5 años"],"correctAnswer":2,"verse":"2 Reyes 20:5-6","explanation":"He aquí que yo sano; al tercer día subirás a la casa de Jehová. Y añadiré a tus días quince años."},
+  {"id":"m41","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"2 Reyes","question":"¿Qué rey de Babilonia sitió y destruyó el Templo de Jerusalén llevando cautivo al pueblo judío?","options":["Belsasar","Ciro el Grande","Darío el Medo","Nabucodonosor II"],"correctAnswer":3,"verse":"2 Reyes 25:1-11","explanation":"Nabucodonosor rey de Babilonia quemó la casa de Jehová y la casa del rey y todos los palacios."},
+  {"id":"m42","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Nehemías","question":"¿En cuántos días récord lograron Nehemías y el pueblo reedificar los muros de Jerusalén a pesar de las amenazas?","options":["52 días","40 días","70 días","120 días"],"correctAnswer":0,"verse":"Nehemías 6:15","explanation":"Fue terminado el muro el veinticinco del mes de Elul, en cincuenta y dos días."},
+  {"id":"m43","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Ester","question":"¿Quién era el primo mayor de Ester que descubrió la conspiración contra el rey Asuero y la aconsejó sabiamente?","options":["Esdras","Mardoqueo","Amán","Nehemías"],"correctAnswer":1,"verse":"Ester 2:7","explanation":"Mardoqueo había criado a Hadasa, es decir, Ester, hija de su tío, porque era huérfana."},
+  {"id":"m44","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Ester","question":"¿Dónde fue ejecutado finalmente el malvado Amán al descubrirse su complot contra los judíos?","options":["En el muro exterior del palacio","En una plaza frente al río","En la horca hecha para Mardoqueo","En las puertas de la fortaleza"],"correctAnswer":2,"verse":"Ester 7:9-10","explanation":"Así colgaron a Amán en la horca que él había hecho preparar para Mardoqueo."},
+  {"id":"m45","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Daniel","question":"¿Qué misteriosas palabras aparecieron escritas por una mano en la pared del palacio durante el banquete del rey Belsasar?","options":["MARANATA, AMÉN, ALELUYA","MENE, MENE, TEKEL, UPARSIN","ELÍ, ELÍ, LAMA SABACTANI","SANTO, SANTO, SANTO ES DIOS"],"correctAnswer":1,"verse":"Daniel 5:25-28","explanation":"Mene: Contó Dios tu reino y le ha puesto fin. Tekel: Pesado has sido en balanza y fuiste hallado falto. Peres: Tu reino ha sido roto."},
+  {"id":"m46","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Profecías Mesiánicas","question":"¿Qué profeta del Antiguo Testamento profetizó con exactitud que el Mesías nacería en Belén de Judá?","options":["Miqueas","Isaías","Zacarías","Malaquías"],"correctAnswer":0,"verse":"Miqueas 5:2","explanation":"Pero tú, Belén Efrata, pequeña para estar entre las familias de Judá, de ti me saldrá el que será Señor en Israel."},
+  {"id":"m47","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Profecías Mesiánicas","question":"¿En qué capítulo de Isaías se describe con asombrosa precisión el sufrimiento redentor del Siervo (\"Mas él herido fue por nuestras rebeliones...\")?","options":["Isaías 61","Isaías 40","Isaías 6","Isaías 53"],"correctAnswer":3,"verse":"Isaías 53:5","explanation":"Mas él herido fue por nuestras rebeliones, molido por nuestros pecados; el castigo de nuestra paz fue sobre él."},
+  {"id":"m48","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Genealogía de Jesús","question":"¿A través de qué linaje real del Antiguo Testamento se profetizó que vendría el Mesías prometido?","options":["Del linaje de Aarón","Del linaje del rey Saúl","Del linaje del rey David","Del linaje de José"],"correctAnswer":2,"verse":"Jeremías 23:5 / Romanos 1:3","explanation":"Levantaré a David renuevo justo, y reinará como Rey, el cual será dichoso."},
+  {"id":"m49","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Nacimiento de Jesús","question":"¿Qué profetisa viuda de 84 años servía de noche y de día con oraciones en el Templo y dio gracias al ver al niño Jesús?","options":["Ana","Débora","Huldá","Elisabet"],"correctAnswer":0,"verse":"Lucas 2:36-38","explanation":"Estaba también allí Ana, profetisa, de la tribu de Aser... daba gracias a Dios y hablaba del niño a todos los que esperaban la redención."},
+  {"id":"m50","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Ministerio de Jesús","question":"¿Qué dos hermanos pescadores apodó Jesús \"Boanerges\", que significa \"Hijos del trueno\"?","options":["Felipe y Bartolomé","Pedro y Andrés","Simón y Judas","Jacobo y Juan"],"correctAnswer":3,"verse":"Marcos 3:17","explanation":"A Jacobo hijo de Zebedeo, y a Juan hermano de Jacobo, a quienes apellidó Boanerges, esto es, Hijos del trueno."},
+  {"id":"m51","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Milagros de Jesús","question":"¿En qué estanque de cinco pórticos sanó Jesús a un hombre que llevaba 38 años enfermo en Jerusalén?","options":["Estanque de Siloé","Pozo de Sicar","Estanque de Betesda","Río Jordán"],"correctAnswer":2,"verse":"Juan 5:2-9","explanation":"Y hay en Jerusalén... un estanque, que en hebreo se llama Betesda... y el hombre fue sanado, y tomó su lecho, y anduvo."},
+  {"id":"m52","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Milagros de Jesús","question":"¿Cómo obtuvo Pedro el dinero para pagar el impuesto del templo para él y para Jesús?","options":["Trabajó como carpintero","Sacó una moneda de un pez","Vendió su red de pesca","Pidió una ofrenda a Zaqueo"],"correctAnswer":1,"verse":"Mateo 17:27","explanation":"Ve al mar, y echa el anzuelo, y el primer pez que viniere, tómalo, y al abrirle la boca, hallarás un estatero."},
+  {"id":"m53","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"La Transfiguración","question":"¿Qué dos personajes gloriosos del Antiguo Testamento aparecieron conversando con Jesús en el Monte de la Transfiguración?","options":["Moisés y Elías","Abraham y David","Noé y Enoc","Samuel e Isaías"],"correctAnswer":0,"verse":"Mateo 17:1-3","explanation":"Y se transfiguró delante de ellos... y he aquí les aparecieron Moisés y Elías, hablando con él."},
+  {"id":"m54","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Parábolas de Jesús","question":"En la parábola de las diez vírgenes, ¿por qué cinco de ellas fueron llamadas insensatas?","options":["Porque perdieron sus vestiduras","Porque apagaron las antorchas","Porque no llevaron aceite extra","Porque llegaron a otra casa"],"correctAnswer":2,"verse":"Mateo 25:1-4","explanation":"Las insensatas, tomando sus lámparas, no tomaron consigo aceite; mas las prudentes tomaron aceite en sus vasijas."},
+  {"id":"m55","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Parábolas de Jesús","question":"En la parábola de los talentos, ¿qué hizo el siervo que recibió un solo talento?","options":["Lo perdió en un viaje","Lo enterró en la tierra","Se lo regaló a los pobres","Lo invirtió en el mercado"],"correctAnswer":1,"verse":"Mateo 25:18","explanation":"Pero el que había recibido uno fue y cavó en la tierra, y escondió el dinero de su señor."},
+  {"id":"m56","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Discursos de Jesús","question":"¿Qué mandamiento nuevo dio Jesús a sus discípulos durante la Última Cena?","options":["Que edificaran otro templo","Que ayunaran tres días seguidos","Que evitaran a los extranjeros","Que se amaran unos a otros"],"correctAnswer":3,"verse":"Juan 13:34","explanation":"Un mandamiento nuevo os doy: Que os améis unos a otros; como yo os he amado, que también os améis unos a otros."},
+  {"id":"m57","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Arresto de Jesús","question":"¿A qué siervo del sumo sacerdote le cortó Pedro la oreja derecha con su espada en Getsemaní, al cual Jesús sanó inmediatamente?","options":["Demetrio","Malco","Barrabás","Cornelio"],"correctAnswer":1,"verse":"Juan 18:10 / Lucas 22:51","explanation":"Simón Pedro, que tenía una espada, la desenvainó, e hirió al siervo del sumo sacerdote, y le cortó la oreja derecha. Y el siervo se llamaba Malco."},
+  {"id":"m58","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"La Crucifixión","question":"¿Qué letrero mandó poner Poncio Pilato sobre la cruz de Jesús escrito en hebreo, griego y latín?","options":["BLASFEMO DEL TEMPLO, ENEMIGO DE CÉSAR","MAESTRO DE JUDEA, LÍDER DE NAZARET","PROFETA DE GALILEA, REBELDE DE ROMA","JESÚS DE NAZARET, REY DE LOS JUDÍOS"],"correctAnswer":3,"verse":"Juan 19:19-20","explanation":"Escribió también Pilato un título: JESÚS NAZARENO, REY DE LOS JUDÍOS. Y estaba escrito en hebreo, en griego y en latín."},
+  {"id":"m59","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"La Muerte de Jesús","question":"¿Qué ocurrió en Jerusalén en el momento exacto en que Jesús expiró en la cruz?","options":["El velo del santuario se rasgó","Las columnas de bronce cayeron","El candelabro de oro se apagó","El altar del incienso se partió"],"correctAnswer":0,"verse":"Mateo 27:51","explanation":"Y he aquí, el velo del templo se rasgó en dos, de arriba abajo; y la tierra tembló, y las rocas se partieron."},
+  {"id":"m60","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Camino a Emaús","question":"¿En qué momento reconocieron los dos discípulos a Jesús resucitado en la aldea de Emaús?","options":["Al oír cantar un gallo cercano","Al entrar en la sinagoga local","Al bendecir y partir el pan","Al ver sus huellas en el camino"],"correctAnswer":2,"verse":"Lucas 24:30-31","explanation":"Aconteció que estando sentado con ellos a la mesa, tomó el pan y bendijo, lo partió, y les dio. Entonces les fueron abiertos los ojos, y le reconocieron."},
+  {"id":"m61","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Hechos de los Apóstoles","question":"¿Qué matrimonio de la iglesia primitiva murió fulminado por mentir al Espíritu Santo respecto al precio de una heredad vendida?","options":["Filemón y Apia","Aquila y Priscila","Zacarías y Elisabet","Ananías y Safira"],"correctAnswer":3,"verse":"Hechos 5:1-10","explanation":"Pedro dijo: Ananías, ¿por qué llenó Satanás tu corazón para que mintieses al Espíritu Santo?... Y al oír estas palabras, cayó y expiró."},
+  {"id":"m62","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Hechos de los Apóstoles","question":"¿Quién era el centurión romano piadoso en Cesarea a cuya casa fue enviado Pedro para predicar por primera vez a los gentiles?","options":["Claudio Lisias","Julio","Cornelio","Félix"],"correctAnswer":2,"verse":"Hechos 10:1-2","explanation":"Había en Cesarea un hombre llamado Cornelio, centurión de la compañía llamada la Italiana, piadoso y temeroso de Dios."},
+  {"id":"m63","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Viajes Misioneros","question":"¿En qué famosa ciudad griega predicó el apóstol Pablo en el Areópago sobre \"el Dios No Conocido\"?","options":["Éfeso","Atenas","Tesalónica","Corinto"],"correctAnswer":1,"verse":"Hechos 17:22-23","explanation":"Pablo, puesto en pie en medio del Areópago, dijo: Varones atenienses... hallé también un altar en el cual estaba esta inscripción: AL DIOS NO CONOCIDO."},
+  {"id":"m64","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Viajes Misioneros","question":"¿A qué joven discípulo de Listra consideraba Pablo como su propio hijo espiritual y le escribió dos epístolas pastorales?","options":["Timoteo","Lucas","Filemón","Tito"],"correctAnswer":0,"verse":"1 Timoteo 1:2","explanation":"A Timoteo, verdadero hijo en la fe: Gracia, misericordia y paz, de Dios nuestro Padre y de Cristo Jesús nuestro Señor."},
+  {"id":"m65","level":"MEDIUM","type":"FILL_VERSE","category":"Epístolas de Pablo","question":"Completa Romanos 8:38-39: \"Por lo cual estoy seguro de que ni la muerte, ni la vida... nos podrá separar del _________ de Dios, que es en Cristo Jesús\"","options":["juicio","amor","templo","castigo"],"correctAnswer":1,"verse":"Romanos 8:38-39","explanation":"Romanos 8:39: \"...nos podrá separar del amor de Dios, que es en Cristo Jesús Señor nuestro.\""},
+  {"id":"m66","level":"MEDIUM","type":"FILL_VERSE","category":"Epístola a los Gálatas","question":"Completa Gálatas 2:20: \"Con Cristo estoy juntamente _________, y ya no vivo yo, mas vive Cristo en mí\"","options":["bautizado","coronado","perdonado","crucificado"],"correctAnswer":3,"verse":"Gálatas 2:20","explanation":"Gálatas 2:20: \"Con Cristo estoy juntamente crucificado, y ya no vivo yo, mas vive Cristo en mí.\""},
+  {"id":"m67","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Apocalipsis","question":"¿En qué solitaria isla griega estaba desterrado el apóstol Juan cuando recibió la revelación del libro de Apocalipsis?","options":["Isla de Patmos","Isla de Creta","Isla de Chipre","Isla de Malta"],"correctAnswer":0,"verse":"Apocalipsis 1:9","explanation":"Yo Juan, vuestro hermano... estaba en la isla llamada Patmos, por causa de la palabra de Dios y el testimonio de Jesucristo."},
+  {"id":"m68","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Génesis","question":"¿Quién fue el hombre que caminó con Dios y desapareció porque le llevó Dios sin pasar por la muerte física?","options":["Noé","Set","Enoc","Matusalén"],"correctAnswer":2,"verse":"Génesis 5:24","explanation":"Caminó, pues, Enoc con Dios, y desapareció, porque le llevó Dios."},
+  {"id":"m69","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Génesis","question":"Según la genealogía bíblica en Génesis, ¿quién fue el hombre más longevo que vivió 969 años?","options":["Matusalén","Noé","Jared","Adán"],"correctAnswer":0,"verse":"Génesis 5:27","explanation":"Fueron, pues, todos los días de Matusalén novecientos sesenta y nueve años; y murió."},
+  {"id":"m70","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Patriarcas","question":"¿Quién era el rey de Salem y sacerdote del Dios Altísimo a quien Abraham dio los diezmos de todo?","options":["Jetro","Abimelec","Balaam","Melquisedec"],"correctAnswer":3,"verse":"Génesis 14:18-20","explanation":"Melquisedec, rey de Salem y sacerdote del Dios Altísimo... le bendijo. Y le dio Abram los diezmos de todo."},
+  {"id":"m71","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Patriarcas","question":"¿Cómo se llamaba el criado fiel de Abraham que fue a Mesopotamia a buscar esposa para Isaac?","options":["Giezi","Eliezer","Urías","Ziba"],"correctAnswer":1,"verse":"Génesis 15:2; 24:2","explanation":"El criado más viejo de la casa de Abraham, Eliezer de Damasco, fue guiado por Dios para encontrar a Rebeca."},
+  {"id":"m72","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"José en Egipto","question":"¿Cómo se llamaban los dos hijos de José nacidos en Egipto antes de los años de hambre, adoptados por Jacob?","options":["Simeón y Leví","Gad y Aser","Efraín y Manasés","Dan y Neftalí"],"correctAnswer":2,"verse":"Génesis 41:51-52","explanation":"Llamó José el nombre del primogénito Manasés... y el nombre del segundo lo llamó Efraín."},
+  {"id":"m73","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Éxodo","question":"¿Quién era el suegro de Moisés, sacerdote de Madián, que le aconsejó delegar jueces para no agotarse?","options":["Jetro","Labán","Balaam","Melquisedec"],"correctAnswer":0,"verse":"Éxodo 18:1-24","explanation":"Jetro aconsejó a Moisés: Escoge tú de entre todo el pueblo varones de virtud... y juzguen al pueblo en todo tiempo."},
+  {"id":"m74","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Éxodo","question":"¿Qué dos hombres fueron llenos del Espíritu de Dios con habilidad artística para construir todo el Tabernáculo?","options":["Eleazar e Itamar","Josué y Caleb","Aarón y Hur","Bezaleel y Aholiab"],"correctAnswer":3,"verse":"Éxodo 31:1-6","explanation":"He llamado por nombre a Bezaleel... y lo he llenado del Espíritu de Dios en sabiduría... y he puesto con él a Aholiab."},
+  {"id":"m75","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Levítico","question":"¿Qué hijos sacerdotes de Aarón murieron delante de Jehová por ofrecer \"fuego extraño\" en el santuario?","options":["Eleazar e Itamar","Coré y Abiram","Nadab y Abiú","Ofni y Finees"],"correctAnswer":2,"verse":"Levítico 10:1-2","explanation":"Nadab y Abiú, hijos de Aarón... ofrecieron delante de Jehová fuego extraño... y salieron llamas y murieron."},
+  {"id":"m76","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Números","question":"¿Qué hombre lideró una gran rebelión contra la autoridad de Moisés y Aarón, y la tierra abrió su boca y se los tragó vivos?","options":["Balaam","Coré","Agag","Balac"],"correctAnswer":1,"verse":"Números 16:31-33","explanation":"Abrió la tierra su boca, y los tragó a ellos, a sus casas, a todos los hombres de Coré, y a todos sus bienes."},
+  {"id":"m77","level":"MEDIUM","type":"FILL_VERSE","category":"Deuteronomio","question":"Completa el Shemá en Deuteronomio 6:5: \"Y amarás a Jehová tu Dios de todo tu _________, y de toda tu alma, y con todas tus fuerzas\"","options":["entendimiento","espíritu","corazón","pensamiento"],"correctAnswer":2,"verse":"Deuteronomio 6:4-5","explanation":"Deuteronomio 6:5: \"Y amarás a Jehová tu Dios de todo tu corazón, y de toda tu alma, y con todas tus fuerzas.\""},
+  {"id":"m78","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Josué","question":"¿Qué hombre cometió anatema en la toma de Jericó escondiendo un manto babilónico, plata y oro, causando la derrota en Hai?","options":["Acán","Zimri","Caleb","Barac"],"correctAnswer":0,"verse":"Josué 7:20-21","explanation":"Acán respondió a Josué: Verdaderamente yo he pecado... vi entre los despojos un manto babilónico muy bueno..."},
+  {"id":"m79","level":"MEDIUM","type":"FILL_VERSE","category":"Josué","question":"Completa la firme declaración de Josué al final de su vida en Josué 24:15: \"Pero yo y mi casa _________ a Jehová.\"","options":["dejaremos","serviremos","juzgaremos","olvidaremos"],"correctAnswer":1,"verse":"Josué 24:15","explanation":"Josué 24:15: \"...escogeos hoy a quién sirváis... pero yo y mi casa serviremos a Jehová.\""},
+  {"id":"m80","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Jueces","question":"¿Quién fue el juez zurdo que liberó a Israel hiriendo en secreto al obeso rey Eglón de Moab con una espada de dos filos?","options":["Jefté","Samgar","Otoniel","Aod"],"correctAnswer":3,"verse":"Jueces 3:15-21","explanation":"Aod hijo de Gera, benjamita, el cual era zurdo... metió su mano izquierda, tomó el puñal de su lado derecho, y se lo metió por el vientre."},
+  {"id":"m81","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Jueces","question":"¿Quién mató a seiscientos filisteos con una simple aguijada de bueyes, librando también a Israel?","options":["Barac","Gedeón","Samgar","Abimelec"],"correctAnswer":2,"verse":"Jueces 3:31","explanation":"Después de él fue Samgar hijo de Anat, el cual mató a seiscientos hombres de los filisteos con una aguijada de bueyes."},
+  {"id":"m82","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Jueces","question":"¿Qué voto apresurado hizo Jefté antes de ir a la batalla contra los amonitas que afectó a su única hija?","options":["No comer carne por tres años","Ofrecer al primero que saliera","No cortar su cabello jamás","Construir un templo de plata"],"correctAnswer":1,"verse":"Jueces 11:30-34","explanation":"Cualquiera que saliere de las puertas de mi casa a recibirme... será de Jehová, y lo ofreceré en holocausto."},
+  {"id":"m83","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"1 Samuel","question":"¿Qué palabra exclamó la nuera del sacerdote Elí al morir en el parto tras ser capturada el Arca por los filisteos, que significa \"Traspasada es la gloria\"?","options":["Ebenezer","Maranata","Aleluya","Icabod"],"correctAnswer":3,"verse":"1 Samuel 4:21-22","explanation":"Y llamó al niño Icabod, diciendo: ¡Traspasada es la gloria de Israel! por haber sido tomada el arca de Dios."},
+  {"id":"m84","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"1 Samuel","question":"¿Qué nombre le puso Samuel a la piedra que colocó entre Mizpa y Sen diciendo: \"Hasta aquí nos ayudó Jehová\"?","options":["Ebenezer","Moriah","Gal-ed","Betel"],"correctAnswer":0,"verse":"1 Samuel 7:12","explanation":"Tomó luego Samuel una piedra y la puso entre Mizpa y Sen, y le puso por nombre Ebenezer, diciendo: Hasta aquí nos ayudó Jehová."},
+  {"id":"m85","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"1 Samuel","question":"¿Por qué rechazó Dios a Saúl como rey de Israel tras la batalla contra los amalecitas?","options":["Por edificar un altar prohibido","Por perdonar a Agag y al ganado","Por negarse a pagar los tributos","Porque perdió la batalla clave"],"correctAnswer":1,"verse":"1 Samuel 15:22-23","explanation":"Samuel dijo: ¿Se complace Jehová tanto en los holocaustos como en que se obedezca a la palabra de Jehová? Ciertamente el obedecer es mejor que los sacrificios."},
+  {"id":"m86","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"2 Samuel","question":"¿Qué hombre murió al extender su mano para sostener el Arca del Pacto cuando los bueyes tropezaban camino a Jerusalén?","options":["Ahío","Obed-edom","Itai","Uza"],"correctAnswer":3,"verse":"2 Samuel 6:6-7","explanation":"Uza extendió su mano al arca de Dios, y la sostuvo; porque los bueyes tropezaban. Y el furor de Jehová se encendió contra Uza, y lo hirió allí Dios."},
+  {"id":"m87","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"2 Samuel","question":"¿En casa de qué levita se quedó el Arca del Pacto durante tres meses, trayendo gran bendición a toda su casa?","options":["Barzilai","Quenanías","Obed-edom","Asaf"],"correctAnswer":2,"verse":"2 Samuel 6:11","explanation":"Y estuvo el arca de Jehová en casa de Obed-edom geteo tres meses; y bendijo Jehová a Obed-edom y a toda su casa."},
+  {"id":"m88","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"1 Reyes","question":"¿Quién intentó autoproclamarse rey de Israel en la vejez de David antes de que Salomón fuera coronado?","options":["Adonías","Absalón","Joab","Simei"],"correctAnswer":0,"verse":"1 Reyes 1:5","explanation":"Entonces Adonías hijo de Haguit se rebeló, diciendo: Yo reinaré. Y se hizo de carros y de gente de a caballo."},
+  {"id":"m89","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"1 Reyes","question":"¿De qué viña se encaprichó el rey Acab, la cual pertenecía a un hombre que se negó a vender la heredad de sus padres?","options":["La viña de Sorec","La viña de En-gadi","La viña de Samaria","La viña de Nabot"],"correctAnswer":3,"verse":"1 Reyes 21:1-3","explanation":"Nabot respondió a Acab: Guárdeme Jehová de que yo te dé a ti la heredad de mis padres."},
+  {"id":"m90","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"1 Reyes","question":"¿En qué cueva del monte Horeb escuchó Elías a Dios, no en el viento fuerte, ni en el terremoto, ni en el fuego, sino en qué?","options":["En una lluvia serena","En el canto de un ave","En un silbo apacible","En un trueno potente"],"correctAnswer":2,"verse":"1 Reyes 19:11-12","explanation":"Y tras el fuego un silbo apacible y delicado. Y cuando lo oyó Elías, cubrió su rostro con su manto."},
+  {"id":"m91","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"2 Reyes","question":"¿Qué criado codicioso de Eliseo persiguió a Naamán para pedirle plata y vestidos a espaldas del profeta, y se le pegó la lepra?","options":["Giezi","Baraquías","Ziba","Hazael"],"correctAnswer":0,"verse":"2 Reyes 5:20-27","explanation":"Giezi, criado de Eliseo... dijo: Correré yo tras él, y tomaré de él alguna cosa... Y salió de su presencia leproso, blanco como la nieve."},
+  {"id":"m92","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"2 Reyes","question":"¿Qué rey de Judá fue coronado a los 8 años de edad y lideró una gran reforma tras hallarse el Libro de la Ley en el Templo?","options":["Joás","Josías","Ezequías","Manasés"],"correctAnswer":1,"verse":"2 Reyes 22:1-8","explanation":"De ocho años era Josías cuando comenzó a reinar... Hilcías el sumo sacerdote dijo al escriba Safán: He hallado el libro de la ley en la casa de Jehová."},
+  {"id":"m93","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Libro de Job","question":"¿Cómo se llamaban los tres amigos de Job que fueron a consolarle y terminaron acusándole falsamente de pecado oculto?","options":["Sadrac, Mesac y Abed-nego","Nadab, Abiú e Itamar","Elifaz, Bildad y Zofar","Eliú, Jonadab y Baruc"],"correctAnswer":2,"verse":"Job 2:11","explanation":"Tres amigos de Job, Elifaz temanita, Bildad suhita, y Zofar naamatita... se pusieron de acuerdo para venir a condolerse de él y a consolarle."},
+  {"id":"m94","level":"MEDIUM","type":"FILL_VERSE","category":"Salmos","question":"Completa el Salmo 37:4: \"Deléitate asimismo en Jehová, y él te concederá las _________ de tu corazón.\"","options":["fantasías","peticiones","riquezas","coronas"],"correctAnswer":1,"verse":"Salmos 37:4","explanation":"Salmos 37:4: \"Deléitate asimismo en Jehová, y él te concederá las peticiones de tu corazón.\""},
+  {"id":"m95","level":"MEDIUM","type":"FILL_VERSE","category":"Salmos","question":"Completa el Salmo 51:10, la oración de arrepentimiento de David: \"Crea en mí, oh Dios, un corazón limpio, y renueva un espíritu _________ dentro de mí.\"","options":["recto","fuerte","sabio","alegre"],"correctAnswer":0,"verse":"Salmos 51:10","explanation":"Salmos 51:10: \"Crea en mí, oh Dios, un corazón limpio, y renueva un espíritu recto dentro de mí.\""},
+  {"id":"m96","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Salmos","question":"¿Cuál es el capítulo más largo de toda la Biblia, compuesto por 176 versículos dedicados a la Palabra de Dios?","options":["Salmo 150","Salmo 91","Salmo 23","Salmo 119"],"correctAnswer":3,"verse":"Salmos 119","explanation":"El Salmo 119 es el más extenso de las Escrituras, organizado acrósticamente según el alfabeto hebreo."},
+  {"id":"m97","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Salmos","question":"¿Cuál es el capítulo más corto de toda la Biblia, que cuenta con tan solo 2 versículos?","options":["Salmo 1","Salmo 117","Salmo 150","Salmo 133"],"correctAnswer":1,"verse":"Salmos 117:1-2","explanation":"El Salmo 117 tiene solo 2 versículos: \"Alabad a Jehová, naciones todas; pueblos todos, alabadle...\""},
+  {"id":"m98","level":"MEDIUM","type":"FILL_VERSE","category":"Proverbios","question":"Completa Proverbios 16:18: \"Antes del quebrantamiento es la soberbia, y antes de la caída la altivez de _________\"","options":["pensamiento","manos","ojos","espíritu"],"correctAnswer":3,"verse":"Proverbios 16:18","explanation":"Proverbios 16:18: \"Antes del quebrantamiento es la soberbia, y antes de la caída la altivez de espíritu.\""},
+  {"id":"m99","level":"MEDIUM","type":"FILL_VERSE","category":"Proverbios","question":"Completa Proverbios 18:10: \"Torre fuerte es el nombre de Jehová; a él correrá el justo, y será _________\"","options":["probado","avergonzado","levantado","derrotado"],"correctAnswer":2,"verse":"Proverbios 18:10","explanation":"Proverbios 18:10: \"Torre fuerte es el nombre de Jehová; a él correrá el justo, y será levantado.\""},
+  {"id":"m100","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Profeta Isaías","question":"En la visión de Isaías en el Templo, ¿con qué tocó el serafín los labios del profeta para quitar su culpa?","options":["Con un carbón encendido","Con aceite de la unción","Con incienso aromático","Con agua de la fuente"],"correctAnswer":0,"verse":"Isaías 6:6-7","explanation":"Voló hacia mí uno de los serafines, teniendo en su mano un carbón encendido... y tocando con él sobre mi boca, dijo: He aquí que esto tocó tus labios, y es quitada tu culpa."},
+  {"id":"m101","level":"MEDIUM","type":"FILL_VERSE","category":"Profeta Jeremías","question":"Completa Jeremías 29:11: \"Porque yo sé los pensamientos que tengo acerca de vosotros, dice Jehová, pensamientos de paz, y no de mal, para daros el fin que _________\"","options":["merecéis","compráis","soñáis","esperáis"],"correctAnswer":3,"verse":"Jeremías 29:11","explanation":"Jeremías 29:11: \"...pensamientos de paz, y no de mal, para daros el fin que esperáis.\""},
+  {"id":"m102","level":"MEDIUM","type":"FILL_VERSE","category":"Profeta Jeremías","question":"Completa Jeremías 33:3: \"Clama a mí, y yo te responderé, y te enseñaré cosas grandes y ocultas que tú _________\"","options":["olvidaste","escribiste","no conoces","ya sabías"],"correctAnswer":2,"verse":"Jeremías 33:3","explanation":"Jeremías 33:3: \"Clama a mí, y yo te responderé, y te enseñaré cosas grandes y ocultas que tú no conoces.\""},
+  {"id":"m103","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Profeta Ezequiel","question":"¿Qué le mandó Dios comer al profeta Ezequiel como símbolo de asimilar plenamente su mensaje, el cual supo dulce como miel?","options":["Un fruto dulce de higuera","Un rollo de libro escrito","Un panal de miel silvestre","Un pan cocido sobre brasas"],"correctAnswer":1,"verse":"Ezequiel 3:1-3","explanation":"Hijo de hombre, come este rollo... y lo comí, y fue en mi boca dulce como miel."},
+  {"id":"m104","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Profeta Oseas","question":"¿A qué mujer infiel le mandó Dios tomar por esposa al profeta Oseas para ilustrar el amor redentor de Dios hacia un pueblo idólatra?","options":["Gomer","Atalía","Débora","Séfora"],"correctAnswer":0,"verse":"Oseas 1:2-3","explanation":"Ve, tómate una mujer fornicaria e hijos de fornicación; porque la tierra fornica apartándose de Jehová. Fue, pues, y tomó a Gomer."},
+  {"id":"m105","level":"MEDIUM","type":"FILL_VERSE","category":"Profeta Habacuc","question":"Completa Habacuc 2:4 (citado tres veces en el Nuevo Testamento): \"He aquí que aquel cuya alma no es recta se enorgullece; mas el justo por su fe _________\"","options":["caerá","vivirá","morirá","callará"],"correctAnswer":1,"verse":"Habacuc 2:4 / Romanos 1:17","explanation":"Habacuc 2:4: \"...mas el justo por su fe vivirá.\""},
+  {"id":"m106","level":"MEDIUM","type":"FILL_VERSE","category":"Profeta Zacarías","question":"Completa Zacarías 4:6: \"No con ejército, ni con fuerza, sino con mi _________, ha dicho Jehová de los ejércitos.\"","options":["oro","pueblo","Espíritu","espada"],"correctAnswer":2,"verse":"Zacarías 4:6","explanation":"Zacarías 4:6: \"No con ejército, ni con fuerza, sino con mi Espíritu, ha dicho Jehová de los ejércitos.\""},
+  {"id":"m107","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Profeta Malaquías","question":"En Malaquías 3:10, ¿en qué desafía Dios a su pueblo diciendo: \"Probadme ahora en esto... si no os abriré las ventanas de los cielos\"?","options":["En edificar un nuevo altar","En ayunar cuarenta días","En conquistar otras naciones","En traer los diezmos al alfolí"],"correctAnswer":3,"verse":"Malaquías 3:10","explanation":"Traed todos los diezmos al alfolí y haya alimento en mi casa; y probadme ahora en esto, dice Jehová de los ejércitos."},
+  {"id":"m108","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿Quién era el anciano justo en el Templo que tomó a Jesús en sus brazos y dijo: \"Ahora, Señor, despides a tu siervo en paz... porque han visto mis ojos tu salvación\"?","options":["Simeón","Nicodemo","Zacarías","José de Arimatea"],"correctAnswer":0,"verse":"Lucas 2:25-30","explanation":"Había en Jerusalén un hombre llamado Simeón... tomó al niño en sus brazos y bendijo a Dios."},
+  {"id":"m109","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Juan el Bautista","question":"¿Qué vestidura tosca usaba Juan el Bautista en el desierto y de qué se alimentaba?","options":["Lana de oveja, pescado y uvas","Manto de seda, trigo y dátiles","Lino fino, pan ácimo y vino","Pelo de camello, langostas y miel"],"correctAnswer":3,"verse":"Mateo 3:4","explanation":"Tenía Juan su vestido de pelo de camello, y un cinto de cuero alrededor de sus lomos; y su comida era langostas y miel silvestre."},
+  {"id":"m110","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Evangelio de Juan","question":"¿Bajo qué árbol vio Jesús al discípulo Natanael antes de que Felipe le llamara, dejándolo asombrado?","options":["Bajo un olivo","Bajo una higuera","Bajo un cedro","Bajo una palmera"],"correctAnswer":1,"verse":"Juan 1:48","explanation":"Jesús le respondió: Antes que Felipe te llamara, cuando estabas debajo de la higuera, te vi."},
+  {"id":"m111","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Milagros de Jesús","question":"¿Qué le dijo el centurión romano a Jesús demostrando una fe que Jesús no había hallado ni aun en Israel?","options":["\"Te daré talentos si lo sanas\"","\"Ora desde la puerta de mi casa\"","\"Solo di la palabra y sanará\"","\"Ven a mi casa y toca a mi siervo\""],"correctAnswer":2,"verse":"Mateo 8:8-10","explanation":"Al oírlo Jesús, se maravilló, y dijo a los que le seguían: De cierto os digo, que ni aun en Israel he hallado tanta fe."},
+  {"id":"m112","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Milagros de Jesús","question":"¿Cómo se identificó el conjunto de demonios que Jesús expulsó de un hombre en la región de los gadarenos?","options":["Legión","Belcebú","Mamón","Abadón"],"correctAnswer":0,"verse":"Marcos 5:9","explanation":"Y le preguntó: ¿Cómo te llamas? Y respondió diciendo: Legión me llamo; porque somos muchos."},
+  {"id":"m113","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Encuentros con Jesús","question":"¿Qué hermana de Lázaro se sentó a los pies de Jesús a escuchar su palabra, mientras su hermana Marta se afanaba con los quehaceres?","options":["Salomé","Juana","María","Susana"],"correctAnswer":2,"verse":"Lucas 10:39-42","explanation":"María ha escogido la buena parte, la cual no le será quitada."},
+  {"id":"m114","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Encuentros con Jesús","question":"¿Quién ungió los pies de Jesús en Betania con perfume de nardo puro de gran precio?","options":["María hermana de Lázaro","Salomé de Galilea","Marta hermana de Lázaro","La esposa de Pilato"],"correctAnswer":0,"verse":"Juan 12:3","explanation":"Entonces María tomó una libra de perfume de nardo puro, de mucho precio, y ungió los pies de Jesús, y los enjugó con sus cabellos."},
+  {"id":"m115","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Parábolas de Jesús","question":"En la parábola del fariseo y el publicano, ¿qué oración pronunció el publicano humillado en el templo que lo llevó justificado a su casa?","options":["\"Líbrame del juicio de los romanos\"","\"Dios, sé propicio a mí, pecador\"","\"Señor, he diezmado de toda mi cosecha\"","\"Dios, te doy gracias porque no soy como los otros hombres\""],"correctAnswer":1,"verse":"Lucas 18:13-14","explanation":"El publicano... no quería ni aun alzar los ojos al cielo, sino que se golpeaba el pecho, diciendo: Dios, sé propicio a mí, pecador."},
+  {"id":"m116","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"La Pasión de Cristo","question":"¿A qué preso peligroso y sedicioso prefirió soltar la multitud en lugar de Jesús por incitación de los principales sacerdotes?","options":["Barjesús","Gestas","Dimas","Barrabás"],"correctAnswer":3,"verse":"Mateo 27:20-21","explanation":"Los principales sacerdotes y los ancianos persuadieron a la multitud que pidiese a Barrabás, y que se matase a Jesús."},
+  {"id":"m117","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Las Palabras en la Cruz","question":"¿A qué discípulo amado encomendó Jesús el cuidado de su madre María desde la cruz diciendo: \"He aquí tu madre\"?","options":["A Pedro","A Andrés","A Juan","A Santiago"],"correctAnswer":2,"verse":"Juan 19:26-27","explanation":"Cuando vio Jesús a su madre, y al discípulo a quien él amaba... dijo a la madre: Mujer, he ahí tu hijo. Después dijo al discípulo: He ahí tu madre."},
+  {"id":"m118","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"La Resurrección","question":"Junto al mar de Tiberias tras resucitar, ¿cuántas veces le preguntó Jesús a Pedro: \"Simón, hijo de Jonás, ¿me amas?\" restaurando su ministerio?","options":["1 vez","3 veces","7 veces","2 veces"],"correctAnswer":1,"verse":"Juan 21:15-17","explanation":"Le dijo la tercera vez: Simón, hijo de Jonás, ¿me amas? Pedro se entristeció... y le dijo: Señor, tú lo sabes todo; tú sabes que te amo. Jesús le dijo: Apacienta mis ovejas."},
+  {"id":"m119","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Hechos de los Apóstoles","question":"¿A qué discípulo eligieron los apóstoles por suertes para ocupar el lugar de Judas Iscariote en el ministerio apostólico?","options":["Barsabás","Bernabé","Esteban","Matías"],"correctAnswer":3,"verse":"Hechos 1:26","explanation":"Y les echaron suertes, y la suerte cayó sobre Matías; y fue contado con los once apóstoles."},
+  {"id":"m120","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Hechos de los Apóstoles","question":"¿Cuántas personas aproximadamente se convirtieron y fueron bautizadas tras el primer sermón de Pedro en el día de Pentecostés?","options":["Como 3,000 personas","Como 500 personas","Como 10,000 personas","Como 1,000 personas"],"correctAnswer":0,"verse":"Hechos 2:41","explanation":"Así que, los que recibieron su palabra fueron bautizados; y se añadieron aquel día como tres mil personas."},
+  {"id":"m121","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Hechos de los Apóstoles","question":"¿Qué sabio fariseo y doctor de la ley aconsejó al concilio judío no perseguir a los apóstoles diciendo: \"Si este consejo es de los hombres, se desvanecerá; mas si es de Dios, no la podréis destruir\"?","options":["Ananías","Nicodemo","Caifás","Gamaliel"],"correctAnswer":3,"verse":"Hechos 5:34-39","explanation":"Un fariseo llamado Gamaliel, doctor de la ley, venerado de todo el pueblo... dijo: No os pongáis en riesgo de ser hallados luchando contra Dios."},
+  {"id":"m122","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Hechos de los Apóstoles","question":"¿Qué cargo tenía el funcionario etíope al que Felipe explicó Isaías 53 y bautizó camino a Gaza?","options":["Mercader de especias","Tesorero de la reina","Embajador en Egipto","Capitán de la guardia"],"correctAnswer":1,"verse":"Hechos 8:27-38","explanation":"Un eunuco etíope, funcionario de Candace... dijo: Aquí hay agua; ¿qué impide que yo sea bautizado? Y descendieron ambos al agua, Felipe y el eunuco, y le bautizó."},
+  {"id":"m123","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Hechos de los Apóstoles","question":"¿Qué discípula piadosa de Jope, llena de buenas obras y limosnas que hacía túnicas, fue resucitada por Pedro?","options":["Rode","Lidia","Tabita","Priscila"],"correctAnswer":2,"verse":"Hechos 9:36-40","explanation":"Había entonces en Jope una discípula llamada Tabita, que traducido quiere decir, Dorcas... Pedro oró y volviéndose al cuerpo, dijo: Tabita, levántate."},
+  {"id":"m124","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Hechos de los Apóstoles","question":"¿En qué ciudad fue donde por primera vez se les llamó \"cristianos\" a los discípulos de Jesús?","options":["Antioquía","Roma","Éfeso","Jerusalén"],"correctAnswer":0,"verse":"Hechos 11:26","explanation":"Y se congregaron allí todo un año con la iglesia... y a los discípulos se les llamó cristianos por primera vez en Antioquía."},
+  {"id":"m125","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Hechos de los Apóstoles","question":"¿Qué sirvienta fue a la puerta en casa de María cuando Pedro, liberado milagrosamente de la cárcel por un ángel, llamó, y de gozo no abrió?","options":["Salomé","Evodia","Lidia","Rode"],"correctAnswer":3,"verse":"Hechos 12:13-14","explanation":"Cuando llamó Pedro a la puerta del patio, salió a escuchar una muchacha llamada Rode, la cual, cuando reconoció la voz de Pedro, de gozo no abrió la puerta."},
+  {"id":"m126","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Hechos de los Apóstoles","question":"¿Qué vendedora de púrpura de la ciudad de Tiatira creyó en Filipos y abrió su casa para hospedar a Pablo y a Silas?","options":["Priscila","Lidia","Sintique","Febe"],"correctAnswer":1,"verse":"Hechos 16:14-15","explanation":"Una mujer llamada Lidia, vendedora de púrpura, de la ciudad de Tiatira, que adoraba a Dios, estaba oyendo; y el Señor abrió el corazón de ella."},
+  {"id":"m127","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Hechos de los Apóstoles","question":"¿En qué isla del Mediterráneo naufragó el barco que llevaba al apóstol Pablo prisionero rumbo a Roma, donde una víbora le mordió la mano sin causarle daño?","options":["Isla de Malta","Isla de Chipre","Isla de Creta","Isla de Sicilia"],"correctAnswer":0,"verse":"Hechos 28:1-5","explanation":"Supimos que la isla se llamaba Malta... una víbora, huyendo del calor, se le prendió en la mano; pero él, sacudiendo la víbora en el fuego, ningún daño padeció."},
+  {"id":"m128","level":"MEDIUM","type":"FILL_VERSE","category":"Epístola a los Romanos","question":"Completa Romanos 1:16: \"Porque no me avergüenzo del evangelio, porque es poder de Dios para _________ a todo aquel que cree\"","options":["fama","conocimiento","salvación","riqueza"],"correctAnswer":2,"verse":"Romanos 1:16","explanation":"Romanos 1:16: \"Porque no me avergüenzo del evangelio, porque es poder de Dios para salvación a todo aquel que cree; al judío primeramente, y también al griego.\""},
+  {"id":"m129","level":"MEDIUM","type":"FILL_VERSE","category":"Epístola a los Romanos","question":"Completa Romanos 3:23: \"Por cuanto todos pecaron, y están destituidos de la _________ de Dios\"","options":["gloria","tierra","ley","vida"],"correctAnswer":0,"verse":"Romanos 3:23","explanation":"Romanos 3:23: \"Por cuanto todos pecaron, y están destituidos de la gloria de Dios.\""},
+  {"id":"m130","level":"MEDIUM","type":"FILL_VERSE","category":"Epístola a los Romanos","question":"Completa Romanos 6:23: \"Porque la paga del pecado es muerte, mas la dádiva de Dios es _________ en Cristo Jesús Señor nuestro.\"","options":["paz momentánea","salud terrenal","vida eterna","sabiduría humana"],"correctAnswer":2,"verse":"Romanos 6:23","explanation":"Romanos 6:23: \"Porque la paga del pecado es muerte, mas la dádiva de Dios es vida eterna en Cristo Jesús Señor nuestro.\""},
+  {"id":"m131","level":"MEDIUM","type":"FILL_VERSE","category":"Epístola a los Romanos","question":"Completa Romanos 8:31: \"¿Qué, pues, diremos a esto? Si Dios es por nosotros, ¿quién _________ nosotros?\"","options":["junto a","antes de","lejos de","contra"],"correctAnswer":3,"verse":"Romanos 8:31","explanation":"Romanos 8:31: \"¿Qué, pues, diremos a esto? Si Dios es por nosotros, ¿quién contra nosotros?\""},
+  {"id":"m132","level":"MEDIUM","type":"FILL_VERSE","category":"Epístola a los Romanos","question":"Completa Romanos 10:9: \"Que si confesares con tu boca que Jesús es el Señor, y creyeres en tu corazón que Dios le levantó de los muertos, serás _________\"","options":["exaltado","salvo","probado","juzgado"],"correctAnswer":1,"verse":"Romanos 10:9","explanation":"Romanos 10:9: \"...y creyeres en tu corazón que Dios le levantó de los muertos, serás salvo.\""},
+  {"id":"m133","level":"MEDIUM","type":"FILL_VERSE","category":"1 Corintios","question":"Completa 1 Corintios 10:13: \"No os ha sobrevenido ninguna tentación que no sea humana; pero fiel es Dios, que no os dejará ser tentados más de lo que podéis _________\"","options":["resistir","comprar","desear","soñar"],"correctAnswer":0,"verse":"1 Corintios 10:13","explanation":"1 Corintios 10:13: \"...sino que dará también juntamente con la tentación la salida, para que podáis soportar.\""},
+  {"id":"m134","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"1 Corintios","question":"En 1 Corintios 12, ¿con qué ilustra Pablo la diversidad de dones y la unidad de los creyentes en la iglesia?","options":["Con un ejército y sus armas","Con un barco y sus velas","Con un edificio de piedras","Con un cuerpo y sus miembros"],"correctAnswer":3,"verse":"1 Corintios 12:12-27","explanation":"Porque así como el cuerpo es uno, y tiene muchos miembros... así también Cristo. Vosotros, pues, sois el cuerpo de Cristo, y miembros cada uno en particular."},
+  {"id":"m135","level":"MEDIUM","type":"FILL_VERSE","category":"2 Corintios","question":"Completa 2 Corintios 5:17: \"De modo que si alguno está en Cristo, nueva criatura es; las cosas viejas pasaron; he aquí todas son hechas _________\"","options":["eternas","nuevas","iguales","difíciles"],"correctAnswer":1,"verse":"2 Corintios 5:17","explanation":"2 Corintios 5:17: \"...las cosas viejas pasaron; he aquí todas son hechas nuevas.\""},
+  {"id":"m136","level":"MEDIUM","type":"FILL_VERSE","category":"2 Corintios","question":"¿Qué le respondió el Señor a Pablo cuando le rogó tres veces que le quitara su \"aguijón en la carne\"? (2 Corintios 12:9)","options":["\"Aumenta más tu fe\"","\"Lávate en el estanque\"","\"Bástate mi gracia\"","\"Espera diez años más\""],"correctAnswer":2,"verse":"2 Corintios 12:9","explanation":"Y me ha dicho: Bástate mi gracia; porque mi poder se perfecciona en la debilidad."},
+  {"id":"m137","level":"MEDIUM","type":"FILL_VERSE","category":"Epístola a los Gálatas","question":"Completa Gálatas 6:7: \"No os engañéis; Dios no puede ser burlado: pues todo lo que el hombre sembrare, eso también _________\"","options":["olvidará","venderá","perderá","segará"],"correctAnswer":3,"verse":"Gálatas 6:7","explanation":"Gálatas 6:7: \"No os engañéis; Dios no puede ser burlado: pues todo lo que el hombre sembrare, eso también segará.\""},
+  {"id":"m138","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Epístola a los Efesios","question":"En Efesios 6:10-18, ¿qué pieza de la armadura espiritual de Dios sirve para apagar todos los dardos de fuego del maligno?","options":["El escudo de la fe","El cinto de la verdad","El yelmo de la salvación","El calzado de la paz"],"correctAnswer":0,"verse":"Efesios 6:16","explanation":"Sobre todo, tomad el escudo de la fe, con que podáis apagar todos los dardos de fuego del maligno."},
+  {"id":"m139","level":"MEDIUM","type":"FILL_VERSE","category":"Epístola a los Filipenses","question":"Completa Filipenses 1:21: \"Porque para mí el vivir es Cristo, y el morir es _________\"","options":["tristeza","ganancia","fin","derrota"],"correctAnswer":1,"verse":"Filipenses 1:21","explanation":"Filipenses 1:21: \"Porque para mí el vivir es Cristo, y el morir es ganancia.\""},
+  {"id":"m140","level":"MEDIUM","type":"FILL_VERSE","category":"Epístola a los Filipenses","question":"Completa Filipenses 2:10-11: \"Para que en el nombre de Jesús se doble toda rodilla... y toda lengua confiese que Jesucristo es el _________, para gloria de Dios Padre.\"","options":["juez","profeta","Señor","maestro"],"correctAnswer":2,"verse":"Filipenses 2:10-11","explanation":"Filipenses 2:11: \"...y toda lengua confiese que Jesucristo es el Señor, para gloria de Dios Padre.\""},
+  {"id":"m141","level":"MEDIUM","type":"FILL_VERSE","category":"Epístola a los Colosenses","question":"Completa Colosenses 3:23: \"Y todo lo que hagáis, hacedlo de corazón, como para el _________ y no para los hombres\"","options":["Señor","dinero","mundo","jefe"],"correctAnswer":0,"verse":"Colosenses 3:23","explanation":"Colosenses 3:23: \"Y todo lo que hagáis, hacedlo de corazón, como para el Señor y no para los hombres.\""},
+  {"id":"m142","level":"MEDIUM","type":"FILL_VERSE","category":"1 Tesalonicenses","question":"Completa 1 Tesalonicenses 5:16-18: \"Estad siempre gozosos. Orad sin _________. Dad gracias en todo.\"","options":["miedo","cesar","duda","ruido"],"correctAnswer":1,"verse":"1 Tesalonicenses 5:17","explanation":"1 Tesalonicenses 5:17: \"Orad sin cesar.\""},
+  {"id":"m143","level":"MEDIUM","type":"FILL_VERSE","category":"1 Timoteo","question":"Completa 1 Timoteo 4:12: \"Ninguno tenga en poco tu juventud, sino sé _________ de los creyentes en palabra, conducta, amor, espíritu, fe y pureza.\"","options":["líder","maestro","ejemplo","juez"],"correctAnswer":2,"verse":"1 Timoteo 4:12","explanation":"1 Timoteo 4:12: \"Ninguno tenga en poco tu juventud, sino sé ejemplo de los creyentes en palabra, conducta, amor, espíritu, fe y pureza.\""},
+  {"id":"m144","level":"MEDIUM","type":"FILL_VERSE","category":"1 Timoteo","question":"Completa 1 Timoteo 6:10: \"Porque raíz de todos los males es el _________ al dinero\"","options":["odio","deseo","miedo","amor"],"correctAnswer":3,"verse":"1 Timoteo 6:10","explanation":"1 Timoteo 6:10: \"Porque raíz de todos los males es el amor al dinero, el cual codiciando algunos, se extraviaron de la fe.\""},
+  {"id":"m145","level":"MEDIUM","type":"FILL_VERSE","category":"2 Timoteo","question":"Completa 2 Timoteo 1:7: \"Porque no nos ha dado Dios espíritu de cobardía, sino de poder, de amor y de _________\"","options":["orgullo","fama","dominio propio","riqueza"],"correctAnswer":2,"verse":"2 Timoteo 1:7","explanation":"2 Timoteo 1:7: \"Porque no nos ha dado Dios espíritu de cobardía, sino de poder, de amor y de dominio propio.\""},
+  {"id":"m146","level":"MEDIUM","type":"FILL_VERSE","category":"2 Timoteo","question":"Completa 2 Timoteo 3:16: \"Toda la Escritura es inspirada por Dios, y útil para enseñar, para redargüir, para corregir, para instruir en _________\"","options":["ciencia","filosofía","oratoria","justicia"],"correctAnswer":3,"verse":"2 Timoteo 3:16","explanation":"2 Timoteo 3:16: \"Toda la Escritura es inspirada por Dios, y útil para enseñar, para redargüir, para corregir, para instruir en justicia.\""},
+  {"id":"m147","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Epístola a Filemón","question":"¿Por qué esclavo fugitivo intercedió Pablo ante su amo Filemón pidiendo que lo recibiera no ya como esclavo, sino como hermano amado?","options":["Onésimo","Epafrodito","Aristarco","Tíquico"],"correctAnswer":0,"verse":"Filemón 1:10-16","explanation":"Te ruego por mi hijo Onésimo, a quien he engendrado en mis prisiones... para que le recibieses para siempre; no ya como esclavo, sino como hermano amado."},
+  {"id":"m148","level":"MEDIUM","type":"FILL_VERSE","category":"Epístola a los Hebreos","question":"Completa Hebreos 4:12: \"Porque la palabra de Dios es viva y eficaz, y más cortante que toda espada de dos _________\"","options":["puntas","filos","metales","empuñaduras"],"correctAnswer":1,"verse":"Hebreos 4:12","explanation":"Hebreos 4:12: \"Porque la palabra de Dios es viva y eficaz, y más cortante que toda espada de dos filos; y penetra hasta partir el alma y el espíritu...\""},
+  {"id":"m149","level":"MEDIUM","type":"FILL_VERSE","category":"Epístola a los Hebreos","question":"Completa Hebreos 12:2: \"Puestos los ojos en Jesús, el autor y consumador de la _________\"","options":["paz","creación","ley","fe"],"correctAnswer":3,"verse":"Hebreos 12:2","explanation":"Hebreos 12:2: \"Puestos los ojos en Jesús, el autor y consumador de la fe.\""},
+  {"id":"m150","level":"MEDIUM","type":"FILL_VERSE","category":"Epístola a los Hebreos","question":"Completa Hebreos 13:8: \"Jesucristo es el mismo ayer, y hoy, y por los _________\"","options":["hombres","siglos","años","días"],"correctAnswer":1,"verse":"Hebreos 13:8","explanation":"Hebreos 13:8: \"Jesucristo es el mismo ayer, y hoy, y por los siglos.\""},
+  {"id":"m151","level":"MEDIUM","type":"FILL_VERSE","category":"Epístola de Santiago","question":"Completa Santiago 1:5: \"Y si alguno de vosotros tiene falta de sabiduría, pídala a Dios, el cual da a todos abundantemente y sin _________\"","options":["reproche","condición","tardanza","medida"],"correctAnswer":0,"verse":"Santiago 1:5","explanation":"Santiago 1:5: \"...pídala a Dios, el cual da a todos abundantemente y sin reproche, y le será dada.\""},
+  {"id":"m152","level":"MEDIUM","type":"FILL_VERSE","category":"Epístola de Santiago","question":"Completa Santiago 2:26: \"Porque como el cuerpo sin espíritu está muerto, así también la fe sin obras está _________\"","options":["oculta","dormida","muerta","incompleta"],"correctAnswer":2,"verse":"Santiago 2:26","explanation":"Santiago 2:26: \"Porque como el cuerpo sin espíritu está muerto, así también la fe sin obras está muerta.\""},
+  {"id":"m153","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Epístola de Santiago","question":"¿Con qué miembros pequeños compara Santiago a la lengua humana para ilustrar su inmenso poder para bien o para mal?","options":["Con un freno y un timón","Con una chispa y una gota","Con una semilla y una rama","Con una cuerda y una aguja"],"correctAnswer":0,"verse":"Santiago 3:3-5","explanation":"Ponemos freno en la boca de los caballos... mirad también las naves; gobernadas con un muy pequeño timón. Así también la lengua es un miembro pequeño, pero se jacta de grandes cosas."},
+  {"id":"m154","level":"MEDIUM","type":"FILL_VERSE","category":"1 Pedro","question":"Completa 1 Pedro 5:7: \"Echando toda vuestra ansiedad sobre él, porque él tiene _________ de vosotros.\"","options":["lástima","cuidado","juicio","noticia"],"correctAnswer":1,"verse":"1 Pedro 5:7","explanation":"1 Pedro 5:7: \"Echando toda vuestra ansiedad sobre él, porque él tiene cuidado de vosotros.\""},
+  {"id":"m155","level":"MEDIUM","type":"FILL_VERSE","category":"1 Pedro","question":"Completa 1 Pedro 5:8: \"Sed sobrios, y velad; porque vuestro adversario el diablo, como león rugiente, anda alrededor buscando a quién _________\"","options":["asustar","engañar","juzgar","devorar"],"correctAnswer":3,"verse":"1 Pedro 5:8","explanation":"1 Pedro 5:8: \"Sed sobrios, y velad; porque vuestro adversario el diablo, como león rugiente, anda alrededor buscando a quién devorar.\""},
+  {"id":"m156","level":"MEDIUM","type":"FILL_VERSE","category":"2 Pedro","question":"Completa 2 Pedro 3:8: \"Mas, oh amados, no ignoréis esto: que para con el Señor un día es como _________\"","options":["siete años","cien años","mil años","diez años"],"correctAnswer":2,"verse":"2 Pedro 3:8","explanation":"2 Pedro 3:8: \"...que para con el Señor un día es como mil años, y mil años como un día.\""},
+  {"id":"m157","level":"MEDIUM","type":"FILL_VERSE","category":"1 Juan","question":"Completa 1 Juan 1:9: \"Si confesamos nuestros pecados, él es fiel y justo para perdonar nuestros pecados, y limpiarnos de toda _________\"","options":["culpa","maldad","injusticia","duda"],"correctAnswer":1,"verse":"1 Juan 1:9","explanation":"1 Juan 1:9: \"Si confesamos nuestros pecados, él es fiel y justo para perdonar nuestros pecados, y limpiarnos de toda maldad.\""},
+  {"id":"m158","level":"MEDIUM","type":"FILL_VERSE","category":"1 Juan","question":"Completa la solemne declaración teológica en 1 Juan 4:8: \"El que no ama, no ha conocido a Dios; porque Dios es _________\"","options":["espíritu","luz","amor","fuego"],"correctAnswer":2,"verse":"1 Juan 4:8","explanation":"1 Juan 4:8: \"El que no ama, no ha conocido a Dios; porque Dios es amor.\""},
+  {"id":"m159","level":"MEDIUM","type":"FILL_VERSE","category":"1 Juan","question":"Completa 1 Juan 4:18: \"En el amor no hay temor, sino que el _________ amor echa fuera el temor\"","options":["humilde","divino","eterno","perfecto"],"correctAnswer":3,"verse":"1 Juan 4:18","explanation":"1 Juan 4:18: \"En el amor no hay temor, sino que el perfecto amor echa fuera el temor.\""},
+  {"id":"m160","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Apocalipsis","question":"¿A cuántas iglesias de Asia Menor van dirigidas las cartas proféticas en los capítulos 2 y 3 del libro de Apocalipsis?","options":["7 iglesias","12 iglesias","10 iglesias","3 iglesias"],"correctAnswer":0,"verse":"Apocalipsis 1:11; 2-3","explanation":"Escribe en un libro lo que ves, y envíalo a las siete iglesias que están en Asia: a Éfeso, Esmirna, Pérgamo, Tiatira, Sardis, Filadelfia y Laodicea."},
+  {"id":"m161","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Apocalipsis","question":"¿A cuál de las siete iglesias de Apocalipsis censuró el Señor duramente diciendo: \"Por cuanto eres tibio, y no frío ni caliente, te vomitaré de mi boca\"?","options":["A la iglesia en Esmirna","A la iglesia en Filadelfia","A la iglesia en Laodicea","A la iglesia en Éfeso"],"correctAnswer":2,"verse":"Apocalipsis 3:15-16","explanation":"Pero por cuanto eres tibio, y no frío ni caliente, te vomitaré de mi boca. Tú dices: Yo soy rico... y no sabes que eres un desventurado, miserable, pobre, ciego y desnudo."},
+  {"id":"m162","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Apocalipsis","question":"¿Quién es el único hallado digno en el cielo de tomar el libro y abrir sus siete sellos según Apocalipsis 5?","options":["El León de Judá","El profeta Moisés","El arcángel Miguel","El apóstol Pedro"],"correctAnswer":0,"verse":"Apocalipsis 5:5-9","explanation":"He aquí que el León de la tribu de Judá, la raíz de David, ha vencido para abrir el libro y desatar sus siete sellos... Digno eres, porque fuiste inmolado."},
+  {"id":"m163","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Apocalipsis","question":"¿Cuántos son los jinetes simbólicos que salen cabalgando en los primeros cuatro sellos de Apocalipsis 6?","options":["7 jinetes","4 jinetes","12 jinetes","2 jinetes"],"correctAnswer":1,"verse":"Apocalipsis 6:1-8","explanation":"Los cuatro jinetes del Apocalipsis cabalgan sobre caballos blanco, bermejo (rojo), negro y amarillo (pálido)."},
+  {"id":"m164","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Apocalipsis","question":"En Apocalipsis 19, ¿qué nombre glorioso lleva escrito en su vestidura y en su muslo el Jinete del caballo blanco?","options":["ÁNGEL DE LA LUZ ETERNA","PROFETA MAYOR DE NAZARET","PRÍNCIPE DE LA PAZ CELESTIAL","REY DE REYES Y SEÑOR DE SEÑORES"],"correctAnswer":3,"verse":"Apocalipsis 19:16","explanation":"Y en su vestidura y en su muslo tiene escrito este nombre: REY DE REYES Y SEÑOR DE SEÑORES."},
+  {"id":"m165","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Apocalipsis","question":"¿De qué material son la plaza y las calles de la Nueva Jerusalén en Apocalipsis 21?","options":["De zafiro azul","De oro puro","De plata bruñida","De mármol blanco"],"correctAnswer":1,"verse":"Apocalipsis 21:21","explanation":"Y la calle de la ciudad era de oro puro, transparente como vidrio."},
+  {"id":"m166","level":"MEDIUM","type":"FILL_VERSE","category":"Apocalipsis","question":"Completa la penúltima oración de toda la Biblia en Apocalipsis 22:20: \"El que da testimonio de estas cosas dice: Ciertamente vengo en breve. Amén; sí, ven, Señor _________\"","options":["Creador","Dios","Espíritu","Jesús"],"correctAnswer":3,"verse":"Apocalipsis 22:20","explanation":"Apocalipsis 22:20: \"El que da testimonio de estas cosas dice: Ciertamente vengo en breve. Amén; sí, ven, Señor Jesús.\""},
+  {"id":"m167","level":"MEDIUM","type":"FILL_VERSE","category":"Cierre Bíblico","question":"Completa el último versículo de toda la Biblia (Apocalipsis 22:21): \"La gracia de nuestro Señor Jesucristo sea con todos vosotros. _________\"","options":["Amén","Gloria","Aleluya","Paz"],"correctAnswer":0,"verse":"Apocalipsis 22:21","explanation":"Apocalipsis 22:21: \"La gracia de nuestro Señor Jesucristo sea con todos vosotros. Amén.\""},
+  {"id":"m168","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje bíblico representan estos emojis? 🌴 ⚖️ 👩‍⚖️ ⚔️ 🎶","options":["Miriam","Ester","Débora","Rut"],"correctAnswer":2,"verse":"Jueces 4-5","explanation":"Débora era profetisa y jueza bajo una palmera, guió a Israel a la victoria y compuso un cántico."},
+  {"id":"m169","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje bíblico representan estos emojis? 🐑 💧 🏺 🎺 3️⃣0️⃣0️⃣","options":["Jefté","Gedeón","Sansón","Josué"],"correctAnswer":1,"verse":"Jueces 6-7","explanation":"Gedeón pidió la señal del vellón de lana y venció a Madián con 300 hombres, cántaros y trompetas."},
+  {"id":"m170","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje bíblico representan estos emojis? 🧵 🔴 🪟 🕵️‍♂️ 🧱","options":["Rut","Ester","Rahab","Jael"],"correctAnswer":2,"verse":"Josué 2:1-21","explanation":"Rahab escondió a los espías en su casa sobre el muro de Jericó y ató un cordón grana en su ventana."},
+  {"id":"m171","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje bíblico representan estos emojis? 🐴 🗣️ ⚔️ 👼 🏔️","options":["Elías","Jonás","Balac","Balaam"],"correctAnswer":3,"verse":"Números 22:21-31","explanation":"La asna de Balaam habló milagrosamente al ver al Ángel de Jehová con espada en el camino."},
+  {"id":"m172","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje bíblico representan estos emojis? 🛁 🌊 7️⃣ ⚔️ ✨","options":["Naamán","Giezi","Eliseo","Acab"],"correctAnswer":0,"verse":"2 Reyes 5:10-14","explanation":"El general sirio Naamán se sumergió siete veces en el río Jordán y quedó limpio de lepra."},
+  {"id":"m173","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje bíblico representan estos emojis? 🌙 👴 ❓ 👶 🔄","options":["Gamaliel","Zaqueo","Nicodemo","Caifás"],"correctAnswer":2,"verse":"Juan 3:1-4","explanation":"Nicodemo visitó a Jesús de noche y preguntó cómo podía un hombre nacer de nuevo."},
+  {"id":"m174","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje bíblico representan estos emojis? 🪨 ☁️ 😇 🙏 🩸","options":["Santiago","Felipe","Pablo","Esteban"],"correctAnswer":3,"verse":"Hechos 7:55-60","explanation":"Esteban vio los cielos abiertos y oró perdonando a quienes lo apedreaban como primer mártir."},
+  {"id":"m175","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué encuentro bíblico representan estos emojis? 🚗 📖 🇪🇹 💧 🙌","options":["Felipe y el Etíope","Juan y Pedro","Pedro y Cornelio","Pablo y Silas"],"correctAnswer":0,"verse":"Hechos 8:27-39","explanation":"Felipe explicó el pasaje de Isaías al tesorero etíope en su carro y lo bautizó en agua."},
+  {"id":"m176","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué compañeros bíblicos representan estos emojis? ⛓️ 🎶 🌋 🚪 👮","options":["Pedro y Juan","Pablo y Silas","Jacobo y Juan","Pablo y Bernabé"],"correctAnswer":1,"verse":"Hechos 16:25-34","explanation":"Pablo y Silas cantaban himnos en la cárcel de Filipos cuando un terremoto abrió las puertas."},
+  {"id":"m177","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Historia","question":"¿Qué episodio bíblico representan estos emojis? 🐍 🔥 🏝️ 🚢 🩹","options":["Pablo en Malta","Juan en Patmos","Jonás en Tarsis","Pedro en Jope"],"correctAnswer":0,"verse":"Hechos 28:1-6","explanation":"Tras naufragar en Malta, una víbora mordió la mano de Pablo junto al fuego sin hacerle daño."},
+  {"id":"m178","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué mujer bíblica representan estos emojis? 👩 🪣 💧 5️⃣ 🗣️","options":["Marta de Betania","María Magdalena","La Mujer Sirofenicia","La Mujer Samaritana"],"correctAnswer":3,"verse":"Juan 4:7-29","explanation":"Junto al pozo de Jacob, Jesús habló de sus cinco maridos a la mujer samaritana y ella testificó."},
+  {"id":"m179","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué mujer bíblica representan estos emojis? 🥁 🎶 🌊 👧 🧺","options":["Débora","Ana","Miriam","Séfora"],"correctAnswer":2,"verse":"Éxodo 2 y 15","explanation":"Miriam vigiló la canasta de Moisés en el río y luego lideró a las mujeres cantando con pandero."},
+  {"id":"m180","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué mujer bíblica representan estos emojis? 😭 🙏 👶 🧥 🏛️","options":["Raquel","Ana","Elisabet","Sara"],"correctAnswer":1,"verse":"1 Samuel 1-2","explanation":"Ana oró llorando por un hijo, dedicó a Samuel en el templo y le llevaba una túnica cada año."},
+  {"id":"m181","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje bíblico representan estos emojis? 🐴 🌳 💇‍♂️ ⚔️ 👑","options":["Absalón","Salomón","Adonías","Jonatán"],"correctAnswer":0,"verse":"2 Samuel 18:9-15","explanation":"Absalón se rebeló contra su padre David y quedó colgado por su cabellera en las ramas de una encina."},
+  {"id":"m182","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje bíblico representan estos emojis? 🏹 🤝 👑 💙 🛡️","options":["Joab","Abner","Mefiboset","Jonatán"],"correctAnswer":3,"verse":"1 Samuel 18 y 20","explanation":"Jonatán hizo pacto de amistad fiel con David y le avisó del peligro usando flechas."},
+  {"id":"m183","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje bíblico representan estos emojis? 🦽 👑 🍽️ 💙 🏠","options":["Bartimeo","Lázaro","Mefiboset","Ziba"],"correctAnswer":2,"verse":"2 Samuel 9:1-13","explanation":"Mefiboset, hijo de Jonatán y lisiado de ambos pies, fue honrado para comer siempre a la mesa de David."},
+  {"id":"m184","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje bíblico representan estos emojis? 🗣️ 🤐 👼 ✍️ 👶","options":["Herodes","Zacarías","Simeón","José"],"correctAnswer":1,"verse":"Lucas 1:18-63","explanation":"El sacerdote Zacarías quedó mudo al dudar del ángel y escribió el nombre de Juan en una tablilla."},
+  {"id":"m185","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué rey de Judá representan estos emojis? 👑 8️⃣ 📜 😢 🔨","options":["Josías","Manasés","Joás","Ezequías"],"correctAnswer":0,"verse":"2 Reyes 22:1-11","explanation":"Josías comenzó a reinar a los ocho años, reparó el templo y rasgó sus vestiduras al oír la Ley."},
+  {"id":"m186","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje bíblico representan estos emojis? 🍷 👑 😢 🧱 🏙️","options":["Mardoqueo","Esdras","Daniel","Nehemías"],"correctAnswer":3,"verse":"Nehemías 1-2","explanation":"Nehemías era copero del rey en Susa, lloró por Jerusalén y lideró la reconstrucción de sus muros."},
+  {"id":"m187","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué mujer del Nuevo Testamento representan estos emojis? 👕 🪡 👵 😢 🚶‍♀️","options":["Febe","Tabita","Priscila","Lidia"],"correctAnswer":1,"verse":"Hechos 9:36-41","explanation":"Tabita (Dorcas) cosía túnicas y vestidos para las viudas en Jope y fue resucitada por Pedro."},
+  {"id":"m188","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué mujer del Nuevo Testamento representan estos emojis? 🟣 🧵 🏞️ 💧 🏠","options":["Priscila","Eunice","Lidia","Dorcas"],"correctAnswer":2,"verse":"Hechos 16:14-15","explanation":"Lidia era vendedora de púrpura de Tiatira, se bautizó junto al río y hospedó a Pablo en Filipos."},
+  {"id":"m189","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué matrimonio bíblico representan estos emojis? ⛺ 🪡 💑 📖 🗣️","options":["Ananías y Safira","Priscila y Aquila","José y María","Zacarías y Elisabet"],"correctAnswer":1,"verse":"Hechos 18:2-26","explanation":"Priscila y Aquila hacían tiendas junto con Pablo y enseñaron con más exactitud a Apolos."},
+  {"id":"m190","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué matrimonio bíblico representan estos emojis? 💰 🤥 💔 💀 💀","options":["Herodes y Herodías","Acab y Jezabel","Acán y su esposa","Ananías y Safira"],"correctAnswer":3,"verse":"Hechos 5:1-10","explanation":"Ananías y Safira mintieron al Espíritu Santo sobre el precio de su heredad y murieron ambos."},
+  {"id":"m191","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje de Hechos representan estos emojis? 👮 🇮🇹 🙏 👼 💧","options":["Sergio Paulo","Pilato","Cornelio","Julio"],"correctAnswer":2,"verse":"Hechos 10:1-48","explanation":"El centurión romano Cornelio oraba en Cesarea, vio un ángel y recibió el evangelio por Pedro."},
+  {"id":"m192","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué joven de Hechos representan estos emojis? 🪟 😴 ⬇️ 💀 🏃‍♂️","options":["Eutico","Timoteo","Tíquico","Lázaro"],"correctAnswer":0,"verse":"Hechos 20:9-12","explanation":"El joven Eutico se durmió en una ventana del tercer piso durante el discurso de Pablo y fue revivido."},
+  {"id":"m193","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué mujer bíblica representan estos emojis? 🧴 💐 🦶 💇‍♀️ 🏠","options":["Salomé de Galilea","Marta de Betania","María de Betania","Juana de Chuza"],"correctAnswer":2,"verse":"Juan 12:3","explanation":"María de Betania ungió los pies de Jesús con perfume de nardo puro y los secó con sus cabellos."},
+  {"id":"m194","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué mujer bíblica representan estos emojis? 🍽️ 🧹 😤 👩 🏠","options":["Marta de Betania","Rut de Moab","María Magdalena","Rebeca de Aram"],"correctAnswer":0,"verse":"Lucas 10:40-41","explanation":"Marta se afanaba con los muchos quehaceres de la casa mientras su hermana escuchaba a Jesús."},
+  {"id":"m195","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje bíblico representan estos emojis? 🧂 👀 🔙 🔥 🏙️","options":["La sierva Agar","La esposa de Lot","La reina Jezabel","La esposa de Job"],"correctAnswer":1,"verse":"Génesis 19:26","explanation":"La esposa de Lot desobedeció mirando atrás hacia Sodoma y quedó convertida en estatua de sal."},
+  {"id":"m196","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué profeta representan estos emojis? 🪓 💧 🪵 ⬆️ 👴","options":["Samuel","Elías","Moisés","Eliseo"],"correctAnswer":3,"verse":"2 Reyes 6:5-7","explanation":"Eliseo arrojó un palo al río Jordán e hizo flotar la cabeza de hierro de un hacha prestada."},
+  {"id":"m197","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué rey de Judá representan estos emojis? 👴 1️⃣5️⃣ ☀️ 🔙 😭","options":["Josías","Ezequías","Josafat","Salomón"],"correctAnswer":1,"verse":"2 Reyes 20:1-11","explanation":"Ezequías lloró ante Dios, recibió quince años más de vida y vio retroceder la sombra del reloj solar."},
+  {"id":"m198","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué libro de la Biblia representan estos emojis? 🐑 🔥 🩸 ⛺ 🧼","options":["Números","Éxodo","Levítico","Deuteronomio"],"correctAnswer":2,"verse":"Levítico 1-27","explanation":"Levítico detalla las ofrendas, los sacrificios, el sacerdocio y las leyes de pureza."},
+  {"id":"m199","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué libro de la Biblia representan estos emojis? ⏳ 💨 ☀️ 🔄 👑","options":["Salmos","Job","Proverbios","Eclesiastés"],"correctAnswer":3,"verse":"Eclesiastés 1-3","explanation":"Eclesiastés reflexiona sobre la vanidad bajo el sol y enseña que todo tiene su tiempo."},
+  {"id":"m200","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué libro de la Biblia representan estos emojis? 😢 🏚️ 🔥 🏙️ 🕯️","options":["Lamentaciones","Amós","Jeremías","Joel"],"correctAnswer":0,"verse":"Lamentaciones 1-5","explanation":"Lamentaciones es una colección de elegías llorando la destrucción de Jerusalén."},
+  {"id":"m201","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué libro de la Biblia representan estos emojis? 🦴 💀 🏜️ 💨 🎡","options":["Daniel","Isaías","Zacarías","Ezequiel"],"correctAnswer":3,"verse":"Ezequiel 1 y 37","explanation":"Ezequiel contiene las visiones de las ruedas llenas de ojos y el valle de los huesos secos."},
+  {"id":"m202","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué libro de la Biblia representan estos emojis? 💔 💍 👩 ❤️ 🔄","options":["Rut","Oseas","Malaquías","Cantares"],"correctAnswer":1,"verse":"Oseas 1-3","explanation":"Oseas ilustra el amor fiel y restaurador de Dios a través de su matrimonio con Gomer."},
+  {"id":"m203","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué libro de la Biblia representan estos emojis? 🦗 🌾 🎺 🔥 🕊️","options":["Miqueas","Habacuc","Joel","Amós"],"correctAnswer":2,"verse":"Joel 1-2","explanation":"Joel anuncia una plaga de langostas y profetiza el derramamiento del Espíritu sobre toda carne."},
+  {"id":"m204","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué carta del Nuevo Testamento representan estos emojis? 🏛️ ⚖️ 🕊️ ❤️ ✝️","options":["Romanos","Filipenses","Gálatas","Efesios"],"correctAnswer":0,"verse":"Romanos 1-16","explanation":"Romanos expone sistemáticamente la justicia de Dios, la fe, la gracia y el amor del cual nada nos separa."},
+  {"id":"m205","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué carta del Nuevo Testamento representan estos emojis? ❤️ 🎺 🎁 🧍‍♂️ ⛪","options":["2 Corintios","1 Corintios","1 Tesalonicenses","2 Timoteo"],"correctAnswer":1,"verse":"1 Corintios 12-13","explanation":"1 Corintios trata los dones espirituales, la iglesia como cuerpo y el himno al amor."},
+  {"id":"m206","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué carta del Nuevo Testamento representan estos emojis? 🍇 🍊 🕊️ ⛓️ 🕊️","options":["Gálatas","1 Tesalonicenses","Efesios","Filipenses"],"correctAnswer":0,"verse":"Gálatas 5","explanation":"Gálatas defiende la libertad en Cristo frente a la esclavitud de la ley y enumera el Fruto del Espíritu."},
+  {"id":"m207","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué carta del Nuevo Testamento representan estos emojis? 🛡️ ⚔️ 🪖 ⛪ 💍","options":["2 Timoteo","Colosenses","Efesios","Filipenses"],"correctAnswer":2,"verse":"Efesios 5-6","explanation":"Efesios habla de la iglesia como esposa de Cristo y describe toda la Armadura de Dios."},
+  {"id":"m208","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué carta del Nuevo Testamento representan estos emojis? 😊 ⛓️ 🏃‍♂️ 🏁 💪","options":["Gálatas","Colosenses","Tito","Filipenses"],"correctAnswer":3,"verse":"Filipenses 1-4","explanation":"Escrita desde prisión, Filipenses es la carta del gozo, la meta cristiana y \"Todo lo puedo en Cristo\"."},
+  {"id":"m209","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué carta del Nuevo Testamento representan estos emojis? 👅 🚢 🐴 🪞 🛠️","options":["Santiago","1 Pedro","Hebreos","1 Juan"],"correctAnswer":0,"verse":"Santiago 1-3","explanation":"Santiago compara la Palabra con un espejo, la lengua con un timón y un freno, y la fe con obras."},
+  {"id":"m210","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué carta del Nuevo Testamento representan estos emojis? ⛓️ 🏃‍♂️ ✉️ 🤝 ❤️","options":["Judas","Tito","Filemón","2 Juan"],"correctAnswer":2,"verse":"Filemón 1","explanation":"Filemón es la carta breve en que Pablo intercede con amor por el siervo fugitivo Onésimo."},
+  {"id":"m211","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué libro del Nuevo Testamento representan estos emojis? 🏛️ 🐑 👑 🏅 🏃‍♂️","options":["Apocalipsis","Hebreos","1 Pedro","Romanos"],"correctAnswer":1,"verse":"Hebreos 7-12","explanation":"Hebreos muestra a Cristo superior a los sacrificios y presenta la galería de los héroes de la fe."},
+  {"id":"m212","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué carta del Nuevo Testamento representan estos emojis? ❤️ 💡 🌑 👪 ✨","options":["1 Pedro","Efesios","Filipenses","1 Juan"],"correctAnswer":3,"verse":"1 Juan 1-4","explanation":"1 Juan declara que Dios es luz y Dios es amor, y llama a los creyentes hijos de Dios."},
+  {"id":"m213","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué carta del Nuevo Testamento representan estos emojis? 🎺 ☁️ 😴 ⬆️ ⏳","options":["2 Corintios","Colosenses","1 Tesalonicenses","1 Timoteo"],"correctAnswer":2,"verse":"1 Tesalonicenses 4:16-17","explanation":"1 Tesalonicenses consuela a los creyentes describiendo el toque de trompeta y el arrebatamiento en las nubes."},
+  {"id":"m214","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué libro profético representan estos emojis? 🔥 👄 👶 🐑 ✝️","options":["Ezequiel","Jeremías","Miqueas","Isaías"],"correctAnswer":3,"verse":"Isaías 6, 9 y 53","explanation":"Isaías relata el carbón encendido en los labios, el nacimiento del Mesías y el Siervo sufriente."},
+  {"id":"m215","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué libro profético representan estos emojis? 🏺 😭 🕳️ 📜 🔥","options":["Jeremías","Daniel","Amós","Ezequiel"],"correctAnswer":0,"verse":"Jeremías 18, 36 y 38","explanation":"Jeremías incluye la lección del alfarero, el rollo quemado por el rey y la cisterna de fango."},
+  {"id":"m216","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué libro profético representan estos emojis? 🧱 ☀️ 🪙 🪟 ☁️","options":["Zacarías","Malaquías","Sofonías","Hageo"],"correctAnswer":1,"verse":"Malaquías 3-4","explanation":"Malaquías promete abrir las ventanas de los cielos por los diezmos y anuncia al Sol de justicia."},
+  {"id":"m217","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué Evangelio representan estos emojis? 🏥 👶 🐑 🤝 🛣️","options":["Juan","Marcos","Lucas","Mateo"],"correctAnswer":2,"verse":"Lucas 1-24","explanation":"Escrito por el médico Lucas, incluye el nacimiento detallado, el Buen Samaritano y el camino a Emaús."},
+  {"id":"m218","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Parábola","question":"¿Qué parábola de Jesús representan estos emojis? 👰 1️⃣0️⃣ 🪔 🛢️ 🌙","options":["La Moneda Perdida","Las Bodas del Rey","Los Talentos","Las Diez Vírgenes"],"correctAnswer":3,"verse":"Mateo 25:1-13","explanation":"Cinco vírgenes prudentes llevaron aceite extra para sus lámparas y entraron a las bodas."},
+  {"id":"m219","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Parábola","question":"¿Qué parábola de Jesús representan estos emojis? 💰 5️⃣ 2️⃣ 1️⃣ ⛏️","options":["Los Talentos","El Rico Insensato","La Moneda Perdida","Los Dos Deudores"],"correctAnswer":0,"verse":"Mateo 25:14-30","explanation":"Un siervo ganó cinco talentos, otro dos, y el que recibió uno lo enterró bajo tierra."},
+  {"id":"m220","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Parábola","question":"¿Qué parábola de Jesús representan estos emojis? 🌾 😈 🌙 🌿 🔥","options":["El Sembrador","El Trigo y la Cizaña","La Higuera","El Grano de Mostaza"],"correctAnswer":1,"verse":"Mateo 13:24-30","explanation":"Mientras dormían los hombres, el enemigo sembró cizaña en medio del trigo."},
+  {"id":"m221","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Parábola","question":"¿Qué parábola de Jesús representan estos emojis? 🦪 💎 💰 🏪 🛒","options":["El Tesoro Escondido","La Moneda Perdida","El Joven Rico","La Perla de Gran Precio"],"correctAnswer":3,"verse":"Mateo 13:45-46","explanation":"Un mercader halló una perla preciosa, vendió todo lo que tenía y la compró."},
+  {"id":"m222","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Parábola","question":"¿Qué parábola de Jesús representan estos emojis? 🏛️ 🙏 😤 😔 💓","options":["La Viuda y el Juez Injusto","El Rico y el Mendigo","El Fariseo y el Publicano","Los Dos Deudores"],"correctAnswer":2,"verse":"Lucas 18:10-14","explanation":"El fariseo oraba orgulloso mientras el publicano se golpeaba el pecho pidiendo misericordia."},
+  {"id":"m223","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Milagro","question":"¿Qué milagro de Jesús representan estos emojis? 🔟 🤕 🙏 1️⃣ 🔙","options":["Los Diez Leprosos","Sanidad de Naamán","Sanidad en Betesda","El Ciego de Nacimiento"],"correctAnswer":0,"verse":"Lucas 17:11-19","explanation":"Jesús limpió a diez hombres con lepra, pero solo uno, que era samaritano, volvió a dar gracias."},
+  {"id":"m224","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Milagro","question":"¿Qué milagro de Jesús representan estos emojis? 🎣 🐟 👄 🪙 🏛️","options":["El Gran Pez de Jonás","La Moneda en el Pez","Los Cinco Panes","La Pesca Milagrosa"],"correctAnswer":1,"verse":"Mateo 17:27","explanation":"Jesús indicó a Pedro pescar un pez y sacar de su boca la moneda para el impuesto del templo."},
+  {"id":"m225","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Milagro","question":"¿Qué milagro de Jesús representan estos emojis? 💧 🟫 👀 🏊‍♂️ ✨","options":["El Ciego de Nacimiento","El Ciego Bartimeo","El Ciego de Betsaida","El Paralítico de Betesda"],"correctAnswer":0,"verse":"Juan 9:6-7","explanation":"Jesús untó lodo en los ojos del ciego de nacimiento y lo mandó lavarse en el estanque de Siloé."},
+  {"id":"m226","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Milagro","question":"¿Qué milagro de Jesús representan estos emojis? 🐷 2️⃣0️⃣0️⃣0️⃣ ⛰️ 🌊 😈","options":["La Higuera Seca","El Endemoniado Gadareno","La Pesca Milagrosa","El Hijo Pródigo"],"correctAnswer":1,"verse":"Marcos 5:1-13","explanation":"Los espíritus inmundos llamados Legión entraron en un hato de cerdos que se precipitó al mar."},
+  {"id":"m227","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Historia","question":"¿Qué escena bíblica representan estos emojis? ⛰️ ✨ ☁️ 3️⃣ ⛺","options":["La Ascensión","El Sermón del Monte","El Monte Sinaí","La Transfiguración"],"correctAnswer":3,"verse":"Mateo 17:1-5","explanation":"Jesús se transfiguró resplandeciente junto a Moisés y Elías, y Pedro propuso hacer tres enramadas."},
+  {"id":"m228","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Historia","question":"¿Qué historia bíblica representan estos emojis? 🍷 🎉 ✋ ✍️ 🧱","options":["El Banquete de Ester","Los Diez Mandamientos","La Escritura en la Pared","Las Bodas de Caná"],"correctAnswer":2,"verse":"Daniel 5:5-28","explanation":"En el banquete de Belsasar apareció una mano escribiendo \"Mene, Mene, Tekel, Uparsin\" en la pared."},
+  {"id":"m229","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Historia","question":"¿Qué historia bíblica representan estos emojis? 🐮 7️⃣ 🌾 7️⃣ 👑","options":["La Visión de Daniel","El Sueño de Faraón","Las Diez Plagas","El Banquete de José"],"correctAnswer":1,"verse":"Génesis 41:1-30","explanation":"Faraón soñó siete vacas y espigas gordas seguidas de siete flacas: años de abundancia y hambre."},
+  {"id":"m230","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Historia","question":"¿Qué escena bíblica representan estos emojis? 🐍 🥉 🦯 🏜️ 👀","options":["La Tentación del Edén","Pablo en Malta","La Serpiente de Bronce","La Vara de Aarón"],"correctAnswer":2,"verse":"Números 21:8-9","explanation":"Moisés levantó una serpiente de bronce en un asta para que todo mordido que la mirara viviera."},
+  {"id":"m231","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Historia","question":"¿Qué episodio bíblico representan estos emojis? 💧 🐂 🔥 ⛰️ 🌧️","options":["Elías en el Monte Carmelo","El Sacrificio de Isaac","La Dedicación del Templo","El Altar de Noé"],"correctAnswer":0,"verse":"1 Reyes 18:33-45","explanation":"Elías empapó el altar con agua, cayó fuego del cielo y luego volvió la lluvia tras la sequía."},
+  {"id":"m232","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Historia","question":"¿Qué episodio bíblico representan estos emojis? 🚶‍♂️ 🚶‍♂️ 🛣️ 🍞 👀","options":["El Camino a Damasco","La Huida a Egipto","El Camino a Jericó","El Camino a Emaús"],"correctAnswer":3,"verse":"Lucas 24:13-31","explanation":"Dos discípulos caminaban a Emaús y reconocieron a Jesús resucitado cuando partió el pan."},
+  {"id":"m233","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Historia","question":"¿Qué episodio bíblico representan estos emojis? 🌙 🫒 🩸 🙏 ⚔️","options":["Jesús en Getsemaní","La Transfiguración","El Monte Sinaí","El Monte Carmelo"],"correctAnswer":0,"verse":"Lucas 22:39-50","explanation":"En el huerto de Getsemaní Jesús oró sudando como gotas de sangre antes de su arresto."},
+  {"id":"m234","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Historia","question":"¿Qué episodio bíblico representan estos emojis? ☁️ ⬆️ 👣 1️⃣1️⃣ 👼","options":["El Rapto de Elías","El Día de Pentecostés","La Transfiguración","La Ascensión de Jesús"],"correctAnswer":3,"verse":"Hechos 1:9-11","explanation":"Jesús fue alzado en una nube ante los apóstoles y dos varones de blanco anunciaron su regreso."},
+  {"id":"m235","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Historia","question":"¿Qué episodio bíblico representan estos emojis? 🏠 🛌 ☁️ 🐷 🐍","options":["El Arca de Noé","La Creación de los Animales","La Visión de Pedro en Jope","El Sueño de Nabucodonosor"],"correctAnswer":2,"verse":"Hechos 10:9-16","explanation":"Pedro vio bajar del cielo un gran lienzo lleno de toda clase de animales en la azotea de Jope."},
+  {"id":"m236","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Objeto","question":"¿Qué metáfora de Jesús representan estos emojis? 🌿 🍇 ✂️ 🔥 🍷","options":["La Higuera Estéril","La Vid y los Pámpanos","El Grano de Trigo","El Olivo Silvestre"],"correctAnswer":1,"verse":"Juan 15:1-6","explanation":"Jesús enseñó que Él es la vid verdadera y sus seguidores los pámpanos que deben dar fruto."},
+  {"id":"m237","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Historia","question":"¿Qué episodio bíblico representan estos emojis? 🏛️ 🪢 🪙 🕊️ 💢","options":["La Purificación del Templo","La Ofrenda de la Viuda","La Dedicación del Templo","La Destrucción de Jericó"],"correctAnswer":0,"verse":"Juan 2:14-16","explanation":"Jesús hizo un azote de cuerdas y echó del templo a mercaderes y cambistas de monedas."},
+  {"id":"m238","level":"MEDIUM","type":"EMOJI_GUESS","category":"Emojis: Historia","question":"¿Qué escena de los Evangelios representan estos emojis? 👵 🪙 🪙 🏛️ ❤️","options":["La Moneda Perdida","La Ofrenda de la Viuda","El Tributo del César","La Viuda de Sarepta"],"correctAnswer":1,"verse":"Marcos 12:41-44","explanation":"Una viuda pobre echó dos blancas en el arca de las ofrendas y Jesús dijo que dio más que todos."},
+  {"id":"m239","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Génesis","question":"¿Qué oficio tenían los dos oficiales de Faraón cuyos sueños interpretó José en la cárcel?","options":["Capitán y mensajero","Sacerdote y arquitecto","Escriba y tesorero","Copero y panadero"],"correctAnswer":3,"verse":"Génesis 40:1-2","explanation":"El jefe de los coperos fue restituido a su puesto y el jefe de los panaderos fue colgado."},
+  {"id":"m240","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Génesis","question":"¿Qué animal le pidió Dios a Abraham tomar junto con cabra, carnero, tórtola y palomino en el pacto de Génesis 15?","options":["Un caballo blanco","Un buey joven","Una becerra de tres años","Un cordero de un año"],"correctAnswer":2,"verse":"Génesis 15:9","explanation":"Dios selló su pacto con Abraham pasando entre los animales divididos como horno humeante y antorcha."},
+  {"id":"m241","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Génesis","question":"¿Por qué motivo se llamó \"Babel\" a la ciudad de la torre inacabada?","options":["Porque cayó fuego del cielo","Por el nombre de su constructor","Por la altura de sus muros","Porque Dios confundió el lenguaje"],"correctAnswer":3,"verse":"Génesis 11:9","explanation":"Babel se relaciona con \"confusión\", porque allí Jehová confundió el lenguaje de toda la tierra."},
+  {"id":"m242","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Éxodo","question":"¿Por qué no pudo el pueblo beber de las aguas de Mara en el desierto?","options":["Porque estaban secas","Porque eran de sangre","Porque eran amargas","Porque estaban congeladas"],"correctAnswer":2,"verse":"Éxodo 15:23","explanation":"Dios mostró a Moisés un árbol que al echarlo en las aguas amargas de Mara las volvió dulces."},
+  {"id":"m243","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Éxodo","question":"¿En qué día de la semana caía doble porción de maná en el desierto?","options":["En el séptimo día","En el sexto día","En el quinto día","En el primer día"],"correctAnswer":1,"verse":"Éxodo 16:22","explanation":"El sexto día recogían doble porción porque el séptimo día era de reposo y no caía maná."},
+  {"id":"m244","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Pentateuco","question":"¿Qué fiesta israelita conmemoraba los cuarenta años habitando en tiendas en el desierto?","options":["Los Tabernáculos","Las Trompetas","Las Primicias","La Pascua"],"correctAnswer":0,"verse":"Levítico 23:42-43","explanation":"Durante siete días habitaban en enramadas para recordar el cuidado de Dios en el desierto."},
+  {"id":"m245","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Pentateuco","question":"¿Qué tribu de Israel no recibió herencia territorial propia porque su heredad era servir a Jehová?","options":["Judá","Leví","Zabulón","Benjamín"],"correctAnswer":1,"verse":"Números 18:20","explanation":"Los levitas recibieron el servicio del santuario y vivían en ciudades designadas entre las demás tribus."},
+  {"id":"m246","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Josué y Jueces","question":"¿Qué ciudad fue derrotada primero contra Israel debido al pecado oculto de Acán?","options":["Gabaón","Betel","Hebrón","Hai"],"correctAnswer":3,"verse":"Josué 7:4-5","explanation":"Israel sufrió derrota frente a la pequeña ciudad de Hai hasta que fue descubierto el anatema escondido por Acán."},
+  {"id":"m247","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Josué y Jueces","question":"¿Con qué estrategia engañaron los habitantes de Gabaón a Josué para hacer pacto de paz?","options":["Fingieron venir de tierras lejanas","Enviaron cartas falsas de Egipto","Ofrecieron gran cantidad de oro","Se disfrazaron de sacerdotes"],"correctAnswer":0,"verse":"Josué 9:4-6","explanation":"Los gabaonitas llevaron pan mohoso, odres rotos y calzado viejo para simular un viaje larguísimo."},
+  {"id":"m248","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Josué y Jueces","question":"¿Cuántos guerreros quedaron finalmente con Gedeón tras la prueba de beber agua junto al arroyo?","options":["100 hombres","1,000 hombres","300 hombres","3,000 hombres"],"correctAnswer":2,"verse":"Jueces 7:7","explanation":"Dios eligió solo a los 300 hombres que lamieron el agua llevándola con la mano a la boca."},
+  {"id":"m249","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Josué y Jueces","question":"¿Qué juez de Israel era zurdo y venció al rey Eglón de Moab?","options":["Aod","Jefté","Otoniel","Barac"],"correctAnswer":0,"verse":"Jueces 3:15-21","explanation":"Aod escondió un puñal de dos filos sobre su muslo derecho y libró a Israel de la opresión moabita."},
+  {"id":"m250","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Josué y Jueces","question":"¿Qué animal desgarró Sansón con sus propias manos camino a Timnat?","options":["Un lobo feroz","Un oso pardo","Un león joven","Un toro salvaje"],"correctAnswer":2,"verse":"Jueces 14:5-6","explanation":"El Espíritu de Jehová vino sobre Sansón y despedazó al león sin tener nada en su mano."},
+  {"id":"m251","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Samuel y Reyes","question":"¿Cuántos años reinó el rey David en total sobre Judá e Israel?","options":["50 años","40 años","60 años","20 años"],"correctAnswer":1,"verse":"2 Samuel 5:4-5","explanation":"David reinó siete años y medio en Hebrón sobre Judá y treinta y tres años en Jerusalén sobre todo Israel."},
+  {"id":"m252","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Samuel y Reyes","question":"¿Qué mujer sensata aplacó la ira de David llevándole provisiones cuando su esposo Nabal lo insultó?","options":["Mical","Tamar","Betsabé","Abigail"],"correctAnswer":3,"verse":"1 Samuel 25:18-33","explanation":"Abigail intervino con sabiduría evitando que David derramara sangre inocente."},
+  {"id":"m253","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Samuel y Reyes","question":"¿Por cuánto tiempo no hubo lluvia ni rocío en Israel tras la palabra del profeta Elías?","options":["Siete años","Tres años y medio","Cinco años","Un año y medio"],"correctAnswer":1,"verse":"Santiago 5:17 / Lucas 4:25","explanation":"Elías oró con fervor y no llovió sobre la tierra por tres años y seis meses."},
+  {"id":"m254","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Samuel y Reyes","question":"¿Qué le pidió Eliseo a una viuda endeudada que consiguiera prestado de todos sus vecinos?","options":["Costales de harina","Ovejas del campo","Monedas de plata","Vasijas vacías"],"correctAnswer":3,"verse":"2 Reyes 4:3-6","explanation":"El aceite de la viuda no dejó de fluir hasta que llenó todas las vasijas vacías que había reunido."},
+  {"id":"m255","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Samuel y Reyes","question":"¿Qué rey de Babilonia destruyó Jerusalén y llevó cautivos a Daniel y sus compañeros?","options":["Nabucodonosor","Senaquerib","Darío","Ciro"],"correctAnswer":0,"verse":"2 Reyes 24 / Daniel 1:1","explanation":"Nabucodonosor sitió Jerusalén, saqueó el templo y trasladó a jóvenes nobles a Babilonia."},
+  {"id":"m256","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Historia de Israel","question":"¿Qué rey persa permitió a los judíos regresar a Jerusalén para reedificar el Templo?","options":["Cambises","Jerjes","Ciro","Asuero"],"correctAnswer":2,"verse":"Esdras 1:1-3","explanation":"Dios despertó el espíritu de Ciro rey de Persia, cumpliendo lo anunciado por Isaías y Jeremías."},
+  {"id":"m257","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Historia de Israel","question":"¿En cuántos días terminaron Nehemías y el pueblo de reedificar la muralla de Jerusalén?","options":["En 52 días","En 120 días","En 30 días","En 70 días"],"correctAnswer":0,"verse":"Nehemías 6:15","explanation":"A pesar de las burlas y amenazas, el muro fue terminado en solo cincuenta y dos días."},
+  {"id":"m258","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Historia de Israel","question":"¿Qué fiesta judía nació para conmemorar la liberación del pueblo en tiempos de la reina Ester?","options":["Jubileo","Pentecostés","Purim","La Pascua"],"correctAnswer":2,"verse":"Ester 9:26","explanation":"Purim recuerda que el sorteo (\"pur\") echado por Amán para destruir a los judíos se volvió en gozo."},
+  {"id":"m259","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Profetas","question":"¿Qué objeto cotidiano usó Dios en casa del alfarero para ilustrar su soberanía ante Jeremías?","options":["Un manto de lino","Una balanza de hierro","Una lámpara de bronce","Una vasija de barro"],"correctAnswer":3,"verse":"Jeremías 18:1-6","explanation":"Así como el barro en mano del alfarero, así está el pueblo en las manos de Dios para ser moldeado."},
+  {"id":"m260","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Profetas","question":"¿Qué planta hizo crecer Dios en una noche para dar sombra al enojado profeta Jonás?","options":["Una higuera","Una calabacera","Una vid silvestre","Una palmera"],"correctAnswer":1,"verse":"Jonás 4:6","explanation":"Al día siguiente un gusano secó la calabacera para enseñar a Jonás sobre la compasión divina."},
+  {"id":"m261","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Profetas","question":"¿Qué profeta anunció siglos antes que el Mesías nacería en Belén Efrata?","options":["Habacuc","Amós","Nahúm","Miqueas"],"correctAnswer":3,"verse":"Miqueas 5:2","explanation":"Miqueas profetizó que de Belén, pequeña entre las familias de Judá, saldría el Señor de Israel."},
+  {"id":"m262","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Profetas","question":"¿Qué profeta anunció que el Mesías entraría en Jerusalén humilde y cabalgando sobre un asno?","options":["Abdías","Joel","Zacarías","Hageo"],"correctAnswer":2,"verse":"Zacarías 9:9","explanation":"Zacarías describió con precisión la entrada triunfal de Jesús siglos antes de ocurrir."},
+  {"id":"m263","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Profetas","question":"¿Qué libro del Antiguo Testamento es el último antes del período intertestamentario?","options":["Malaquías","Hageo","Sofonías","Zacarías"],"correctAnswer":0,"verse":"Malaquías 4:6","explanation":"Malaquías cierra el canon del Antiguo Testamento prometiendo el envío de Elías antes del día del Señor."},
+  {"id":"m264","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿Cómo se llamaban los padres de Juan el Bautista?","options":["Elcana y Ana","Zacarías y Elisabet","Aquila y Priscila","José y María"],"correctAnswer":1,"verse":"Lucas 1:5","explanation":"El sacerdote Zacarías y su esposa Elisabet eran justos delante de Dios y concibieron en su vejez."},
+  {"id":"m265","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿Cuál de los Evangelios no pertenece al grupo llamado \"Evangelios Sinópticos\"?","options":["Juan","Lucas","Marcos","Mateo"],"correctAnswer":0,"verse":"Juan 1:1","explanation":"Mateo, Marcos y Lucas comparten una estructura narrativa similar, mientras Juan tiene un enfoque propio."},
+  {"id":"m266","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿Qué ciudad junto al mar de Galilea sirvió como base principal del ministerio de Jesús?","options":["Hebrón","Capernaúm","Jericó","Nazaret"],"correctAnswer":1,"verse":"Mateo 4:13 / 9:1","explanation":"Jesús dejó Nazaret y habitó en Capernaúm, donde realizó gran parte de sus enseñanzas y milagros."},
+  {"id":"m267","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿Qué tres discípulos llevó Jesús consigo al monte de la Transfiguración?","options":["Juan, Marcos y Lucas","Mateo, Tomás y Simón","Pedro, Andrés y Felipe","Pedro, Jacobo y Juan"],"correctAnswer":3,"verse":"Mateo 17:1","explanation":"Pedro, Jacobo y Juan presenciaron la transfiguración de Jesús y su diálogo con Moisés y Elías."},
+  {"id":"m268","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿Cuál era el nombre del jefe de la sinagoga cuya hija de doce años fue resucitada por Jesús?","options":["Zaqueo","Cornelio","Jairo","Nicodemo"],"correctAnswer":2,"verse":"Marcos 5:22, 41-42","explanation":"Jesús tomó la mano de la niña diciendo \"Talita cumi\" y ella se levantó al instante."},
+  {"id":"m269","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿Cuántos años llevaba enfermo el paralítico que Jesús sanó junto al estanque de Betesda?","options":["Treinta y ocho años","Cuarenta años","Dieciocho años","Doce años"],"correctAnswer":0,"verse":"Juan 5:5-9","explanation":"Aquel hombre llevaba treinta y ocho años enfermo cuando Jesús le mandó tomar su lecho y andar."},
+  {"id":"m270","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿En qué estanque mandó Jesús lavarse al ciego de nacimiento después de untar lodo en sus ojos?","options":["Tiberias","Betesda","Siloé","Gihón"],"correctAnswer":2,"verse":"Juan 9:7","explanation":"El hombre fue, se lavó en el estanque de Siloé (que significa \"Enviado\") y volvió viendo."},
+  {"id":"m271","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿Cuántos años padecía flujo de sangre la mujer que tocó el borde del manto de Jesús?","options":["Veinte años","Dieciocho años","Siete años","Doce años"],"correctAnswer":3,"verse":"Marcos 5:25-29","explanation":"Ella creyó que con solo tocar el borde de su manto sería salva, y su fuente de sangre se secó al instante."},
+  {"id":"m272","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿Qué pequeña suma depositó en el arca del templo la viuda pobre elogiada por Jesús?","options":["Dos denarios","Dos blancas","Cinco dracmas","Diez siclos"],"correctAnswer":1,"verse":"Marcos 12:42","explanation":"Aunque dos blancas tenían mínimo valor monetario, Jesús dijo que ella dio todo el sustento que tenía."},
+  {"id":"m273","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿Cuántas veces le dijo Jesús a Pedro que debía perdonar a su hermano cuando pecara contra él?","options":["Siete veces","Doce veces","Cuarenta veces","Setenta veces siete"],"correctAnswer":3,"verse":"Mateo 18:21-22","explanation":"Con la expresión \"setenta veces siete\", Jesús enseñó a perdonar sin llevar cuenta limitada."},
+  {"id":"m274","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿A quién envió Poncio Pilato a Jesús durante el juicio al saber que era de Galilea?","options":["Al emperador César","A Anás","A Herodes Antipas","A Caifás"],"correctAnswer":2,"verse":"Lucas 23:6-7","explanation":"Herodes Antipas estaba en Jerusalén en esos días y deseaba ver a Jesús hacer alguna señal."},
+  {"id":"m275","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿Qué nombre arameo del lugar de la crucifixión significa \"Lugar de la Calavera\"?","options":["Gábata","Gólgota","Getsemaní","Betania"],"correctAnswer":1,"verse":"Juan 19:17","explanation":"Llevando su cruz, Jesús salió al lugar llamado de la Calavera, en hebreo Gólgota."},
+  {"id":"m276","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Hechos","question":"¿Qué oficio compartía el apóstol Pablo con Aquila y Priscila en Corinto?","options":["Hacedores de tiendas","Comerciantes de púrpura","Pescadores","Carpinteros"],"correctAnswer":0,"verse":"Hechos 18:3","explanation":"Pablo se quedó con ellos y trabajaban juntos porque su oficio era fabricar tiendas de campaña."},
+  {"id":"m277","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Hechos","question":"¿Qué joven discípulo de Listra se convirtió en colaborador cercano e \"hijo en la fe\" de Pablo?","options":["Tito","Timoteo","Marcos","Lucas"],"correctAnswer":1,"verse":"Hechos 16:1-3 / 1 Timoteo 1:2","explanation":"Timoteo tenía buen testimonio en Listra e Iconio y acompañó a Pablo en su ministerio misionero."},
+  {"id":"m278","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Epístolas","question":"¿Cuál de las siguientes cartas escribió Pablo mientras estaba prisionero?","options":["Gálatas","1 Tesalonicenses","Romanos","Filipenses"],"correctAnswer":3,"verse":"Filipenses 1:13","explanation":"Filipenses, Efesios, Colosenses y Filemón son conocidas como las cuatro epístolas de la prisión."},
+  {"id":"m279","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Epístolas","question":"¿Qué capítulo de 1 Corintios es mundialmente conocido como el \"Himno del Amor\"?","options":["Capítulo 7","Capítulo 10","Capítulo 13","Capítulo 15"],"correctAnswer":2,"verse":"1 Corintios 13:1-13","explanation":"En 1 Corintios 13 Pablo enseña que sin amor ningún don sirve y describe el carácter del amor verdadero."},
+  {"id":"m280","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Epístolas","question":"¿Qué capítulo de Hebreos es llamado la \"Galería de los Héroes de la Fe\"?","options":["Capítulo 11","Capítulo 8","Capítulo 13","Capítulo 4"],"correctAnswer":0,"verse":"Hebreos 11:1-40","explanation":"Hebreos 11 repasa la fe de Abel, Enoc, Noé, Abraham, Sara, Moisés, Rahab y muchos otros."},
+  {"id":"m281","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Epístolas","question":"¿Cuántas virtudes componen el Fruto del Espíritu enumerado en Gálatas 5:22-23?","options":["Diez virtudes","Doce virtudes","Nueve virtudes","Siete virtudes"],"correctAnswer":2,"verse":"Gálatas 5:22-23","explanation":"Son nueve: amor, gozo, paz, paciencia, benignidad, bondad, fe, mansedumbre y templanza."},
+  {"id":"m282","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Epístolas","question":"En Efesios 6, ¿qué pieza de la Armadura de Dios representa la justicia?","options":["El yelmo","El calzado","El escudo","La coraza"],"correctAnswer":3,"verse":"Efesios 6:14","explanation":"Pablo exhorta a estar firmes vestidos con la coraza de justicia para proteger el corazón."},
+  {"id":"m283","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Epístolas","question":"¿Con qué animal feroz compara 1 Pedro 5:8 al adversario el diablo que anda buscando a quien devorar?","options":["Con un águila veloz","Con un león rugiente","Con un lobo nocturno","Con un oso hambriento"],"correctAnswer":1,"verse":"1 Pedro 5:8","explanation":"Pedro llama a ser sobrios y velar porque el adversario ronda como león rugiente."},
+  {"id":"m284","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Apocalipsis","question":"¿Qué iglesia de Apocalipsis fue reprendida por haber dejado su primer amor?","options":["Éfeso","Pérgamo","Esmirna","Filadelfia"],"correctAnswer":0,"verse":"Apocalipsis 2:4","explanation":"Aunque Éfeso probaba a los falsos apóstoles y trabajaba arduamente, había descuidado su primer amor."},
+  {"id":"m285","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Apocalipsis","question":"¿Qué iglesia de Apocalipsis fue reprendida por ser tibia, ni fría ni caliente?","options":["Éfeso","Laodicea","Tiatira","Sardis"],"correctAnswer":1,"verse":"Apocalipsis 3:15-16","explanation":"Laodicea se creía rica sin necesidad de nada, pero el Señor la llamó a arrepentirse y comprar oro refinado."},
+  {"id":"m286","level":"MEDIUM","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién exclamó tras despertar de su sueño en Betel: \"Ciertamente Jehová está en este lugar, y yo no lo sabía\"?","options":["Jacob","Isaac","Abraham","Moisés"],"correctAnswer":0,"verse":"Génesis 28:16","explanation":"Al ver la escalera al cielo y oír la promesa de Dios, Jacob llamó aquel lugar Betel (\"Casa de Dios\")."},
+  {"id":"m287","level":"MEDIUM","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién suplicó a Dios en oración: \"Si tu presencia no ha de ir conmigo, no nos saques de aquí\"?","options":["Josué","Elías","David","Moisés"],"correctAnswer":3,"verse":"Éxodo 33:15","explanation":"Moisés valoraba la presencia misma de Dios por encima de cualquier tierra o victoria."},
+  {"id":"m288","level":"MEDIUM","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién dijo a los 85 años: \"Dame, pues, ahora este monte, del cual habló Jehová aquel día\"?","options":["Samuel","Josué","Caleb","Gedeón"],"correctAnswer":2,"verse":"Josué 14:12","explanation":"Caleb conservaba el mismo vigor y fe para conquistar Hebrón a los ochenta y cinco años."},
+  {"id":"m289","level":"MEDIUM","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién desafió al pueblo en el Carmelo diciendo: \"¿Hasta cuándo claudicaréis vosotros entre dos pensamientos?\"?","options":["Isaías","Samuel","Eliseo","Elías"],"correctAnswer":3,"verse":"1 Reyes 18:21","explanation":"Elías llamó al pueblo a decidirse de todo corazón por Jehová y no vacilar ante Baal."},
+  {"id":"m290","level":"MEDIUM","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién respondió al rey Nabucodonosor: \"Nuestro Dios a quien servimos puede librarnos del horno de fuego... y si no, no serviremos a tus dioses\"?","options":["Daniel, Esdras y Nehemías","Sadrac, Mesac y Abed-nego","Moisés, Aarón y Josué","Elías, Eliseo y Samuel"],"correctAnswer":1,"verse":"Daniel 3:17-18","explanation":"Los tres jóvenes hebreos mostraron fe incondicional aun sin saber si serían librados físicamente."},
+  {"id":"m291","level":"MEDIUM","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién dijo con firmeza a sus enemigos desde el muro: \"Yo hago una gran obra, y no puedo ir\"?","options":["Josué","Zorobabel","Nehemías","Esdras"],"correctAnswer":2,"verse":"Nehemías 6:3","explanation":"Nehemías rechazó cuatro veces la trampa de Sanbalat para no abandonar la reconstrucción del muro."},
+  {"id":"m292","level":"MEDIUM","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién declaró confiado en su sufrimiento: \"Yo sé que mi Redentor vive, y al fin se levantará sobre el polvo\"?","options":["Job","Jeremías","Isaías","David"],"correctAnswer":0,"verse":"Job 19:25","explanation":"En medio de su prueba más dura, Job expresó una gloriosa esperanza de resurrección y redención."},
+  {"id":"m293","level":"MEDIUM","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién profetizó acerca de Jesús: \"Es necesario que él crezca, pero que yo mengüe\"?","options":["Andrés de Betsaida","Simón Pedro","Pablo de Tarso","Juan el Bautista"],"correctAnswer":3,"verse":"Juan 3:30","explanation":"Juan el Bautista mostró profunda humildad alegrándose de que la multitud siguiera a Cristo."},
+  {"id":"m294","level":"MEDIUM","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién le preguntó a Jesús: \"Señor, ¿a quién iremos? Tú tienes palabras de vida eterna\"?","options":["Tomás","Juan","Pedro","Felipe"],"correctAnswer":2,"verse":"Juan 6:68","explanation":"Cuando muchos discípulos se apartaron, Simón Pedro reafirmó su lealtad absoluta a Jesús."},
+  {"id":"m295","level":"MEDIUM","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién dijo a Jesús con fe: \"Aun los perrillos comen de las migajas que caen de la mesa de sus amos\"?","options":["María de Betania","La mujer cananea","La mujer samaritana","La viuda de Naín"],"correctAnswer":1,"verse":"Mateo 15:27","explanation":"Jesús elogió la gran fe de aquella madre sirofenicia y sanó a su hija al instante."},
+  {"id":"m296","level":"MEDIUM","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién declaró con convicción: \"Para mí el vivir es Cristo, y el morir es ganancia\"?","options":["Pablo","Esteban","Pedro","Santiago"],"correctAnswer":0,"verse":"Filipenses 1:21","explanation":"Desde su prisión, el apóstol Pablo demostró que Cristo era el centro total de su existencia."},
+  {"id":"m297","level":"MEDIUM","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién afirmó al final de su ministerio: \"He peleado la buena batalla, he acabado la carrera, he guardado la fe\"?","options":["Pedro","Pablo","Bernabé","Juan"],"correctAnswer":1,"verse":"2 Timoteo 4:7","explanation":"En su última carta a Timoteo, Pablo miró atrás con paz ante la cercanía de su partida."},
+  {"id":"m298","level":"MEDIUM","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién dijo a Jesús en Betania: \"Señor, si hubieses estado aquí, mi hermano no habría muerto\"?","options":["Juana","Elisabet","Marta","Salomé"],"correctAnswer":2,"verse":"Juan 11:21","explanation":"Marta (y luego María) expresó su dolor ante Jesús antes de oír: \"Yo soy la resurrección y la vida\"."},
+  {"id":"m299","level":"MEDIUM","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién respondió ante el concilio: \"Es necesario obedecer a Dios antes que a los hombres\"?","options":["Esteban y Felipe","Bernabé y Marcos","Pablo y Silas","Pedro y los apóstoles"],"correctAnswer":3,"verse":"Hechos 5:29","explanation":"Cuando les prohibieron predicar el nombre de Jesús, Pedro y los apóstoles mantuvieron firme su obediencia."},
+  {"id":"m300","level":"MEDIUM","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién preguntó a Jesús en su encuentro: \"Maestro bueno, ¿qué bien haré para tener la vida eterna?\"?","options":["El joven rico","Zaqueo","Bartimeo","Nicodemo"],"correctAnswer":0,"verse":"Mateo 19:16","explanation":"El joven rico se fue triste cuando Jesús le pidió vender sus posesiones y seguirle."},
+  {"id":"m301","level":"MEDIUM","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién preguntó al ángel Gabriel: \"¿En qué conoceré esto? Porque yo soy viejo, y mi mujer es de edad avanzada\"?","options":["Simeón","Zacarías","Elcana","Abraham"],"correctAnswer":1,"verse":"Lucas 1:18","explanation":"El sacerdote Zacarías dudó del anuncio del nacimiento de Juan el Bautista y quedó mudo hasta su nacimiento."},
+  {"id":"m302","level":"MEDIUM","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién dijo al rey de Babilonia: \"Hay un Dios en los cielos, el cual revela los misterios\"?","options":["Nehemías","Ezequiel","Jeremías","Daniel"],"correctAnswer":3,"verse":"Daniel 2:28","explanation":"Daniel dio toda la gloria a Dios antes de interpretar el sueño de la gran estatua."},
+  {"id":"m303","level":"MEDIUM","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién oró en el templo: \"Dios, sé propicio a mí, pecador\", y descendió justificado a su casa?","options":["El publicano","El escriba","El sacerdote","El fariseo"],"correctAnswer":0,"verse":"Lucas 18:13-14","explanation":"En la parábola de Jesús, el humilde recaudador de impuestos fue justificado por su sincero arrepentimiento."},
+  {"id":"m304","level":"MEDIUM","type":"FILL_VERSE","category":"Versículos Clave","question":"Completa Proverbios 4:23: \"Sobre toda cosa guardada, guarda tu _________; porque de él mana la vida.\"","options":["camino","tesoro","corazón","nombre"],"correctAnswer":2,"verse":"Proverbios 4:23","explanation":"Cuidar los pensamientos y afectos del corazón determina el rumbo de toda nuestra vida."},
+  {"id":"m305","level":"MEDIUM","type":"FILL_VERSE","category":"Versículos Clave","question":"Completa Proverbios 22:6: \"Instruye al niño en su camino, y aun cuando fuere _________ no se apartará de él.\"","options":["rey","joven","fuerte","viejo"],"correctAnswer":3,"verse":"Proverbios 22:6","explanation":"La formación espiritual sembrada en la niñez deja una huella duradera toda la vida."},
+  {"id":"m306","level":"MEDIUM","type":"FILL_VERSE","category":"Versículos Clave","question":"Completa Mateo 22:37: \"Amarás al Señor tu Dios con todo tu corazón, y con toda tu alma, y con toda tu _________\"","options":["familia","mente","fuerza","vida"],"correctAnswer":1,"verse":"Mateo 22:37","explanation":"Jesús resumió el primer y grande mandamiento llamando a amar a Dios integralmente."},
+  {"id":"m307","level":"MEDIUM","type":"FILL_VERSE","category":"Versículos Clave","question":"Completa Lamentaciones 3:22-23: \"Por la misericordia de Jehová no hemos sido consumidos... Nuevas son cada _________\"","options":["mañana","semana","generación","estación"],"correctAnswer":0,"verse":"Lamentaciones 3:22-23","explanation":"Aun en medio de la desolación, las misericordias de Dios se renuevan cada amanecer."},
+  {"id":"m308","level":"MEDIUM","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? El rey Salomón construyó el primer Templo en Jerusalén.","options":["Verdadero","Falso"],"correctAnswer":0,"verse":"1 Reyes 6:1","explanation":"Verdadero. David preparó los materiales, pero Dios eligió a su hijo Salomón para edificar el Templo."},
+  {"id":"m309","level":"MEDIUM","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? El apóstol Juan fue el primero de los doce apóstoles en morir como mártir.","options":["Verdadero","Falso"],"correctAnswer":1,"verse":"Hechos 12:2","explanation":"Falso. Fue Jacobo (hermano de Juan) quien murió primero a espada bajo Herodes; Juan vivió hasta una avanzada edad."},
+  {"id":"m310","level":"MEDIUM","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? En el libro de Ester nunca se menciona explícitamente el nombre de Dios.","options":["Verdadero","Falso"],"correctAnswer":0,"verse":"Ester 1-10","explanation":"Verdadero. Aunque la providencia de Dios es evidente en toda la historia, su nombre no aparece escrito en el texto."},
+  {"id":"m311","level":"MEDIUM","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? El Evangelio de Lucas fue escrito por uno de los doce apóstoles originales de Jesús.","options":["Verdadero","Falso"],"correctAnswer":1,"verse":"Lucas 1:1-4 / Colosenses 4:14","explanation":"Falso. Lucas era un médico gentil y compañero de viajes de Pablo que investigó cuidadosamente los relatos de testigos oculares."},
+  {"id":"m312","level":"MEDIUM","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? En la parábola de los diez leprosos, cinco volvieron a dar gracias a Jesús.","options":["Verdadero","Falso"],"correctAnswer":1,"verse":"Lucas 17:15-17","explanation":"Falso. De los diez que fueron limpiados, únicamente uno —y era samaritano— regresó para dar gloria a Dios."},
+  {"id":"m313","level":"MEDIUM","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? La profetisa Débora sirvió también como jueza de Israel sentada debajo de una palmera.","options":["Verdadero","Falso"],"correctAnswer":0,"verse":"Jueces 4:4-5","explanation":"Verdadero. Los hijos de Israel acudían a ella para juicio entre Ramá y Betel en el monte de Efraín."},
+  {"id":"m314","level":"MEDIUM","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? El rey David escribió absolutamente todos los 150 Salmos de la Biblia.","options":["Verdadero","Falso"],"correctAnswer":1,"verse":"Salmos 90 / 73 / 42","explanation":"Falso. David escribió cerca de la mitad; también hay salmos de Asaf, los hijos de Coré, Salomón, Moisés y otros."},
+  {"id":"m315","level":"MEDIUM","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? El apóstol Pablo visitó la ciudad de Atenas y predicó en el Areópago.","options":["Verdadero","Falso"],"correctAnswer":0,"verse":"Hechos 17:22","explanation":"Verdadero. Pablo dialogó con los atenienses partiendo de su altar dedicado al \"Dios no conocido\"."},
+  {"id":"m316","level":"MEDIUM","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? Abraham y Sara tuvieron siete hijos después del nacimiento de Isaac.","options":["Verdadero","Falso"],"correctAnswer":1,"verse":"Génesis 21:2 / 25:1-2","explanation":"Falso. Isaac fue el único hijo de Sara; los demás hijos de Abraham nacieron de Agar y luego de Cetura tras morir Sara."},
+  {"id":"m317","level":"MEDIUM","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? Elías venció a los profetas de Baal en el monte Sinaí.","options":["Verdadero","Falso"],"correctAnswer":1,"verse":"1 Reyes 18:19-39","explanation":"Falso. Ese enfrentamiento con fuego del cielo ocurrió en el monte Carmelo, no en el Sinaí."},
+  {"id":"m318","level":"MEDIUM","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? Pedro estaba casado, pues Jesús sanó a su suegra que tenía fiebre.","options":["Verdadero","Falso"],"correctAnswer":0,"verse":"Mateo 8:14-15","explanation":"Verdadero. Jesús entró en casa de Pedro, tocó la mano de su suegra y la fiebre la dejó al instante."},
+  {"id":"m319","level":"MEDIUM","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? El libro de los Hechos de los Apóstoles fue escrito por el apóstol Pablo.","options":["Verdadero","Falso"],"correctAnswer":1,"verse":"Hechos 1:1","explanation":"Falso. Al igual que el tercer Evangelio, Hechos fue escrito por Lucas dirigido a Teófilo."},
+  {"id":"m320","level":"MEDIUM","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? Nehemías reconstruyó los muros de Jerusalén en cincuenta y dos días.","options":["Verdadero","Falso"],"correctAnswer":0,"verse":"Nehemías 6:15","explanation":"Verdadero. Con trabajo organizado y oración constante, terminaron el muro en tiempo récord."},
+  {"id":"m321","level":"MEDIUM","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? Moisés y Aarón entraron juntos a la Tierra Prometida después de cuarenta años.","options":["Verdadero","Falso"],"correctAnswer":1,"verse":"Números 20:12, 24","explanation":"Falso. Ninguno de los dos entró; Aarón murió en el monte Hor y Moisés en el monte Nebo."},
+  {"id":"m322","level":"MEDIUM","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? El nombre \"cristianos\" se usó por primera vez para los discípulos en Antioquía.","options":["Verdadero","Falso"],"correctAnswer":0,"verse":"Hechos 11:26","explanation":"Verdadero. Fue en Antioquía de Siria donde los seguidores de Jesús fueron llamados cristianos por primera vez."},
+  {"id":"m323","level":"MEDIUM","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? En el sueño de Faraón, las siete espigas gordas fueron devoradas por siete espigas de oro.","options":["Verdadero","Falso"],"correctAnswer":1,"verse":"Génesis 41:5-7","explanation":"Falso. Fueron devoradas por siete espigas menudas y abatidas del viento solano, símbolo de siete años de hambre."},
+  {"id":"m324","level":"MEDIUM","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? La Biblia menciona que Jesús predicó el Sermón del Monte en Galilea.","options":["Verdadero","Falso"],"correctAnswer":0,"verse":"Mateo 4:23-5:2","explanation":"Verdadero. Las multitudes de Galilea y regiones cercanas lo seguían cuando subió al monte a enseñar."},
+  {"id":"m325","level":"MEDIUM","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? El profeta Daniel fue arrojado al horno de fuego junto con sus tres amigos.","options":["Verdadero","Falso"],"correctAnswer":1,"verse":"Daniel 3:12-23","explanation":"Falso. Solo Sadrac, Mesac y Abed-nego fueron echados al horno de fuego; Daniel fue echado al foso de los leones años después."},
+  {"id":"m326","level":"MEDIUM","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? La carta de Santiago fue escrita por el rey Salomón.","options":["Verdadero","Falso"],"correctAnswer":1,"verse":"Santiago 1:1","explanation":"Falso. Santiago es una epístola del Nuevo Testamento atribuida a Jacobo (Santiago), hermano del Señor."},
+  {"id":"m327","level":"MEDIUM","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? El libro de Job pertenece al grupo de los libros poéticos y sapienciales del Antiguo Testamento.","options":["Verdadero","Falso"],"correctAnswer":0,"verse":"Canon del AT","explanation":"Verdadero. Los cinco libros poéticos son Job, Salmos, Proverbios, Eclesiastés y Cantares."},
+  {"id":"m328","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Patriarcas","question":"¿En qué tierra fértil de Egipto estableció José a su padre Jacob y a todos sus hermanos?","options":["En Tebas","En Menfis","En Gosén","En Sinaí"],"correctAnswer":2,"verse":"Génesis 47:6","explanation":"Faraón concedió a la familia de Jacob habitar en lo mejor de la tierra de Egipto, en Gosén."},
+  {"id":"m329","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Éxodo","question":"¿Cuál fue la última y décima plaga que finalmente hizo que Faraón dejara salir a Israel?","options":["Muerte de primogénitos","El granizo con fuego","Las tinieblas densas","Las úlceras dolorosas"],"correctAnswer":0,"verse":"Éxodo 12:29-31","explanation":"A medianoche hirió Jehová a todo primogénito en Egipto, desde el hijo de Faraón hasta el del cautivo."},
+  {"id":"m330","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Éxodo","question":"¿Qué aves envió Dios abundantemente al campamento en el desierto para dar carne al pueblo?","options":["Palomas blancas","Gorriones grandes","Codornices","Tórtolas grises"],"correctAnswer":2,"verse":"Éxodo 16:13","explanation":"Al caer la tarde subieron codornices que cubrieron el campamento, y por la mañana caía el maná."},
+  {"id":"m331","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Pentateuco","question":"¿Cuántos años duraba el ciclo completo hasta celebrar el Año del Jubileo en Israel?","options":["Cada 25 años","Cada 7 años","Cada 40 años","Cada 50 años"],"correctAnswer":3,"verse":"Levítico 25:10","explanation":"Tras siete semanas de años (49), el año cincuenta era proclamado Jubileo: libertad y restitución de tierras."},
+  {"id":"m332","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Josué y Jueces","question":"¿Cuántas piedras tomaron los israelitas del medio del río Jordán como monumento conmemorativo?","options":["Siete piedras","Doce piedras","Cuarenta piedras","Veinticuatro piedras"],"correctAnswer":1,"verse":"Josué 4:3-9","explanation":"Un varón de cada una de las doce tribus levantó una piedra del lecho seco del Jordán y las colocaron en Gilgal."},
+  {"id":"m333","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Josué y Jueces","question":"¿Qué mujer de Jericó dio refugio a los dos espías enviados por Josué y salvó a toda su familia?","options":["Abigail","Débora","Rahab","Jael"],"correctAnswer":2,"verse":"Josué 2:1-15","explanation":"Rahab escondió a los espías entre manojos de lino en su terrado y mostró fe en el Dios de Israel."},
+  {"id":"m334","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Samuel y Reyes","question":"¿Qué ciudad del sur de Judá fue la primera capital donde David reinó siete años y medio?","options":["Hebrón","Silo","Belén","Beerseba"],"correctAnswer":0,"verse":"2 Samuel 2:11","explanation":"Antes de conquistar Jerusalén y reinar sobre todo Israel, David fue ungido y gobernó en Hebrón."},
+  {"id":"m335","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Samuel y Reyes","question":"¿Cuántos años tardó Salomón en construir el majestuoso Templo de Jerusalén?","options":["Tres años","Doce años","Veinte años","Siete años"],"correctAnswer":3,"verse":"1 Reyes 6:38","explanation":"Salomón edificó la casa de Jehová con piedra labrada y cedro durante siete años exactos."},
+  {"id":"m336","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Samuel y Reyes","question":"¿En qué arroyo escondido se refugió Elías durante la sequía antes de ir a Sarepta?","options":["Arroyo de Cedrón","Arroyo de Querit","Arroyo de Besor","Arroyo de Cisón"],"correctAnswer":1,"verse":"1 Reyes 17:3-6","explanation":"Junto al arroyo de Querit, frente al Jordán, Dios alimentó a Elías con pan y carne traídos por cuervos."},
+  {"id":"m337","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Samuel y Reyes","question":"¿Qué le faltaba a la viuda de Sarepta cuando Elías le pidió un poco de agua y una torta cocida?","options":["Harina y aceite","Trigo y uvas","Sal y levadura","Miel y mantequilla"],"correctAnswer":0,"verse":"1 Reyes 17:12-16","explanation":"Ella solo tenía un puñado de harina y un poco de aceite, pero no escasearon hasta que volvió la lluvia."},
+  {"id":"m338","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Samuel y Reyes","question":"¿En qué río mandó Eliseo sumergirse siete veces al general sirio Naamán para quedar limpio de lepra?","options":["Río Abana","Río Jordán","Río Éufrates","Río Jaboc"],"correctAnswer":1,"verse":"2 Reyes 5:10-14","explanation":"Al obedecer humildemente y zambullirse siete veces en el Jordán, su carne volvió como la de un niño."},
+  {"id":"m339","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Historia de Israel","question":"¿En qué ciudad capital del Imperio persa vivían Ester y Mardoqueo durante el reinado de Asuero?","options":["Babilonia","Nínive","Susa","Damasco"],"correctAnswer":2,"verse":"Ester 1:2 / 2:5","explanation":"Susa era la residencia real persa donde Ester fue coronada y salvó al pueblo judío."},
+  {"id":"m340","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Profetas","question":"¿A qué ciudad distante intentó huir Jonás en barco cuando Dios le ordenó ir a Nínive?","options":["A Chipre","A Creta","A Jope","A Tarsis"],"correctAnswer":3,"verse":"Jonás 1:3","explanation":"Jonás bajó al puerto de Jope y pagó pasaje en una nave que zarpaba hacia Tarsis, en dirección opuesta."},
+  {"id":"m341","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Profetas","question":"¿Qué profeta tuvo la visión del trono de Dios rodeado de serafines de seis alas que clamaban \"Santo, santo, santo\"?","options":["Zacarías","Isaías","Daniel","Ezequiel"],"correctAnswer":1,"verse":"Isaías 6:1-3","explanation":"En el año que murió el rey Uzías, Isaías vio al Señor alto y sublime en su templo celestial."},
+  {"id":"m342","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿En qué ciudad de Galilea sanó Jesús al criado del centurión romano a distancia sin entrar en su casa?","options":["En Nazaret","En Caná","En Betsaida","En Capernaúm"],"correctAnswer":3,"verse":"Mateo 8:5-13","explanation":"Jesús se maravilló de la fe del centurión en Capernaúm y su siervo quedó sano en aquella misma hora."},
+  {"id":"m343","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿De qué mujer expulsó Jesús siete demonios antes de que ella se convirtiera en una de sus seguidoras más fieles?","options":["María Magdalena","Susana de Galilea","Juana de Chuza","Marta de Betania"],"correctAnswer":0,"verse":"Lucas 8:2","explanation":"María Magdalena sirvió al ministerio de Jesús y estuvo junto a la cruz y ante la tumba vacía."},
+  {"id":"m344","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿Qué árbol maldijo Jesús al acercarse de camino a Jerusalén y hallarlo solo con hojas y sin fruto?","options":["Un olivo","Una vid","Una higuera","Una palmera"],"correctAnswer":2,"verse":"Marcos 11:13-14, 20","explanation":"A la mañana siguiente los discípulos vieron que la higuera se había secado desde las raíces."},
+  {"id":"m345","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿En qué parábola un hombre halla algo valioso en un campo, lo esconde y vende todo para comprar ese campo?","options":["Los Dos Deudores","El Tesoro Escondido","La Perla Preciosa","La Moneda Perdida"],"correctAnswer":1,"verse":"Mateo 13:44","explanation":"Jesús comparó el valor supremo del reino de los cielos con un tesoro hallado en un campo."},
+  {"id":"m346","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿Qué hizo Jesús con un trozo de pescado asado al aparecerse a los discípulos en Jerusalén tras resucitar?","options":["Lo comió delante de ellos","Lo guardó en una cesta","Lo repartió en doce partes","Lo multiplicó otra vez"],"correctAnswer":0,"verse":"Lucas 24:41-43","explanation":"Para demostrar que no era un fantasma sino que tenía cuerpo real resucitado, Jesús comió pescado delante de ellos."},
+  {"id":"m347","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Hechos","question":"¿Qué ciudad fue el punto de partida de los tres viajes misioneros del apóstol Pablo?","options":["Corinto","Jerusalén","Antioquía","Tarso"],"correctAnswer":2,"verse":"Hechos 13:1-3","explanation":"La iglesia de Antioquía de Siria ayunó, oró y envió a Bernabé y Saulo por dirección del Espíritu Santo."},
+  {"id":"m348","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Hechos","question":"¿En qué ciudad griega se convirtió Lidia, la vendedora de púrpura, y fue fundada la primera iglesia de Europa?","options":["Atenas","Corinto","Berea","Filipos"],"correctAnswer":3,"verse":"Hechos 16:12-15","explanation":"Filipos, principal ciudad de aquella parte de Macedonia, acogió el evangelio a través de la casa de Lidia."},
+  {"id":"m349","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Hechos","question":"¿Qué creyentes de Macedonia fueron elogiados en Hechos 17 por escudriñar cada día las Escrituras para comprobar lo predicado?","options":["Los de Filipos","Los de Berea","Los de Corinto","Los de Tesalónica"],"correctAnswer":1,"verse":"Hechos 17:11","explanation":"Lucas llama \"más nobles\" a los judíos de Berea por recibir la palabra con solicitud y verificarla en las Escrituras."},
+  {"id":"m350","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Hechos","question":"¿En qué gran ciudad de Asia Menor permaneció Pablo enseñando cerca de tres años en la escuela de Tiranno?","options":["En Antioquía","En Pérgamo","En Éfeso","En Esmirna"],"correctAnswer":2,"verse":"Hechos 19:9-10 / 20:31","explanation":"Desde Éfeso la palabra del Señor se difundió por toda la provincia de Asia entre judíos y griegos."},
+  {"id":"m351","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Epístolas","question":"¿Cuál es el tema principal del capítulo 15 de 1 Corintios, el más extenso sobre esta doctrina?","options":["El matrimonio cristiano","Los dones de lenguas","La Santa Cena","La resurrección de muertos"],"correctAnswer":3,"verse":"1 Corintios 15:1-58","explanation":"Pablo defiende la resurrección histórica de Cristo y la resurrección futura gloriosa de los creyentes."},
+  {"id":"m352","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Epístolas","question":"¿Qué epístola de Pablo es conocida como la \"carta del gozo\" por repetir \"regocijaos\" aun desde prisión?","options":["Filipenses","Gálatas","Colosenses","1 Timoteo"],"correctAnswer":0,"verse":"Filipenses 4:4","explanation":"A pesar de sus cadenas en Roma, Pablo invita constantemente a los filipenses a regocijarse en el Señor."},
+  {"id":"m353","level":"MEDIUM","type":"MULTIPLE_CHOICE","category":"Epístolas","question":"¿Qué libro del Nuevo Testamento presenta a Jesucristo como Sumo Sacerdote según el orden de Melquisedec?","options":["Romanos","1 Pedro","Efesios","Hebreos"],"correctAnswer":3,"verse":"Hebreos 5:6 / 7:17","explanation":"Hebreos demuestra que el sacerdocio eterno de Cristo es superior al sacerdocio levítico del antiguo pacto."},
+  {"id":"m354","level":"MEDIUM","type":"FILL_VERSE","category":"Versículos Clave","question":"Completa Salmos 121:1-2: \"Alzaré mis ojos a los montes; ¿de dónde vendrá mi _________?\"","options":["camino","socorro","victoria","descanso"],"correctAnswer":1,"verse":"Salmos 121:1-2","explanation":"El salmista responde enseguida: \"Mi socorro viene de Jehová, que hizo los cielos y la tierra\"."},
+  {"id":"m355","level":"MEDIUM","type":"FILL_VERSE","category":"Versículos Clave","question":"Completa Proverbios 18:24: \"El hombre que tiene amigos ha de mostrarse amigo; y amigo hay más unido que un _________\"","options":["padre","vecino","hermano","siervo"],"correctAnswer":2,"verse":"Proverbios 18:24","explanation":"La amistad fiel y desinteresada puede llegar a crear un lazo de lealtad más estrecho que el familiar."},
+  {"id":"m356","level":"MEDIUM","type":"FILL_VERSE","category":"Versículos Clave","question":"Completa Salmos 118:24: \"Este es el día que hizo Jehová; nos gozaremos y _________ en él.\"","options":["alegraremos","triunfaremos","descansaremos","cantaremos"],"correctAnswer":0,"verse":"Salmos 118:24","explanation":"El salmista celebra la salvación del Señor invitando a recibir cada día con gozo y gratitud."},
+  {"id":"m357","level":"MEDIUM","type":"FILL_VERSE","category":"Versículos Clave","question":"Completa Filipenses 4:6: \"Por nada estéis _________, sino sean conocidas vuestras peticiones delante de Dios en toda oración y ruego, con acción de gracias.\"","options":["distraídos","afanosos","callados","cansados"],"correctAnswer":1,"verse":"Filipenses 4:6","explanation":"Pablo enseña a cambiar la preocupación por oración ferviente acompañada de acción de gracias."},
+  {"id":"m358","level":"MEDIUM","type":"FILL_VERSE","category":"Versículos Clave","question":"Completa Colosenses 3:17: \"Y todo lo que hacéis, sea de palabra o de hecho, hacedlo todo en el _________ del Señor Jesús\"","options":["temor","amor","nombre","tiempo"],"correctAnswer":2,"verse":"Colosenses 3:17","explanation":"Cada área cotidiana de la vida cristiana se convierte en adoración cuando se hace para honrar a Cristo."},
+  {"id":"h1","level":"HARD","type":"MULTIPLE_CHOICE","category":"Reyes y Sanidad","question":"¿A qué rey de Judá Dios le añadió 15 años de vida tras clamar y llorar ante Él con el profeta Isaías?","options":["Uzías","Josías","Ezequías","Asa"],"correctAnswer":2,"verse":"2 Reyes 20:5-6 / Isaías 38:5","explanation":"Dios dijo a Ezequías: \"He oído tu oración, y visto tus lágrimas; he aquí añado a tus días quince años.\""},
+  {"id":"h2","level":"HARD","type":"TRUE_FALSE","category":"Epístolas Paulinas","question":"¿Verdadero o Falso? El libro de Filemón es una carta de Pablo intercediendo por un siervo fugitivo llamado Onésimo.","options":["Verdadero","Falso"],"correctAnswer":0,"verse":"Filemón 1:10-16","explanation":"Pablo pide a Filemón que reciba a Onésimo no ya como esclavo, sino como hermano amado en Cristo."},
+  {"id":"h3","level":"HARD","type":"MULTIPLE_CHOICE","category":"Apocalipsis","question":"¿Cuál de las siguientes ciudades NO fue sede de una de las 7 iglesias de Asia en Apocalipsis 2 y 3?","options":["Antioquía y Roma","Sardis, Filadelfia y Laodicea","Pérgamo y Tiatira","Éfeso y Esmirna"],"correctAnswer":0,"verse":"Apocalipsis 1:11","explanation":"Las 7 iglesias de Asia son Éfeso, Esmirna, Pérgamo, Tiatira, Sardis, Filadelfia y Laodicea."},
+  {"id":"h4","level":"HARD","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Qué profeta en Hechos ató sus manos y pies con el cinto de Pablo anunciando que sería arrestado en Jerusalén?","options":["Silas","Ágabo","Bernabé","Apolos"],"correctAnswer":1,"verse":"Hechos 21:10-11","explanation":"El profeta Ágabo profetizó con el cinto de Pablo lo que le esperaba en Jerusalén."},
+  {"id":"h5","level":"HARD","type":"FILL_VERSE","category":"Profecía y Justicia","question":"Miqueas 6:8: \"¿Y qué pide Jehová de ti: solamente hacer justicia, y amar misericordia, y ____________ ante tu Dios?\"","options":["cantar salmos","orar en silencio","ofrendar con alegría","humillarte para andar"],"correctAnswer":3,"verse":"Miqueas 6:8","explanation":"\"...solamente hacer justicia, y amar misericordia, y humillarte para andar con tu Dios.\""},
+  {"id":"h6","level":"HARD","type":"MULTIPLE_CHOICE","category":"El Tabernáculo","question":"¿De qué madera estaba construida el Arca del Pacto antes de ser recubierta de oro puro por dentro y por fuera?","options":["Madera de Roble","Madera de Cedro del Líbano","Madera de Acacia","Madera de Olivo"],"correctAnswer":2,"verse":"Éxodo 25:10","explanation":"Harán un arca de madera de acacia (madera incorruptible del desierto)."},
+  {"id":"h7","level":"HARD","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿Cuál de los cuatro evangelios comienza diciendo: \"En el principio era el Verbo, y el Verbo era con Dios, y el Verbo era Dios\"?","options":["Mateo","Lucas","Marcos","Juan"],"correctAnswer":3,"verse":"Juan 1:1","explanation":"Juan presenta la deidad y preexistencia eterna de Jesucristo como el Logos divino."},
+  {"id":"h8","level":"HARD","type":"MULTIPLE_CHOICE","category":"Sabiduría","question":"¿Qué libro de la Biblia culmina con el famoso poema acróstico a la Mujer Virtuosa (capítulo 31)?","options":["Proverbios","Eclesiastés","Cantar de los Cantares","Rut"],"correctAnswer":0,"verse":"Proverbios 31:10-31","explanation":"El poema describe a la mujer hacendosa y temerosa de Dios cuyo valor supera a las piedras preciosas."},
+  {"id":"h9","level":"HARD","type":"MULTIPLE_CHOICE","category":"Antiguo Testamento","question":"¿Quién fue el sumo sacerdote que cayó de su silla hacia atrás y murió desnucado al enterarse de que el Arca de Dios había sido capturada por los filisteos?","options":["Aarón","Elí","Sadoc","Finees"],"correctAnswer":1,"verse":"1 Samuel 4:18","explanation":"Elí, con 98 años y de ojos oscurecidos, cayó de espaldas al escuchar la pérdida del Arca."},
+  {"id":"h10","level":"HARD","type":"TRUE_FALSE","category":"Curiosidades Bíblicas","question":"¿Verdadero o Falso? El versículo más corto en español de la Biblia es Juan 11:35: \"Jesús lloró\".","options":["Verdadero","Falso"],"correctAnswer":0,"verse":"Juan 11:35","explanation":"Con solo dos palabras (\"Jesús lloró\"), es el versículo más corto del Nuevo Testamento."},
+  {"id":"h11","level":"HARD","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién exclamó tras escuchar la defensa de Pablo en Cesarea: \"¡Por poco me persuades a ser cristiano!\"?","options":["Porcio Festo","Antonio Félix","El rey Agripa","Claudio Lisias"],"correctAnswer":2,"verse":"Hechos 26:28","explanation":"El rey Agripa dijo esto conmovido tras escuchar la apasionada defensa de Pablo."},
+  {"id":"h12","level":"HARD","type":"MULTIPLE_CHOICE","category":"Lenguas Bíblicas","question":"¿En qué dos idiomas principales fue escrito originalmente el Antiguo Testamento?","options":["Griego y Latín","Hebreo y Arameo","Arameo y Árabe","Hebreo y Griego"],"correctAnswer":1,"verse":"Esdras / Daniel","explanation":"La gran mayoría fue escrita en hebreo, con porciones selectas en arameo (en Esdras y Daniel)."},
+  {"id":"h13","level":"HARD","type":"TRUE_FALSE","category":"Profetas Menores","question":"¿Verdadero o Falso? El profeta Oseas fue instruido por Dios a casarse con una mujer infiel llamada Gomer para ilustrar el amor redentor de Dios hacia Israel.","options":["Verdadero","Falso"],"correctAnswer":0,"verse":"Oseas 1:2-3","explanation":"Oseas tomó por esposa a Gomer como una vívida lección del amor fiel e incondicional de Dios."},
+  {"id":"h14","level":"HARD","type":"FILL_VERSE","category":"Romanos","question":"Romanos 8:28: \"Y sabemos que a los que aman a Dios, todas las cosas les ayudan a bien, esto es, a los que conforme a su _________ son llamados.\"","options":["propósito","gracia","sabiduría","voluntad"],"correctAnswer":0,"verse":"Romanos 8:28","explanation":"\"...a los que conforme a su propósito son llamados.\""},
+  {"id":"h15","level":"HARD","type":"MULTIPLE_CHOICE","category":"Guerra Espiritual","question":"En la Armadura de Dios descrita en Efesios 6:10-18, ¿cuál es la ÚNICA arma explícitamente ofensiva?","options":["El escudo de la fe","El calzado del evangelio","El yelmo de la salvación","La espada del Espíritu"],"correctAnswer":3,"verse":"Efesios 6:17","explanation":"La espada del Espíritu, la Palabra viva de Dios, es el arma con la que Jesús mismo venció al enemigo."},
+  {"id":"h16","level":"HARD","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién fue el primer mártir cristiano que, al ser apedreado, oró diciendo: \"Señor, no les tomes en cuenta este pecado\"?","options":["Esteban","Felipe","Santiago","Policarpo"],"correctAnswer":0,"verse":"Hechos 7:59-60","explanation":"Esteban murió lleno del Espíritu Santo viendo los cielos abiertos y a Jesús a la diestra de Dios."},
+  {"id":"h17","level":"HARD","type":"MULTIPLE_CHOICE","category":"Genealogía de Jesús","question":"¿Cuántas mujeres son mencionadas explícitamente en la genealogía de Jesús en el capítulo 1 del Evangelio de Mateo?","options":["7 mujeres","2 mujeres","5 mujeres","3 mujeres"],"correctAnswer":2,"verse":"Mateo 1:1-16","explanation":"Mateo incluye de forma extraordinaria por la gracia a Tamar, Rahab, Rut, la mujer de Urías y María."},
+  {"id":"h18","level":"HARD","type":"MULTIPLE_CHOICE","category":"Génesis","question":"¿Sobre qué lugar específico reposó el arca de Noé en el mes séptimo, a los diecisiete días del mes?","options":["Monte Carmelo","Montes de Ararat","Monte Nebo","Monte Hermón"],"correctAnswer":1,"verse":"Génesis 8:4","explanation":"Y reposó el arca en el mes séptimo, a los diecisiete días del mes, sobre los montes de Ararat."},
+  {"id":"h19","level":"HARD","type":"MULTIPLE_CHOICE","category":"Génesis","question":"¿Quién fue el poderoso cazador delante de Jehová y fundador de Babel, Erec, Acad y Calne en tierra de Sinar?","options":["Tubal-caín","Mizraim","Jubal","Nimrod"],"correctAnswer":3,"verse":"Génesis 10:8-10","explanation":"Cus engendró a Nimrod, quien llegó a ser el primer poderoso en la tierra. Este fue vigoroso cazador delante de Jehová."},
+  {"id":"h20","level":"HARD","type":"MULTIPLE_CHOICE","category":"Patriarcas","question":"¿Por cuántas monedas de plata compró Abraham la cueva de Macpela a Efrón el heteo como sepultura para Sara?","options":["100 siclos de plata","400 siclos de plata","50 siclos de plata","1,000 siclos de plata"],"correctAnswer":1,"verse":"Génesis 23:15-16","explanation":"Pesó Abraham a Efrón el dinero... cuatrocientos siclos de plata, de buena ley entre mercaderes."},
+  {"id":"h21","level":"HARD","type":"MULTIPLE_CHOICE","category":"Patriarcas","question":"¿Qué nombre egipcio le dio Faraón a José cuando lo nombró gobernador de todo Egipto y le dio por esposa a Asenat?","options":["Zafnat-panea","Sesostris","Potifera","Ramsés"],"correctAnswer":0,"verse":"Génesis 41:45","explanation":"Y llamó Faraón el nombre de José, Zafnat-panea; y le dio por mujer a Asenat, hija de Potifera sacerdote de On."},
+  {"id":"h22","level":"HARD","type":"MULTIPLE_CHOICE","category":"Éxodo","question":"¿Cómo se llamaban las dos valientes parteras hebreas que temieron a Dios y no mataron a los niños varones como mandó el rey de Egipto?","options":["Miriam y Séfora","Bia y Cozbi","Sifra y Fúa","Elisabet y Ana"],"correctAnswer":2,"verse":"Éxodo 1:15-17","explanation":"El rey de Egipto habló a las parteras de las hebreas, una de las cuales se llamaba Sifra, y otra Fúa; pero las parteras temieron a Dios."},
+  {"id":"h23","level":"HARD","type":"MULTIPLE_CHOICE","category":"Éxodo","question":"En la batalla de Refidim contra Amalec, ¿quiénes sostuvieron los brazos cansados de Moisés en lo alto del collado hasta la puesta del sol?","options":["Josué y Caleb","Gersón y Coat","Eleazar e Itamar","Aarón y Hur"],"correctAnswer":3,"verse":"Éxodo 17:12","explanation":"Aarón y Hur sostenían sus manos, el uno de un lado y el otro de otro; así hubo en sus manos firmeza hasta que se puso el sol."},
+  {"id":"h24","level":"HARD","type":"MULTIPLE_CHOICE","category":"El Tabernáculo","question":"¿De qué madera incorruptible ordenó Dios construir la mayor parte de los muebles sagrados del Tabernáculo (el Arca, la Mesa, el Altar)?","options":["Madera de acacia","Madera de olivo","Madera de ciprés","Madera de cedro"],"correctAnswer":0,"verse":"Éxodo 25:10, 23; 27:1","explanation":"Harán también un arca de madera de acacia... y una mesa de madera de acacia... y un altar de madera de acacia."},
+  {"id":"h25","level":"HARD","type":"MULTIPLE_CHOICE","category":"El Sumo Sacerdote","question":"¿Qué dos objetos sagrados colocados en el pectoral del juicio del Sumo Sacerdote se usaban para consultar la voluntad divina?","options":["El Incensario y la Redoma","El Efod y la Mitra","Los Querubines y las Tablas","El Urim y el Tumim"],"correctAnswer":3,"verse":"Éxodo 28:30","explanation":"Y pondrás en el pectoral del juicio Urim y Tumim, para que estén sobre el corazón de Aarón cuando entre delante de Jehová."},
+  {"id":"h26","level":"HARD","type":"MULTIPLE_CHOICE","category":"Levítico","question":"En el gran Día de la Expiación (Yom Kipur), ¿hacia dónde era enviado el macho cabrío expiatorio sobre el cual se confesaban las iniquidades de Israel?","options":["Al río Jordán hacia el sur","Al monte Sinaí en soledad","Al desierto para Azazel","Al valle de Cedrón en paz"],"correctAnswer":2,"verse":"Levítico 16:10, 21-22","explanation":"Aquel sobre el cual cayere la suerte por Azazel... lo enviará a Azazel al desierto, llevando sobre sí todas las iniquidades."},
+  {"id":"h27","level":"HARD","type":"MULTIPLE_CHOICE","category":"Levítico","question":"¿Cada cuántos años ordenaba la Ley de Moisés celebrar el Año del Jubileo, proclamando libertad en toda la tierra y regresando cada uno a su posesión?","options":["Cada 7 años","Cada 50 años","Cada 12 años","Cada 70 años"],"correctAnswer":1,"verse":"Levítico 25:10-11","explanation":"Y santificaréis el año cincuenta, y pregonaréis libertad en la tierra a todos sus moradores; ese año os será de jubileo."},
+  {"id":"h28","level":"HARD","type":"MULTIPLE_CHOICE","category":"Números","question":"¿Por qué pecado específico en Cades Dios no permitió a Moisés y Aarón entrar a la Tierra Prometida?","options":["Por construir un altar prohibido","Por quejarse del maná diario","Por golpear la peña con enojo","Por no circuncidar a sus hijos"],"correctAnswer":2,"verse":"Números 20:8-12","explanation":"Jehová dijo a Moisés y a Aarón: Por cuanto no creísteis en mí, para santificarme delante de los hijos de Israel, por tanto, no meteréis esta congregación en la tierra."},
+  {"id":"h29","level":"HARD","type":"MULTIPLE_CHOICE","category":"Deuteronomio","question":"¿En qué monte murió Moisés a la edad de 120 años tras contemplar toda la Tierra Prometida, siendo sepultado por el mismo Dios?","options":["Monte Carmelo","Monte Ebal","Monte Gerizim","Monte Nebo"],"correctAnswer":3,"verse":"Deuteronomio 34:1-6","explanation":"Subió Moisés de los campos de Moab al monte Nebo, a la cumbre del Pisga... Y murió allí Moisés siervo de Jehová, y lo enterró en el valle."},
+  {"id":"h30","level":"HARD","type":"MULTIPLE_CHOICE","category":"Josué","question":"¿Qué pueblo cananeo engañó a Josué presentándose con ropas viejas, pan enmohecido y odres rotos fingiendo venir de un país muy lejano?","options":["Los ferezeos","Los gabaonitas","Los amorreos","Los jebuseos"],"correctAnswer":1,"verse":"Josué 9:3-15","explanation":"Los moradores de Gabaón fingieron ser embajadores... y los hombres de Israel tomaron de sus provisiones, y no consultaron a Jehová."},
+  {"id":"h31","level":"HARD","type":"MULTIPLE_CHOICE","category":"Josué","question":"¿Cuántos años tenía el valiente Caleb cuando pidió a Josué que le diera el monte Hebrón habitado por gigantes anaceos para conquistarlo?","options":["85 años","40 años","100 años","65 años"],"correctAnswer":0,"verse":"Josué 14:10-12","explanation":"Hoy soy de edad de ochenta y cinco años. Todavía estoy tan fuerte como el día que Moisés me envió... Dame, pues, ahora este monte."},
+  {"id":"h32","level":"HARD","type":"MULTIPLE_CHOICE","category":"Jueces","question":"¿Qué palabra contraseña usaron los hombres de Galaad junto a los vados del Jordán para identificar y matar a 42,000 efraimitas que no podían pronunciarla bien?","options":["Aleluya","Maranata","Ebenezer","Shibólet"],"correctAnswer":3,"verse":"Jueces 12:5-6","explanation":"Le decían: Ahora pues di Shibólet; y él decía Sibólet; porque no podía pronunciarlo correctamente. Entonces le echaban mano, y le degollaban."},
+  {"id":"h33","level":"HARD","type":"MULTIPLE_CHOICE","category":"Jueces","question":"¿Cómo murió Abimelec, el tiránico hijo de Gedeón, mientras sitiaba la torre fuerte de Tebes?","options":["Una rueda de molino le cayó encima","Murió ahogado cruzando el río","Una flecha perdida le hirió el cuello","Fue envenenado en un banquete"],"correctAnswer":0,"verse":"Jueces 9:53-54","explanation":"Una mujer escamoteó un pedazo de una rueda de molino sobre la cabeza de Abimélec, y le rompió el cráneo."},
+  {"id":"h34","level":"HARD","type":"MULTIPLE_CHOICE","category":"1 Samuel","question":"¿A qué sacerdote de Nob acudió David huyendo de Saúl, quien le dio los panes de la proposición y la espada de Goliat?","options":["Finees","Sadoc","Ahimelec","Abiatar"],"correctAnswer":2,"verse":"1 Samuel 21:1-9","explanation":"Vino David a Nob, al sacerdote Ahimelec... y el sacerdote le dio el pan sagrado... y la espada de Goliat el filisteo."},
+  {"id":"h35","level":"HARD","type":"MULTIPLE_CHOICE","category":"1 Samuel","question":"¿Qué jefe de los pastores de Saúl delató a Ahimelec y mató por orden del rey a 85 sacerdotes de Nob?","options":["Sisac","Doeg","Cusi","Simei"],"correctAnswer":1,"verse":"1 Samuel 22:18-19","explanation":"Doeg el edomita se volvió y arremetió contra los sacerdotes, y mató en aquel día a ochenta y cinco varones que vestían efod de lino."},
+  {"id":"h36","level":"HARD","type":"MULTIPLE_CHOICE","category":"1 Samuel","question":"En su desesperación antes de la batalla de Gilboa, ¿a quién consultó el rey Saúl en secreto disfrazándose?","options":["A la sacerdotisa de Baal","A la pitonisa de Filipos","A la adivina de Endor","A la bruja de Samaria"],"correctAnswer":2,"verse":"1 Samuel 28:7-14","explanation":"Buscadme una mujer que tenga espíritu de adivinación... y sus criados le dijeron: He aquí hay una mujer en Endor que tiene espíritu de adivinación."},
+  {"id":"h37","level":"HARD","type":"MULTIPLE_CHOICE","category":"2 Samuel","question":"¿Quién era el general del ejército de David que asesinó a traición a Abner y a Amasa, y ejecutó a Absalón con tres dardos en el corazón?","options":["Asael","Abisai","Benaía","Joab"],"correctAnswer":3,"verse":"2 Samuel 3:27; 18:14; 20:10","explanation":"Joab hijo de Sarvia era el comandante del ejército de David y mató a Abner, a Amasa y a Absalón."},
+  {"id":"h38","level":"HARD","type":"MULTIPLE_CHOICE","category":"2 Samuel","question":"¿Qué consejero brillante de David se pasó al bando de Absalón, cuyo consejo era como si se consultase la palabra de Dios, y al ver frustrado su consejo se ahorcó?","options":["Ahitofel","Husai","Jonadab","Siba"],"correctAnswer":0,"verse":"2 Samuel 16:23; 17:23","explanation":"Ahitofel, viendo que no se había seguido su consejo... fue a su casa, y puso en orden su casa, y se ahorcó."},
+  {"id":"h39","level":"HARD","type":"MULTIPLE_CHOICE","category":"2 Samuel","question":"¿En la era de qué habitante de Jerusalén compró David terreno y bueyes para edificar un altar y detener la peste?","options":["Urías","Arauna","Melquisedec","Simei"],"correctAnswer":1,"verse":"2 Samuel 24:18-25","explanation":"David compró la era y los bueyes por cincuenta siclos de plata. Y edificó allí David un altar a Jehová, y cesó la plaga en Israel."},
+  {"id":"h40","level":"HARD","type":"MULTIPLE_CHOICE","category":"1 Reyes","question":"¿Cómo se llamaban las dos imponentes columnas de bronce erigidas a la entrada del pórtico del Templo de Salomón?","options":["Jaquín y Boaz","Alpha y Omega","Urim y Tumim","Misericordia y Verdad"],"correctAnswer":0,"verse":"1 Reyes 7:21","explanation":"Erigió la columna a la derecha, y llamó su nombre Jaquín; y erigió la columna a la izquierda, y llamó su nombre Boaz."},
+  {"id":"h41","level":"HARD","type":"MULTIPLE_CHOICE","category":"1 Reyes","question":"¿En qué dos ciudades del norte colocó el rey Jeroboam dos becerros de oro diciendo: \"He aquí tus dioses, oh Israel, que te hicieron subir de Egipto\"?","options":["En Silo y en Jericó","En Dan y en Betel","En Samaria y en Siquem","En Hebrón y en Galaad"],"correctAnswer":1,"verse":"1 Reyes 12:28-29","explanation":"Puso uno en Bet-el, y el otro en Dan. Y esto fue causa de pecado."},
+  {"id":"h42","level":"HARD","type":"MULTIPLE_CHOICE","category":"1 Reyes","question":"¿Cuántos profetas fieles de Jehová escondió Abdías, mayordomo de Acab, de cincuenta en cincuenta en cuevas sustentándolos con pan y agua?","options":["400 profetas","50 profetas","100 profetas","7,000 profetas"],"correctAnswer":2,"verse":"1 Reyes 18:4","explanation":"Cuando Jezabel destruía a los profetas de Jehová, Abdías tomó a cien profetas y los escondió de cincuenta en cincuenta en cuevas."},
+  {"id":"h43","level":"HARD","type":"MULTIPLE_CHOICE","category":"2 Reyes","question":"¿Qué capitán valiente y comandante de carros fue ungido rey de Israel por un profeta y exterminó la casa de Acab y a Jezabel?","options":["Oseas","Peka","Hazael","Jehú"],"correctAnswer":3,"verse":"2 Reyes 9:1-7; 30-37","explanation":"Jehú fue ungido rey y cabalgó furiosamente a Jezreel donde murió Jezabel y fue destruida toda la casa de Acab."},
+  {"id":"h44","level":"HARD","type":"MULTIPLE_CHOICE","category":"2 Reyes","question":"¿Qué princesa y tía piadosa escondió al pequeño príncipe Joás de un año en una cámara secreta del Templo salvándolo del exterminio de Atalía?","options":["Josaba","Ester","Hulda","Maaca"],"correctAnswer":0,"verse":"2 Reyes 11:2-3","explanation":"Josaba hija del rey Joram... tomó a Joás hijo de Ocozías y lo hurtó de entre los hijos del rey... y estuvo con ella escondido en la casa de Jehová seis años."},
+  {"id":"h45","level":"HARD","type":"MULTIPLE_CHOICE","category":"2 Reyes","question":"¿Qué profetisa de Jerusalén consultaron el rey Josías y el sumo sacerdote Hilcías tras encontrar el rollo de la Ley?","options":["Débora","Miriam","Noadías","Hulda"],"correctAnswer":3,"verse":"2 Reyes 22:14","explanation":"Fueron el sacerdote Hilcías... a la profetisa Huldá, mujer de Salum... la cual moraba en Jerusalén en la segunda parte de la ciudad, y hablaron con ella."},
+  {"id":"h46","level":"HARD","type":"MULTIPLE_CHOICE","category":"2 Reyes","question":"¿A cuántos soldados asirios del ejército de Senaquerib mató el Ángel de Jehová en una sola noche mientras sitiaban Jerusalén en tiempos de Ezequías?","options":["10,000 soldados","185,000 soldados","300,000 soldados","50,000 soldados"],"correctAnswer":1,"verse":"2 Reyes 19:35","explanation":"Aconteció que aquella misma noche salió el ángel de Jehová, y mató en el campamento de los asirios a ciento ochenta y cinco mil."},
+  {"id":"h47","level":"HARD","type":"MULTIPLE_CHOICE","category":"2 Crónicas","question":"¿Qué rey de Judá fue herido de lepra en su frente por querer usurpar las funciones sacerdotales y quemar incienso en el Templo de Dios?","options":["Roboam","Acaz","Uzías","Asa"],"correctAnswer":2,"verse":"2 Crónicas 26:16-19","explanation":"Uzías se enalteció... y entró en el templo para quemar incienso... y en su frente le brotó la lepra delante de los sacerdotes."},
+  {"id":"h48","level":"HARD","type":"FILL_VERSE","category":"2 Crónicas","question":"Completa 2 Crónicas 7:14: \"Si se humillare mi pueblo, sobre el cual mi nombre es invocado, y oraren, y buscaren mi rostro, y se convirtieren de sus malos caminos; entonces yo oiré desde los cielos, y perdonaré sus pecados, y _________ su tierra.\"","options":["sanaré","destruiré","venderé","abandonaré"],"correctAnswer":0,"verse":"2 Crónicas 7:14","explanation":"2 Crónicas 7:14: \"...entonces yo oiré desde los cielos, y perdonaré sus pecados, y sanaré su tierra.\""},
+  {"id":"h49","level":"HARD","type":"MULTIPLE_CHOICE","category":"2 Crónicas","question":"¿Cómo derrotó el rey Josafat a los ejércitos unidos de Moab y Amón en el desierto de Tecoa?","options":["Usó grandes catapultas de bronce","Inundó el valle desviando el río","Pidió refuerzos al faraón egipcio","Puso cantores alabando al frente"],"correctAnswer":3,"verse":"2 Crónicas 20:21-22","explanation":"Puso a algunos que cantasen y alabasen a Jehová... Y cuando comenzaron a entonar cantos de alabanza, Jehová puso contra los enemigos emboscadas."},
+  {"id":"h50","level":"HARD","type":"MULTIPLE_CHOICE","category":"Esdras y Nehemías","question":"¿Qué rey persa promulgó el famoso decreto que permitió a los judíos regresar a Jerusalén y reconstruir la casa de Dios cumpliendo la profecía de Jeremías?","options":["Jerjes I (Asuero)","Ciro el Grande","Artajerjes Longimano","Darío Histaspes"],"correctAnswer":1,"verse":"Esdras 1:1-3","explanation":"En el primer año de Ciro rey de Persia... despertó Jehová el espíritu de Ciro, el cual hizo pregonar por todo su reino... Jehová me ha mandado que le edifique casa en Jerusalén."},
+  {"id":"h51","level":"HARD","type":"MULTIPLE_CHOICE","category":"Nehemías","question":"¿Quiénes fueron los tres principales enemigos extranjeros que se opusieron tenazmente, burlaron y conspiraron contra Nehemías al reedificar los muros?","options":["Amán, Zeres y Harbona","Faraón, Senaquerib y Ciro","Sanbalat, Tobías y Gesem","Hiram, Sisac y Ben-hadad"],"correctAnswer":2,"verse":"Nehemías 2:19; 4:7","explanation":"Oyéndolo Sanbalat horonita, Tobías el siervo amonita, y Gesem el árabe, hicieron escarnio de nosotros y nos despreciaron."},
+  {"id":"h52","level":"HARD","type":"MULTIPLE_CHOICE","category":"Ester","question":"¿Cómo se llama la fiesta judía instituida para conmemorar la gran liberación de su pueblo del exterminio tramado por Amán?","options":["Purim","Pesaj (Pascua)","Sucot","Janucá"],"correctAnswer":0,"verse":"Ester 9:26-28","explanation":"Por esto llamaron a estos días Purim, por el nombre de Pur... para que estos días fuesen recordados y celebrados en cada generación."},
+  {"id":"h53","level":"HARD","type":"MULTIPLE_CHOICE","category":"Daniel","question":"En la visión de la gran estatua de Nabucodonosor en Daniel 2, ¿qué representaban la cabeza de oro, el pecho de plata, el vientre de bronce y las piernas de hierro?","options":["Cuatro estaciones agrícolas","Cuatro virtudes del templo","Cuatro imperios mundiales","Cuatro dinastías de Egipto"],"correctAnswer":2,"verse":"Daniel 2:31-40","explanation":"Tú eres aquella cabeza de oro (Babilonia). Y después de ti se levantará otro reino inferior al tuyo (Medo-Persia), y luego un tercer reino de bronce (Grecia), y el cuarto reino será fuerte como hierro (Roma)."},
+  {"id":"h54","level":"HARD","type":"MULTIPLE_CHOICE","category":"Daniel","question":"¿Cuál profecía de Daniel calcula el tiempo desde la orden de restaurar Jerusalén hasta el Mesías Príncipe?","options":["Las Cuatro Bestias del Mar","Las Setenta Semanas","El Gran Árbol Cortado","El Carnero y el Macho Cabrío"],"correctAnswer":1,"verse":"Daniel 9:24-27","explanation":"Setenta semanas están determinadas sobre tu pueblo y sobre tu santa ciudad, para terminar la prevaricación... hasta el Mesías Príncipe."},
+  {"id":"h55","level":"HARD","type":"MULTIPLE_CHOICE","category":"Profeta Oseas","question":"¿Qué significaban los nombres proféticos de los tres hijos de Oseas: Jezreel, Lo-ruhama y Lo-ammi?","options":["\"Espada afilada\", \"Fuego del cielo\" y \"Viento del norte\"","\"Rey de gloria\", \"Paz eterna\" y \"Luz divina\"","\"Bendición\", \"Gozo\" y \"Alabanza\"","\"Dios siembra\", \"No compadecida\" y \"No sois mi pueblo\""],"correctAnswer":3,"verse":"Oseas 1:4-9","explanation":"Lo-ruhama significa no compadecida; Lo-ammi significa vosotros no sois mi pueblo, y yo no seré vuestro Dios."},
+  {"id":"h56","level":"HARD","type":"MULTIPLE_CHOICE","category":"Profeta Jonás","question":"¿Qué planta dio Dios a Jonás para hacerle sombra y luego preparó un gusano que la hirió hasta secarse, enseñándole sobre la misericordia?","options":["Una parra de uvas","Una calabacera","Un sicómoro","Una higuera"],"correctAnswer":1,"verse":"Jonás 4:6-7","explanation":"Preparó Dios una calabacera, la cual creció sobre Jonás para que hiciese sombra... pero preparó un gusano el cual hirió la calabacera, y se secó."},
+  {"id":"h57","level":"HARD","type":"MULTIPLE_CHOICE","category":"Profeta Zacarías","question":"¿Por qué suma exacta profetizó Zacarías que sería pesado el salario del buen pastor, cumpliéndose proféticamente en la traición de Judas?","options":["Treinta piezas de plata","Cincuenta siclos sagrados","Diez monedas de oro","Cien talentos de bronce"],"correctAnswer":0,"verse":"Zacarías 11:12-13 / Mateo 26:15","explanation":"Y pesaron por mi salario treinta piezas de plata. Y me dijo Jehová: Échalo al tesoro; ¡hermoso precio con que me han apreciado!"},
+  {"id":"h58","level":"HARD","type":"MULTIPLE_CHOICE","category":"El Periodo Intertestamentario","question":"¿Cuántos años aproximadamente transcurrieron entre el profeta Malaquías y el ministerio de Juan el Bautista?","options":["250 años","100 años","700 años","400 años"],"correctAnswer":3,"verse":"Historia Bíblica","explanation":"El periodo intertestamentario duró unos cuatro siglos, desde Malaquías hasta la anunciación a Zacarías en el Templo."},
+  {"id":"h59","level":"HARD","type":"MULTIPLE_CHOICE","category":"Los Evangelios","question":"¿Qué Evangelio canónico no incluye parábolas en sentido estricto pero contiene los profundos discursos \"Yo Soy\" de Jesús?","options":["Evangelio de Mateo","Evangelio de Marcos","Evangelio de Juan","Evangelio de Lucas"],"correctAnswer":2,"verse":"Evangelio de Juan","explanation":"Juan no registra parábolas narrativas típicas (como el sembrador o el hijo pródigo), sino alegorías y las 7 declaraciones \"Yo Soy\"."},
+  {"id":"h60","level":"HARD","type":"MULTIPLE_CHOICE","category":"Evangelio de Mateo","question":"¿A qué rey idumeo engañaron los sabios magos de oriente al no regresar a informarle del paradero del niño Jesús, provocando la matanza de los niños en Belén?","options":["Herodes Agripa I","Herodes Arquelao","Herodes Antipas","Herodes el Grande"],"correctAnswer":3,"verse":"Mateo 2:1-16","explanation":"Herodes el Grande, viéndose burlado por los magos, se enojó mucho y mandó matar a todos los niños en Belén menores de dos años."},
+  {"id":"h61","level":"HARD","type":"MULTIPLE_CHOICE","category":"Ministerio de Jesús","question":"¿Qué detalle de su vida personal reveló Jesús a la mujer samaritana junto al pozo de Sicar?","options":["Que nunca se había casado","Que había tenido cinco maridos","Que servía en un altar pagano","Que era pariente de Lázaro"],"correctAnswer":1,"verse":"Juan 4:17-18","explanation":"Jesús le dijo: Cinco maridos has tenido, y el que ahora tienes no es tu marido; esto has dicho con verdad. La mujer dijo: Señor, me parece que tú eres profeta."},
+  {"id":"h62","level":"HARD","type":"MULTIPLE_CHOICE","category":"Milagros de Jesús","question":"Al alimentar a los 4,000 hombres (milagro distinto al de los 5,000), ¿cuántas canastas llenas de sobras recogieron los discípulos?","options":["7 canastas","3 canastas","40 canastas","12 canastas"],"correctAnswer":0,"verse":"Mateo 15:37-38","explanation":"Y comieron todos, y se saciaron; y recogieron lo que sobró de los pedazos, siete canastas llenas. Y eran los que comían cuatro mil hombres."},
+  {"id":"h63","level":"HARD","type":"MULTIPLE_CHOICE","category":"Parábolas de Jesús","question":"En la parábola de Lucas 16 sobre el hombre rico y el mendigo lleno de llagas, ¿cómo se llamaba el mendigo?","options":["Simón","Dimas","Lázaro","Bartimeo"],"correctAnswer":2,"verse":"Lucas 16:19-22","explanation":"Había también un mendigo llamado Lázaro, que estaba echado a la puerta de aquél, lleno de llagas... al morir fue llevado al seno de Abraham."},
+  {"id":"h64","level":"HARD","type":"MULTIPLE_CHOICE","category":"Arresto y Juicio de Jesús","question":"¿A qué ex-sumo sacerdote y suegro de Caifás llevaron primero a Jesús atado la noche de su arresto?","options":["Anás","Gamaliel","Tertulo","Nicodemo"],"correctAnswer":0,"verse":"Juan 18:13","explanation":"Le llevaron primeramente a Anás; porque era suegro de Caifás, que era sumo sacerdote aquel año."},
+  {"id":"h65","level":"HARD","type":"MULTIPLE_CHOICE","category":"La Crucifixión","question":"Según el Evangelio de Marcos, ¿a qué hora bíblica fue crucificado Jesús?","options":["A la hora novena","A la hora tercera","A la hora primera","A la hora sexta"],"correctAnswer":1,"verse":"Marcos 15:25, 33","explanation":"Marcos 15:25 indica que fue crucificado a la hora tercera (9 a. m.), y hubo tinieblas de la sexta a la novena (12 p. m. a 3 p. m.)."},
+  {"id":"h66","level":"HARD","type":"MULTIPLE_CHOICE","category":"Palabras en la Cruz","question":"¿Qué significan las palabras arameas exclamadas por Jesús en la cruz: \"Elí, Elí, ¿lama sabactani?\" (citando el Salmo 22:1)?","options":["\"Padre, en tus manos pongo mi espíritu\"","\"He aquí que vengo pronto con gloria\"","\"Consumado es el pacto de redención\"","\"Dios mío, ¿por qué me has desamparado?\""],"correctAnswer":3,"verse":"Mateo 27:46 / Salmos 22:1","explanation":"Cerca de la hora novena, Jesús clamó a gran voz, diciendo: Elí, Elí, ¿lama sabactani? Esto es: Dios mío, Dios mío, ¿por qué me has desamparado?"},
+  {"id":"h67","level":"HARD","type":"MULTIPLE_CHOICE","category":"La Sepultura de Jesús","question":"¿Qué cantidad aproximada de especias aromáticas trajo Nicodemo para preparar el cuerpo de Jesús?","options":["Unas 10 libras","Unas 300 libras","Unas 100 libras","Unas 50 libras"],"correctAnswer":2,"verse":"Juan 19:39","explanation":"También Nicodemo, el que antes había visitado a Jesús de noche, vino trayendo un compuesto de mirra y de áloes, como cien libras."},
+  {"id":"h68","level":"HARD","type":"MULTIPLE_CHOICE","category":"La Resurrección","question":"En la pesca milagrosa tras la resurrección en Juan 21, ¿cuántos peces sacaron a tierra sin que se rompiera la red?","options":["120 peces","153 peces","300 peces","70 peces"],"correctAnswer":1,"verse":"Juan 21:11","explanation":"Subió Simón Pedro, y sacó la red a tierra, llena de grandes peces, ciento cincuenta y tres; y aun siendo tantos, la red no se rompió."},
+  {"id":"h69","level":"HARD","type":"MULTIPLE_CHOICE","category":"Hechos de los Apóstoles","question":"¿Cuántos varones de buen testimonio, llenos del Espíritu Santo y de sabiduría, fueron elegidos como los primeros diáconos en Hechos 6?","options":["3 varones","10 varones","12 varones","7 varones"],"correctAnswer":3,"verse":"Hechos 6:3-5","explanation":"Buscad, pues, hermanos, de entre vosotros a siete varones... y eligieron a Esteban, varón lleno de fe y del Espíritu Santo, a Felipe, a Prócoro, a Nicanor, a Timón, a Parmenas, y a Nicolás."},
+  {"id":"h70","level":"HARD","type":"MULTIPLE_CHOICE","category":"Hechos de los Apóstoles","question":"¿Qué hechicero de Samaria intentó comprar con dinero el poder apostólico de impartir el Espíritu Santo por imposición de manos?","options":["Barjesús","Apolos","Simón el mago","Elimas el encantador"],"correctAnswer":2,"verse":"Hechos 8:18-20","explanation":"Cuando vio Simón que por la imposición de las manos de los apóstoles se daba el Espíritu Santo, les ofreció dinero... Pedro le dijo: Tu dinero perezca contigo."},
+  {"id":"h71","level":"HARD","type":"MULTIPLE_CHOICE","category":"Hechos de los Apóstoles","question":"¿Qué discípulo fue enviado por el Señor en visión a la calle llamada Derecha para orar por Saulo y devolverle la vista?","options":["Ananías","Bernabé","Ágabo","Silas"],"correctAnswer":0,"verse":"Hechos 9:10-17","explanation":"Había entonces en Damasco un discípulo llamado Ananías... fue y entró en la casa, y poniendo sobre él las manos, dijo: Hermano Saulo, el Señor Jesús me ha enviado."},
+  {"id":"h72","level":"HARD","type":"MULTIPLE_CHOICE","category":"Hechos de los Apóstoles","question":"¿Qué apóstol fue el primero de los doce en morir como mártir, ejecutado a espada por el rey Herodes Agripa I en Jerusalén?","options":["Felipe","Andrés","Jacobo","Pedro"],"correctAnswer":2,"verse":"Hechos 12:1-2","explanation":"En aquel mismo tiempo el rey Herodes echó mano a algunos de la iglesia para maltratarles. Y mató a espada a Jacobo, hermano de Juan."},
+  {"id":"h73","level":"HARD","type":"MULTIPLE_CHOICE","category":"Hechos de los Apóstoles","question":"¿Cómo murió el rey Herodes Agripa I en Cesarea tras no dar la gloria a Dios cuando el pueblo gritaba: \"Voz de Dios, y no de hombre\"?","options":["Un ángel lo hirió y murió","Murió luchando contra Siria","Fue envenenado en palacio","Cayó de su carroza real"],"correctAnswer":0,"verse":"Hechos 12:21-23","explanation":"Al momento un ángel del Señor le hirió, por cuanto no dio la gloria a Dios; y expiró comido de gusanos."},
+  {"id":"h74","level":"HARD","type":"MULTIPLE_CHOICE","category":"Hechos de los Apóstoles","question":"En Pafos de Chipre, ¿qué mago y falso profeta judío resistió a Pablo y Bernabé y quedó ciego temporalmente por reprensión de Pablo?","options":["Simón el mago","Alejandro","Demetrio","Elimas"],"correctAnswer":3,"verse":"Hechos 13:6-11","explanation":"Les resistía Elimas, el mago (pues así se traduce su nombre)... Ahora, pues, he aquí la mano del Señor está contra ti, y serás ciego, y no verás el sol por algún tiempo."},
+  {"id":"h75","level":"HARD","type":"MULTIPLE_CHOICE","category":"Hechos de los Apóstoles","question":"En el Concilio de Jerusalén en Hechos 15 sobre la circuncisión de los gentiles, ¿qué apóstol y hermano del Señor presidió y emitió la resolución final?","options":["Pedro","Jacobo","Juan","Pablo"],"correctAnswer":1,"verse":"Hechos 15:13-19","explanation":"Jacobo respondió diciendo: Varones hermanos, oídme... Por lo cual yo juzgo que no se inquiete a los gentiles que se convierten a Dios."},
+  {"id":"h76","level":"HARD","type":"MULTIPLE_CHOICE","category":"Hechos de los Apóstoles","question":"¿Por qué causa se produjo una fuerte contienda y separación entre Pablo y Bernabé al iniciar su segundo viaje misionero?","options":["Por llevar o no a Juan Marcos","Por diferencias sobre el sábado","Por el reparto de las ofrendas","Por elegir el puerto de salida"],"correctAnswer":0,"verse":"Hechos 15:37-40","explanation":"Bernabé quería que llevasen consigo a Juan, el que tenía por sobrenombre Marcos; pero a Pablo no le parecía bien llevar consigo al que se había apartado de ellos."},
+  {"id":"h77","level":"HARD","type":"MULTIPLE_CHOICE","category":"Hechos de los Apóstoles","question":"¿Qué pueblo de Macedonia fue elogiado en Hechos 17:11 porque \"escudriñaban cada día las Escrituras para ver si estas cosas eran así\"?","options":["Los de Atenas","Los de Berea","Los de Filipos","Los de Tesalónica"],"correctAnswer":1,"verse":"Hechos 17:11","explanation":"Y éstos eran más nobles que los que estaban en Tesalónica, pues recibieron la palabra con toda solicitud, escudriñando cada día las Escrituras para ver si estas cosas eran así."},
+  {"id":"h78","level":"HARD","type":"MULTIPLE_CHOICE","category":"Hechos de los Apóstoles","question":"¿Qué elocuente judío alejandrino, poderoso en las Escrituras, predicaba con fervor pero solo conocía el bautismo de Juan hasta que Priscila y Aquila le explicaron con más exactitud el camino de Dios?","options":["Tíquico","Trófimo","Epafrodito","Apolos"],"correctAnswer":3,"verse":"Hechos 18:24-26","explanation":"Llegó entonces a Éfeso un judío llamado Apolos, natural de Alejandría, varón elocuente, poderoso en las Escrituras... le oyeron Priscila y Aquila, le tomaron aparte y le expusieron más exactamente el camino de Dios."},
+  {"id":"h79","level":"HARD","type":"MULTIPLE_CHOICE","category":"Hechos de los Apóstoles","question":"¿Quiénes eran los hijos de un sumo sacerdote judío en Éfeso atacados por un endemoniado al usar el nombre de Jesús?","options":["Los hijos de Gamaliel","Los hijos de Anás","Los hijos de Esceva","Los hijos de Caifás"],"correctAnswer":2,"verse":"Hechos 19:14-16","explanation":"Había siete hijos de un tal Esceva, judío, jefe de los sacerdotes... el espíritu malo respondió: A Jesús conozco, y sé quién es Pablo; pero vosotros, ¿quiénes sois?"},
+  {"id":"h80","level":"HARD","type":"MULTIPLE_CHOICE","category":"Hechos de los Apóstoles","question":"¿Qué joven de Troas se quedó dormido en una ventana mientras Pablo prolongaba su discurso hasta la medianoche, cayó desde un tercer piso y fue resucitado por Pablo?","options":["Erasto","Artemas","Tíquico","Eutico"],"correctAnswer":3,"verse":"Hechos 20:9-10","explanation":"Un joven llamado Eutico, que estaba sentado en la ventana... rendido del sueño, cayó del tercer piso abajo, y fue levantado muerto. Pablo descendió y se echó sobre él... y dijo: Su alma está en él."},
+  {"id":"h81","level":"HARD","type":"MULTIPLE_CHOICE","category":"Hechos de los Apóstoles","question":"¿Ante qué rey judío exclamó el apóstol Pablo su elocuente defensa en Cesarea, a lo que el rey respondió: \"Por poco me persuades a ser cristiano\"?","options":["Herodes Agripa II","El procurador Félix","Herodes Antipas","César Nerón"],"correctAnswer":0,"verse":"Hechos 26:27-28","explanation":"¿Crees, oh rey Agripa, a los profetas? Yo sé que crees. Entonces Agripa dijo a Pablo: Por poco me persuades a ser cristiano."},
+  {"id":"h82","level":"HARD","type":"MULTIPLE_CHOICE","category":"Epístola a los Romanos","question":"¿Quién fue la fiel diaconisa de la iglesia en Cencrea a quien Pablo encomienda con honor en Romanos 16:1-2?","options":["Trifena","Febe","Junia","Priscila"],"correctAnswer":1,"verse":"Romanos 16:1-2","explanation":"Os recomiendo además nuestra hermana Febe, la cual es diaconisa de la iglesia en Cencrea... porque ella ha ayudado a muchos, y a mí mismo."},
+  {"id":"h83","level":"HARD","type":"MULTIPLE_CHOICE","category":"Epístola a los Romanos","question":"¿Quién fue el amanuense o secretario personal que transcribió la Epístola a los Romanos y envía su propio saludo en Romanos 16:22?","options":["Sóstenes","Lucas","Tercio","Silvano"],"correctAnswer":2,"verse":"Romanos 16:22","explanation":"Yo Tercio, que escribí la epístola, os saludo en el Señor."},
+  {"id":"h84","level":"HARD","type":"MULTIPLE_CHOICE","category":"1 Corintios","question":"En 1 Corintios 15, ¿cuál es profetizado como \"el postrer enemigo que será destruido\" por Cristo?","options":["El pecado","La muerte","El diablo","El anticristo"],"correctAnswer":1,"verse":"1 Corintios 15:26","explanation":"Y el postrer enemigo que será destruido es la muerte."},
+  {"id":"h85","level":"HARD","type":"MULTIPLE_CHOICE","category":"1 Corintios","question":"En 1 Corintios 15:6, ¿a más de cuántos hermanos a la vez se apareció Jesús resucitado, la mayoría de los cuales aún vivían cuando Pablo escribió?","options":["Más de 100 hermanos","A los setenta discípulos","Más de 1,000 hermanos","Más de 500 hermanos a la vez"],"correctAnswer":3,"verse":"1 Corintios 15:6","explanation":"Después apareció a más de quinientos hermanos a la vez, de los cuales muchos viven aún, y otros ya duermen."},
+  {"id":"h86","level":"HARD","type":"MULTIPLE_CHOICE","category":"2 Corintios","question":"En 2 Corintios 12:2, ¿a qué cielo declara Pablo haber sido arrebatado en una visión celestial catorce años antes?","options":["Al tercer cielo (el Paraíso)","Al primer cielo (la atmósfera)","Al séptimo cielo","Al segundo cielo (las estrellas)"],"correctAnswer":0,"verse":"2 Corintios 12:2-4","explanation":"Conozco a un hombre en Cristo... que fue arrebatado hasta el tercer cielo... y oyó palabras inefables que no le es dado al hombre expresar."},
+  {"id":"h87","level":"HARD","type":"MULTIPLE_CHOICE","category":"Epístola a los Gálatas","question":"En Gálatas 4:21-31, ¿qué representan alegóricamente las dos mujeres en la carta de Pablo?","options":["Israel y el Imperio romano","Los dos templos de Judea","Dos pactos: ley y gracia","El cielo y la tierra nueva"],"correctAnswer":2,"verse":"Gálatas 4:24-26","explanation":"Estas mujeres son los dos pactos; el uno proviene del monte Sinaí, el cual da hijos para esclavitud; éste es Agar... Mas la Jerusalén de arriba, la cual es madre de todos nosotros, es libre."},
+  {"id":"h88","level":"HARD","type":"MULTIPLE_CHOICE","category":"Epístola a los Efesios","question":"En Efesios 4:11, ¿cuáles son los cinco dones ministeriales que Cristo constituyó para perfeccionar a los santos para la obra del ministerio?","options":["Reyes, sacerdotes, jueces, profetas y levitas","Apóstoles, profetas, evangelistas, pastores y maestros","Mártires, doctores, sanadores, administradores y sabios","Diáconos, ancianos, obispos, músicos y servidores"],"correctAnswer":1,"verse":"Efesios 4:11-12","explanation":"Y él mismo constituyó a unos, apóstoles; a otros, profetas; a otros, evangelistas; a otros, pastores y maestros, a fin de perfeccionar a los santos."},
+  {"id":"h89","level":"HARD","type":"MULTIPLE_CHOICE","category":"Epístola a los Filipenses","question":"¿Qué colaborador de Pablo en Filipos enfermó gravemente a punto de morir por causa de la obra de Cristo, a quien Dios tuvo misericordia?","options":["Epafrodito","Erasto","Onesíforo","Tíquico"],"correctAnswer":0,"verse":"Filipenses 2:25-30","explanation":"Tuve por necesario enviaros a Epafrodito, mi hermano y colaborador... pues estuvo enfermo, a punto de morir; pero Dios tuvo misericordia de él."},
+  {"id":"h90","level":"HARD","type":"MULTIPLE_CHOICE","category":"Epístola a los Colosenses","question":"En Colosenses 1:15, ¿cómo llama Pablo a Cristo en su relación con Dios el Padre?","options":["Profeta mayor de Judea","Sumo sacerdote de Leví","Imagen del Dios invisible","Ángel supremo del cielo"],"correctAnswer":2,"verse":"Colosenses 1:15, 18","explanation":"Él es la imagen del Dios invisible, el primogénito de toda creación... y él es la cabeza del cuerpo que es la iglesia."},
+  {"id":"h91","level":"HARD","type":"MULTIPLE_CHOICE","category":"2 Tesalonicenses","question":"En 2 Tesalonicenses 2:3-4, ¿cómo describe Pablo al personaje siniestro que se manifestará antes del Día del Señor sentándose en el templo de Dios como Dios?","options":["El rey del norte","El ángel del abismo","El falso profeta","El hombre de pecado"],"correctAnswer":3,"verse":"2 Tesalonicenses 2:3-4","explanation":"No vendrá sin que antes venga la apostasía, y se manifieste el hombre de pecado, el hijo de perdición, el cual se opone y se levanta contra todo lo que se llama Dios."},
+  {"id":"h92","level":"HARD","type":"MULTIPLE_CHOICE","category":"2 Timoteo","question":"En 2 Timoteo 4:10, ¿quién fue el colaborador que desamparó a Pablo en su prisión romana \"amando este mundo\" y se fue a Tesalónica?","options":["Alejandro","Demas","Tito","Crescente"],"correctAnswer":1,"verse":"2 Timoteo 4:10","explanation":"Porque Demas me ha desamparado, amando este mundo, y se ha ido a Tesalónica."},
+  {"id":"h93","level":"HARD","type":"MULTIPLE_CHOICE","category":"2 Timoteo","question":"¿Cómo se llamaban la abuela y la madre creyentes de Timoteo que le enseñaron las Escrituras desde niño?","options":["Loida y Eunice","Salomé y María","Sara y Rebeca","Elisabet y Ana"],"correctAnswer":0,"verse":"2 Timoteo 1:5; 3:15","explanation":"Trayendo a la memoria la fe no fingida que hay en ti, la cual habitó primero en tu abuela Loida, y en tu madre Eunice."},
+  {"id":"h94","level":"HARD","type":"MULTIPLE_CHOICE","category":"Epístola a Tito","question":"¿En qué isla del Mediterráneo dejó Pablo a Tito como delegado apostólico para que corrigiese lo deficiente y estableciese ancianos en cada ciudad?","options":["Isla de Sicilia","Isla de Malta","Isla de Creta","Isla de Chipre"],"correctAnswer":2,"verse":"Tito 1:5","explanation":"Por esta causa te dejé en Creta, para que corrigieses lo deficiente, y establecieses ancianos así como yo te mandé."},
+  {"id":"h95","level":"HARD","type":"MULTIPLE_CHOICE","category":"Epístola a los Hebreos","question":"En Hebreos 7, ¿según el orden de qué enigmático rey y sacerdote del Génesis es Cristo declarado Sumo Sacerdote para siempre, superior al sacerdocio levítico?","options":["Según el orden de David","Según el orden de Aarón","Según el orden de Enoc","Según el orden de Melquisedec"],"correctAnswer":3,"verse":"Hebreos 7:1-17","explanation":"Tú eres sacerdote para siempre, según el orden de Melquisedec; sin padre, sin madre, sin genealogía; que ni tiene principio de días, ni fin de vida."},
+  {"id":"h96","level":"HARD","type":"MULTIPLE_CHOICE","category":"Epístola a los Hebreos","question":"¿Qué tres objetos sagrados estaban dentro del Arca según Hebreos 9:4?","options":["Espada, aceite santo y mitra","Candelabro, incensario y mesa","Maná, vara de Aarón y tablas","Manto, doce piedras y trompeta"],"correctAnswer":2,"verse":"Hebreos 9:4","explanation":"El arca del pacto cubierta de oro... en la que estaba una urna de oro que contenía el maná, la vara de Aarón que floreció, y las tablas del pacto."},
+  {"id":"h97","level":"HARD","type":"MULTIPLE_CHOICE","category":"Epístola de Santiago","question":"En Santiago 2, ¿qué dos personajes del Antiguo Testamento se citan como ejemplos de una fe demostrada con obras?","options":["David y Salomón","Abraham y Rahab","Moisés y Aarón","Elías y Eliseo"],"correctAnswer":1,"verse":"Santiago 2:21-25","explanation":"¿No fue justificado por las obras Abraham nuestro padre...? Asimismo también Rahab la ramera, ¿no fue justificada por obras cuando recibió a los mensajeros?"},
+  {"id":"h98","level":"HARD","type":"MULTIPLE_CHOICE","category":"1 Pedro","question":"En 1 Pedro 2:9, ¿cuáles son los cuatro títulos gloriosos dados a la comunidad de creyentes en Cristo?","options":["Voz profética y trono de gloria","Ejército vencedor y fuerte torre","Templo dorado y muro inquebrantable","Linaje escogido y real sacerdocio"],"correctAnswer":3,"verse":"1 Pedro 2:9","explanation":"Mas vosotros sois linaje escogido, real sacerdocio, nación santa, pueblo adquirido por Dios, para que anunciéis las virtudes de aquel que os llamó."},
+  {"id":"h99","level":"HARD","type":"MULTIPLE_CHOICE","category":"1 Pedro","question":"En 1 Pedro 3:19-20, ¿a quiénes predicó Cristo en espíritu tras su padecimiento por los pecados?","options":["A espíritus encarcelados","A los ancianos del templo","A los ángeles del cielo","A los reyes de Babilonia"],"correctAnswer":0,"verse":"1 Pedro 3:19-20","explanation":"En el cual también fue y predicó a los espíritus encarcelados, los que en otro tiempo desobedecieron, cuando una vez esperaba la paciencia de Dios en los días de Noé."},
+  {"id":"h100","level":"HARD","type":"MULTIPLE_CHOICE","category":"2 Pedro y Judas","question":"¿Qué arcángel contendía con el diablo disputando sobre el cuerpo de Moisés sin atreverse a proferir juicio de maldición sino diciendo: \"El Señor te reprenda\"?","options":["El arcángel Gabriel","El ángel Uriel","El arcángel Miguel","El ángel Rafael"],"correctAnswer":2,"verse":"Judas 1:9","explanation":"Pero cuando el arcángel Miguel contendía con el diablo, disputando con él por el cuerpo de Moisés, no se atrevió a proferir juicio de maldición, sino que dijo: El Señor te reprenda."},
+  {"id":"h101","level":"HARD","type":"MULTIPLE_CHOICE","category":"Epístola de Judas","question":"¿Qué breve epístola del Nuevo Testamento cita una profecía de Enoc, séptimo desde Adán, sobre la venida del Señor?","options":["2 Juan","3 Juan","Filemón","Judas"],"correctAnswer":3,"verse":"Judas 1:14-15","explanation":"De éstos también profetizó Enoc, séptimo desde Adán, diciendo: He aquí, vino el Señor con sus santas decenas de millares, para hacer juicio contra todos."},
+  {"id":"h102","level":"HARD","type":"MULTIPLE_CHOICE","category":"Apocalipsis","question":"¿Cuáles son los dos nombres que recibe el ángel del abismo en Apocalipsis 9:11?","options":["Mamón y Moloc","Abadón y Apolión","Lucifer y Belcebú","Behemot y Leviatán"],"correctAnswer":1,"verse":"Apocalipsis 9:11","explanation":"Y tienen por rey sobre ellos al ángel del abismo, cuyo nombre en hebreo es Abadón, y en griego, Apolión."},
+  {"id":"h103","level":"HARD","type":"MULTIPLE_CHOICE","category":"Apocalipsis","question":"¿Cuántos son los sellados de todas las doce tribus de los hijos de Israel mencionados en Apocalipsis 7 (12,000 de cada tribu)?","options":["144,000 sellados","12,000 sellados","70,000 sellados","1,000,000 de sellados"],"correctAnswer":0,"verse":"Apocalipsis 7:4","explanation":"Y oí el número de los sellados: ciento cuarenta y cuatro mil sellados de todas las tribus de los hijos de Israel."},
+  {"id":"h104","level":"HARD","type":"MULTIPLE_CHOICE","category":"Apocalipsis","question":"¿Qué tribu de los 12 hijos de Jacob no es mencionada en la lista de los 144,000 sellados de Apocalipsis 7, figurando en su lugar Manasés?","options":["La tribu de Rubén","La tribu de Dan","La tribu de Judá","La tribu de Leví"],"correctAnswer":1,"verse":"Apocalipsis 7:5-8","explanation":"La tribu de Dan no aparece en la enumeración de Apocalipsis 7, asociándose históricamente con el inicio de la idolatría tribal."},
+  {"id":"h105","level":"HARD","type":"MULTIPLE_CHOICE","category":"Apocalipsis","question":"¿Por cuántos días profetizan los Dos Testigos de Apocalipsis 11 vestidos de cilicio antes de ser atacados por la bestia?","options":["1,260 días","2,300 días","70 días","40 días"],"correctAnswer":0,"verse":"Apocalipsis 11:3","explanation":"Y daré a mis dos testigos que profeticen por mil doscientos sesenta días, vestidos de cilicio."},
+  {"id":"h106","level":"HARD","type":"MULTIPLE_CHOICE","category":"Apocalipsis","question":"En Apocalipsis 12, ¿quién lidera la batalla en el cielo contra el gran dragón y lo arroja a la tierra?","options":["El ángel Gabriel","Los 24 ancianos","El arcángel Miguel","Los 4 seres vivientes"],"correctAnswer":2,"verse":"Apocalipsis 12:7-9","explanation":"Después hubo una gran batalla en el cielo: Miguel y sus ángeles luchaban contra el dragón; y luchaban el dragón y sus ángeles; pero no prevalecieron."},
+  {"id":"h107","level":"HARD","type":"MULTIPLE_CHOICE","category":"Apocalipsis","question":"¿Cuál es el número de la Bestia dado en Apocalipsis 13:18, calificado como \"número de hombre\"?","options":["777","999","616","666"],"correctAnswer":3,"verse":"Apocalipsis 13:18","explanation":"Aquí hay sabiduría. El que tiene entendimiento, cuente el número de la bestia, pues es número de hombre. Y su número es seiscientos sesenta y seis."},
+  {"id":"h108","level":"HARD","type":"MULTIPLE_CHOICE","category":"Apocalipsis","question":"¿Cómo se llama el lugar profético en hebreo donde los reyes de la tierra se reunirán para la batalla del gran día del Dios Todopoderoso?","options":["Monte de los Olivos","Armagedón (Har-Meguido)","Valle de Josafat","Valle de Hinom (Gehena)"],"correctAnswer":1,"verse":"Apocalipsis 16:16","explanation":"Y los reunió en el lugar que en hebreo se llama Armagedón."},
+  {"id":"h109","level":"HARD","type":"MULTIPLE_CHOICE","category":"Apocalipsis","question":"¿Por cuántos años proféticos será atado Satanás en el abismo durante el Milenio según Apocalipsis 20?","options":["7,000 años","500 años","1,000 años","100 años"],"correctAnswer":2,"verse":"Apocalipsis 20:1-3","explanation":"Prendió al dragón, la serpiente antigua, que es el diablo y Satanás, y lo ató por mil años; y lo arrojó al abismo."},
+  {"id":"h110","level":"HARD","type":"MULTIPLE_CHOICE","category":"Apocalipsis","question":"¿Cuántas puertas tiene la muralla de la Nueva Jerusalén celestial, cada una hecha de una sola perla inmensa?","options":["24 puertas","4 puertas","7 puertas","12 puertas"],"correctAnswer":3,"verse":"Apocalipsis 21:12, 21","explanation":"Tenía un muro grande y alto con doce puertas... y nombres inscritos, que son los de las doce tribus de los hijos de Israel. Las doce puertas eran doce perlas."},
+  {"id":"h111","level":"HARD","type":"MULTIPLE_CHOICE","category":"Apocalipsis","question":"¿Qué planta da doce frutos al año y hojas para la sanidad de las naciones en Apocalipsis 22?","options":["El Árbol de la Vida","La Palmera de paz","El Olivo celestial","La Vid verdadera"],"correctAnswer":0,"verse":"Apocalipsis 22:2","explanation":"A uno y otro lado del río, estaba el árbol de la vida, que produce doce frutos, dando cada mes su fruto; y las hojas del árbol eran para la sanidad de las naciones."},
+  {"id":"h112","level":"HARD","type":"MULTIPLE_CHOICE","category":"Idiomas Bíblicos","question":"¿En qué tres idiomas originales fue escrita la Biblia canónica?","options":["Arameo, copto y griego","Hebreo, arameo y griego koiné","Latín, griego y árabe","Hebreo, siríaco y latín"],"correctAnswer":1,"verse":"Manuscritos Bíblicos","explanation":"El Antiguo Testamento fue escrito mayormente en hebreo (con porciones en arameo en Daniel y Esdras), y el Nuevo Testamento en griego koiné."},
+  {"id":"h113","level":"HARD","type":"MULTIPLE_CHOICE","category":"Canon Bíblico","question":"¿Cuántos libros componen en total el canon bíblico protestante (Antiguo Testamento y Nuevo Testamento)?","options":["66 libros","60 libros","73 libros","77 libros"],"correctAnswer":0,"verse":"Canon de las Escrituras","explanation":"La Biblia evangélica/protestante consta de 66 libros inspirados: 39 en el Antiguo Testamento y 27 en el Nuevo Testamento."},
+  {"id":"h114","level":"HARD","type":"MULTIPLE_CHOICE","category":"Pentateuco","question":"¿Cuál es el nombre hebreo tradicional del libro de Génesis, tomado de su primera palabra en el texto masorético?","options":["Bamidbar (\"En el desierto\")","Vayikrá (\"Y llamó\")","Bereshit (\"En el principio\")","Shemot (\"Nombres\")"],"correctAnswer":2,"verse":"Génesis 1:1","explanation":"En hebreo, los cinco libros de la Torá llevan por título su primera palabra: Génesis se llama Bereshit (\"En el principio\")."},
+  {"id":"h115","level":"HARD","type":"MULTIPLE_CHOICE","category":"Teología Bíblica","question":"¿Qué doctrina cardinal de la Reforma protestante, extraída de Romanos 1:17 y Gálatas 3:11, afirma que somos justificados únicamente por la fe en los méritos de Cristo?","options":["Sola Gratia","Sola Scriptura","Soli Deo Gloria","Sola Fide"],"correctAnswer":3,"verse":"Romanos 1:17 / Gálatas 3:11","explanation":"Sola Fide (solo por la fe) enseña conforme a Romanos que el pecador es justificado gratuitamente por la fe en la justicia de Cristo, sin las obras de la ley."},
+  {"id":"h116","level":"HARD","type":"FILL_VERSE","category":"Pacto Divino","question":"Completa Hebreos 9:22 sobre el principio bíblico de redención: \"Y según la ley, casi todo es purificado con sangre; y sin derramamiento de sangre no hay _________\"","options":["remisión","bendición","templo","riqueza"],"correctAnswer":0,"verse":"Hebreos 9:22","explanation":"Hebreos 9:22: \"Y según la ley, casi todo es purificado, sí, con sangre; y sin derramamiento de sangre no se hace remisión.\""},
+  {"id":"h117","level":"HARD","type":"MULTIPLE_CHOICE","category":"Génesis","question":"¿Qué dos ríos de los cuatro que regaban el huerto del Edén aún existen con sus nombres geográficos conocidos hoy?","options":["Tíber y Danubio","Éufrates y Tigris","Nilo y Jordán","Pisón y Gihón"],"correctAnswer":1,"verse":"Génesis 2:14","explanation":"El nombre del tercer río es Hidekel (el Tigris)... y el cuarto río es el Eufrates."},
+  {"id":"h118","level":"HARD","type":"MULTIPLE_CHOICE","category":"Génesis","question":"¿Quién fue el primer polígamo mencionado en la Biblia que compuso un poema jactándose de matar a un joven por su herida?","options":["Irad","Nimrod","Lamec","Tubal-caín"],"correctAnswer":2,"verse":"Génesis 4:19, 23","explanation":"Y Lamec tomó para sí dos mujeres; el nombre de la una fue Ada, y el nombre de la otra, Zila... A un hombre maté por mi herida."},
+  {"id":"h119","level":"HARD","type":"MULTIPLE_CHOICE","category":"Génesis","question":"¿Cuántos hombres nacidos en su propia casa armó Abraham para rescatar a su sobrino Lot?","options":["500 criados","100 criados","1,000 criados","318 criados"],"correctAnswer":3,"verse":"Génesis 14:14","explanation":"Oyó Abram que su pariente estaba prisionero, y armó a sus criados, los nacidos en su casa, trescientos dieciocho, y los siguió hasta Dan."},
+  {"id":"h120","level":"HARD","type":"MULTIPLE_CHOICE","category":"Génesis","question":"¿Cómo se llamaba el primogénito de Abraham nacido de la sierva egipcia Agar cuando Abraham tenía 86 años?","options":["Ismael","Zimram","Isaac","Madián"],"correctAnswer":0,"verse":"Génesis 16:15-16","explanation":"Y dio a luz Agar a Abram un hijo, y llamó Abram el nombre del hijo que le dio Agar, Ismael. Era Abram de ochenta y seis años."},
+  {"id":"h121","level":"HARD","type":"MULTIPLE_CHOICE","category":"Génesis","question":"¿En qué valle o monte puso Dios a prueba a Abraham pidiéndole en holocausto a su único hijo Isaac?","options":["Valle de Mamre","Monte Sinaí","Tierra de Moriah","Monte de los Olivos"],"correctAnswer":2,"verse":"Génesis 22:2","explanation":"Toma ahora tu hijo, tu único, Isaac, a quien amas, y vete a tierra de Moriah, y ofrécelo allí en holocausto."},
+  {"id":"h122","level":"HARD","type":"MULTIPLE_CHOICE","category":"Patriarcas","question":"¿Qué hija única de Jacob y Lea fue violada por Siquem hijo de Hamor, desatando la violenta venganza de Simeón y Leví?","options":["Séfora","Dina","Tamar","Asenat"],"correctAnswer":1,"verse":"Génesis 34:1-2","explanation":"Salió Dina la hija de Lea, la cual ésta había dado a luz a Jacob, a ver a las hijas del país; y la vio Siquem hijo de Hamor."},
+  {"id":"h123","level":"HARD","type":"MULTIPLE_CHOICE","category":"Génesis","question":"¿A qué patriarca engañó su nuera Tamar con un velo en Enaim para dar a luz a los gemelos Fares y Zara?","options":["A Rubén","A Simeón","A Jacob","A Judá"],"correctAnswer":3,"verse":"Génesis 38:13-26","explanation":"Tamar se quitó los vestidos de su viudez y se cubrió con un velo... y dio a luz a Fares y a Zara de Judá."},
+  {"id":"h124","level":"HARD","type":"MULTIPLE_CHOICE","category":"Éxodo","question":"¿Cómo se llamaban los padres de Moisés, Aarón y Miriam, ambos pertenecientes a la tribu de Leví?","options":["Elcana y Ana","Amram y Jocabed","Zacarías y Elisabet","Mahlón y Rut"],"correctAnswer":1,"verse":"Éxodo 6:20","explanation":"Y Amram tomó por mujer a Jocabed su tía, la cual dio a luz a Aarón y a Moisés."},
+  {"id":"h125","level":"HARD","type":"MULTIPLE_CHOICE","category":"Éxodo","question":"¿Cómo se llamaba la esposa madianita de Moisés, hija del sacerdote Jetro (Reuel)?","options":["Hagar","Cozbi","Séfora","Asenat"],"correctAnswer":2,"verse":"Éxodo 2:21","explanation":"Y Moisés convino en morar con aquel varón; y él dio su hija Séfora por mujer a Moisés."},
+  {"id":"h126","level":"HARD","type":"MULTIPLE_CHOICE","category":"Las Plagas de Egipto","question":"¿Hasta qué plaga pudieron imitar los hechiceros y magos de Egipto con sus encantamientos antes de admitir: \"Dedo de Dios es éste\"?","options":["Hasta la plaga de sangre","Hasta la plaga de langostas","Hasta la plaga de las ranas","Hasta la plaga de los piojos"],"correctAnswer":3,"verse":"Éxodo 8:18-19","explanation":"Los hechiceros hicieron así también... para sacar piojos; mas no pudieron... Entonces los hechiceros dijeron a Faraón: Dedo de Dios es éste."},
+  {"id":"h127","level":"HARD","type":"MULTIPLE_CHOICE","category":"Éxodo","question":"¿En qué lugar amargo no pudieron beber agua los israelitas en el desierto de Shur hasta que Moisés echó un árbol que Dios le mostró?","options":["Mara","Cades-barnea","Elim","Refidim"],"correctAnswer":0,"verse":"Éxodo 15:23-25","explanation":"Llegaron a Mara, y no pudieron beber las aguas de Mara, porque eran amargas... Moisés clamó a Jehová, y Jehová le mostró un árbol; y lo echó en las aguas, y las aguas se endulzaron."},
+  {"id":"h128","level":"HARD","type":"MULTIPLE_CHOICE","category":"Tabernáculo","question":"¿De cuántos brazos estaba labrado el candelero de oro (Menorá) colocado en el Lugar Santo?","options":["De 3 brazos","De 7 brazos","De 10 brazos","De 12 brazos"],"correctAnswer":1,"verse":"Éxodo 25:31-37","explanation":"Harás además un candelero de oro puro... saldrán seis brazos de sus lados... siete lámparas las cuales encenderán para que alumbren hacia adelante."},
+  {"id":"h129","level":"HARD","type":"MULTIPLE_CHOICE","category":"Levítico","question":"En Levítico 11, ¿cuál es la doble regla anatómica para que un mamífero terrestre fuera considerado animal limpio para comer?","options":["Que nade en ríos y tenga lana","Que tenga garras afiladas y coma pasto","Que no tenga colmillos","Que tenga pezuña hendida y que rumie"],"correctAnswer":3,"verse":"Levítico 11:3","explanation":"De entre los animales, todo el que tiene pezuña hendida y que es de pezuñas partidas, y que rumia, éste comeréis."},
+  {"id":"h130","level":"HARD","type":"MULTIPLE_CHOICE","category":"Números","question":"¿Cómo llamaron los israelitas al valle donde los espías cortaron un racimo de uvas tan grande que lo cargaron entre dos?","options":["Valle de Ela","Valle de Cedrón","Valle de Escol","Valle de Acor"],"correctAnswer":2,"verse":"Números 13:23","explanation":"Llegaron hasta el arroyo de Escol, y cortaron de allí un sarmiento con un racimo de uvas, el cual trajeron dos en un palo."},
+  {"id":"h131","level":"HARD","type":"MULTIPLE_CHOICE","category":"Números","question":"¿Qué sacerdote y nieto de Aarón traspasó con una lanza a Zimri y a la madianita Cozbi deteniendo con celo santo la mortandad de 24,000 personas en Sitim?","options":["Finees","Itamar","Abiatar","Nadab"],"correctAnswer":0,"verse":"Números 25:7-11","explanation":"Finees hijo de Eleazar... tomó una lanza en su mano... y los traspasó a ambos. Y cesó la mortandad de los hijos de Israel."},
+  {"id":"h132","level":"HARD","type":"MULTIPLE_CHOICE","category":"Deuteronomio","question":"¿Sobre qué dos montes gemelos ordenó Moisés pronunciar solemnemente la Ley al entrar en Canaán?","options":["Nebo y Tabor","Sinaí y Horeb","Carmelo y Hermón","Gerizim y Ebal"],"correctAnswer":3,"verse":"Deuteronomio 11:29; 27:11-13","explanation":"Pondrás la bendición sobre el monte Gerizim, y la maldición sobre el monte Ebal."},
+  {"id":"h133","level":"HARD","type":"MULTIPLE_CHOICE","category":"Josué","question":"¿En qué valle lapidaron a Acán y a su familia tras confesar el robo del anatema de Jericó, llamándose desde entonces \"Valle de la turbación\"?","options":["Valle de Hinom","Valle de Escol","Valle de Acor","Valle de Cedrón"],"correctAnswer":2,"verse":"Josué 7:24-26","explanation":"Tomaron a Acán... y los llevaron al valle de Acor. Y todo Israel los apedreó... Por esto fue llamado aquel lugar Valle de Acor, hasta hoy."},
+  {"id":"h134","level":"HARD","type":"MULTIPLE_CHOICE","category":"Josué","question":"¿Cuántas ciudades de refugio fueron establecidas en Israel para que el homicida involuntario huyera del vengador de la sangre?","options":["12 ciudades","6 ciudades","3 ciudades","48 ciudades"],"correctAnswer":1,"verse":"Josué 20:7-8","explanation":"Señalaron seis ciudades de refugio: Cedes, Siquem, Hebrón, y al otro lado del Jordán: Beser, Ramot y Golán."},
+  {"id":"h135","level":"HARD","type":"MULTIPLE_CHOICE","category":"Jueces","question":"¿Qué rey cananeo de Jerusalén había mutilado los pulgares de manos y pies de 70 reyes antes de sufrir el mismo castigo a manos de Judá?","options":["Adonibezec","Jabin","Agag","Sisac"],"correctAnswer":0,"verse":"Jueces 1:5-7","explanation":"Dijo Adonibezec: Setenta reyes, cortados los pulgares de sus manos y de sus pies, recogían las migajas debajo de mi mesa; como yo hice, así me ha pagado Dios."},
+  {"id":"h136","level":"HARD","type":"MULTIPLE_CHOICE","category":"Jueces","question":"¿Qué profetisa y jueza compuso con Barac un célebre cántico triunfal en Jueces 5 celebrando la derrota de Sísara?","options":["Huldá","Ana","Miriam","Débora"],"correctAnswer":3,"verse":"Jueces 5:1","explanation":"Aquel día cantó Débora con Barac hijo de Abinoam, diciendo: Por haberse puesto al frente los caudillos en Israel... alabad a Jehová."},
+  {"id":"h137","level":"HARD","type":"MULTIPLE_CHOICE","category":"Jueces","question":"¿Cómo se llamaba el padre de Sansón, perteneciente a la tribu de Dan y natural de Zora, a quien se le apareció el Ángel de Jehová?","options":["Jesse","Manoa","Quis","Elcana"],"correctAnswer":1,"verse":"Jueces 13:2","explanation":"Había un hombre de Zora, de la tribu de Dan, el cual se llamaba Manoa; y su mujer era estéril."},
+  {"id":"h138","level":"HARD","type":"MULTIPLE_CHOICE","category":"1 Samuel","question":"¿Quiénes eran los dos hijos corruptos del sacerdote Elí que murieron el mismo día en la batalla de Afec?","options":["Ofni y Finees","Amnón y Absalón","Nadab y Abiú","Jonatán y Abinadab"],"correctAnswer":0,"verse":"1 Samuel 4:11","explanation":"Y el arca de Dios fue tomada, y muertos los dos hijos de Elí, Ofni y Finees."},
+  {"id":"h139","level":"HARD","type":"MULTIPLE_CHOICE","category":"1 Samuel","question":"¿Qué hija menor de Saúl amaba a David y fue dada por esposa tras pagar David una dote de doscientos prepucios de filisteos?","options":["Ahinoam","Abigail","Mical","Merab"],"correctAnswer":2,"verse":"1 Samuel 18:20, 27","explanation":"Mical la otra hija de Saúl amaba a David... y dio David doscientos prepucios de filisteos, y Saúl le dio a su hija Mical por mujer."},
+  {"id":"h140","level":"HARD","type":"MULTIPLE_CHOICE","category":"1 Samuel","question":"¿Qué sacerdote hijo de Ahimelec escapó de la masacre de Nob llevándose consigo el efod sacerdotal hasta unirse con David en el desierto?","options":["Zadoc","Heli","Eliezer","Abiatar"],"correctAnswer":3,"verse":"1 Samuel 22:20; 23:6","explanation":"Uno de los hijos de Ahimelec... llamado Abiatar, escapó, y huyó tras David llevando consigo el efod en su mano."},
+  {"id":"h141","level":"HARD","type":"MULTIPLE_CHOICE","category":"2 Samuel","question":"¿Quién abatió en Gat al gigante filisteo que tenía seis dedos en cada mano y seis en cada pie?","options":["Jonatán sobrino de David","Benaía hijo de Joiada","Abisai hermano de Joab","Elhanán de Belén"],"correctAnswer":0,"verse":"2 Samuel 21:20-21","explanation":"Hubo otra guerra en Gat, donde había un hombre de gran estatura, el cual tenía doce dedos en las manos, y otros doce en los pies, veinticuatro por todos."},
+  {"id":"h142","level":"HARD","type":"MULTIPLE_CHOICE","category":"2 Samuel","question":"¿Quiénes eran los \"Tres Valientes\" principales del ejército de David que rompieron el campamento filisteo para traerle agua del pozo de Belén?","options":["Sadrac, Mesac y Abed-nego","Benaía, Urías e Itai","Joseb-basebet, Eleazar y Sama","Joab, Abisai y Asael"],"correctAnswer":2,"verse":"2 Samuel 23:8-16","explanation":"Estos son los nombres de los valientes que tuvo David: Joseb-basebet el tacmonita... Eleazar hijo de Dodo... y Sama hijo de Age ararita."},
+  {"id":"h143","level":"HARD","type":"MULTIPLE_CHOICE","category":"1 Reyes","question":"¿Qué profeta rasgó su capa nueva en doce pedazos y dio diez a Jeroboam profetizando la división del reino de Salomón?","options":["Iddo","Ahías","Natán","Semaías"],"correctAnswer":1,"verse":"1 Reyes 11:29-31","explanation":"El profeta Ahías silonita... tomó la capa nueva que tenía sobre sí, y la rompió en doce pedazos; y dijo a Jeroboam: Toma para ti diez pedazos."},
+  {"id":"h144","level":"HARD","type":"MULTIPLE_CHOICE","category":"1 Reyes","question":"¿Cómo resultó herido de muerte el rey de Israel en Ramot de Galaad pese a haberse disfrazado?","options":["Un golpe de espada de Jehú","Una caída desde su carroza","Tres lanzas arrojadas por Joab","Una flecha disparada al azar"],"correctAnswer":3,"verse":"1 Reyes 22:34-35","explanation":"Y un hombre disparó su arco a la ventura e hirió al rey de Israel por entre las junturas de la armadura... y a la tarde murió."},
+  {"id":"h145","level":"HARD","type":"MULTIPLE_CHOICE","category":"2 Reyes","question":"¿Qué siervo sirio fue advertido por Eliseo de las crueldades que cometería contra Israel, y ahogó al rey Ben-hadad con un paño mojado para reinar en su lugar?","options":["Sisac","Naamán","Hazael","Tiglath-pileser"],"correctAnswer":2,"verse":"2 Reyes 8:12-15","explanation":"Eliseo lloró diciendo: Porque sé el mal que harás a los hijos de Israel... Al día siguiente tomó Hazael un paño y lo metió en agua, y lo puso sobre el rostro del rey, y murió."},
+  {"id":"h146","level":"HARD","type":"MULTIPLE_CHOICE","category":"2 Reyes","question":"¿Qué milagro ocurrió cuando un cadáver tocó los restos del difunto profeta Eliseo en su sepulcro?","options":["Brotó una fuente de la roca","El muerto revivió al instante","El sepulcro brilló con fuego","Aparecieron dos ángeles allí"],"correctAnswer":1,"verse":"2 Reyes 13:20-21","explanation":"Y tan pronto como tocó el muerto los huesos de Eliseo, revivió, y se levantó sobre sus pies."},
+  {"id":"h147","level":"HARD","type":"MULTIPLE_CHOICE","category":"2 Reyes","question":"¿En qué año cayó el Reino del Norte (Israel/Samaria) bajo el Imperio Asirio de Salmanasar y Sargón II, dispersando a las diez tribus?","options":["En el año 722 a.C.","En el año 605 a.C.","En el año 70 d.C.","En el año 586 a.C."],"correctAnswer":0,"verse":"2 Reyes 17:6","explanation":"En el año 722 a.C. Samaria fue tomada por los asirios y el pueblo de Israel fue llevado cautivo a Asiria."},
+  {"id":"h148","level":"HARD","type":"MULTIPLE_CHOICE","category":"2 Reyes","question":"¿En qué año culminó el asedio y destrucción total de Jerusalén y del Templo de Salomón por las tropas babilónicas de Nabucodonosor?","options":["En el año 333 a.C.","En el año 457 a.C.","En el año 586 a.C.","En el año 722 a.C."],"correctAnswer":2,"verse":"2 Reyes 25:8-10","explanation":"En el año 586 a.C. Nabuzaradán capitán de la guardia quemó el Templo, el palacio real y derribó las murallas de Jerusalén."},
+  {"id":"h149","level":"HARD","type":"MULTIPLE_CHOICE","category":"2 Crónicas","question":"¿Qué sumo sacerdote lideró el derrocamiento de Atalía y coronó al niño Joás en el Templo?","options":["Joiada","Hilcías","Sadoc","Urías"],"correctAnswer":0,"verse":"2 Crónicas 23:1-15","explanation":"El sacerdote Joiada sacó al hijo del rey, y le puso la corona... y aplaudieron y dijeron: ¡Viva el rey! Y mataron a Atalía a espada."},
+  {"id":"h150","level":"HARD","type":"MULTIPLE_CHOICE","category":"Nehemías","question":"¿Qué oficio de gran confianza y cercanía desempeñaba Nehemías en el palacio real de Susa antes de viajar a Jerusalén?","options":["Escriba de impuestos","Comandante de la guardia persa","Arquitecto imperial","Copero del rey Artajerjes"],"correctAnswer":3,"verse":"Nehemías 1:11; 2:1","explanation":"Porque yo servía de copero al rey. Y en el mes de Nisán, en el año veinte del rey Artajerjes, estando ya el vino delante de él, tomé el vino y lo di al rey."},
+  {"id":"h151","level":"HARD","type":"MULTIPLE_CHOICE","category":"Job","question":"¿Quién fue el cuarto y más joven personaje que esperó en silencio hasta que los tres amigos callaron para hablar con pasión de la soberanía de Dios ante Job?","options":["Bildad","Eliú","Elifaz","Zofar"],"correctAnswer":1,"verse":"Job 32:2-4","explanation":"Se encendió en ira Eliú hijo de Baraquel buzita, de la familia de Ram... porque Job se justificaba a sí mismo más bien que a Dios."},
+  {"id":"h152","level":"HARD","type":"MULTIPLE_CHOICE","category":"Salmos Mesiánicos","question":"¿Qué Salmo profético inicia con las palabras que Jesús clamó en la cruz y detalla: \"Horadaron mis manos y mis pies; contar puedo todos mis huesos; repartieron entre sí mis vestidos\"?","options":["Salmo 22","Salmo 110","Salmo 2","Salmo 16"],"correctAnswer":0,"verse":"Salmos 22:1, 16-18","explanation":"El Salmo 22 de David es la profecía más detallada del sufrimiento físico y espiritual de la crucifixión de Cristo mil años antes de ocurrir."},
+  {"id":"h153","level":"HARD","type":"MULTIPLE_CHOICE","category":"Salmos","question":"¿Qué salmo es el cántico de Moisés, considerado el salmo más antiguo del Salterio, que inicia: \"Señor, tú nos has sido refugio de generación en generación\"?","options":["Salmo 100","Salmo 80","Salmo 103","Salmo 90"],"correctAnswer":3,"verse":"Salmos 90:1","explanation":"Oración de Moisés, varón de Dios: \"Señor, tú nos has sido refugio de generación en generación. Antes que naciesen los montes... tú eres Dios.\""},
+  {"id":"h154","level":"HARD","type":"MULTIPLE_CHOICE","category":"Proverbios","question":"¿En qué capítulo de Proverbios se encuentra el célebre poema acróstico que alaba las virtudes, laboriosidad y sabiduría de la \"Mujer Virtuosa\"?","options":["Proverbios 8","Proverbios 31","Proverbios 1","Proverbios 15"],"correctAnswer":1,"verse":"Proverbios 31:10-31","explanation":"Mujer virtuosa, ¿quién la hallará? Porque su estima sobrepasa largamente a la de las piedras preciosas."},
+  {"id":"h155","level":"HARD","type":"MULTIPLE_CHOICE","category":"Profeta Jeremías","question":"¿Cómo se llamaba el fiel secretario y amanuense de Jeremías que escribió el rollo de profecías que el rey Joacim cortó con un cortaplumas y quemó en el fuego?","options":["Safán","Hilcías","Baruc","Gedalías"],"correctAnswer":2,"verse":"Jeremías 36:4, 23","explanation":"Llamó Jeremías a Baruc hijo de Nerías, y escribió Baruc de boca de Jeremías todas las palabras de Jehová en un rollo de libro."},
+  {"id":"h156","level":"HARD","type":"MULTIPLE_CHOICE","category":"Profeta Jeremías","question":"¿Qué funcionario de la casa real rescató a Jeremías sacándolo con sogas de la cisterna de fango?","options":["Ebed-melec","Candace","Potifar","Tirhaca"],"correctAnswer":0,"verse":"Jeremías 38:7-13","explanation":"Oyó Ebed-melec, eunuco que era etíope... y tomó trapos viejos y sogas, y sacaron a Jeremías de la cisterna."},
+  {"id":"h157","level":"HARD","type":"MULTIPLE_CHOICE","category":"Profeta Daniel","question":"¿Cuáles eran los nombres hebreos originales de los tres amigos de Daniel, llamados por los babilonios Sadrac, Mesac y Abed-nego?","options":["Nadab, Abiú e Itamar","Simeón, Leví y Judá","Ananías, Misael y Azarías","Eliezer, Gersón y Coat"],"correctAnswer":2,"verse":"Daniel 1:6-7","explanation":"A Ananías puso Sadrac; a Misael, Mesac; y a Azarías, Abed-nego. El nombre babilonio de Daniel fue Beltsasar."},
+  {"id":"h158","level":"HARD","type":"MULTIPLE_CHOICE","category":"Profeta Ezequiel","question":"Junto a qué río de Babilonia estaba el profeta Ezequiel cuando se abrieron los cielos y vio las visiones de Dios y los cuatro seres vivientes?","options":["Río Nilo","Río Quebar","Río Tigris (Hidekel)","Río Eufrates"],"correctAnswer":1,"verse":"Ezequiel 1:1","explanation":"Aconteció en el año treinta, en el mes cuarto, a los cinco días del mes, que estando yo en medio de los cautivos junto al río Quebar, los cielos se abrieron, y vi visiones de Dios."},
+  {"id":"h159","level":"HARD","type":"MULTIPLE_CHOICE","category":"Los Doce Apóstoles","question":"¿Cuál de los doce apóstoles llevó el sobrenombre de \"el Zelote\" o \"Cananista\"?","options":["Felipe","Tomás","Bartolomé","Simón"],"correctAnswer":3,"verse":"Mateo 10:3-4 / Lucas 6:15-16","explanation":"Simón llamado Zelote, y Judas hermano de Jacobo (Tadeo)."},
+  {"id":"h160","level":"HARD","type":"MULTIPLE_CHOICE","category":"La Última Cena","question":"¿Qué grupo de Salmos (del 113 al 118) solían cantar los judíos en la Pascua y entonó Jesús al salir de la Última Cena?","options":["Los Salmos Imprecatorios","Los Salmos Penitenciales","El Hallel","Los Cánticos Graduales"],"correctAnswer":2,"verse":"Mateo 26:30 / Marcos 14:26","explanation":"Y cuando hubieron cantado el himno (el Hallel pascual), salieron al monte de los Olivos."},
+  {"id":"h161","level":"HARD","type":"MULTIPLE_CHOICE","category":"Hechos de los Apóstoles","question":"¿Qué artesano de Éfeso provocó un tumulto en el teatro gritando \"¡Grande es Diana de los efesios!\"?","options":["Demetrio","Gayo","Alejandro","Tértulo"],"correctAnswer":0,"verse":"Hechos 19:24-28","explanation":"Un platero llamado Demetrio, que hacía de plata templecillos de Diana... llenos de ira gritaron diciendo: ¡Grande es Diana de los efesios!"},
+  {"id":"h162","level":"HARD","type":"MULTIPLE_CHOICE","category":"Hechos de los Apóstoles","question":"¿Qué orador y abogado contrataron los líderes judíos para acusar formalmente al apóstol Pablo ante el gobernador Félix en Cesarea?","options":["Porcio Festo","Gamaliel","Claudio Lisias","Tertulo"],"correctAnswer":3,"verse":"Hechos 24:1-2","explanation":"Descendió el sumo sacerdote Ananías con algunos de los ancianos y un cierto orador llamado Tértulo, y comparecieron ante el gobernador contra Pablo."},
+  {"id":"h163","level":"HARD","type":"MULTIPLE_CHOICE","category":"1 Timoteo","question":"En 1 Timoteo 3, ¿cuáles son los dos oficios eclesiásticos oficiales cuyos estrictos requisitos de carácter y santidad expone Pablo detalladamente?","options":["Apóstoles y profetas","Obispos y diáconos","Levitas y cantores","Escribas y ancianos"],"correctAnswer":1,"verse":"1 Timoteo 3:1-13","explanation":"Pablo describe los requisitos morales y espirituales para los obispos (versículos 1-7) y para los diáconos (versículos 8-13)."},
+  {"id":"h164","level":"HARD","type":"MULTIPLE_CHOICE","category":"Epístola de Judas","question":"En la epístola de Judas versículo 11, ¿cuáles son los tres errores y rebeliones del Antiguo Testamento con que se compara a los apóstatas?","options":["Saúl, Absalón y Goliat","Faraón, Acab y Jezabel","Babel, Sodoma y Gomorra","Caín, Balaam y Coré"],"correctAnswer":3,"verse":"Judas 1:11","explanation":"¡Ay de ellos! porque han seguido el camino de Caín, y se lanzaron por lucro en el error de Balaam, y perecieron en la contradicción de Coré."},
+  {"id":"h165","level":"HARD","type":"MULTIPLE_CHOICE","category":"Apocalipsis","question":"¿Qué nombre lleva escrito en su frente la misteriosa mujer sentada sobre la bestia escarlata en Apocalipsis 17?","options":["Babilonia la Grande","Tiro la Mercadera","Jezabel de Tiatira","Nínive la Soberbia"],"correctAnswer":0,"verse":"Apocalipsis 17:1-6","explanation":"Y en su frente un nombre escrito, un misterio: BABILONIA LA GRANDE, LA MADRE DE LAS RAMERAS... vi a la mujer ebria de la sangre de los santos."},
+  {"id":"h166","level":"HARD","type":"MULTIPLE_CHOICE","category":"Apocalipsis","question":"Según Apocalipsis 21:19, ¿cuál es la primera piedra preciosa que adorna el primer cimiento de la Nueva Jerusalén?","options":["Zafiro","Amatista","Jaspe","Esmeralda"],"correctAnswer":2,"verse":"Apocalipsis 21:19-20","explanation":"Los doce cimientos del muro de la ciudad estaban adornados con toda piedra preciosa: jaspe, zafiro, ágata, esmeralda, ónice, cornalina, crisólito, berilo, topacio, crisopraso, jacinto y amatista."},
+  {"id":"h167","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje bíblico representan estos emojis? 👑 🍞 🍷 🔟 🕊️","options":["Balaam","Melquisedec","Jetro","Abimelec"],"correctAnswer":1,"verse":"Génesis 14:18-20","explanation":"Melquisedec, rey de Salem y sacerdote del Dios Altísimo, sacó pan y vino y recibió el diezmo de Abraham."},
+  {"id":"h168","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué mujer bíblica representan estos emojis? ⛺ 🥛 🔨 🪵 ⚔️","options":["Rahab","Débora","Dalila","Jael"],"correctAnswer":3,"verse":"Jueces 4:18-21","explanation":"Jael dio leche al general Sísara en su tienda y luego lo venció usando una estaca y un mazo."},
+  {"id":"h169","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué profeta de Hechos representan estos emojis? 🧵 🪢 🦶 ✋ 🗣️","options":["Bernabé","Apolos","Ágabo","Silas"],"correctAnswer":2,"verse":"Hechos 21:10-11","explanation":"El profeta Ágabo se ató manos y pies con el cinto de Pablo anunciando su arresto en Jerusalén."},
+  {"id":"h170","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué sacerdote bíblico representan estos emojis? 👴 9️⃣8️⃣ 🪑 🔙 📦","options":["Zadoc","Elí","Samuel","Aarón"],"correctAnswer":1,"verse":"1 Samuel 4:15-18","explanation":"El sacerdote Elí, de 98 años, cayó hacia atrás de su silla al saber que el Arca había sido capturada."},
+  {"id":"h171","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje bíblico representan estos emojis? 🐂 🛒 ✋ ⚡ 💀","options":["Uza","Acán","Nadab","Obed-edom"],"correctAnswer":0,"verse":"2 Samuel 6:6-7","explanation":"Uza extendió su mano para sostener el Arca cuando los bueyes tropezaron y murió al instante."},
+  {"id":"h172","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué monarca representan estos emojis? 👑 🌿 🐂 7️⃣ 🧠","options":["Belsasar","Ciro","Darío","Nabucodonosor"],"correctAnswer":3,"verse":"Daniel 4:31-34","explanation":"Nabucodonosor perdió la razón y comió hierba como los bueyes durante siete tiempos hasta humillarse."},
+  {"id":"h173","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje bíblico representan estos emojis? 🍇 🏡 👑 🪨 🩸","options":["Urías","Barzilai","Nabot","Mefiboset"],"correctAnswer":2,"verse":"1 Reyes 21:1-14","explanation":"Nabot se negó a vender su viña heredada al rey Acab y fue apedreado por intriga de Jezabel."},
+  {"id":"h174","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje bíblico representan estos emojis? 🏃‍♂️ 🥈 🧥 🤥 ❄️","options":["Judas","Giezi","Acán","Naamán"],"correctAnswer":1,"verse":"2 Reyes 5:20-27","explanation":"Giezi corrió tras Naamán para pedir plata y vestidos con engaño, y quedó leproso blanco como nieve."},
+  {"id":"h175","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué reina usurpadora representan estos emojis? 👵 👸 🗡️ 👶 🏛️","options":["Atalía","Jezabel","Vasti","Maaca"],"correctAnswer":0,"verse":"2 Reyes 11:1-3","explanation":"La malvada reina Atalía usurpó el trono de Judá exterminando la descendencia real salvo al niño Joás."},
+  {"id":"h176","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué escriba bíblico representan estos emojis? 📜 ✍️ 🔪 🔥 👑","options":["Esdras","Baruc","Hilcías","Safán"],"correctAnswer":1,"verse":"Jeremías 36:4-23","explanation":"Baruc fue el secretario fiel de Jeremías cuyo rollo escrito fue cortado y quemado por el rey Joacim."},
+  {"id":"h177","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje bíblico representan estos emojis? 🕳️ 🪢 👕 🇪🇹 🙏","options":["Felipe","Candace","Potifar","Ebed-melec"],"correctAnswer":3,"verse":"Jeremías 38:7-13","explanation":"El etíope Ebed-melec rescató a Jeremías de la cisterna de fango bajando sogas y trapos viejos."},
+  {"id":"h178","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué rey de Judá representan estos emojis? 👑 💨 👃 🤒 🏛️","options":["Uzías","Roboam","Manasés","Acaz"],"correctAnswer":0,"verse":"2 Crónicas 26:16-19","explanation":"El rey Uzías quiso quemar incienso usurpando el sacerdocio y fue herido de lepra en la frente."},
+  {"id":"h179","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué joven de Hechos representan estos emojis? 🚪 🏃‍♀️ 😊 🔓 🗣️","options":["María","Tabita","Rode","Lidia"],"correctAnswer":2,"verse":"Hechos 12:13-15","explanation":"La muchacha Rode escuchó la voz de Pedro a la puerta tras su liberación y corrió a avisar sin abrirle."},
+  {"id":"h180","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje de Hechos representan estos emojis? 🥈 🏛️ 🗣️ 🎭 😡","options":["Demetrio","Gayo","Tertulo","Alejandro"],"correctAnswer":0,"verse":"Hechos 19:24-28","explanation":"El platero Demetrio alborotó el teatro de Éfeso defendiendo su negocio de templecillos de plata de Diana."},
+  {"id":"h181","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje de Hechos representan estos emojis? 🪄 🕶️ 🇨🇾 🗣️ ✋","options":["Esceva","Elimas","Simón el Mago","Balaam"],"correctAnswer":1,"verse":"Hechos 13:6-11","explanation":"El mago Elimas (Barjesús) resistió a Pablo en Chipre y quedó temporalmente ciego."},
+  {"id":"h182","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué mujeres creyentes representan estos emojis? 👵 👩 📖 👶 ✉️","options":["Elisabet y María","Sara y Rebeca","Marta y María","Loida y Eunice"],"correctAnswer":3,"verse":"2 Timoteo 1:5","explanation":"Loida y Eunice eran la abuela y la madre creyentes que formaron la fe genuina de Timoteo."},
+  {"id":"h183","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje del Nuevo Testamento representan estos emojis? ⛓️ 🏃‍♂️ ✉️ 🔄 ❤️","options":["Epafrodito","Demas","Onésimo","Tito"],"correctAnswer":2,"verse":"Filemón 1:10-16","explanation":"Onésimo huyó de su amo Filemón, se convirtió con Pablo en prisión y volvió como hermano amado."},
+  {"id":"h184","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué patriarca representan estos emojis? 👴 3️⃣6️⃣5️⃣ 🚶‍♂️ ☁️ ✨","options":["Elías","Enoc","Matusalén","Set"],"correctAnswer":1,"verse":"Génesis 5:22-24","explanation":"Enoc caminó con Dios, vivió 365 años y fue traspuesto al cielo sin ver muerte."},
+  {"id":"h185","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué patriarca representan estos emojis? 👴 9️⃣6️⃣9️⃣ 🎂 ⏳ 📜","options":["Noé","Adán","Jared","Matusalén"],"correctAnswer":3,"verse":"Génesis 5:27","explanation":"Matusalén es el hombre más longevo registrado en las Escrituras, con 969 años de vida."},
+  {"id":"h186","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje de Génesis representan estos emojis? 🏹 👑 🗼 🦁 🌍","options":["Faraón","Ciro","Nimrod","Esaú"],"correctAnswer":2,"verse":"Génesis 10:8-10","explanation":"Nimrod fue el poderoso cazador delante de Jehová cuyo reino comenzó en Babel."},
+  {"id":"h187","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje de Josué representan estos emojis? 🧥 🪙 🥈 ⛺ 🪨","options":["Acán","Giezi","Coré","Balaam"],"correctAnswer":0,"verse":"Josué 7:21-25","explanation":"Acán escondió un manto babilónico, plata y un lingote de oro debajo de su tienda en Jericó."},
+  {"id":"h188","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué personaje de Jueces representan estos emojis? 🌳 👑 🪨 👩 💥","options":["Acab","Goliat","Sísara","Abimelec"],"correctAnswer":3,"verse":"Jueces 9:53","explanation":"Mientras sitiaba la torre de Tebes, una mujer lanzó una piedra de molino sobre la cabeza de Abimelec."},
+  {"id":"h189","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué rey de Israel representan estos emojis? 👑 🎭 🏹 🎯 🩸","options":["Acab","Joram","Josías","Saúl"],"correctAnswer":0,"verse":"1 Reyes 22:30-35","explanation":"Aunque se disfrazó en la batalla de Ramot de Galaad, una flecha al azar hirió mortalmente al rey Acab."},
+  {"id":"h190","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué mujer bíblica representan estos emojis? 👩 🏠 🍞 🛢️ 👶","options":["Ana de Ramá","Rut de Moab","La Viuda de Sarepta","La Sunamita"],"correctAnswer":2,"verse":"1 Reyes 17:9-24","explanation":"A la viuda de Sarepta no le faltó harina ni aceite y Elías oró para revivir a su hijo."},
+  {"id":"h191","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué maestro de la Ley representan estos emojis? 🎓 🏛️ 🗣️ ⚖️ ✋","options":["Anás","Gamaliel","Nicodemo","Caifás"],"correctAnswer":1,"verse":"Hechos 5:34-39","explanation":"El respetado maestro de la ley Gamaliel aconsejó al concilio no pelear contra la obra de Dios."},
+  {"id":"h192","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué mujer de Génesis representan estos emojis? 🌴 🏜️ 💧 👁️ 👼","options":["Sara","Rebeca","Raquel","Agar"],"correctAnswer":3,"verse":"Génesis 16 y 21","explanation":"En el desierto Dios abrió los ojos de Agar para ver una fuente de agua y salvar a Ismael."},
+  {"id":"h193","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué mujer de Génesis representan estos emojis? 🐫 🔟 💧 💍 👰","options":["Séfora","Rebeca","Raquel","Lea"],"correctAnswer":1,"verse":"Génesis 24:15-22","explanation":"Rebeca dio de beber al siervo de Abraham y a sus diez camellos antes de ser elegida para Isaac."},
+  {"id":"h194","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué siervo bíblico representan estos emojis? 👂 🗡️ ✋ 🩹 🌙","options":["Malco","Pedro","Simón","Barrabás"],"correctAnswer":0,"verse":"Juan 18:10 / Lucas 22:51","explanation":"Malco, siervo del sumo sacerdote, perdió la oreja derecha por la espada de Pedro y Jesús lo sanó."},
+  {"id":"h195","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué discípulo representan estos emojis? 🌳 👀 🗣️ 🇮🇱 🙇‍♂️","options":["Felipe","Andrés","Natanael","Tomás"],"correctAnswer":2,"verse":"Juan 1:47-49","explanation":"Jesús vio a Natanael debajo de la higuera antes de conocerlo y lo llamó verdadero israelita sin engaño."},
+  {"id":"h196","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Personaje","question":"¿Qué anciano fiel representan estos emojis? 👴 👶 🕊️ 🏛️ 🙌","options":["Elí","Nicodemo","Zacarías","Simeón"],"correctAnswer":3,"verse":"Lucas 2:25-32","explanation":"El anciano Simeón tomó al niño Jesús en sus brazos en el Templo y bendijo a Dios en paz."},
+  {"id":"h197","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué libro profético representan estos emojis? ⛰️ 🦅 ⚔️ 😡 🏔️","options":["Nahúm","Amós","Abdías","Sofonías"],"correctAnswer":2,"verse":"Abdías 1:3-4","explanation":"Abdías es el libro más corto del Antiguo Testamento y profetiza contra Edom que habita en las peñas como águila."},
+  {"id":"h198","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué libro profético representan estos emojis? 🐑 🌳 🧺 ⚖️ 🌊","options":["Amós","Oseas","Joel","Miqueas"],"correctAnswer":0,"verse":"Amós 1, 5 y 8","explanation":"Amós era pastor y recogedor de higos silvestres que vio una canasta de fruta de verano y pidió justicia como río."},
+  {"id":"h199","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué libro profético representan estos emojis? 🏙️ ⚖️ ❤️ 🚶‍♂️ 🌟","options":["Zacarías","Miqueas","Habacuc","Sofonías"],"correctAnswer":1,"verse":"Miqueas 5:2 y 6:8","explanation":"Miqueas profetizó que el Mesías nacería en Belén y resumió el deber humano en justicia, misericordia y humildad."},
+  {"id":"h200","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué libro profético representan estos emojis? 🦁 🏙️ 🌊 💥 ⚔️","options":["Nahúm","Hageo","Abdías","Jonás"],"correctAnswer":0,"verse":"Nahúm 1-3","explanation":"Nahúm anuncia la caída definitiva de la cruel Nínive, descrita como guarida de leones."},
+  {"id":"h201","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué libro profético representan estos emojis? 🗼 ❓ ✍️ 🌿 🦌","options":["Miqueas","Sofonías","Habacuc","Malaquías"],"correctAnswer":2,"verse":"Habacuc 2-3","explanation":"Habacuc veló en su torre por respuesta de Dios y declaró que se alegrará aun sin frutos, con pies como de ciervas."},
+  {"id":"h202","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué libro profético representan estos emojis? 🏚️ 🪵 ⛰️ 🏛️ 💰","options":["Esdras","Hageo","Zacarías","Malaquías"],"correctAnswer":1,"verse":"Hageo 1:4-8","explanation":"Hageo exhortó al pueblo a subir al monte, traer madera y reedificar el Templo en ruinas."},
+  {"id":"h203","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué libro profético representan estos emojis? 🐴 🕯️ 🫒 🐴 🪙","options":["Ezequiel","Daniel","Apocalipsis","Zacarías"],"correctAnswer":3,"verse":"Zacarías 1, 4, 9 y 11","explanation":"Zacarías describe visiones de jinetes, un candelabro con dos olivos, el rey en un asno y las 30 piezas de plata."},
+  {"id":"h204","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué libro profético representan estos emojis? 🎺 🌑 🔥 🎶 💙","options":["Abdías","Sofonías","Nahúm","Joel"],"correctAnswer":1,"verse":"Sofonías 1 y 3","explanation":"Sofonías anuncia el terrible Día de Jehová y luego revela a Dios cantando con júbilo sobre su pueblo."},
+  {"id":"h205","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué libro del Pentateuco representan estos emojis? 📜 ⚖️ 🏛️ 🔁 🏔️","options":["Números","Levítico","Deuteronomio","Éxodo"],"correctAnswer":2,"verse":"Deuteronomio 1-34","explanation":"Deuteronomio significa \"segunda ley\" y recoge los discursos finales de Moisés antes de morir en el monte Nebo."},
+  {"id":"h206","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué carta paulina representan estos emojis? 👑 🌌 ⛓️ 📜 🧠","options":["Gálatas","Filipenses","Efesios","Colosenses"],"correctAnswer":3,"verse":"Colosenses 1-2","explanation":"Colosenses exalta la supremacía cósmica de Cristo frente a filosofías vanas."},
+  {"id":"h207","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué carta pastoral representan estos emojis? 👴 ✍️ 👦 ⛪ 🏃‍♂️","options":["1 Timoteo","2 Timoteo","1 Pedro","2 Tesalonicenses"],"correctAnswer":0,"verse":"1 Timoteo 1-6","explanation":"1 Timoteo contiene los consejos pastorales de Pablo a su joven hijo espiritual sobre el orden en la iglesia."},
+  {"id":"h208","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué carta pastoral representan estos emojis? 🏝️ 👴 ⛪ ⚖️ ⛵","options":["1 Timoteo","Filemón","3 Juan","Tito"],"correctAnswer":3,"verse":"Tito 1:5","explanation":"Pablo escribió a Tito, a quien dejó en la isla de Creta para corregir lo deficiente y nombrar ancianos."},
+  {"id":"h209","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué epístola general representan estos emojis? 🪨 🔥 👑 🐑 🦁","options":["2 Pedro","Santiago","1 Pedro","Judas"],"correctAnswer":2,"verse":"1 Pedro 2 y 5","explanation":"1 Pedro llama a los creyentes piedras vivas y real sacerdocio, y advierte sobre el enemigo cual león rugiente."},
+  {"id":"h210","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué epístola general representan estos emojis? ⏳ 🔥 🌍 🐕 🐷","options":["2 Pedro","1 Pedro","1 Juan","Judas"],"correctAnswer":0,"verse":"2 Pedro 2-3","explanation":"2 Pedro advierte de falsos maestros, recuerda que mil años son como un día y anuncia cielos nuevos."},
+  {"id":"h211","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué epístola general representan estos emojis? 👼 ⚔️ ☁️ 🌊 ⭐","options":["Apocalipsis","Judas","2 Pedro","3 Juan"],"correctAnswer":1,"verse":"Judas 1:9-14","explanation":"Judas menciona la disputa del arcángel Miguel por el cuerpo de Moisés, nubes sin agua y estrellas errantes."},
+  {"id":"h212","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué breve carta representan estos emojis? 👩 👧 ❤️ 🚪 ✉️","options":["3 Juan","1 Juan","2 Juan","Filemón"],"correctAnswer":2,"verse":"2 Juan 1","explanation":"2 Juan está dirigida a la señora elegida y sus hijos, llamando a andar en verdad y amor."},
+  {"id":"h213","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué breve carta representan estos emojis? 🏥 💛 🏠 ✉️ 👨","options":["3 Juan","Filemón","2 Juan","Tito"],"correctAnswer":0,"verse":"3 Juan 1","explanation":"3 Juan está escrita al amado Gayo deseándole salud y prosperidad y elogiando su hospitalidad."},
+  {"id":"h214","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué libro histórico representan estos emojis? 📜 🏛️ 🔙 😭 💍","options":["Hageo","Ester","Nehemías","Esdras"],"correctAnswer":3,"verse":"Esdras 1-10","explanation":"Esdras narra el regreso del exilio, la reedificación del Templo y la reforma espiritual por la Ley."},
+  {"id":"h215","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué Evangelio representan estos emojis? ⚡ 🦁 👣 🌿 ✝️","options":["Mateo","Marcos","Lucas","Juan"],"correctAnswer":1,"verse":"Marcos 1-16","explanation":"Marcos es el Evangelio más breve y veloz, presentando a Jesús como el Siervo en acción inmediata."},
+  {"id":"h216","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Libro Bíblico","question":"¿Qué Evangelio representan estos emojis? 🦅 💡 💧 🍞 🐑","options":["Mateo","Marcos","Lucas","Juan"],"correctAnswer":3,"verse":"Juan 1-10","explanation":"Juan destaca la deidad eterna de Cristo y sus siete declaraciones \"Yo soy\": luz, pan, puerta y pastor."},
+  {"id":"h217","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Visión Profética","question":"¿Qué visión bíblica representan estos emojis? 🥇 🥈 🥉 🦶 🪨","options":["Las Cuatro Bestias del Mar","Los Cuatro Jinetes del Sello","La Estatua de Nabucodonosor","El Valle de los Huesos Secos"],"correctAnswer":2,"verse":"Daniel 2:31-35","explanation":"La estatua de oro, plata, bronce y hierro con barro fue desmenuzada por una piedra no cortada con mano."},
+  {"id":"h218","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Visión Profética","question":"¿Qué visión bíblica representan estos emojis? 🦁 🐻 🐆 👹 ☁️","options":["Los Siete Sellos del Libro","Las Cuatro Bestias de Daniel","Las Diez Plagas de Egipto","El Gran Lienzo de Pedro"],"correctAnswer":1,"verse":"Daniel 7:3-14","explanation":"Daniel vio cuatro bestias que subían del mar antes del reino eterno del Hijo del Hombre."},
+  {"id":"h219","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Visión Profética","question":"¿Qué escena de Apocalipsis representan estos emojis? 🐎 🤍 ❤️ 🖤 💛","options":["Los Cuatro Jinetes","Las Siete Copas","Los Siete Truenos","Las Siete Trompetas"],"correctAnswer":0,"verse":"Apocalipsis 6:1-8","explanation":"Al abrir los primeros cuatro sellos salen los caballos blanco, bermejo, negro y amarillo."},
+  {"id":"h220","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Visión Profética","question":"¿Qué escena de Apocalipsis representan estos emojis? 🤰 ☀️ 🌙 ⭐ 🐉","options":["La Gran Babilonia","La Mujer y el Dragón","Las Siete Iglesias","La Esposa del Cordero"],"correctAnswer":1,"verse":"Apocalipsis 12:1-5","explanation":"Una mujer vestida del sol con la luna bajo sus pies y doce estrellas enfrenta al gran dragón."},
+  {"id":"h221","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Visión Profética","question":"¿Qué lugar de Apocalipsis representan estos emojis? 💎 1️⃣2️⃣ 🌊 🌳 🚫","options":["El Templo de Ezequiel","El Huerto del Edén","La Isla de Patmos","La Nueva Jerusalén"],"correctAnswer":3,"verse":"Apocalipsis 21-22","explanation":"La Nueva Jerusalén tiene doce puertas de perla, río de agua de vida, árbol de vida y no hay noche."},
+  {"id":"h222","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Objeto","question":"¿Qué conjunto sagrado representan estos emojis? 🏺 🍞 🌿 📜 📦","options":["Contenido del Arca","La Mesa de los Panes","El Pectoral Sagrado","El Altar de Bronce"],"correctAnswer":0,"verse":"Hebreos 9:4","explanation":"Dentro del Arca estaban la urna de oro con maná, la vara de Aarón que floreció y las tablas del pacto."},
+  {"id":"h223","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Objeto","question":"¿Qué mueble del Tabernáculo representan estos emojis? 🕯️ 7️⃣ 🌼 🫒 ✨","options":["La Fuente de Bronce","El Efod Sacerdotal","El Candelabro de Oro","El Altar del Incienso"],"correctAnswer":2,"verse":"Éxodo 25:31-37","explanation":"La Menorá de oro puro tenía siete brazos labrados con copas en forma de flor de almendro."},
+  {"id":"h224","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Objeto","question":"¿Qué prenda sacerdotal representan estos emojis? 💎 1️⃣2️⃣ 👕 ✨ ⚖️","options":["El Pectoral del Juicio","La Mitra Sagrada","La Túnica de José","El Manto de Elías"],"correctAnswer":0,"verse":"Éxodo 28:15-21","explanation":"El pectoral del sumo sacerdote llevaba doce piedras preciosas con los nombres de las doce tribus."},
+  {"id":"h225","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Historia","question":"¿Qué episodio bíblico representan estos emojis? ☀️ 🌙 ✋ ⚔️ ⏳","options":["Las Tinieblas en Egipto","El Reloj de Acaz","El Sol Detenido en Gabaón","La Caída de Jericó"],"correctAnswer":2,"verse":"Josué 10:12-14","explanation":"Josué oró a Jehová y el sol y la luna se detuvieron casi un día entero en el valle de Ajalón."},
+  {"id":"h226","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Historia","question":"¿Qué episodio bíblico representan estos emojis? 🎵 🎺 ⚔️ 🏜️ 🏆","options":["David contra Goliat","La Victoria de Josafat","Gedeón contra Madián","La Batalla de Jericó"],"correctAnswer":1,"verse":"2 Crónicas 20:21-22","explanation":"Josafat puso cantores alabando a Dios delante del ejército y el Señor derrotó a sus enemigos."},
+  {"id":"h227","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Historia","question":"¿Qué milagro del Antiguo Testamento representan estos emojis? 🪦 🦴 🏃‍♂️ 💥 🧍‍♂️","options":["La Resurrección de Lázaro","La Hija de Jairo","El Valle de Huesos Secos","Huesos del Profeta Eliseo"],"correctAnswer":3,"verse":"2 Reyes 13:20-21","explanation":"Al tocar los huesos del difunto profeta Eliseo en su sepulcro, el cadáver revivió y se puso en pie."},
+  {"id":"h228","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Historia","question":"¿Qué episodio bíblico representan estos emojis? 🏺 🧱 🌎 🕳️ 💥","options":["La Rebelión de Coré","La Caída de Jericó","Sodoma y Gomorra","El Terremoto de Filipos"],"correctAnswer":0,"verse":"Números 16:31-33","explanation":"La tierra abrió su boca y tragó vivos a Coré, Datán y Abiram por rebelarse contra Moisés y Aarón."},
+  {"id":"h229","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Historia","question":"¿Qué milagro representan estos emojis? 🌿 🌰 🦯 1️⃣2️⃣ 🌸","options":["La Higuera Maldecida","La Zarza Ardiente","La Vara de Aarón","El Vellón de Gedeón"],"correctAnswer":2,"verse":"Números 17:8","explanation":"De las doce varas de las tribus, solo la de Aarón reverdeció, echó flores y produjo almendras."},
+  {"id":"h230","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Historia","question":"¿Qué episodio de Jueces representan estos emojis? 🗣️ 🌊 ⚔️ 4️⃣2️⃣0️⃣0️⃣0️⃣ ❌","options":["El Día de Pentecostés","La Contraseña Shibólet","El Cruce del Jordán","La Torre de Babel"],"correctAnswer":1,"verse":"Jueces 12:5-6","explanation":"Los de Galaad probaron a los efraimitas en los vados del Jordán pidiéndoles pronunciar \"Shibólet\"."},
+  {"id":"h231","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Historia","question":"¿Qué episodio de Jueces representan estos emojis? 🦊 3️⃣0️⃣0️⃣ 🔥 🌾 🫒","options":["Los 300 de Gedeón","Las Plagas de Egipto","El Fuego del Carmelo","Las Zorras de Sansón"],"correctAnswer":3,"verse":"Jueces 15:4-5","explanation":"Sansón ató teas encendidas a las colas de trescientas zorras y quemó los trigales y olivares filisteos."},
+  {"id":"h232","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Historia","question":"¿Qué episodio bíblico representan estos emojis? 📦 🏛️ 🗿 💥 🐀","options":["El Becerro de Oro","El Arca ante Dagón","La Toma de Jericó","La Limpieza del Templo"],"correctAnswer":1,"verse":"1 Samuel 5:3-6","explanation":"El ídolo Dagón cayó roto ante el Arca del Pacto y los filisteos sufrieron plagas y tumores."},
+  {"id":"h233","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Historia","question":"¿Qué episodio bíblico representan estos emojis? 👑 💧 ⚔️ 3️⃣ 🫗","options":["La Roca en Horeb","Las Bodas de Caná","El Pozo de Jacob","El Agua de Belén"],"correctAnswer":3,"verse":"2 Samuel 23:15-17","explanation":"Tres valientes arriesgaron su vida por agua de Belén para David, y él la derramó como ofrenda a Dios."},
+  {"id":"h234","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Historia","question":"¿Qué episodio bíblico representan estos emojis? 🧥 ✂️ 1️⃣2️⃣ ➡️ 🔟","options":["La Capa de Ahías","El Manto de Saúl","El Manto de Elías","La Túnica de José"],"correctAnswer":0,"verse":"1 Reyes 11:29-31","explanation":"El profeta Ahías rasgó su capa nueva en doce pedazos y dio diez a Jeroboam anunciando la división del reino."},
+  {"id":"h235","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Historia","question":"¿Qué episodio bíblico representan estos emojis? 🐻 2️⃣ 👦 👴 ⛰️","options":["Daniel en el Foso","Sansón y el León","Eliseo en Betel","David y el Oso"],"correctAnswer":2,"verse":"2 Reyes 2:23-24","explanation":"Dos osas salieron del bosque tras la burla de los muchachos contra el profeta Eliseo subiendo a Betel."},
+  {"id":"h236","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Lugar Bíblico","question":"¿Qué lugar bíblico representan estos emojis? 🏝️ 👴 ✍️ 👁️ 🎺","options":["Malta","Patmos","Creta","Chipre"],"correctAnswer":1,"verse":"Apocalipsis 1:9","explanation":"El apóstol Juan estuvo desterrado en la isla de Patmos, donde recibió las revelaciones del Apocalipsis."},
+  {"id":"h237","level":"HARD","type":"EMOJI_GUESS","category":"Emojis: Visión Profética","question":"¿A qué iglesia de Apocalipsis representan estos emojis? 🚪 ✊ 🌡️ 🍽️ ⛪","options":["Esmirna","Éfeso","Laodicea","Filadelfia"],"correctAnswer":2,"verse":"Apocalipsis 3:15-20","explanation":"A la iglesia tibia de Laodicea le dijo el Señor: \"He aquí, yo estoy a la puerta y llamo; si alguno oye mi voz y abre la puerta, entraré a él y cenaré con él\"."},
+  {"id":"h238","level":"HARD","type":"MULTIPLE_CHOICE","category":"Génesis","question":"¿Cuántos años vivió Adán en total según la genealogía de Génesis 5?","options":["930 años","840 años","777 años","969 años"],"correctAnswer":0,"verse":"Génesis 5:5","explanation":"Todos los días que vivió Adán fueron novecientos treinta años, y murió."},
+  {"id":"h239","level":"HARD","type":"MULTIPLE_CHOICE","category":"Génesis","question":"¿Qué descendiente de Caín fue padre de todos los que tocan arpa y flauta?","options":["Enoc","Jabal","Tubal-caín","Jubal"],"correctAnswer":3,"verse":"Génesis 4:21","explanation":"Jubal es mencionado en Génesis como el primer músico, padre de los que tocan arpa y flauta."},
+  {"id":"h240","level":"HARD","type":"MULTIPLE_CHOICE","category":"Génesis","question":"¿Qué descendiente de Lamec fue artífice de toda obra de bronce y de hierro en Génesis 4?","options":["Jubal","Jabal","Tubal-caín","Mehujael"],"correctAnswer":2,"verse":"Génesis 4:22","explanation":"Tubal-caín, hijo de Lamec y Zila, fue el pionero en la forja de metales en Génesis."},
+  {"id":"h241","level":"HARD","type":"MULTIPLE_CHOICE","category":"Génesis","question":"¿Cómo se llamaba la esposa con quien Abraham se casó después de la muerte de Sara?","options":["Cetura","Rebeca","Milca","Agar"],"correctAnswer":0,"verse":"Génesis 25:1","explanation":"Tras la muerte de Sara, Abraham tomó otra mujer llamada Cetura, con quien tuvo seis hijos."},
+  {"id":"h242","level":"HARD","type":"MULTIPLE_CHOICE","category":"Génesis","question":"¿Cómo se llamaba el padre de Abraham que salió con él de Ur y murió en Harán?","options":["Peleg","Taré","Serug","Nacor"],"correctAnswer":1,"verse":"Génesis 11:31-32","explanation":"Taré tomó a Abram, Sarai y Lot para ir a Canaán, pero se detuvo en Harán donde murió a los 205 años."},
+  {"id":"h243","level":"HARD","type":"MULTIPLE_CHOICE","category":"Génesis","question":"¿Cuál de los doce hijos de Jacob fue dejado preso en Egipto como garantía hasta que trajeran a Benjamín?","options":["Leví","Rubén","Judá","Simeón"],"correctAnswer":3,"verse":"Génesis 42:24","explanation":"José tomó a Simeón de entre sus hermanos y lo aprisionó a la vista de ellos mientras regresaban por Benjamín."},
+  {"id":"h244","level":"HARD","type":"MULTIPLE_CHOICE","category":"Pentateuco","question":"¿Qué artesano de la tribu de Judá llenó Dios de su Espíritu para dirigir el diseño del Tabernáculo?","options":["Nahasón","Bezaleel","Itamar","Hur"],"correctAnswer":1,"verse":"Éxodo 31:2-5","explanation":"Dios llamó a Bezaleel hijo de Uri y puso junto a él a Aholiab para labrar oro, plata, bronce y madera."},
+  {"id":"h245","level":"HARD","type":"MULTIPLE_CHOICE","category":"Pentateuco","question":"¿Cuántos bueyes y cuántas aves ofrecían los sacerdotes cada mañana y tarde en el holocausto continuo?","options":["Dos corderos de un año","Cuatro tórtolas diarias","Siete machos cabríos","Dos becerros al día"],"correctAnswer":0,"verse":"Éxodo 29:38-39","explanation":"Cada día se ofrecían dos corderos de un año sin defecto: uno por la mañana y otro al caer la tarde."},
+  {"id":"h246","level":"HARD","type":"MULTIPLE_CHOICE","category":"Pentateuco","question":"¿En qué monte murió el sumo sacerdote Aarón, siendo despojado de sus vestiduras para Eleazar?","options":["Monte Tabor","Monte Nebo","Monte Hor","Monte Sinaí"],"correctAnswer":2,"verse":"Números 20:25-28","explanation":"Por orden divina, Moisés subió con Aarón y Eleazar al monte Hor, donde Aarón murió y Eleazar le sucedió."},
+  {"id":"h247","level":"HARD","type":"MULTIPLE_CHOICE","category":"Pentateuco","question":"¿Qué rey de Basán tenía una enorme cama de hierro de nueve codos de largo en Rabá?","options":["Sehón","Balac","Jabin","Og"],"correctAnswer":3,"verse":"Deuteronomio 3:11","explanation":"Og rey de Basán era el último sobreviviente de los gigantes refaitas, famoso por su cama de hierro."},
+  {"id":"h248","level":"HARD","type":"MULTIPLE_CHOICE","category":"Josué y Jueces","question":"¿Cómo se llamaba la hija de Caleb que fue dada en matrimonio a Otoniel tras conquistar Quiriat-sefer?","options":["Tamar","Acsa","Noa","Milca"],"correctAnswer":1,"verse":"Josué 15:16-17","explanation":"Otoniel conquistó la ciudad, se casó con Acsa y ella pidió a Caleb fuentes de aguas de arriba y de abajo."},
+  {"id":"h249","level":"HARD","type":"MULTIPLE_CHOICE","category":"Josué y Jueces","question":"¿Quién fue el primer juez levantado por Dios para librar a Israel después de la muerte de Josué?","options":["Gedeón","Aod","Otoniel","Barac"],"correctAnswer":2,"verse":"Jueces 3:9","explanation":"Otoniel, sobrino de Caleb, juzgó a Israel y venció a Cusan-risataim rey de Mesopotamia."},
+  {"id":"h250","level":"HARD","type":"MULTIPLE_CHOICE","category":"Josué y Jueces","question":"¿Cuál era el otro nombre que recibió Gedeón después de derribar el altar de Baal de su padre?","options":["Zuriel","Galaad","Abimelec","Jerobaal"],"correctAnswer":3,"verse":"Jueces 6:32","explanation":"Lo llamaron Jerobaal, que significa \"Contienda contra él Baal\", por haber derribado su altar."},
+  {"id":"h251","level":"HARD","type":"MULTIPLE_CHOICE","category":"Josué y Jueces","question":"¿Qué hijo menor de Gedeón escapó de la matanza de Abimelec y pronunció la fábula de los árboles?","options":["Jotam","Fura","Gaal","Zebul"],"correctAnswer":0,"verse":"Jueces 9:5-15","explanation":"Jotam se escondió para sobrevivir y desde el monte Gerizim expuso la parábola del olivo, la higuera, la vid y la zarza."},
+  {"id":"h252","level":"HARD","type":"MULTIPLE_CHOICE","category":"Josué y Jueces","question":"¿Cómo se llamaban los padres del juez Sansón en Zora, de la tribu de Dan?","options":["Elcana y Ana","Joás y su mujer","Cis y su mujer","Manoa y su mujer"],"correctAnswer":3,"verse":"Jueces 13:2","explanation":"El Ángel de Jehová anunció el nacimiento de Sansón a la esposa estéril de Manoa, ordenando voto nazareo."},
+  {"id":"h253","level":"HARD","type":"MULTIPLE_CHOICE","category":"Rut y Samuel","question":"¿Cómo se llamaba la otra nuera moabita de Noemí que decidió regresar a su pueblo?","options":["Tamar","Mara","Orfa","Milca"],"correctAnswer":2,"verse":"Rut 1:14","explanation":"Orfa besó a su suegra y volvió a Moab, mientras Rut se quedó firmemente junto a Noemí."},
+  {"id":"h254","level":"HARD","type":"MULTIPLE_CHOICE","category":"Rut y Samuel","question":"¿Qué nuevo nombre pidió Noemí adoptar al volver a Belén, el cual significa \"amargura\"?","options":["Mara","Penina","Sela","Lo-ruhama"],"correctAnswer":0,"verse":"Rut 1:20","explanation":"Afligida por perder a su esposo y sus dos hijos, dijo: \"No me llaméis Noemí, sino llamadme Mara\"."},
+  {"id":"h255","level":"HARD","type":"MULTIPLE_CHOICE","category":"Rut y Samuel","question":"¿Qué nombre puso la esposa de Finees a su recién nacido al saber que el Arca fue capturada?","options":["Samuel","Icabod","Mefiboset","Abiatar"],"correctAnswer":1,"verse":"1 Samuel 4:21","explanation":"Icabod significa \"Sin gloria\" o \"Traspasada es la gloria de Israel\", por la captura del Arca de Dios."},
+  {"id":"h256","level":"HARD","type":"MULTIPLE_CHOICE","category":"Rut y Samuel","question":"¿Cómo se llamaban los dos hijos corruptos del profeta Samuel que pervirtieron el derecho en Beerseba?","options":["Joel y Abías","Jonatán y Malquisúa","Amnón y Quileab","Ofni y Finees"],"correctAnswer":0,"verse":"1 Samuel 8:2-3","explanation":"Joel y Abías aceptaban sobornos, lo que el pueblo usó como pretexto para pedir un rey."},
+  {"id":"h257","level":"HARD","type":"MULTIPLE_CHOICE","category":"Samuel y Reyes","question":"¿Qué hija menor del rey Saúl se casó con David y lo ayudó a escapar por una ventana?","options":["Merab","Mical","Rizpa","Maaca"],"correctAnswer":1,"verse":"1 Samuel 19:11-12","explanation":"Mical descolgó a David por una ventana y puso una estatua en la cama para engañar a los mensajeros de Saúl."},
+  {"id":"h258","level":"HARD","type":"MULTIPLE_CHOICE","category":"Samuel y Reyes","question":"¿Qué sacerdote sobrevivió a la matanza de Nob y huyó llevando el efod hacia David?","options":["Ahimelec","Ahitob","Sadoc","Abiatar"],"correctAnswer":3,"verse":"1 Samuel 22:20","explanation":"Abiatar, hijo de Ahimelec, escapó de Doeg y sirvió como sacerdote junto a David durante años."},
+  {"id":"h259","level":"HARD","type":"MULTIPLE_CHOICE","category":"Samuel y Reyes","question":"¿Qué anciano galaadita de 80 años proveyó alimentos y camas a David cuando huía de Absalón?","options":["Simei","Siba","Barzilai","Mefiboset"],"correctAnswer":2,"verse":"2 Samuel 19:32","explanation":"Barzilai de Rogelim sostuvo generosamente al rey David en Mahanaim durante la rebelión de Absalón."},
+  {"id":"h260","level":"HARD","type":"MULTIPLE_CHOICE","category":"Samuel y Reyes","question":"¿Qué guerrero valiente de David descendió a un foso en un día nevado y mató a un león?","options":["Benaía","Urías","Joab","Abisai"],"correctAnswer":0,"verse":"2 Samuel 23:20","explanation":"Benaía hijo de Joiada también venció a un gigante egipcio con su propia lanza y fue jefe de la guardia."},
+  {"id":"h261","level":"HARD","type":"MULTIPLE_CHOICE","category":"Samuel y Reyes","question":"¿Qué otro nombre cariñoso mandó poner Dios al niño Salomón por medio del profeta Natán?","options":["Adonías","Emanuel","Lemuel","Jedidías"],"correctAnswer":3,"verse":"2 Samuel 12:25","explanation":"Jedidías significa \"Amado de Jehová\", señal del favor divino sobre Salomón desde su nacimiento."},
+  {"id":"h262","level":"HARD","type":"MULTIPLE_CHOICE","category":"Samuel y Reyes","question":"¿Qué rey fenicio de Tiro envió madera de cedro, ciprés y artesanos a Salomón para el Templo?","options":["Sisac","Rezin","Hiram","Ben-hadad"],"correctAnswer":2,"verse":"1 Reyes 5:1-10","explanation":"Hiram había sido amigo fiel de David y colaboró con Salomón suministrando cedros del Líbano."},
+  {"id":"h263","level":"HARD","type":"MULTIPLE_CHOICE","category":"Samuel y Reyes","question":"¿En qué dos ciudades colocó el rey Jeroboam dos becerros de oro para apartar a Israel de Jerusalén?","options":["Siquem y Samaria","Bet-el y Dan","Jericó y Hebrón","Megido y Jezreel"],"correctAnswer":1,"verse":"1 Reyes 12:28-29","explanation":"Jeroboam erigió altares idolátricos en Bet-el al sur y en Dan al norte para evitar que subieran al Templo."},
+  {"id":"h264","level":"HARD","type":"MULTIPLE_CHOICE","category":"Samuel y Reyes","question":"¿Qué valiente profeta anunció la derrota de Acab en Ramot de Galaad frente a 400 profetas falsos?","options":["Abdías","Natán","Elías","Micaías"],"correctAnswer":3,"verse":"1 Reyes 22:8-17","explanation":"Micaías hijo de Imla se negó a adular al rey Acab y profetizó exactamente la verdad de Dios."},
+  {"id":"h265","level":"HARD","type":"MULTIPLE_CHOICE","category":"Samuel y Reyes","question":"¿Qué fiel mayordomo de la casa de Acab escondió a cien profetas de Jehová en dos cuevas?","options":["Nabot","Abdías","Giezi","Jehú"],"correctAnswer":1,"verse":"1 Reyes 18:3-4","explanation":"Abdías temía en gran manera a Jehová y alimentó con pan y agua a cien profetas escondidos de Jezabel."},
+  {"id":"h266","level":"HARD","type":"MULTIPLE_CHOICE","category":"Samuel y Reyes","question":"¿Qué rey de Asiria sitió Jerusalén en tiempos de Ezequías y perdió 185,000 soldados en una noche?","options":["Tiglat-pileser","Asurbanipal","Senaquerib","Salmanasar"],"correctAnswer":2,"verse":"2 Reyes 19:35","explanation":"Un ángel de Jehová hirió el campamento asirio en respuesta a la oración de Ezequías e Isaías."},
+  {"id":"h267","level":"HARD","type":"MULTIPLE_CHOICE","category":"Samuel y Reyes","question":"¿Qué malvado rey de Judá gobernó 55 años, el reinado más largo, y finalmente se arrepintió en prisión?","options":["Manasés","Acaz","Joacim","Amasa"],"correctAnswer":0,"verse":"2 Crónicas 33:1, 12-13","explanation":"Manasés promovió la idolatría durante décadas, pero cautivo en Babilonia se humilló y Dios oyó su oración."},
+  {"id":"h268","level":"HARD","type":"MULTIPLE_CHOICE","category":"Samuel y Reyes","question":"¿En qué batalla murió el piadoso rey Josías al salir disfrazado contra el faraón Necao de Egipto?","options":["Batalla de Afec","Batalla de Meguido","Batalla de Gilboa","Batalla de Carquemis"],"correctAnswer":1,"verse":"2 Crónicas 35:22-24","explanation":"Josías fue gravemente herido por arqueros en el valle de Meguido y Jeremías compuso endechas por él."},
+  {"id":"h269","level":"HARD","type":"MULTIPLE_CHOICE","category":"Exilio y Retorno","question":"¿Qué gobernador de la línea de David encabezó junto al sacerdote Josué la reconstrucción del Segundo Templo?","options":["Nehemías","Mardoqueo","Zorobabel","Esdras"],"correctAnswer":2,"verse":"Esdras 3:2 / Hageo 1:1","explanation":"Zorobabel hijo de Salatiel guió el primer retorno desde Babilonia y echó los cimientos del Templo."},
+  {"id":"h270","level":"HARD","type":"MULTIPLE_CHOICE","category":"Exilio y Retorno","question":"¿Quién era el sacerdote y escriba experto en la Ley que regresó bajo Artajerjes para enseñar en Jerusalén?","options":["Esdras","Hageo","Hilcías","Zacarías"],"correctAnswer":0,"verse":"Esdras 7:6, 10","explanation":"Esdras había preparado su corazón para inquirir, cumplir y enseñar la ley de Jehová en Israel."},
+  {"id":"h271","level":"HARD","type":"MULTIPLE_CHOICE","category":"Exilio y Retorno","question":"¿Qué reina persa fue destituida por el rey Asuero antes de que Ester fuera elegida reina?","options":["Candace","Zeres","Atalía","Vasti"],"correctAnswer":3,"verse":"Ester 1:12, 19","explanation":"La reina Vasti se negó a comparecer en el banquete real de Susa, abriendo paso a la elección de Ester."},
+  {"id":"h272","level":"HARD","type":"MULTIPLE_CHOICE","category":"Libros Poéticos","question":"¿Qué rey desconocido por fuera de Proverbios recibió de su madre los consejos del capítulo 31?","options":["Lemuel","Salomón","Ezequías","Agur"],"correctAnswer":0,"verse":"Proverbios 31:1","explanation":"Proverbios 31 comienza con \"Palabras del rey Lemuel; la profecía con que le enseñó su madre\"."},
+  {"id":"h273","level":"HARD","type":"MULTIPLE_CHOICE","category":"Libros Poéticos","question":"¿Qué sabio compuso el capítulo 30 de Proverbios pidiendo a Dios: \"No me des pobreza ni riquezas\"?","options":["Asaf","Hemán","Agur","Etán"],"correctAnswer":2,"verse":"Proverbios 30:1, 8","explanation":"Agur hijo de Jaqué reflexionó sobre la sabiduría de Dios en la creación y la moderación en la vida."},
+  {"id":"h274","level":"HARD","type":"MULTIPLE_CHOICE","category":"Libros Poéticos","question":"¿Qué nombre hebreo recibe la criatura marina formidable descrita en Job 41?","options":["Rahab","Behemot","Quimera","Leviatán"],"correctAnswer":3,"verse":"Job 41:1","explanation":"Dios señaló al imponente Leviatán y a Behemot para mostrar a Job la grandeza de su poder creador."},
+  {"id":"h275","level":"HARD","type":"MULTIPLE_CHOICE","category":"Profetas","question":"¿Qué nombre profético compuesto le dio Dios al segundo hijo de Isaías en Isaías 8:3?","options":["Cusan-risataim","Maher-salal-hasbaz","Tiglat-pileser","Jehová-tsidkenu"],"correctAnswer":1,"verse":"Isaías 8:3","explanation":"Maher-salal-hasbaz significa \"El despojo se apresura, la presa se precipita\", anunciando el avance asirio."},
+  {"id":"h276","level":"HARD","type":"MULTIPLE_CHOICE","category":"Profetas","question":"¿Qué nombre babilónico se les asignó respectivamente a Daniel, Ananías, Misael y Azarías?","options":["Ciro, Darío, Asuero y Artajerjes","Merodac, Evil, Nabopolasar y Nergal","Beltsasar, Sadrac, Mesac y Abed-nego","Nabucodonosor, Belsasar, Arioc y Aspenaz"],"correctAnswer":2,"verse":"Daniel 1:7","explanation":"El jefe de los eunucos cambió sus nombres hebreos (que honraban a Dios) por nombres caldeos."},
+  {"id":"h277","level":"HARD","type":"MULTIPLE_CHOICE","category":"Profetas","question":"¿Qué cuatro profetas bíblicos profetizaron específicamente durante o después del exilio babilónico?","options":["Ezequiel, Daniel, Hageo y Zacarías","Isaías, Amós, Oseas y Miqueas","Elías, Eliseo, Jonás y Nahúm","Joel, Abdías, Natán y Gad"],"correctAnswer":0,"verse":"Canon Profético","explanation":"Ezequiel y Daniel ministraron en el exilio; Hageo, Zacarías y Malaquías tras el regreso a Judea."},
+  {"id":"h278","level":"HARD","type":"MULTIPLE_CHOICE","category":"Profetas","question":"¿Qué profeta menor se dedicaba a ser boyero y recogedor de higos silvestres en Tecoa?","options":["Miqueas","Oseas","Joel","Amós"],"correctAnswer":3,"verse":"Amós 7:14","explanation":"Amós aclaró que no era profeta de profesión sino pastor y cultivador de sicómoros llamado directamente por Dios."},
+  {"id":"h279","level":"HARD","type":"MULTIPLE_CHOICE","category":"Profetas","question":"¿Qué profeta menor anunció únicamente juicio contra la nación de Edom en un solo capítulo?","options":["Habacuc","Abdías","Nahúm","Hageo"],"correctAnswer":1,"verse":"Abdías 1:1","explanation":"Abdías tiene solo 21 versículos y condena la soberbia de Edom y su traición contra su hermano Judá."},
+  {"id":"h280","level":"HARD","type":"MULTIPLE_CHOICE","category":"Profetas","question":"¿En qué libro profético aparece la frase citada en Romanos y Gálatas: \"Mas el justo por su fe vivirá\"?","options":["Zacarías","Miqueas","Sofonías","Habacuc"],"correctAnswer":3,"verse":"Habacuc 2:4","explanation":"Habacuc 2:4 es un pilar teológico clave citado tres veces en el Nuevo Testamento (Rom 1:17, Gál 3:11, Heb 10:38)."},
+  {"id":"h281","level":"HARD","type":"MULTIPLE_CHOICE","category":"Profetas","question":"¿Qué dos hijos y una hija de nombres proféticos tuvo Oseas con Gomer?","options":["Efraín, Manasés y Dina","Gersón, Eliezer y Miriam","Jezreel, Lo-ruhama y Lo-ammi","Maher, Sear y Acsa"],"correctAnswer":2,"verse":"Oseas 1:4-9","explanation":"Sus nombres anunciaban juicio temporal sobre Israel, pero Dios prometió restaurarlos como \"Ammi\" (Pueblo mío)."},
+  {"id":"h282","level":"HARD","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿Cuál de los doce apóstoles tenía también el nombre de Natanael según la tradición y los Evangelios?","options":["Bartolomé","Tadeo","Andrés","Felipe"],"correctAnswer":0,"verse":"Juan 1:45 / Mateo 10:3","explanation":"En los sinópticos Felipe aparece emparejado con Bartolomé, mientras Juan lo relaciona directamente con Natanael."},
+  {"id":"h283","level":"HARD","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿Qué nombre hebreo o griego significa \"Gemelo\" y era el sobrenombre del apóstol Tomás?","options":["Boanerges","Dídimo","Cefas","Barsabás"],"correctAnswer":1,"verse":"Juan 11:16 / 20:24","explanation":"Tanto \"Tomás\" (en arameo) como \"Dídimo\" (en griego) significan literalmente \"gemelo\"."},
+  {"id":"h284","level":"HARD","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿En qué pueblo resucitó Jesús al único hijo de una viuda deteniendo el cortejo fúnebre?","options":["Caná","Corazín","Naín","Betania"],"correctAnswer":2,"verse":"Lucas 7:11-15","explanation":"Compadecido de la viuda en la puerta de Naín, Jesús tocó el féretro y devolvió vivo a su hijo."},
+  {"id":"h285","level":"HARD","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿Cómo se llamaba el sumo sacerdote que profetizó sin saberlo que convenía que un hombre muriera por el pueblo?","options":["Caifás","Anás","Joiada","Gamaliel"],"correctAnswer":0,"verse":"Juan 11:49-51","explanation":"Siendo sumo sacerdote aquel año, Caifás expresó una verdad profética sobre la muerte sustitutiva de Cristo."},
+  {"id":"h286","level":"HARD","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿Cómo se llamaba el único discípulo mencionado por nombre entre los dos que iban camino a Emaús?","options":["Simón","Bartimeo","Lázaro","Cleofas"],"correctAnswer":3,"verse":"Lucas 24:18","explanation":"Cleofas conversaba con Jesús resucitado sin reconocerlo hasta que el Señor partió el pan con ellos."},
+  {"id":"h287","level":"HARD","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿Qué palabra aramea dijo Jesús al sanar al hombre sordo y tartamudo en Decápolis, que significa \"Sé abierto\"?","options":["Maranata","Efata","Talita cumi","Corbán"],"correctAnswer":1,"verse":"Marcos 7:34","explanation":"Mirando al cielo y gimiendo, Jesús dijo \"Efata\", y al instante se abrieron sus oídos y se desató su lengua."},
+  {"id":"h288","level":"HARD","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿A qué tres ciudades de Galilea reprendió Jesús severamente por no haberse arrepentido pese a sus milagros?","options":["Corazín, Betsaida y Capernaúm","Jericó, Betania y Emaús","Nazaret, Caná y Naín","Tiberias, Magdala y Gadara"],"correctAnswer":0,"verse":"Mateo 11:21-23","explanation":"Jesús dijo que Tiro, Sidón y Sodoma habrían respondido mejor si hubieran visto aquellas maravillas."},
+  {"id":"h289","level":"HARD","type":"MULTIPLE_CHOICE","category":"Hechos","question":"¿A qué noble personaje dirigió Lucas tanto su Evangelio como el libro de los Hechos?","options":["Cornelio","Gayo","Filemón","Teófilo"],"correctAnswer":3,"verse":"Lucas 1:3 / Hechos 1:1","explanation":"El nombre Teófilo significa \"Amado de Dios\" o \"Amigo de Dios\", destinatario de ambos tomos históricos."},
+  {"id":"h290","level":"HARD","type":"MULTIPLE_CHOICE","category":"Hechos","question":"¿Qué procónsul romano de Chipre creyó en el Señor al ver la ceguera del mago Elimas?","options":["Antonio Félix","Porcio Festo","Sergio Paulo","Galión"],"correctAnswer":2,"verse":"Hechos 13:7, 12","explanation":"Sergio Paulo era varón prudente que deseaba oír la palabra de Dios y quedó maravillado de la doctrina."},
+  {"id":"h291","level":"HARD","type":"MULTIPLE_CHOICE","category":"Hechos","question":"¿Qué nombres de dioses griegos dieron los habitantes de Listra a Bernabé y a Pablo tras sanar a un cojo?","options":["Cronos y Hermes","Júpiter y Mercurio","Apolo y Ares","Poseidón y Hades"],"correctAnswer":1,"verse":"Hechos 14:12","explanation":"Llamaron a Bernabé Júpiter (Zeus) y a Pablo Mercurio (Hermes) porque Pablo llevaba la palabra."},
+  {"id":"h292","level":"HARD","type":"MULTIPLE_CHOICE","category":"Hechos","question":"¿Qué elocuente judío de Alejandría, poderoso en las Escrituras, fue instruido más exactamente por Aquila y Priscila?","options":["Tíquico","Aristobulo","Silas","Apolos"],"correctAnswer":3,"verse":"Hechos 18:24-26","explanation":"Apolos conocía solo el bautismo de Juan hasta que Priscila y Aquila le expusieron con más precisión el camino de Dios."},
+  {"id":"h293","level":"HARD","type":"MULTIPLE_CHOICE","category":"Hechos","question":"¿Qué procónsul de Acaya se negó a juzgar a Pablo en Corinto por tratarse de cuestiones de la ley judía?","options":["Galión","Lisias","Festo","Félix"],"correctAnswer":0,"verse":"Hechos 18:12-16","explanation":"Galión (hermano del filósofo Séneca) expulsó del tribunal a los acusadores judíos de Pablo."},
+  {"id":"h294","level":"HARD","type":"MULTIPLE_CHOICE","category":"Hechos","question":"¿Cómo se llamaba el centurión de la compañía Augusta que trató humanamente a Pablo en su viaje a Roma?","options":["Cornelio","Longino","Julio","Claudio"],"correctAnswer":2,"verse":"Hechos 27:1-3","explanation":"El centurión Julio permitió a Pablo visitar a sus amigos en Sidón e impidió que mataran a los presos en el naufragio."},
+  {"id":"h295","level":"HARD","type":"MULTIPLE_CHOICE","category":"Epístolas","question":"¿Cómo se llamaba el amanuense que escribió físicamente la Epístola a los Romanos al dictado de Pablo?","options":["Sóstenes","Tercio","Lucas","Tíquico"],"correctAnswer":1,"verse":"Romanos 16:22","explanation":"En Romanos 16:22 saluda directamente: \"Yo Tercio, que escribí la epístola, os saludo en el Señor\"."},
+  {"id":"h296","level":"HARD","type":"MULTIPLE_CHOICE","category":"Epístolas","question":"¿Qué diaconisa de la iglesia en Cencrea recomendó Pablo en Romanos 16 y llevó probablemente la carta?","options":["Priscila","Cloe","Lidia","Febe"],"correctAnswer":3,"verse":"Romanos 16:1-2","explanation":"Pablo elogió a Febe porque había ayudado a muchos y a él mismo en su ministerio."},
+  {"id":"h297","level":"HARD","type":"MULTIPLE_CHOICE","category":"Epístolas","question":"¿Qué hermano enviado por la iglesia de Filipos enfermó casi hasta morir por la obra de Cristo?","options":["Tíquico","Epafras","Epafrodito","Arquipo"],"correctAnswer":2,"verse":"Filipenses 2:25-30","explanation":"Epafrodito llevó la ofrenda de los filipenses a Pablo en prisión y arriesgó su vida sirviéndole."},
+  {"id":"h298","level":"HARD","type":"MULTIPLE_CHOICE","category":"Epístolas","question":"¿Qué dos mujeres de la iglesia en Filipos exhortó Pablo a ser de un mismo sentir en el Señor?","options":["Evodia y Síntique","Loida y Eunice","Priscila y Febe","Marta y María"],"correctAnswer":0,"verse":"Filipenses 4:2","explanation":"Ambas habían combatido juntamente con Pablo en el evangelio y él les rogó reconciliarse."},
+  {"id":"h299","level":"HARD","type":"MULTIPLE_CHOICE","category":"Epístolas","question":"¿Qué hombre ambicioso criticó duramente el apóstol Juan en 3 Juan porque le gustaba tener el primer lugar?","options":["Demetrio","Diótrefes","Gayo","Alejandro"],"correctAnswer":1,"verse":"3 Juan 1:9","explanation":"Diótrefes rechazaba a los hermanos visitantes y hablaba palabras malignas contra la autoridad apostólica."},
+  {"id":"h300","level":"HARD","type":"MULTIPLE_CHOICE","category":"Apocalipsis","question":"¿Qué dos iglesias de las siete de Apocalipsis no recibieron absolutamente ningún reproche del Señor?","options":["Esmirna y Filadelfia","Éfeso y Sardis","Laodicea y Éfeso","Pérgamo y Tiatira"],"correctAnswer":0,"verse":"Apocalipsis 2:8-11 / 3:7-13","explanation":"Esmirna (perseguida) y Filadelfia (fiel en poca fuerza) recibieron únicamente palabras de aliento y promesa."},
+  {"id":"h301","level":"HARD","type":"MULTIPLE_CHOICE","category":"Apocalipsis","question":"¿Qué nombre tiene la estrella que cae en la tercera trompeta y vuelve amargas la tercera parte de las aguas?","options":["Armagedón","Abadón","Antipas","Ajenjo"],"correctAnswer":3,"verse":"Apocalipsis 8:10-11","explanation":"Al sonar la tercera trompeta cayó una gran estrella llamada Ajenjo sobre los ríos y las fuentes."},
+  {"id":"h302","level":"HARD","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién respondió a David cuando este propuso edificar una casa a Dios: \"Ve, y haz todo lo que está en tu corazón\"?","options":["Samuel","Natán","Gad","Sadoc"],"correctAnswer":1,"verse":"2 Samuel 7:3","explanation":"Inicialmente Natán aprobó el deseo de David, pero esa misma noche Dios le reveló el Pacto Davídico."},
+  {"id":"h303","level":"HARD","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién dijo al profeta Eliseo al enojarse por la orden del Jordán: \"¿No son mejores Abana y Farfar, ríos de Damasco?\"?","options":["Ben-hadad","Giezi","Naamán","Hazael"],"correctAnswer":2,"verse":"2 Reyes 5:12","explanation":"El orgulloso general sirio casi pierde su milagro hasta que sus siervos lo persuadieron de obedecer."},
+  {"id":"h304","level":"HARD","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién declaró en 1 Reyes 18: \"Si Jehová es Dios, seguidle; y si Baal, id en pos de él\"?","options":["Elías","Micaías","Abdías","Eliseo"],"correctAnswer":0,"verse":"1 Reyes 18:21","explanation":"El pueblo no respondió palabra hasta que descendió fuego del cielo y consumió el holocausto de Elías."},
+  {"id":"h305","level":"HARD","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién oró en el templo: \"He aquí que los cielos, los cielos de los cielos, no te pueden contener; ¿cuánto menos esta casa?\"?","options":["Ezequías","Esdras","David","Salomón"],"correctAnswer":3,"verse":"1 Reyes 8:27","explanation":"En la solemne dedicación del Templo, Salomón reconoció la inmensidad trascendente de Dios."},
+  {"id":"h306","level":"HARD","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién exclamó al negarse a vender su heredad: \"Guárdeme Jehová de que yo te dé a ti la heredad de mis padres\"?","options":["Barzilai","Mefiboset","Nabot","Urías"],"correctAnswer":2,"verse":"1 Reyes 21:3","explanation":"Nabot defendió el mandato bíblico de conservar la heredad familiar frente a la codicia del rey Acab."},
+  {"id":"h307","level":"HARD","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién cantó en confianza extrema: \"Aunque la higuera no florezca... con todo, yo me alegraré en Jehová\"?","options":["Sofonías","Habacuc","Amós","Jeremías"],"correctAnswer":1,"verse":"Habacuc 3:17-18","explanation":"Habacuc cerró su profecía pasando del lamento a una adoración incondicional en medio de la escasez."},
+  {"id":"h308","level":"HARD","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién dijo a Ester: \"¿Y quién sabe si para esta hora has llegado al reino?\"?","options":["Mardoqueo","Hatac","Hegai","Asuero"],"correctAnswer":0,"verse":"Ester 4:14","explanation":"Mardoqueo desafió a Ester a reconocer el propósito providencial de Dios en su posición real."},
+  {"id":"h309","level":"HARD","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién exclamó ante Jesús cuando oyó que el Señor volvería a Judea: \"Vamos también nosotros, para que muramos con él\"?","options":["Pedro","Tomás","Andrés","Felipe"],"correctAnswer":1,"verse":"Juan 11:16","explanation":"Antes de ir a Betania por Lázaro, Tomás mostró una lealtad valiente y dispuesta al sacrificio."},
+  {"id":"h310","level":"HARD","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién dijo a los discípulos tras resucitar Jesús: \"Se han llevado del sepulcro al Señor, y no sabemos dónde le han puesto\"?","options":["Salomé de Galilea","Marta de Betania","Juana de Chuza","María Magdalena"],"correctAnswer":3,"verse":"Juan 20:2","explanation":"María Magdalena corrió temprano a avisar a Pedro y al otro discípulo al hallar quitada la piedra."},
+  {"id":"h311","level":"HARD","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién replicó a Pablo durante su defensa en Cesarea: \"Estás loco, Pablo; las muchas letras te vuelven loco\"?","options":["El rey Agripa","Antonio Félix","Porcio Festo","El sacerdote Ananías"],"correctAnswer":2,"verse":"Hechos 26:24","explanation":"El gobernador romano Festo interrumpió a Pablo a gran voz al escucharle hablar de la resurrección."},
+  {"id":"h312","level":"HARD","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién le rogó a Jesús: \"Apártate de mí, Señor, porque soy hombre pecador\" tras llenar dos barcas de peces?","options":["Pedro","Zaqueo","Mateo","Andrés"],"correctAnswer":0,"verse":"Lucas 5:8","explanation":"Al presenciar la pesca milagrosa, Simón Pedro cayó de rodillas abrumado por la santidad de Jesús."},
+  {"id":"h313","level":"HARD","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién dijo al ver a Jesús: \"Señor, muéstranos el Padre, y nos basta\"?","options":["Judas Tadeo","Natanael","Felipe","Tomás"],"correctAnswer":2,"verse":"Juan 14:8","explanation":"Jesús le respondió: \"El que me ha visto a mí, ha visto al Padre\"."},
+  {"id":"h314","level":"HARD","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién le dijo a Pablo en el Areópago o tras su discurso sobre la resurrección: \"Ya te oiremos acerca de esto otra vez\"?","options":["Los tesalonicenses","Los atenienses","Los corintios","Los escribas"],"correctAnswer":1,"verse":"Hechos 17:32","explanation":"Unos se burlaban de la resurrección y otros pospusieron oírlo, aunque Dionisio y Dámaris creyeron."},
+  {"id":"h315","level":"HARD","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién dijo a Josué cerca de Jericó: \"No; mas como Príncipe del ejército de Jehová he venido ahora\"?","options":["El sacerdote Eleazar","El anciano Caleb","El profeta Moisés","El Varón con espada"],"correctAnswer":3,"verse":"Josué 5:14","explanation":"Josué cayó rostro en tierra y se quitó el calzado porque aquel lugar era santo ante el Príncipe del ejército de Jehová."},
+  {"id":"h316","level":"HARD","type":"WHO_SAID_IT","category":"¿Quién lo dijo?","question":"¿Quién pidió a Abraham desde el Hades: \"Envía a Lázaro para que moje la punta de su dedo en agua\"?","options":["El hombre rico","El mayordomo infiel","El fariseo orgulloso","El siervo negligente"],"correctAnswer":0,"verse":"Lucas 16:24","explanation":"En la parábola de Jesús, el hombre rico rogó por alivio y advirtió que avisaran a sus cinco hermanos."},
+  {"id":"h317","level":"HARD","type":"FILL_VERSE","category":"Versículos Clave","question":"Completa Isaías 53:5: \"Mas él herido fue por nuestras rebeliones, molido por nuestros pecados; el castigo de nuestra paz fue sobre él, y por su _________ fuimos nosotros curados.\"","options":["ofrenda","llaga","palabra","oración"],"correctAnswer":1,"verse":"Isaías 53:5","explanation":"Una de las profecías mesiánicas más claras sobre la obra redentora de Cristo en la cruz."},
+  {"id":"h318","level":"HARD","type":"FILL_VERSE","category":"Versículos Clave","question":"Completa Isaías 26:3: \"Tú guardarás en completa paz a aquel cuyo _________ en ti persevera; porque en ti ha confiado.\"","options":["testimonio","propósito","espíritu","pensamiento"],"correctAnswer":3,"verse":"Isaías 26:3","explanation":"La paz completa nace de mantener la mente firme y confiada en el Señor."},
+  {"id":"h319","level":"HARD","type":"FILL_VERSE","category":"Versículos Clave","question":"Completa Amós 5:24: \"Pero corra el juicio como las aguas, y la _________ como impetuoso arroyo.\"","options":["humildad","verdad","justicia","bondad"],"correctAnswer":2,"verse":"Amós 5:24","explanation":"Dios rechaza la religión vacía y demanda rectitud y justicia constantes en la sociedad."},
+  {"id":"h320","level":"HARD","type":"FILL_VERSE","category":"Versículos Clave","question":"Completa Salmos 139:14: \"Te alabaré; porque formidables, _________ son tus obras; estoy maravillado\"","options":["maravillosas","eternas","perfectas","gloriosas"],"correctAnswer":0,"verse":"Salmos 139:14","explanation":"David alaba el diseño asombroso con que Dios formó cada ser humano desde el vientre."},
+  {"id":"h321","level":"HARD","type":"FILL_VERSE","category":"Versículos Clave","question":"Completa Proverbios 27:17: \"Hierro con hierro se aguza; y así el hombre aguza el _________ de su amigo.\"","options":["espíritu","rostro","entendimiento","camino"],"correctAnswer":1,"verse":"Proverbios 27:17","explanation":"La verdadera amistad cristiana nos desafía y pule mutuamente para crecer en sabiduría."},
+  {"id":"h322","level":"HARD","type":"FILL_VERSE","category":"Versículos Clave","question":"Completa Romanos 5:8: \"Mas Dios muestra su amor para con nosotros, en que siendo aún _________, Cristo murió por nosotros.\"","options":["débiles","extranjeros","pecadores","enemigos"],"correctAnswer":2,"verse":"Romanos 5:8","explanation":"El sacrificio de Cristo no esperó a que mereciéramos su favor, sino que vino por pura gracia."},
+  {"id":"h323","level":"HARD","type":"FILL_VERSE","category":"Versículos Clave","question":"Completa 2 Corintios 4:7: \"Pero tenemos este tesoro en vasos de _________, para que la excelencia del poder sea de Dios, y no de nosotros.\"","options":["oro","plata","bronce","barro"],"correctAnswer":3,"verse":"2 Corintios 4:7","explanation":"Dios deposita el tesoro del evangelio en nuestra fragilidad humana para que toda la gloria sea suya."},
+  {"id":"h324","level":"HARD","type":"FILL_VERSE","category":"Versículos Clave","question":"Completa Efesios 4:26: \"Airaos, pero no pequéis; no se ponga el _________ sobre vuestro enojo\"","options":["sol","cielo","día","viento"],"correctAnswer":0,"verse":"Efesios 4:26","explanation":"Pablo aconseja resolver pronto las ofensas para no dar lugar al resentimiento ni al enemigo."},
+  {"id":"h325","level":"HARD","type":"FILL_VERSE","category":"Versículos Clave","question":"Completa Filipenses 4:7: \"Y la paz de Dios, que sobrepasa todo entendimiento, guardará vuestros _________ y vuestros pensamientos en Cristo Jesús.\"","options":["caminos","pasos","hogares","corazones"],"correctAnswer":3,"verse":"Filipenses 4:7","explanation":"La paz divina actúa como un centinela custodiando la mente y el corazón del creyente que ora."},
+  {"id":"h326","level":"HARD","type":"FILL_VERSE","category":"Versículos Clave","question":"Completa Colosenses 3:2: \"Poned la mira en las cosas de _________, no en las de la tierra.\"","options":["siempre","arriba","mañana","adentro"],"correctAnswer":1,"verse":"Colosenses 3:2","explanation":"Quienes han resucitado con Cristo orientan sus afectos y prioridades hacia los valores eternos."},
+  {"id":"h327","level":"HARD","type":"FILL_VERSE","category":"Versículos Clave","question":"Completa Santiago 4:7: \"Someteos, pues, a Dios; resistid al _________, y huirá de vosotros.\"","options":["temor","mundo","diablo","orgullo"],"correctAnswer":2,"verse":"Santiago 4:7","explanation":"La verdadera resistencia espiritual comienza primero con la sumisión humilde a Dios."},
+  {"id":"h328","level":"HARD","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? El profeta Isaías fue llevado vivo al cielo en un carro de fuego.","options":["Verdadero","Falso"],"correctAnswer":1,"verse":"2 Reyes 2:11","explanation":"Falso. Fue el profeta Elías (no Isaías) quien subió al cielo en un torbellino con carro y caballos de fuego."},
+  {"id":"h329","level":"HARD","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? El libro de Abdías es el libro más corto del Antiguo Testamento.","options":["Verdadero","Falso"],"correctAnswer":0,"verse":"Abdías 1:1-21","explanation":"Verdadero. Abdías consta de un solo capítulo con apenas 21 versículos."},
+  {"id":"h330","level":"HARD","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? La carta de Filemón tiene cuatro capítulos dirigidos a la iglesia de Colosas.","options":["Verdadero","Falso"],"correctAnswer":1,"verse":"Filemón 1:1-25","explanation":"Falso. Filemón tiene un solo capítulo de 25 versículos dirigido personalmente a Filemón por causa de Onésimo."},
+  {"id":"h331","level":"HARD","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? Según la genealogía de Mateo 1, Rahab y Rut son antepasadas del rey David y de Jesús.","options":["Verdadero","Falso"],"correctAnswer":0,"verse":"Mateo 1:5","explanation":"Verdadero. Rahab fue madre de Booz, y Booz con Rut engendraron a Obed, abuelo del rey David."},
+  {"id":"h332","level":"HARD","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? El rey Saúl pertenecía a la tribu de Judá, la misma tribu que David.","options":["Verdadero","Falso"],"correctAnswer":1,"verse":"1 Samuel 9:1-2","explanation":"Falso. Saúl era de la tribu de Benjamín, la más pequeña de Israel, mientras que David era de Judá."},
+  {"id":"h333","level":"HARD","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? La Epístola a los Hebreos nombra explícitamente al apóstol Pablo en su primer versículo.","options":["Verdadero","Falso"],"correctAnswer":1,"verse":"Hebreos 1:1","explanation":"Falso. Hebreos es anónima en su encabezado; ningún autor firma explícitamente el inicio de la carta."},
+  {"id":"h334","level":"HARD","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? El profeta Daniel sobrevivió al fin del Imperio babilónico y sirvió también bajo el reino medo-persa.","options":["Verdadero","Falso"],"correctAnswer":0,"verse":"Daniel 6:28","explanation":"Verdadero. Daniel prosperó durante el reinado de Darío y durante el reinado de Ciro el persa."},
+  {"id":"h335","level":"HARD","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? El apóstol Pablo nació en Jerusalén y estudió en Alejandría.","options":["Verdadero","Falso"],"correctAnswer":1,"verse":"Hechos 22:3","explanation":"Falso. Pablo nació en Tarso de Cilicia y fue instruido en Jerusalén a los pies de Gamaliel."},
+  {"id":"h336","level":"HARD","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? La Biblia registra el nombre de la mujer samaritana que conversó con Jesús junto al pozo.","options":["Verdadero","Falso"],"correctAnswer":1,"verse":"Juan 4:7-29","explanation":"Falso. El Evangelio de Juan nunca menciona el nombre propio de la mujer samaritana."},
+  {"id":"h337","level":"HARD","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? En el Nuevo Testamento se menciona que el arcángel Miguel disputó por el cuerpo de Moisés.","options":["Verdadero","Falso"],"correctAnswer":0,"verse":"Judas 1:9","explanation":"Verdadero. La epístola de Judas relata que Miguel no se atrevió a proferir juicio de maldición sino dijo: \"El Señor te reprenda\"."},
+  {"id":"h338","level":"HARD","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? El Evangelio de Mateo fue escrito originalmente en latín para los ciudadanos de Roma.","options":["Verdadero","Falso"],"correctAnswer":1,"verse":"Manuscritos del NT","explanation":"Falso. Todos los libros del Nuevo Testamento que conservamos fueron escritos en griego koiné (y Mateo enfocó especialmente al público judío)."},
+  {"id":"h339","level":"HARD","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? El rey Ezequías vio retroceder diez grados la sombra en el reloj solar de Acaz como señal de Dios.","options":["Verdadero","Falso"],"correctAnswer":0,"verse":"2 Reyes 20:9-11","explanation":"Verdadero. Isaías clamó a Jehová e hizo volver atrás diez grados la sombra como confirmación de su sanidad."},
+  {"id":"h340","level":"HARD","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? En el Concilio de Jerusalén de Hechos 15 se decidió que todos los gentiles debían circuncidarse.","options":["Verdadero","Falso"],"correctAnswer":1,"verse":"Hechos 15:19-29","explanation":"Falso. El concilio resolvió NO imponer la circuncisión ni el yugo de la ley ceremonial a los creyentes gentiles."},
+  {"id":"h341","level":"HARD","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? El profeta Jeremías contrajo matrimonio y tuvo siete hijos durante el asedio de Jerusalén.","options":["Verdadero","Falso"],"correctAnswer":1,"verse":"Jeremías 16:2","explanation":"Falso. Dios mandó expresamente a Jeremías no tomar mujer ni tener hijos en aquel lugar como señal profética."},
+  {"id":"h342","level":"HARD","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? El libro de 2 Juan y el de 3 Juan son los libros con menos versículos de toda la Biblia.","options":["Verdadero","Falso"],"correctAnswer":0,"verse":"2 Juan / 3 Juan","explanation":"Verdadero. 2 Juan tiene 13 versículos y 3 Juan tiene 14 (en griego 3 Juan es incluso el más corto por cantidad de palabras)."},
+  {"id":"h343","level":"HARD","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? Bernabé acompañó a Pablo en sus tres viajes misioneros de principio a fin.","options":["Verdadero","Falso"],"correctAnswer":1,"verse":"Hechos 15:39-40","explanation":"Falso. Tras su desacuerdo sobre llevar a Juan Marcos antes del segundo viaje, Bernabé fue a Chipre y Pablo escogió a Silas."},
+  {"id":"h344","level":"HARD","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? Melquisedec significa \"Rey de justicia\" y además era rey de Salem, es decir, \"Rey de paz\".","options":["Verdadero","Falso"],"correctAnswer":0,"verse":"Hebreos 7:2","explanation":"Verdadero. El autor de Hebreos destaca ambos significados al presentarlo como figura del sacerdocio eterno de Cristo."},
+  {"id":"h345","level":"HARD","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? El profeta Amós era un sumo sacerdote nacido dentro del Templo de Jerusalén.","options":["Verdadero","Falso"],"correctAnswer":1,"verse":"Amós 1:1 / 7:14","explanation":"Falso. Amós era pastor de ovejas en Tecoa y recogedor de higos silvestres, no sacerdote ni hijo de profeta."},
+  {"id":"h346","level":"HARD","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? Según Apocalipsis 21, en la Nueva Jerusalén habrá un templo de oro gigantesco en su centro.","options":["Verdadero","Falso"],"correctAnswer":1,"verse":"Apocalipsis 21:22","explanation":"Falso. Juan declaró: \"Y no vi en ella templo; porque el Señor Dios Todopoderoso es el templo de ella, y el Cordero\"."},
+  {"id":"h347","level":"HARD","type":"TRUE_FALSE","category":"Verdadero o Falso","question":"¿Verdadero o Falso? El apóstol Pablo apeló al César romano para evitar ser juzgado injustamente en Jerusalén.","options":["Verdadero","Falso"],"correctAnswer":0,"verse":"Hechos 25:11-12","explanation":"Verdadero. Al ser ciudadano romano de nacimiento, Pablo ejerció su derecho de apelar al tribunal de César."},
+  {"id":"h348","level":"HARD","type":"MULTIPLE_CHOICE","category":"Génesis","question":"¿Qué edad tenía Enoc cuando caminó con Dios y fue traspuesto al cielo sin ver muerte?","options":["500 años","120 años","777 años","365 años"],"correctAnswer":3,"verse":"Génesis 5:23-24","explanation":"Enoc vivió trescientos sesenta y cinco años, caminó con Dios y desapareció porque le llevó Dios."},
+  {"id":"h349","level":"HARD","type":"MULTIPLE_CHOICE","category":"Pentateuco","question":"¿En qué mes del calendario hebreo comenzó a celebrarse la fiesta de la Pascua según Éxodo 12 y 13?","options":["Mes de Abib","Mes de Adar","Mes de Kislev","Mes de Etanim"],"correctAnswer":0,"verse":"Éxodo 13:4 / Deuteronomio 16:1","explanation":"Dios estableció el mes de Abib (llamado posteriormente Nisán) como principio de los meses del año sagrado."},
+  {"id":"h350","level":"HARD","type":"MULTIPLE_CHOICE","category":"Pentateuco","question":"¿Qué cinco hijas de Zelofehad solicitaron a Moisés heredar la tierra de su padre al no haber hijos varones?","options":["Lea, Raquel, Bilha, Zilpa y Dina","Maala, Noa, Hogla, Milca y Tirsa","Miriam, Séfora, Acsa, Noa y Milca","Orfa, Rut, Tamar, Rahab y Penina"],"correctAnswer":1,"verse":"Números 27:1-7","explanation":"Dios respaldó su petición justa y estableció una ley de herencia para las hijas en todo Israel."},
+  {"id":"h351","level":"HARD","type":"MULTIPLE_CHOICE","category":"Samuel y Reyes","question":"¿Qué hombre de la familia de Saúl maldijo y arrojó piedras a David en Bahurim cuando este huía de Absalón?","options":["Ziba","Doeg","Simei","Nabal"],"correctAnswer":2,"verse":"2 Samuel 16:5-11","explanation":"Simei hijo de Gera insultó a David, pero el rey prohibió a Abisai matarlo confiando en el juicio de Dios."},
+  {"id":"h352","level":"HARD","type":"MULTIPLE_CHOICE","category":"Profetas","question":"¿Qué rey de Judá fue contemporáneo del inicio de los ministerios de Oseas, Isaías, Amós y Miqueas?","options":["Josías","Uzías","Joacim","Manasés"],"correctAnswer":1,"verse":"Isaías 1:1 / Oseas 1:1","explanation":"El largo y próspero reinado de Uzías en el siglo VIII a. C. marcó el arranque de una gran era profética."},
+  {"id":"h353","level":"HARD","type":"MULTIPLE_CHOICE","category":"Evangelios","question":"¿Cuál era el nombre del estanque de cinco pórticos cerca de la puerta de las Ovejas en Jerusalén?","options":["Betesda","Gihón","Siloé","En-rogel"],"correctAnswer":0,"verse":"Juan 5:2","explanation":"Betesda significa \"Casa de misericordia\" y allí aguardaban muchos enfermos cuando Jesús sanó al paralítico."},
+  {"id":"h354","level":"HARD","type":"MULTIPLE_CHOICE","category":"Hechos","question":"¿Qué discípulo chipriota anciano hospedó a Pablo y a sus compañeros cuando subieron por última vez a Jerusalén?","options":["Gayo","Jasón","Trófimo","Mnasón"],"correctAnswer":3,"verse":"Hechos 21:16","explanation":"Mnasón de Chipre, discípulo antiguo, les brindó alojamiento en Jerusalén al concluir el tercer viaje misionero."},
+  {"id":"h355","level":"HARD","type":"MULTIPLE_CHOICE","category":"Epístolas","question":"¿En qué ciudad se quedó el colaborador Tito por encargo de Pablo para establecer ancianos en cada localidad?","options":["En la isla de Patmos","En la isla de Malta","En la isla de Creta","En la isla de Chipre"],"correctAnswer":2,"verse":"Tito 1:5","explanation":"Pablo dejó a Tito en la isla de Creta para corregir lo deficiente y ordenar ancianos en las iglesias."},
+  {"id":"h356","level":"HARD","type":"FILL_VERSE","category":"Versículos Clave","question":"Completa Salmos 103:2: \"Bendice, alma mía, a Jehová, y no olvides ninguno de sus _________.\"","options":["juicios","beneficios","caminos","mandatos"],"correctAnswer":1,"verse":"Salmos 103:2","explanation":"David exhorta a su propia alma a recordar con gratitud el perdón, la sanidad y la misericordia de Dios."},
+  {"id":"h357","level":"HARD","type":"FILL_VERSE","category":"Versículos Clave","question":"Completa 1 Corintios 15:58: \"Así que, hermanos míos amados, estad firmes y constantes, creciendo en la obra del Señor siempre, sabiendo que vuestro trabajo en el Señor no es en _________.\"","options":["silencio","secreto","duda","vano"],"correctAnswer":3,"verse":"1 Corintios 15:58","explanation":"La certeza de la resurrección garantiza que todo servicio fiel para Cristo tiene fruto eterno."}
 ];
 
-// Función para barajar aleatoriamente un array (Fisher-Yates Shuffle con aleatoriedad robusta)
-export function shuffleArray(arr) {
-  if (!Array.isArray(arr)) return [];
-  const copy = [...arr];
-  for (let i = copy.length - 1; i > 0; i--) {
+// Algoritmo Fisher-Yates para barajar de forma aleatoria
+export function shuffleArray(array) {
+  const newArr = [...array];
+  for (let i = newArr.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [copy[i], copy[j]] = [copy[j], copy[i]];
+    [newArr[i], newArr[j]] = [newArr[j], newArr[i]];
   }
-  return copy;
+  return newArr;
 }

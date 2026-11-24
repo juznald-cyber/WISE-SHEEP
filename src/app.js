@@ -60,14 +60,18 @@ class WiseSheepApp {
     this.currentQuestionFilter = 'ALL';
     this.questionSearchQuery = '';
 
+    // Historial de preguntas usadas en la sesión para no repetir entre partidas
+    this.recentlyUsedQuestionIds = new Set();
+
     // Estado del Jugador (Player)
     this.myPlayerId = roomSync.playerId;
     this.myPlayerName = '';
     this.myAvatar = '🐑';
-    this.myTeam = 'T1'; // 'A': Hombres, 'B': Mujeres
+    this.myTeam = 'T1';
     this.myScore = 0;
     this.myStreak = 0;
     this.maxStreak = 0;
+    this.myJoinedAt = 0;
     this.hasAnsweredCurrent = false;
     this.hasVotedCurrent = false;
 
@@ -76,7 +80,7 @@ class WiseSheepApp {
   }
 
   init() {
-    console.log('Iniciando WISE SHEEP App con 525+ preguntas...');
+    console.log(`Iniciando WISE SHEEP App con ${QUESTIONS_DATABASE.length} preguntas bíblicas...`);
     this.renderAvatarSelector();
     this.setupPhoneVisibilityResume();
     this.loadCustomQuestionnaires();
@@ -84,11 +88,9 @@ class WiseSheepApp {
     this.updateRoundsSummary();
     this.renderSetupTeamsList();
     this.renderPlayerTeamsList();
+    this.updateQuestionCountBadges();
     this.checkSavedSession();
     this.checkUrlForPin();
-
-    const qCountHeader = document.getElementById('header-q-count');
-    if (qCountHeader) qCountHeader.innerText = `${QUESTIONS_DATABASE.length}+`;
 
     const savedApiKey = localStorage.getItem('ws_fb_apiKey');
     if (savedApiKey) {
@@ -97,6 +99,30 @@ class WiseSheepApp {
         apiKey: savedApiKey
       });
     }
+  }
+
+  updateQuestionCountBadges() {
+    const total = QUESTIONS_DATABASE.length;
+    const easy = QUESTIONS_DATABASE.filter(q => q.level === 'EASY').length;
+    const med = QUESTIONS_DATABASE.filter(q => q.level === 'MEDIUM').length;
+    const hard = QUESTIONS_DATABASE.filter(q => q.level === 'HARD').length;
+    const emoji = QUESTIONS_DATABASE.filter(q => q.type === QUESTION_TYPES.EMOJI_GUESS).length;
+
+    const setText = (id, val) => {
+      const el = document.getElementById(id);
+      if (el) el.innerText = val;
+    };
+
+    setText('header-q-count', `${total}`);
+    setText('setup-count-easy', `${easy}`);
+    setText('setup-count-medium', `${med}`);
+    setText('setup-count-hard', `${hard}`);
+    setText('setup-count-emoji', `${emoji}`);
+    setText('qtab-count-all', `${total}`);
+    setText('qtab-count-easy', `${easy}`);
+    setText('qtab-count-medium', `${med}`);
+    setText('qtab-count-hard', `${hard}`);
+    setText('qtab-count-emoji', `${emoji}`);
   }
 
   setupPhoneVisibilityResume() {
@@ -147,15 +173,17 @@ class WiseSheepApp {
         this.roomPin = saved.pin;
         this.myPlayerName = saved.name;
         this.myAvatar = saved.avatar || '🐑';
-        this.myTeam = saved.team || 'A';
+        this.myTeam = saved.team || 'T1';
         this.myScore = saved.score || 0;
         this.myStreak = saved.streak || 0;
         this.maxStreak = saved.maxStreak || 0;
+        this.myJoinedAt = saved.joinedAt || Date.now();
         this.isHost = false;
         roomSync.currentPin = saved.pin;
 
         const banner = document.getElementById('banner-reconnect');
         if (banner) banner.classList.add('hidden');
+        document.getElementById('banner-kicked')?.classList.add('hidden');
 
         this.startListeningAsPlayer(this.roomPin);
 
@@ -170,7 +198,8 @@ class WiseSheepApp {
         this.switchView('view-player-lobby');
         document.getElementById('player-my-name').innerText = this.myPlayerName;
         document.getElementById('player-my-avatar').innerText = this.myAvatar;
-        document.getElementById('player-my-team-badge').innerText = this.myTeam === 'A' ? 'Equipo Hombres 🦁' : 'Equipo Mujeres 👑';
+        const myTeamObj = this.getTeamById(this.myTeam);
+        document.getElementById('player-my-team-badge').innerText = `Equipo ${myTeamObj.name} ${myTeamObj.icon}`;
       }
     } catch (e) {
       console.error('Error reconectando:', e);
@@ -226,6 +255,11 @@ class WiseSheepApp {
 
   showHome() {
     sounds.playClick();
+    if (this.questionTimer) clearInterval(this.questionTimer);
+    if (this.votingTimer) clearInterval(this.votingTimer);
+    sounds.stopTensionMusic();
+    document.getElementById('header-btn-poll')?.classList.add('hidden');
+    document.getElementById('header-btn-players')?.classList.add('hidden');
     this.myScore = 0;
     this.myStreak = 0;
     this.maxStreak = 0;
@@ -400,14 +434,15 @@ class WiseSheepApp {
   selectDifficulty(diff) {
     sounds.playClick();
     this.selectedDifficulty = diff;
-    const diffs = ['ALL', 'EASY', 'MEDIUM', 'HARD'];
+    const diffs = ['ALL', 'EASY', 'MEDIUM', 'HARD', 'EMOJI'];
     diffs.forEach(d => {
       const btn = document.getElementById(`diff-btn-${d}`);
       if (btn) {
+        const extraCol = d === 'EMOJI' ? ' col-span-2 sm:col-span-1' : '';
         if (d === diff) {
-          btn.className = 'p-3 rounded-xl border border-amber-500 bg-amber-500/20 text-amber-300 font-bold text-xs text-center transition';
+          btn.className = `p-3 rounded-xl border border-amber-500 bg-amber-500/20 text-amber-300 font-bold text-xs text-center transition${extraCol}`;
         } else {
-          btn.className = 'p-3 rounded-xl border border-slate-800 bg-slate-900 text-slate-300 font-bold text-xs text-center hover:border-slate-700 transition';
+          btn.className = `p-3 rounded-xl border border-slate-800 bg-slate-900 text-slate-300 font-bold text-xs text-center hover:border-slate-700 transition${extraCol}`;
         }
       }
     });
@@ -508,8 +543,9 @@ class WiseSheepApp {
     this.currentQIndex = 0;
     this.roomStatus = 'LOBBY';
 
-    // Mostrar botón de Votación en el header para el host
+    // Mostrar botones de Votación y Gestión de Sala en el header para el anfitrión
     document.getElementById('header-btn-poll')?.classList.remove('hidden');
+    document.getElementById('header-btn-players')?.classList.remove('hidden');
 
     this.switchView('view-host-lobby');
     const pinDisplay = document.getElementById('lobby-pin-display');
@@ -540,15 +576,32 @@ class WiseSheepApp {
       currentQuestionIndex: 0,
       currentRound: 1,
       leaderboardMode: this.leaderboardMode,
+      kickedPlayers: {},
       leaderboard: []
     });
 
-    // 2. Escuchar jugadores
+    // 2. Escuchar jugadores (preservando puntajes locales durante partida activa y eliminando expulsados)
     roomSync.listenToPlayers(this.roomPin, (playersData) => {
-      this.players = playersData || {};
+      const incoming = playersData || {};
+      const merged = {};
+      Object.entries(incoming).forEach(([pid, pData]) => {
+        const prev = this.players[pid];
+        if (prev && this.roomStatus !== 'LOBBY') {
+          merged[pid] = {
+            ...pData,
+            score: Math.max(prev.score || 0, pData.score || 0),
+            streak: (prev.score || 0) > (pData.score || 0) ? (prev.streak || 0) : (pData.streak || 0),
+            correctCount: Math.max(prev.correctCount || 0, pData.correctCount || 0),
+            incorrectCount: Math.max(prev.incorrectCount || 0, pData.incorrectCount || 0)
+          };
+        } else {
+          merged[pid] = pData;
+        }
+      });
+      this.players = merged;
+      this.syncHostPlayerCounters();
       this.updateLobbyPlayersList();
-      const totalCountEl = document.getElementById('host-total-players-count');
-      if (totalCountEl) totalCountEl.innerText = Object.keys(this.players).length;
+      this.renderManagePlayersModal();
     });
 
     // 3. Escuchar respuestas de trivia
@@ -562,11 +615,91 @@ class WiseSheepApp {
     });
   }
 
+  syncHostPlayerCounters() {
+    const count = Object.keys(this.players).length;
+    const setEl = (id, val) => {
+      const el = document.getElementById(id);
+      if (el) el.innerText = val;
+    };
+    setEl('lobby-player-count', count);
+    setEl('header-players-count', count);
+    setEl('host-total-players-count', count);
+    setEl('voting-total-count', count);
+    setEl('manage-players-total', count);
+  }
+
+  // Barajar opciones de cada pregunta de 4 opciones equilibrando los 4 colores (Rojo, Azul, Amarillo, Verde)
+  balanceAndShuffleQuestionOptions(questionsList) {
+    let colorBag = [];
+    let lastColor = -1;
+
+    const nextBalancedColor = () => {
+      if (colorBag.length === 0) {
+        colorBag = shuffleArray([0, 1, 2, 3]);
+        // Evitar que el primer color del nuevo bloque repita el último del anterior
+        if (colorBag[0] === lastColor) {
+          const swapIdx = 1 + Math.floor(Math.random() * 3);
+          [colorBag[0], colorBag[swapIdx]] = [colorBag[swapIdx], colorBag[0]];
+        }
+      }
+      const chosen = colorBag.shift();
+      lastColor = chosen;
+      return chosen;
+    };
+
+    return questionsList.map(orig => {
+      const q = { ...orig, options: [...(orig.options || [])] };
+      // Para preguntas de 4 opciones, mezclar distractores y ubicar la correcta en un color equilibrado
+      if (q.options.length === 4) {
+        const correctIdx = Math.max(0, Math.min(3, q.correctAnswer ?? 0));
+        const correctText = q.options[correctIdx];
+        const distractors = shuffleArray(q.options.filter((_, i) => i !== correctIdx));
+        const targetIdx = nextBalancedColor();
+        const newOptions = [];
+        let dPtr = 0;
+        for (let i = 0; i < 4; i++) {
+          if (i === targetIdx) {
+            newOptions.push(correctText);
+          } else {
+            newOptions.push(distractors[dPtr++]);
+          }
+        }
+        q.options = newOptions;
+        q.correctAnswer = targetIdx;
+      } else if (q.options.length === 3) {
+        const correctIdx = Math.max(0, Math.min(2, q.correctAnswer ?? 0));
+        const correctText = q.options[correctIdx];
+        const distractors = shuffleArray(q.options.filter((_, i) => i !== correctIdx));
+        const targetIdx = Math.floor(Math.random() * 3);
+        const newOptions = [];
+        let dPtr = 0;
+        for (let i = 0; i < 3; i++) {
+          newOptions.push(i === targetIdx ? correctText : distractors[dPtr++]);
+        }
+        q.options = newOptions;
+        q.correctAnswer = targetIdx;
+      }
+      // Para Verdadero / Falso (2 opciones), se mantiene Verdadero=0 y Falso=1 para no confundir
+      return q;
+    });
+  }
+
+  // Tomar preguntas frescas priorizando las que no salieron en partidas anteriores de la misma sesión
+  pickFreshQuestions(pool, count) {
+    const fresh = shuffleArray(pool.filter(q => !this.recentlyUsedQuestionIds.has(q.id)));
+    if (fresh.length >= count) {
+      return fresh.slice(0, count);
+    }
+    const used = shuffleArray(pool.filter(q => this.recentlyUsedQuestionIds.has(q.id)));
+    return [...fresh, ...used].slice(0, count);
+  }
+
   prepareQuestions() {
     const totalNeeded = this.totalRounds * this.questionsPerRound;
-    let pool = [];
+    let selected = [];
 
     if (this.selectedDifficulty === 'CUSTOM') {
+      let pool = [];
       const quiz = this.customQuestionnaires.find(q => q.id === this.selectedCustomQuizId);
       if (quiz && quiz.questions && quiz.questions.length > 0) {
         pool = [...quiz.questions];
@@ -576,42 +709,81 @@ class WiseSheepApp {
         alert('No se encontraron preguntas en tu cuestionario personal. Usaremos preguntas bíblicas generales.');
         pool = [...QUESTIONS_DATABASE];
       }
-      this.activeQuestions = shuffleArray(pool).slice(0, totalNeeded);
-      if (this.activeQuestions.length < totalNeeded && pool.length > 0) {
-        while (this.activeQuestions.length < totalNeeded) {
-          const extra = shuffleArray([...pool]);
-          this.activeQuestions.push(...extra);
+      selected = shuffleArray(pool).slice(0, totalNeeded);
+      if (selected.length < totalNeeded && pool.length > 0) {
+        while (selected.length < totalNeeded) {
+          selected.push(...shuffleArray([...pool]));
         }
-        this.activeQuestions = this.activeQuestions.slice(0, totalNeeded);
+        selected = selected.slice(0, totalNeeded);
       }
+      this.activeQuestions = this.balanceAndShuffleQuestionOptions(selected);
       return;
     }
 
     const all = [...QUESTIONS_DATABASE];
+
+    // Si ya se usó casi todo el banco en la sesión, reiniciar historial
+    if (this.recentlyUsedQuestionIds.size > Math.max(0, all.length - totalNeeded)) {
+      this.recentlyUsedQuestionIds.clear();
+    }
+
     if (this.selectedDifficulty === 'ALL') {
-      const easyPool = shuffleArray(all.filter(q => q.level === 'EASY'));
-      const medPool = shuffleArray(all.filter(q => q.level === 'MEDIUM'));
-      const hardPool = shuffleArray(all.filter(q => q.level === 'HARD'));
+      // MODO PROGRESIVO REAL: De menos a más (Corderito -> Discípulo -> Maestro), 100% aleatorio en cada juego
+      const easyPool = all.filter(q => q.level === 'EASY');
+      const medPool = all.filter(q => q.level === 'MEDIUM');
+      const hardPool = all.filter(q => q.level === 'HARD');
 
       let countEasy = Math.max(1, Math.round(totalNeeded * 0.35));
       let countMed = Math.max(1, Math.round(totalNeeded * 0.35));
-      let countHard = Math.max(1, totalNeeded - countEasy - countMed);
+      let countHard = Math.max(0, totalNeeded - countEasy - countMed);
+      if (totalNeeded >= 3 && countHard === 0) {
+        countHard = 1;
+        if (countMed > 1) countMed--;
+        else if (countEasy > 1) countEasy--;
+      }
 
-      const selectedEasy = easyPool.slice(0, countEasy);
-      const selectedMed = medPool.slice(0, countMed);
-      const selectedHard = hardPool.slice(0, countHard);
+      const selectedEasy = this.pickFreshQuestions(easyPool, countEasy);
+      const selectedMed = this.pickFreshQuestions(medPool, countMed);
+      const selectedHard = this.pickFreshQuestions(hardPool, countHard);
 
-      // Barajar juntos para aleatoriedad completa en cada partida
-      this.activeQuestions = shuffleArray([...selectedEasy, ...selectedMed, ...selectedHard]).slice(0, totalNeeded);
+      // Orden estricto de menos a más (Fácil -> Intermedio -> Difícil)
+      selected = [...selectedEasy, ...selectedMed, ...selectedHard].slice(0, totalNeeded);
+    } else if (this.selectedDifficulty === 'EMOJI') {
+      // MODO SOLO EMOJIS: progresivo de Fácil -> Intermedio -> Difícil
+      const emojiAll = all.filter(q => q.type === QUESTION_TYPES.EMOJI_GUESS);
+      const eEasy = emojiAll.filter(q => q.level === 'EASY');
+      const eMed = emojiAll.filter(q => q.level === 'MEDIUM');
+      const eHard = emojiAll.filter(q => q.level === 'HARD');
+
+      const cEasy = Math.max(1, Math.round(totalNeeded * 0.35));
+      const cMed = Math.max(1, Math.round(totalNeeded * 0.35));
+      const cHard = Math.max(0, totalNeeded - cEasy - cMed);
+
+      selected = [
+        ...this.pickFreshQuestions(eEasy, cEasy),
+        ...this.pickFreshQuestions(eMed, cMed),
+        ...this.pickFreshQuestions(eHard, cHard)
+      ].slice(0, totalNeeded);
+
+      if (selected.length < totalNeeded) {
+        const extraEmoji = shuffleArray(emojiAll.filter(q => !selected.some(s => s.id === q.id)));
+        selected = [...selected, ...extraEmoji].slice(0, totalNeeded);
+      }
     } else {
-      const filtered = shuffleArray(all.filter(q => q.level === this.selectedDifficulty));
-      this.activeQuestions = filtered.slice(0, totalNeeded);
+      const filtered = all.filter(q => q.level === this.selectedDifficulty);
+      selected = this.pickFreshQuestions(filtered, totalNeeded);
     }
 
-    if (this.activeQuestions.length < totalNeeded) {
-      const remaining = shuffleArray(all.filter(q => !this.activeQuestions.some(aq => aq.id === q.id)));
-      this.activeQuestions = [...this.activeQuestions, ...remaining].slice(0, totalNeeded);
+    if (selected.length < totalNeeded) {
+      const remaining = shuffleArray(all.filter(q => !selected.some(aq => aq.id === q.id)));
+      selected = [...selected, ...remaining].slice(0, totalNeeded);
     }
+
+    // Registrar como usadas para la próxima partida de esta sesión
+    selected.forEach(q => this.recentlyUsedQuestionIds.add(q.id));
+
+    // Aplicar aleatorización balanceada de los 4 colores (Rojo, Azul, Amarillo, Verde)
+    this.activeQuestions = this.balanceAndShuffleQuestionOptions(selected);
   }
 
   generateLobbyQRCode() {
@@ -642,28 +814,41 @@ class WiseSheepApp {
     });
   }
 
+  escapeHtml(str) {
+    return String(str || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
   updateLobbyPlayersList() {
-    const pCountEl = document.getElementById('lobby-player-count');
+    this.syncHostPlayerCounters();
     const playerIds = Object.keys(this.players);
-    if (pCountEl) pCountEl.innerText = playerIds.length;
 
     if (this.gameMode === 'TEAMS') {
       const teamsCont = document.getElementById('lobby-teams-container');
       if (teamsCont) {
         teamsCont.innerHTML = this.teams.map(team => {
           const members = playerIds.filter(id => this.players[id].team === team.id);
-          const membersHtml = members.map(id => `
-            <div class="${team.bg || 'bg-slate-800'} ${team.text || 'text-slate-100'} px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 border ${team.border || 'border-slate-700'} shadow-sm">
-              <span>${this.players[id].avatar}</span>
-              <span class="truncate">${this.players[id].name}</span>
-            </div>
-          `).join('') || `<span class="text-xs ${team.text || 'text-slate-400'} opacity-60 italic">Esperando miembros...</span>`;
+          const membersHtml = members.map(id => {
+            const safeName = this.escapeHtml(this.players[id].name);
+            const safeId = id.replace(/'/g, "\\'");
+            return `
+              <div class="${team.bg || 'bg-slate-800'} ${team.text || 'text-slate-100'} pl-3 pr-1.5 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 border ${team.border || 'border-slate-700'} shadow-sm group">
+                <span>${this.players[id].avatar || '🐑'}</span>
+                <span class="truncate max-w-[110px]">${safeName}</span>
+                <button type="button" onclick="app.kickPlayer('${safeId}')" class="ml-1 w-5 h-5 rounded-lg bg-slate-950/60 hover:bg-red-600 text-slate-300 hover:text-white flex items-center justify-center text-[10px] font-black transition" title="Sacar de la sala">✕</button>
+              </div>
+            `;
+          }).join('') || `<span class="text-xs ${team.text || 'text-slate-400'} opacity-60 italic">Esperando miembros...</span>`;
 
           return `
             <div class="${team.bg || 'bg-slate-900'} border-2 ${team.border || 'border-slate-700'} rounded-3xl p-5 flex flex-col shadow-lg">
               <div class="flex items-center justify-between border-b border-slate-700/50 pb-3 mb-4">
                 <h4 class="font-extrabold text-lg ${team.text || 'text-white'} flex items-center gap-2 truncate">
-                  <span>${team.icon}</span> ${team.name}
+                  <span>${team.icon}</span> ${this.escapeHtml(team.name)}
                 </h4>
                 <span class="text-xs bg-slate-900/80 px-2.5 py-1 rounded-full font-bold ${team.text || 'text-white'} border border-slate-700">
                   ${members.length} miembros
@@ -679,12 +864,148 @@ class WiseSheepApp {
     } else {
       const indivListEl = document.getElementById('indiv-players-list');
       if (indivListEl) {
-        indivListEl.innerHTML = playerIds.map(id => `
-          <div class="bg-slate-800 text-slate-100 px-3.5 py-2 rounded-xl text-sm font-bold flex items-center gap-2 border border-slate-700 shadow-md">
-            <span>${this.players[id].avatar}</span>
-            <span>${this.players[id].name}</span>
+        indivListEl.innerHTML = playerIds.map(id => {
+          const safeName = this.escapeHtml(this.players[id].name);
+          const safeId = id.replace(/'/g, "\\'");
+          return `
+            <div class="bg-slate-800 text-slate-100 pl-3.5 pr-2 py-2 rounded-xl text-sm font-bold flex items-center gap-2 border border-slate-700 shadow-md">
+              <span>${this.players[id].avatar || '🐑'}</span>
+              <span>${safeName}</span>
+              <button type="button" onclick="app.kickPlayer('${safeId}')" class="ml-1 w-6 h-6 rounded-lg bg-slate-900 hover:bg-red-600 text-slate-400 hover:text-white flex items-center justify-center text-xs font-black transition" title="Sacar de la sala">✕</button>
+            </div>
+          `;
+        }).join('') || '<span class="text-xs text-slate-400 italic">Esperando a que se unan jugadores...</span>';
+      }
+    }
+  }
+
+  // ==============================================================
+  // GESTIÓN Y EXPULSIÓN DE JUGADORES EN LA SALA (ANFITRIÓN)
+  // ==============================================================
+
+  openManagePlayersModal() {
+    sounds.playClick();
+    document.getElementById('modal-manage-players')?.classList.remove('hidden');
+    this.renderManagePlayersModal();
+  }
+
+  closeManagePlayersModal() {
+    sounds.playClick();
+    document.getElementById('modal-manage-players')?.classList.add('hidden');
+  }
+
+  renderManagePlayersModal() {
+    const modal = document.getElementById('modal-manage-players');
+    const listEl = document.getElementById('manage-players-list');
+    const totalEl = document.getElementById('manage-players-total');
+    const entries = Object.entries(this.players);
+
+    if (totalEl) totalEl.innerText = entries.length;
+    if (!listEl || (modal && modal.classList.contains('hidden'))) return;
+
+    if (entries.length === 0) {
+      listEl.innerHTML = `
+        <div class="text-center py-8 text-slate-400 text-xs">
+          <span class="text-3xl block mb-2">👥</span>
+          No hay jugadores conectados en esta sala todavía.
+        </div>
+      `;
+      return;
+    }
+
+    const sorted = entries.sort((a, b) => (b[1].score || 0) - (a[1].score || 0));
+
+    listEl.innerHTML = sorted.map(([id, p]) => {
+      const safeName = this.escapeHtml(p.name);
+      const safeId = id.replace(/'/g, "\\'");
+      const tObj = this.gameMode === 'TEAMS' ? this.getTeamById(p.team) : null;
+      const teamChip = tObj
+        ? `<span class="text-[10px] ${tObj.text || 'text-slate-300'} bg-slate-900 px-2 py-0.5 rounded-md border border-slate-700">${tObj.icon} ${this.escapeHtml(tObj.name)}</span>`
+        : '';
+
+      let statusChip = '';
+      if (this.roomStatus === 'QUESTION') {
+        statusChip = this.receivedAnswers[id]
+          ? '<span class="text-[10px] bg-emerald-950/80 text-emerald-300 border border-emerald-500/40 px-2 py-0.5 rounded-md font-bold">✅ Respondió</span>'
+          : '<span class="text-[10px] bg-amber-950/80 text-amber-300 border border-amber-500/40 px-2 py-0.5 rounded-md font-bold">⏳ Esperando</span>';
+      } else if (this.roomStatus === 'VOTING') {
+        statusChip = this.receivedVotes[id]
+          ? '<span class="text-[10px] bg-emerald-950/80 text-emerald-300 border border-emerald-500/40 px-2 py-0.5 rounded-md font-bold">🗳️ Votó</span>'
+          : '<span class="text-[10px] bg-amber-950/80 text-amber-300 border border-amber-500/40 px-2 py-0.5 rounded-md font-bold">⏳ Sin votar</span>';
+      }
+
+      return `
+        <div class="bg-slate-800/80 border border-slate-700/80 rounded-2xl p-3 flex items-center justify-between gap-2">
+          <div class="flex items-center gap-2.5 min-w-0">
+            <span class="text-2xl shrink-0">${p.avatar || '🐑'}</span>
+            <div class="min-w-0">
+              <div class="font-bold text-sm text-white flex items-center gap-1.5 flex-wrap">
+                <span class="truncate max-w-[140px]">${safeName}</span>
+                ${teamChip}
+              </div>
+              <div class="flex items-center gap-2 mt-0.5">
+                <span class="text-[11px] text-cyan-400 font-bold">${(p.score || 0).toLocaleString()} pts</span>
+                ${statusChip}
+              </div>
+            </div>
           </div>
-        `).join('') || '<span class="text-xs text-slate-400 italic">Esperando a que se unan jugadores...</span>';
+          <button type="button" onclick="app.kickPlayer('${safeId}')" class="btn-3d shrink-0 px-3 py-1.5 bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs rounded-xl flex items-center gap-1 transition">
+            <span>🚫</span> Sacar
+          </button>
+        </div>
+      `;
+    }).join('');
+  }
+
+  async kickPlayer(playerId) {
+    if (!this.isHost || !this.roomPin || !playerId) return;
+    const target = this.players[playerId];
+    const name = target?.name || 'este participante';
+
+    if (!confirm(`¿Seguro que deseas sacar a "${name}" de la sala?`)) {
+      return;
+    }
+
+    sounds.playClick();
+
+    // Eliminar de Firestore y notificar expulsión
+    await roomSync.removePlayer(this.roomPin, playerId);
+
+    // Actualizar estado local inmediatamente
+    delete this.players[playerId];
+    delete this.receivedAnswers[playerId];
+    delete this.receivedVotes[playerId];
+
+    this.syncHostPlayerCounters();
+    this.updateLobbyPlayersList();
+    this.renderManagePlayersModal();
+
+    const hostAnswersCountEl = document.getElementById('host-answers-count');
+    if (hostAnswersCountEl) hostAnswersCountEl.innerText = Object.keys(this.receivedAnswers).length;
+    const voteCountEl = document.getElementById('voting-votes-count');
+    if (voteCountEl) voteCountEl.innerText = Object.keys(this.receivedVotes).length;
+
+    // Si estamos en tabla de posiciones, refrescarla
+    if (this.roomStatus === 'LEADERBOARD') {
+      this.showLeaderboard();
+      return;
+    }
+
+    // Si estamos en una pregunta activa y ahora ya respondieron todos los restantes, cerrar tiempo automáticamente
+    const remainingPlayers = Object.keys(this.players).length;
+    if (this.roomStatus === 'QUESTION' && this.autoCloseOnAllAnswered && remainingPlayers > 0) {
+      const answeredCount = Object.keys(this.receivedAnswers).length;
+      if (answeredCount >= remainingPlayers) {
+        console.log('⚡ Todos los jugadores restantes ya respondieron tras retirar participante. Cerrando pregunta...');
+        this.closeQuestionAndReveal();
+      }
+    }
+
+    // Si estamos en votación activa y ya votaron todos los restantes, revelar ganador
+    if (this.roomStatus === 'VOTING' && remainingPlayers > 0) {
+      const votesCount = Object.keys(this.receivedVotes).length;
+      if (votesCount >= remainingPlayers) {
+        this.closeVotingAndReveal();
       }
     }
   }
@@ -835,6 +1156,7 @@ class WiseSheepApp {
   handleHostAnswerReceived(playerId, answerData) {
     if (!this.isHost || this.roomStatus !== 'QUESTION') return;
     if (!answerData || answerData.questionIndex !== this.currentQIndex) return;
+    if (this.receivedAnswers[playerId]) return; // Evitar doble evaluación
 
     const q = this.activeQuestions[this.currentQIndex];
     if (!q) return;
@@ -869,6 +1191,7 @@ class WiseSheepApp {
 
     const hostAnswersCountEl = document.getElementById('host-answers-count');
     if (hostAnswersCountEl) hostAnswersCountEl.innerText = Object.keys(this.receivedAnswers).length;
+    this.renderManagePlayersModal();
 
     const totalPlayers = Object.keys(this.players).length;
     const totalAnswers = Object.keys(this.receivedAnswers).length;
@@ -1034,7 +1357,7 @@ class WiseSheepApp {
                 <div class="flex items-center gap-2">
                   <span class="font-extrabold text-base w-7 text-center text-amber-400">${medal}</span>
                   <span class="text-xl">${team.icon}</span>
-                  <span class="font-bold text-sm text-white">${team.name}</span>
+                  <span class="font-bold text-sm text-white">${this.escapeHtml(team.name)}</span>
                   <span class="text-[10px] text-slate-400">(${team.members} jug)</span>
                 </div>
                 <div class="flex items-center gap-3">
@@ -1059,7 +1382,9 @@ class WiseSheepApp {
       avatar: p.avatar,
       team: p.team,
       score: p.score || 0,
-      streak: p.streak || 0
+      streak: p.streak || 0,
+      correctCount: p.correctCount || 0,
+      incorrectCount: p.incorrectCount || 0
     })).sort((a, b) => b.score - a.score);
 
     const lbList = document.getElementById('leaderboard-players-list');
@@ -1068,24 +1393,32 @@ class WiseSheepApp {
         const medal = idx === 0 ? '🥇' : idx === 1 ? '🥈' : idx === 2 ? '🥉' : `${idx + 1}°`;
         const streakBadge = (p.streak && p.streak >= 2) ? `<span class="text-xs bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-full font-bold">🔥 Racha ${p.streak}</span>` : '';
         const tObj = this.getTeamById(p.team);
-        const teamBadge = this.gameMode === 'TEAMS' && tObj ? `<span class="text-xs ${tObj.text || 'text-cyan-300'} bg-slate-800 px-2 py-0.5 rounded-lg border border-slate-700">${tObj.icon} ${tObj.name}</span>` : '';
+        const teamBadge = this.gameMode === 'TEAMS' && tObj ? `<span class="text-xs ${tObj.text || 'text-cyan-300'} bg-slate-800 px-2 py-0.5 rounded-lg border border-slate-700">${tObj.icon} ${this.escapeHtml(tObj.name)}</span>` : '';
         const accuracyStats = `<span class="text-[11px] text-slate-400">✅ ${p.correctCount || 0} | ❌ ${p.incorrectCount || 0}</span>`;
+        const safeId = p.id.replace(/'/g, "\\'");
 
         return `
-          <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex items-center justify-between shadow-lg">
-            <div class="flex items-center gap-3">
-              <span class="font-black text-xl w-8 text-center text-amber-400">${medal}</span>
-              <span class="text-2xl">${p.avatar}</span>
-              <div>
-                <div class="font-bold text-white flex items-center gap-2">
-                  <span>${p.name}</span> ${teamBadge}
+          <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex items-center justify-between shadow-lg gap-2">
+            <div class="flex items-center gap-3 min-w-0">
+              <span class="font-black text-xl w-8 text-center text-amber-400 shrink-0">${medal}</span>
+              <span class="text-2xl shrink-0">${p.avatar}</span>
+              <div class="min-w-0">
+                <div class="font-bold text-white flex items-center gap-2 flex-wrap">
+                  <span class="truncate">${this.escapeHtml(p.name)}</span> ${teamBadge}
                 </div>
-                ${streakBadge}
-                ${accuracyStats}
+                <div class="flex items-center gap-2 mt-0.5 flex-wrap">
+                  ${streakBadge}
+                  ${accuracyStats}
+                </div>
               </div>
             </div>
-            <div class="font-extrabold text-xl text-cyan-400">
-              ${(p.score || 0).toLocaleString()} <span class="text-xs text-slate-400">pts</span>
+            <div class="flex items-center gap-3 shrink-0">
+              <div class="font-extrabold text-xl text-cyan-400">
+                ${(p.score || 0).toLocaleString()} <span class="text-xs text-slate-400">pts</span>
+              </div>
+              <button type="button" onclick="app.kickPlayer('${safeId}')" class="p-1.5 rounded-lg bg-slate-800 hover:bg-rose-600 text-slate-400 hover:text-white text-xs transition" title="Sacar de la sala">
+                🚫
+              </button>
             </div>
           </div>
         `;
@@ -1983,11 +2316,15 @@ class WiseSheepApp {
     }
 
     sounds.playClick();
+    document.getElementById('banner-kicked')?.classList.add('hidden');
     this.roomPin = pin;
     this.myPlayerName = name;
     this.myScore = 0;
     this.myStreak = 0;
     this.maxStreak = 0;
+    this.myCorrectCount = 0;
+    this.myIncorrectCount = 0;
+    this.myJoinedAt = Date.now();
     roomSync.currentPin = pin;
 
     this.savePlayerSession();
@@ -1995,14 +2332,17 @@ class WiseSheepApp {
     this.switchView('view-player-lobby');
     document.getElementById('player-my-name').innerText = name;
     document.getElementById('player-my-avatar').innerText = this.myAvatar;
-    document.getElementById('player-my-team-badge').innerText = this.myTeam === 'A' ? 'Equipo Hombres 🦁' : 'Equipo Mujeres 👑';
+    const myTeamObj = this.getTeamById(this.myTeam);
+    document.getElementById('player-my-team-badge').innerText = `Equipo ${myTeamObj.name} ${myTeamObj.icon}`;
 
     roomSync.registerPlayer(this.roomPin, this.myPlayerId, {
       name: this.myPlayerName,
       avatar: this.myAvatar,
       team: this.myTeam,
       score: 0,
-      streak: 0
+      streak: 0,
+      correctCount: 0,
+      incorrectCount: 0
     });
 
     this.startListeningAsPlayer(this.roomPin);
@@ -2019,6 +2359,7 @@ class WiseSheepApp {
         score: this.myScore,
         streak: this.myStreak,
         maxStreak: this.maxStreak,
+        joinedAt: this.myJoinedAt || Date.now(),
         updatedAt: Date.now()
       }));
     } catch (e) {}
@@ -2040,8 +2381,41 @@ class WiseSheepApp {
     });
   }
 
+  handleKickedFromRoom() {
+    sounds.playWrong();
+    roomSync.leaveRoom();
+    this.roomPin = null;
+    this.myScore = 0;
+    this.myStreak = 0;
+    this.maxStreak = 0;
+    this.hasAnsweredCurrent = false;
+    this.hasVotedCurrent = false;
+    try {
+      localStorage.removeItem('ws_player_session');
+    } catch (e) {}
+    document.getElementById('banner-reconnect')?.classList.add('hidden');
+    const kickedBanner = document.getElementById('banner-kicked');
+    const kickedMsg = document.getElementById('banner-kicked-msg');
+    if (kickedMsg) {
+      kickedMsg.innerText = 'El anfitrión te ha retirado de la sala. Puedes volver a unirte si te lo indica.';
+    }
+    if (kickedBanner) kickedBanner.classList.remove('hidden');
+    this.switchView('view-home');
+  }
+
   handlePlayerRoomUpdate(roomData) {
     if (this.isHost || !roomData || !roomData.status) return;
+
+    // 0. Verificar si el anfitrión expulsó a este participante
+    if (roomData.kickedPlayers && roomData.kickedPlayers[this.myPlayerId]) {
+      const kickedAt = roomData.kickedPlayers[this.myPlayerId];
+      if (kickedAt >= (this.myJoinedAt || 0)) {
+        console.log('🚫 Detectada expulsión por el anfitrión. Saliendo de la sala...');
+        this.handleKickedFromRoom();
+        return;
+      }
+    }
+
     console.log('📱 Actualización recibida en celular:', roomData.status);
 
     // 1. Estado: PREGUNTA DE TRIVIA ACTIVA
@@ -2167,7 +2541,7 @@ class WiseSheepApp {
         <button onclick="app.submitPlayerVote('${c.id}', '${c.name.replace(/'/g, "\\'")}')" class="btn-3d w-full p-3.5 bg-slate-900 hover:bg-slate-800 active:bg-amber-600 border border-slate-700 active:border-amber-400 rounded-2xl flex items-center gap-3 text-left shadow-md transition">
           <span class="text-3xl">${c.avatar}</span>
           <div class="truncate">
-            <div class="font-extrabold text-base text-white truncate">${c.name}</div>
+            <div class="font-extrabold text-base text-white truncate">${this.escapeHtml(c.name)}</div>
             <div class="text-[11px] text-slate-400 font-medium">Toca para votar por este compañero</div>
           </div>
         </button>
@@ -2188,7 +2562,7 @@ class WiseSheepApp {
 
       const winner = roomData.winner;
       if (winner) {
-        choiceText.innerHTML = `👑 ¡El más votado por el grupo fue:<br><strong class="text-lg text-white">${winner.avatar} ${winner.name}</strong> (${roomData.maxVotes} votos)!`;
+        choiceText.innerHTML = `👑 ¡El más votado por el grupo fue:<br><strong class="text-lg text-white">${winner.avatar} ${this.escapeHtml(winner.name)}</strong> (${roomData.maxVotes} votos)!`;
       }
     }
 
@@ -2279,10 +2653,10 @@ class WiseSheepApp {
 
       if (winningTeam === this.myTeam) {
         teamBanner.className = 'p-3.5 rounded-2xl text-xs font-bold mb-4 border border-emerald-500 bg-emerald-950/80 text-emerald-200';
-        teamBanner.innerHTML = `🎉 ¡Tu equipo (${myTeamObj.icon} ${myTeamObj.name}) fue el GANADOR DE LA PARTIDA!`;
+        teamBanner.innerHTML = `🎉 ¡Tu equipo (${myTeamObj.icon} ${this.escapeHtml(myTeamObj.name)}) fue el GANADOR DE LA PARTIDA!`;
       } else {
         teamBanner.className = 'p-3.5 rounded-2xl text-xs font-bold mb-4 border border-slate-700 bg-slate-800 text-slate-300';
-        teamBanner.innerHTML = `👏 ¡Gran batalla de equipos! Tu equipo fue ${myTeamObj.icon} ${myTeamObj.name}. El equipo campeón fue ${winTeamObj.icon} ${winTeamObj.name}.`;
+        teamBanner.innerHTML = `👏 ¡Gran batalla de equipos! Tu equipo fue ${myTeamObj.icon} ${this.escapeHtml(myTeamObj.name)}. El equipo campeón fue ${winTeamObj.icon} ${this.escapeHtml(winTeamObj.name)}.`;
       }
     } else if (teamBanner) {
       teamBanner.classList.add('hidden');
@@ -2322,6 +2696,7 @@ class WiseSheepApp {
     sounds.playClick();
     document.getElementById('modal-questions')?.classList.remove('hidden');
     this.questionSearchQuery = '';
+    this.questionsRenderLimit = 80;
     const searchInput = document.getElementById('qsearch-input');
     if (searchInput) searchInput.value = '';
     this.filterQuestionsList('ALL');
@@ -2334,23 +2709,30 @@ class WiseSheepApp {
 
   searchQuestionsList(query) {
     this.questionSearchQuery = (query || '').toLowerCase().trim();
+    this.questionsRenderLimit = 80;
+    this.renderQuestionsScroll();
+  }
+
+  loadMoreQuestionsInModal() {
+    this.questionsRenderLimit = (this.questionsRenderLimit || 80) + 100;
     this.renderQuestionsScroll();
   }
 
   filterQuestionsList(filter) {
     this.currentQuestionFilter = filter;
+    this.questionsRenderLimit = 80;
 
-    ['ALL', 'EASY', 'MEDIUM', 'HARD', 'CUSTOM'].forEach(f => {
+    ['ALL', 'EASY', 'MEDIUM', 'HARD', 'EMOJI', 'CUSTOM'].forEach(f => {
       const btn = document.getElementById(`qfilter-${f}`);
       if (btn) {
         if (f === filter) {
-          btn.className = f === 'CUSTOM'
-            ? 'px-3 py-1.5 rounded-xl bg-purple-600 text-white font-bold transition shrink-0'
-            : 'px-3 py-1.5 rounded-xl bg-cyan-600 text-white font-bold transition shrink-0';
+          if (f === 'CUSTOM') btn.className = 'px-3 py-1.5 rounded-xl bg-purple-600 text-white font-bold transition shrink-0';
+          else if (f === 'EMOJI') btn.className = 'px-3 py-1.5 rounded-xl bg-amber-500 text-slate-950 font-black transition shrink-0';
+          else btn.className = 'px-3 py-1.5 rounded-xl bg-cyan-600 text-white font-bold transition shrink-0';
         } else {
-          btn.className = f === 'CUSTOM'
-            ? 'px-3 py-1.5 rounded-xl bg-purple-950/80 border border-purple-500/50 text-purple-200 font-bold hover:bg-purple-900 transition shrink-0'
-            : 'px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 font-semibold hover:bg-slate-700 transition shrink-0';
+          if (f === 'CUSTOM') btn.className = 'px-3 py-1.5 rounded-xl bg-purple-950/80 border border-purple-500/50 text-purple-200 font-bold hover:bg-purple-900 transition shrink-0';
+          else if (f === 'EMOJI') btn.className = 'px-3 py-1.5 rounded-xl bg-amber-950/70 border border-amber-500/40 text-amber-200 font-bold hover:bg-amber-900 transition shrink-0';
+          else btn.className = 'px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 font-semibold hover:bg-slate-700 transition shrink-0';
         }
       }
     });
@@ -2376,6 +2758,8 @@ class WiseSheepApp {
       });
     } else if (this.currentQuestionFilter === 'ALL') {
       baseItems = QUESTIONS_DATABASE;
+    } else if (this.currentQuestionFilter === 'EMOJI') {
+      baseItems = QUESTIONS_DATABASE.filter(q => q.type === QUESTION_TYPES.EMOJI_GUESS);
     } else {
       baseItems = QUESTIONS_DATABASE.filter(q => q.level === this.currentQuestionFilter);
     }
@@ -2404,19 +2788,24 @@ class WiseSheepApp {
       return;
     }
 
-    listEl.innerHTML = items.map((q, idx) => {
+    const limit = this.questionsRenderLimit || 80;
+    const visibleItems = items.slice(0, limit);
+    const hasMore = items.length > visibleItems.length;
+
+    listEl.innerHTML = visibleItems.map((q, idx) => {
       const isCustom = q.level === 'CUSTOM';
+      const isEmoji = q.type === QUESTION_TYPES.EMOJI_GUESS;
       const lvl = isCustom
         ? { name: `⭐ ${q.customCategory || 'Personal'}`, badge: '⭐' }
         : (QUESTION_LEVELS[q.level] || QUESTION_LEVELS.EASY);
 
       return `
-        <div class="bg-slate-800/80 border ${isCustom ? 'border-purple-500/40' : 'border-slate-700/80'} rounded-2xl p-4 text-xs shadow">
-          <div class="flex items-center justify-between mb-2">
-            <span class="${isCustom ? 'bg-purple-900/80 text-purple-200' : 'bg-slate-700 text-cyan-300'} font-bold px-2 py-0.5 rounded">
-              #${idx + 1} - ${q.category || q.customCategory}
+        <div class="bg-slate-800/80 border ${isCustom ? 'border-purple-500/40' : isEmoji ? 'border-amber-500/40' : 'border-slate-700/80'} rounded-2xl p-4 text-xs shadow">
+          <div class="flex items-center justify-between mb-2 gap-2">
+            <span class="${isCustom ? 'bg-purple-900/80 text-purple-200' : isEmoji ? 'bg-amber-900/70 text-amber-200' : 'bg-slate-700 text-cyan-300'} font-bold px-2 py-0.5 rounded">
+              #${idx + 1} - ${isEmoji ? '😎 ' : ''}${q.category || q.customCategory}
             </span>
-            <span class="${isCustom ? 'text-purple-300 font-bold' : 'text-amber-300 font-semibold'}">
+            <span class="${isCustom ? 'text-purple-300 font-bold' : 'text-amber-300 font-semibold'} shrink-0">
               ${lvl.badge} ${lvl.name}
             </span>
           </div>
@@ -2433,7 +2822,13 @@ class WiseSheepApp {
           </div>
         </div>
       `;
-    }).join('');
+    }).join('') + (hasMore ? `
+      <div class="text-center pt-2 pb-4">
+        <button onclick="app.loadMoreQuestionsInModal()" class="btn-3d px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs rounded-xl">
+          ⬇️ Mostrar más preguntas (${visibleItems.length} de ${items.length})
+        </button>
+      </div>
+    ` : '');
   }
 
   showSettingsModal() {
